@@ -1,49 +1,116 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+{% extends "_base_template.html" %}
 
-		<title>reveal.js</title>
+{% block sections %}
+<section>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+<section id="home" data-markdown>
+<textarea data-template>
+Jahresplan Frühling 2018 | M326 - Objektorientiert entwerfen und implementieren
+=================
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+| Lekt. | Datum       | Thema | Detail                                            |
+|-------|-------------|--------------|--------------------------------------------------------|
+|<td colspan="3">Sportferien 27. Januar - 4. Februar|
+| [ 001 ](001_start.html)   | 08.02.2018  | Vorstellung, Einführung, Tools | Einführung, Vorstellung, VM bereitstellen / verteilen  inkl. Tools |
+| [ 002 ](002_einfuehrung.html)   | 15.02.2018  | Überblick OOA / OOD | [ Einführung OOA/ OOD ](#/1/002) |
+| [ 003 ](003_use_cases.html)   | 22.02.2018  | OOA | [ Use Cases, Überblick OOA ](#/1/003) |
+| [ 004 ]()   | 01.03.2018  |  OOA | [ Analyse: Klassenmodell ](#/1/004) |
+| [ 005 ]()   | 08.03.2018  |  OOA | [ 2. Lektion Klassenmodell ](#/1/004) |
+| [ 006 ]()   | 15.03.2018  | OOD | [Einführung, Vorgeben](#/1/006)|
+| [ 007 ]()   | 22.03.2018  | OOD | UI, Maskenablauf, Aktivitäts- und Sequenzdiagramme |
+| [ 008 ]()   | 29.03.2018  | OOD | UI, Maskenablauf, Aktivitäts- und Sequenzdiagramme |
+|<td colspan="3">Frühlingsferien 30. März - 15. April</td>|
+| [ 009 ]()   | 19.04.2018  | OOD | [ Implementation von Assoziationen ](#/1/009)|
+| [ 010 ]()   | 26.04.2018  | OOD | 2. Teil Assoziationen: Implementierung, Auslosen der Design-Pattern für Kurzpräsentation|
+| [ 011 ]()   | 03.05.2018  | OOD | Design Patterns: MVC gemeinsam erarbeiten |
+|<td colspan="3">Pfingstferien 10. Mai - 21. Mai |
+| [ 012 ]()   | **24.05.2018**  | OOD | [Design Pattern erarbeiten, **Kurzpräsentation eigenes Pattern**](#/1/012)|
+| [ 013 ]()   | 31.05.2018  | OOD | Übungen zu Design Patterns |
+| [ 014 ]()   | 07.06.2018  | OOD | Übungen zu Design Patterns |
+| [ 015 ]()   | 14.06.2018  | Testing | Testfälle ableiten aus OOA (Use Cases), Entwickeln von Testprotokollen |
+| [ 016 ]()   | **21.06.2018**  | **Prüfung / Fallstudie **|4 Lektionen am Stück, Abtausch mit Roger Zuber|
+| [ 017 ]()   | 28.06.2018  | **Fallstudie, Besprechung **| 1 Lektion Besprechung, Rest Roger Zuber|
+| [ 018 ]()   | 05.07.2018  | OOD | wenn noch Zeit: ORM, ev. Hibernate |
+|<td colspan="3">Sommerferien 07. Juli - 12. August |
+**Achtung: Sporttag am letzten Tag (05.07.): Ev. nicht (den ganzen Tag) verfügbar**
+</textarea>
+</section>
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+<section id="002" data-markdown>
+<textarea data-template>
+002 - 15.02.2018
+----------------
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+- Einführung: Probleme bei der SW-Entwicklung: Kommunikation, fremde, komplexe Business-Cases
+- Ziel OOA / OOD, Unterschiede
+- Vorgehensweise OOA
+  - Statisches Modell
+  - dynamisches Modell
+  - evolutionäres, iteratives Vorgehen
+- Vorgehensweise OOD
+  - Systemarchitektur, Frameworks
+  - Klassendefinition, dynamisches Modell
+- Einführung des fiktiven Projektes „Bibsys“
+</textarea>
+</section>
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
-</html>
+<section id="003" data-markdown>
+<textarea data-template>
+003 - 22.02.2018
+----------------
+
+- Überblick, Einführung, Vorgehensweise
+- finden von und formulieren von Use Cases, Bewertungskriterien use cases, UML
+</textarea>
+</section>
+
+<section id="004" data-markdown>
+<textarea data-template>
+004 - 01.03.2018
+----------------
+
+- Klassenfindung
+- Beziehungen
+- Attribute
+- Generalisierungen finden
+- Bewertungskriterien, UML
+</textarea>
+</section>
+
+<section id="006" data-markdown>
+<textarea data-template>
+006 - 15.03.2018
+----------------
+
+- Einführung: Unterschied zur OOA
+- Frameworks, Libraries: Was ist es, Unterschiede, Bezug zum OOD
+- Vorgehen: (Siehe Balzert, S. 405, Erstellen eines Entwurfsmodells): Architektur, Fachkonzept, UI-Schicht, Persistenz
+</textarea>
+</section>
+
+<section id="009" data-markdown>
+<textarea data-template>
+009 - 19.04.2018
+----------------
+
+- Umsetzung von Assoziationen:
+  - 1:n, n:1, n:m, Kompositionen, Assoziationen
+</textarea>
+</section>
+
+<section id="012" data-markdown>
+<textarea data-template>
+012 - 24.05.2018
+----------------
+
+* Design Patterns: Schüler erarbeiten folgende Patterns selbständig (Output: 1 Übersichtsblatt per Pattern):
+    - Singleton
+    - Factory Method
+    - Observer/Observable
+    - Adapter
+    - Strategy
+* Design Patterns: Schüler stellen ihre Pattern vor, Kurzpräsentationen
+</textarea>
+</section>
+</section>
+{% endblock %}

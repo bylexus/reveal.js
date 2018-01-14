@@ -1,0 +1,225 @@
+{% extends "./_base_template.html" %}
+{% block title %}Lektion 1 - Willkommen{% endblock %}
+
+{% block sections %}
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M326 - 1 Einstieg, Willkommen
+=============================
+
+Objektorientiert entwerfen und implementieren
+
+Heutiges Ziel
+-------------
+
+<ul class="fa-ul">
+<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Willkommen</li>
+<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Kennenlernen</li>
+<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Infos zur Organisation des Unterrichts</li>
+<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Semester-Agenda: Was machen wir überhaupt?</li>
+<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Inbetriebnahme der Unterrichts-VM in VirtualBox
+    <ul class="fa-ul">
+    <li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Eclipse / Java</li>
+    <li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>VisualParadigm / UML</li>
+    </ul>
+</li>
+</ul>
+</textarea>
+</section>
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-user"></i> Willkommen!
+===========
+
+Wer bin ich?
+------------
+
+<div style="display: flex; align-content:flex-start;align-items: flex-start">
+<img src="001_start/ich-thumb.jpg" style="width: 300px;margin-right: 20px;margin-top: 0" />
+<div >
+<ul class="fa-ul">
+<li><span class="fa-li"><i class="far fa-building"></i></span>Beruflich:
+    <ul class="fa-ul">
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Software-Entwickler und Projektleiter bei Kaden und Partner AG, Frauenfeld</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Web-Entwicklung mit PHP, JS/Sencha Ext, PostgreSQL, ReactJS/Redux, mobile Hybrid-Apps</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Erfahrung mit PHP, Java, Ruby, Python, C/C++, Android/iOS-Entwicklung</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>bekannte App: ThurGIS mobile für iOS/Android</li>
+    </ul>
+</li>
+<li><p></p></li>
+<li><span class="fa-li"><i class="fas fa-home"></i></span>Privat:
+    <ul class="fa-ul">
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Wohnhaft in Islikon</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Vater von 2 Buben, 8 und 5</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Computer-Enthusiast, Linux- und OpenSource-Fan, Software-Bastler, VIM-User</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Sonstige Hobbys: Krimis, SciFi, Comics, Feuerwehr, Musik (machen)</li>
+    </ul>
+</li>
+</ul>
+</div>
+</div>
+</textarea>
+</section>
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-users"></i> Wer sind Sie?
+===========
+
+Erzählen Sie kurz zwei, drei Dinge zu Ihnen:
+* Wie heissen Sie?
+* Wo (in welcher Firma) lernen Sie?
+* Was ist dort Ihre Hauptaufgabe?
+* Welche Programmiersprachen kenne Sie (gut, weniger gut)?
+* Was für Projekte haben Sie schon aktiv mitentwickelt?
+* Sonstiges? (Hobbys, Interessen)
+</textarea>
+</section>
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wie stelle ich mir den Unterricht vor?
+======================================
+
+* interaktiver Unterricht - viel Praxis
+* Fragen werden direkt gestellt - von mir und von Ihnen!
+* Fehler sind erlaubt / erwünscht!
+* Auch ich mache Fehler / weiss nicht alles!
+* Möglichst alles digital - kein Papier
+* Meine Erwartungen an Sie:
+  * Aufmerksamkeit während des Unterrichts
+  * Beteiligung bei Diskussionen
+  * Ehrlichkeit (Absenzen, Aufgaben)
+</textarea>
+</section>
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-gavel"></i> Regeln
+======================================
+
+* Wir (Sie und ich) sind pünktlich
+* Bei Diskussionen / Präsentation bleiben Laptops / Handys geschlossen
+* Es wird **Schriftsprache** gesprochen (Ausnahmen bestätigen die Regel ;-))
+</textarea>
+</section>
+
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+ Organisatorisches
+======================================
+
+* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=481)
+* Hausaufgaben: bis am Abend vor der Lektion abgegeben (auf Moodle)
+* Die Hausaufgaben sind Teil des Unterrichts-Stoffes. Es liegt in Ihrer Verantwortung, diese zu machen.
+* Absenzen: bis am Abend per Mail / SMS / Telefon gemeldet (Ausnahme: Krankheit)
+</textarea>
+</section>
+
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-calendar"></i> Semester-Agenda
+======================================
+
+ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmodnr=326&noheader=1
+
+* **Grundkonzepte der Objektorientierung**
+  * Folgende Grundkonzepte setze ich VORAUS und werden wir nicht mehr behandeln:
+    * Kapselung, Klassen, Vererbung, Abstrakte Klassen, Interfaces, Polymorphismus, Overloading, Overriding
+*  Einführung (OO-)Analyse und Design: Probleme bei der SW-Entwicklung, Ziele, Vorgehensweise
+*  Objektorientierte **Analyse**: Überblick
+  * Use Cases, Klassenfindung, Beziehungen, Aktivitäts- und Zustandsdiagramme, UML
+*  Objektorientiertes **Design und Implementation**
+  * Systemarchitekturen, Framework, Libraries
+  * Schritte zum objektorientierten Design, UML
+  * Design Patterns (**Kurzreferate zu Design Pattern**)
+* **Testing**
+  * Entwickeln von Testfällen und -Protokollen
+* Fallstudie **(Modulprüfung, LBV 326-1, 21.06.2018, 4 Lektionen)**
+</textarea>
+</section>
+
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-code"></i> Programmiersprache
+======================================
+
+* Wir verwenden beispielhaft Java
+* Wir entwickeln keine komplexe GUI-Applikation, sondern eine einfache Konsolen-Applikation: Es geht um die grundlegenden Konzepte.
+* Machen Sie sich mit Eclipse und Basis-Java-Wissen vertraut.
+* Wir bearbeiten ein durchgängiges Beispiel: es wird ein Bibliothekssystem entworfen und Teil-implementiert
+</textarea>
+</section>
+
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-desktop"></i> Unterrichts-VM
+======================================
+
+* Linux Mint (auf Ubuntu aufbauend)
+  * Login: bzt-user / PW: admin
+* vorinstallierte Dev-Umgebung:
+  * Eclipse IDE
+  * UML-Tools VisualParadigm
+* VirtualBox-Setup
+  * Import des .ova-Images auf externe HD
+  * neue MAC-Adresse für Netzwerkkarte generieren
+  * Bridge- oder NAT-Netz
+  * mind 2GB, besser 4GB RAM
+  * Grafik-Setup: Zoomfaktor für hochauflösende Displays
+</textarea>
+</section>
+
+
+
+
+
+
+<section id="detailplan" data-markdown>
+<textarea data-template>
+Detailplan Lektion 1 - 08.02.2018 (Woche 6)
+===========================================
+
+Material
+--------
+* Laptops
+* Foliensatz (Moodle)
+* Namensliste, Platz für handgeschriebene Infos
+* vorbereitete VM (auf USB-Stick pro Schüler verteilt)
+* USB-Sticks mit VM
+
+Ziele
+-----
+
+* Wir lernen einander kennen
+* alle Schüler haben die Unterrichts-VM in Betrieb genommen
+* die Schüler kennen die wichtigsten Tools in der VM: VisualParadigm, Eclipse, Beispielprojekt
+
+Detailplan
+----------
+
+* 07:30 (ca. 5min): Begrüssung, Ziel ( Folie mit meinen Daten, Folien mit den Links zu Unterrichs-Unterlagen)
+* 07:40: (ca. 10min): Vorstellungsrunde ( Material: Plan Namensliste )
+  * Alle Schüler stellen sich kurz vor, wo gehen sie zur Lehre, was machen sie dort, welche Programmiersprachen können sie, Erfahrungen in Entwicklung?
+  * → Namensliste erstellen
+* 07:50 (ca. 10 min): Infos zum Unterricht, Übersicht Semester
+  * Folien zur Unterichtsgestaltung
+  * Organisatorisches: Moodle zeigen
+  * → Folie Agenda
+  * geplante Themen vorstellen, kurz 2, 3 Sätze dazu sagen
+  * Infos zum Ablauf, Fallstudie
+  * Infos zur Umgebung (Eclipse, Java, UML-Tool ...)
+* 08:00 bis Ende: VM in Betrieb nehmen
+  * → Eine VM ist vorbereitet, alle Tools vorinstalliert
+  * UML-Tools (VisualParadigm, StarUML)
+  * Eclipse IDE
+* 08:15: Pause (5min)
+* 09:05: Ende
+</textarea>
+</section>
+{% endblock %}

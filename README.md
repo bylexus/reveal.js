@@ -1,3 +1,21 @@
+# reveal.js-Fork for BZTF
+
+I am a teacher at the [ BZTF ](https://www.bztf.ch/) and use revealJS for my teaching slides. This fork adapts reveal.js with some "sugar":
+
+* adds [ Nunjucks template engine ](https://mozilla.github.io/nunjucks/): Each slide HTML is a Nunjucks template, which inherits from a base template. This was it is easy to have one master slide template for multiple presentations.
+* adds a "build" grunt job: creates a static version from all Nunjucks templates into the "build/" folder
+* adds a "pdf" grunt job: creates PDF versions from the "build/"-HTMLs, using [ puppeteer ](https://github.com/GoogleChrome/puppeteer) (headless chrome)
+* It includes two demo slides:
+  * index.html: a "Jahresplan" slide, used for yearly planning, which links to all planned lessons
+  * 001_start.html: The first lesson for a module, as a demo
+
+I also removed some Grunt job I really have no need for:
+
+* test (removing jshint and qunit, too)
+
+The origina documentation follows below.
+
+
 # reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.svg?branch=master)](https://travis-ci.org/hakimel/reveal.js) <a href="https://slides.com?ref=github"><img src="https://s3.amazonaws.com/static.slid.es/images/slides-github-banner-320x40.png?1" alt="Slides" width="160" height="20"></a>
 
 A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://revealjs.com/).
@@ -126,10 +144,10 @@ You can write your content as a separate file and have reveal.js load it at runt
 When used locally, this feature requires that reveal.js [runs from a local web server](#full-setup).  The following example customises all available options:
 
 ```html
-<section data-markdown="example.md"  
-         data-separator="^\n\n\n"  
-         data-separator-vertical="^\n\n"  
-         data-separator-notes="^Note:"  
+<section data-markdown="example.md"
+         data-separator="^\n\n\n"
+         data-separator-vertical="^\n\n"
+         data-separator-notes="^Note:"
          data-charset="iso-8859-15">
 </section>
 ```

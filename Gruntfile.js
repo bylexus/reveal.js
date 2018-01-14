@@ -2,7 +2,12 @@
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var root = grunt.option('root') || '.';
+    var path = require('path');
+    var nunjucks = require('nunjucks');
 
+    nunjucks.configure('.', {
+        noCache: true
+    });
 	if (!Array.isArray(root)) root = [root];
 
 	// Project configuration
@@ -17,10 +22,6 @@ module.exports = function(grunt) {
 				' *\n' +
 				' * Copyright (C) 2017 Hakim El Hattab, http://hakim.se\n' +
 				' */'
-		},
-
-		qunit: {
-			files: [ 'test/*.html' ]
 		},
 
 		uglify: {
@@ -64,31 +65,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		jshint: {
-			options: {
-				curly: false,
-				eqeqeq: true,
-				immed: true,
-				esnext: true,
-				latedef: 'nofunc',
-				newcap: true,
-				noarg: true,
-				sub: true,
-				undef: true,
-				eqnull: true,
-				browser: true,
-				expr: true,
-				globals: {
-					head: false,
-					module: false,
-					console: false,
-					unescape: false,
-					define: false,
-					exports: false
-				}
-			},
-			files: [ 'Gruntfile.js', 'js/reveal.js' ]
-		},
 
 		connect: {
 			server: {
@@ -97,10 +73,29 @@ module.exports = function(grunt) {
 					base: root,
 					livereload: true,
 					open: true,
-					useAvailablePort: true
-				}
-			}
-		},
+					useAvailablePort: true,
+                    middleware: function(connect, options, middlewares) {
+                      // add Nunjucks template parser for all .html or /-Files
+                      middlewares.unshift(function(req, res, next) {
+                          var parts = require('url').parse(req.url);
+                          var pathname = parts.pathname;
+
+                          if (pathname.match(/\/$/)) {
+                              pathname += 'index.html';
+                          }
+                          if (pathname.match(/\.html$/)) {
+                              res.end(nunjucks.render(path.join('.',pathname), {
+                                  project: grunt.config.get('pkg.project')
+                              }));
+                          } else {
+                              return next();
+                          }
+                      });
+                      return middlewares;
+                    },
+                }
+            }
+        },
 
 		zip: {
 			bundle: {
@@ -149,7 +144,58 @@ module.exports = function(grunt) {
 		retire: {
 			js: [ 'js/reveal.js', 'lib/js/*.js', 'plugin/**/*.js' ],
 			node: [ '.' ]
-		}
+		},
+
+        copy: {
+            build: {
+                files: [{
+                    expand: true,
+                    src: [
+                        '**/*',
+                        '!**/*.html',
+                        '!**/*.scss',
+                        '!css/theme/source/**',
+                        '!node_modules/**',
+                        '!test/**',
+                        '!CONTRIBUTING.md',
+                        '!Gruntfile.js',
+                        '!LICENSE',
+                        '!README.md',
+                        '!bower.json',
+                        '!package*.json'
+                    ],
+                    dest: 'build/'
+                }]
+            }
+        },
+
+        clean: {
+            build: ['build/']
+        },
+
+        'nunjucks-render': {
+            options: {},
+            build: {
+                files: [{
+                src: [
+                    '**/*.html',
+                    '!node_modules/**',
+                    '!test/**',
+                    '!plugin/**',
+                    '!**/_*.html'
+                ],
+                expand: true,
+                dest: 'build/'
+                }]
+            }
+        },
+
+        'pdf': {
+            build: {
+                html: ['build/**/*.html'],
+                options: {}
+            }
+        }
 
 	});
 
@@ -157,19 +203,69 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
+	grunt.loadNpmTasks( 'grunt-contrib-copy' );
+	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
 	grunt.loadNpmTasks( 'grunt-retire' );
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-zip' );
-	
+
+    grunt.registerMultiTask('nunjucks-render', 'generates html files from nunjucks templates', function(){
+        this.files.forEach(function(f) {
+              // Concat specified files.
+              var processedContent = f.src.map(function(filepath) {
+                // Read file source.
+                var content = nunjucks.render(path.join('.',filepath), {
+                  project: grunt.config.get('pkg.project')
+                });
+                return content;
+              }).join('\n');
+            grunt.log.ok(f.dest);
+            grunt.file.write(f.dest, processedContent);
+        });
+    });
+
+    // Generates PDFs from HTML files. Meant to be run after the 'build' job.
+    grunt.registerMultiTask('pdf',' Generates PDFs from the built HTML', function() {
+        const puppeteer = require('puppeteer');
+        const path = require('path');
+        const done = this.async();
+
+        puppeteer.launch()
+            .then(browser => browser.newPage())
+            .then(page => {
+                let files = grunt.file.expand(this.data.html);
+                let p = Promise.resolve();
+                // sync promise execution pattern: Execute all PDF execution promises
+                // after the first one is done.
+                files.forEach(function(f) {
+                    let fInfo = path.parse(f);
+                    let input = path.join(__dirname,f);
+                    let pdf = path.join(fInfo.dir,fInfo.name+'.pdf');
+
+                    p = p.then(function(){
+                        grunt.log.ok('Generating '+pdf);
+                        return page.goto('file://'+input+'?print-pdf', {waitUntil: 'networkidle2'})
+                            .then(() => page.pdf({path: pdf}, this.data.options || {}));
+                    }.bind(this));
+
+                }.bind(this));
+                return p;
+            })
+            .then(done)
+            .catch(e => {
+                grunt.log.fail(e);
+                done();
+            });
+    });
+
 	// Default task
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
 
 	// JS task
-	grunt.registerTask( 'js', [ 'jshint', 'uglify', 'qunit' ] );
+	grunt.registerTask( 'js', [ 'uglify' ] );
 
 	// Theme CSS
 	grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
@@ -186,7 +282,7 @@ module.exports = function(grunt) {
 	// Serve presentation locally
 	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
 
-	// Run tests
-	grunt.registerTask( 'test', [ 'jshint', 'qunit' ] );
+	// Run build task: exports everything as standalone html to build/
+	grunt.registerTask( 'build', [ 'css', 'js', 'clean:build', 'nunjucks-render:build', 'copy:build' ] );
 
 };
