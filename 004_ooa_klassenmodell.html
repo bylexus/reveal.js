@@ -1,0 +1,236 @@
+{% extends "./_base_template.html" %}
+{% block title %}Lektion 4 - OOA - Klassenmodell{% endblock %}
+
+{% block sections %}
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Thema: OOA - Klassenmodell
+=============================
+
+Heutiges Ziel
+-------------
+
+* Besprechung der Hausaufgabe: Use-Case-Beschreibung
+* Sie wissen, was objektorientierte Klassen/Objekte, Assoziationen, Attribute sind und kennen die Vorteile dieses Modells
+* Sie können durch Analyse Fachklassen finden und diese in einem UML-Diagramm darstellen
+* Sie können durch Analyse Attribute und Generalisierungen der Fachklassen herleiten
+* Sie kennen Bewertungskriterien für das Klassenmodell
+
+### Hausaufgaben
+
+* Fertigstellen des Klassenmodells:
+    * UML mit Klassen mit Attributen
+    * Generalisierungen (Vererbung)
+    * Versuchen Sie bereits, Beziehungen zwischen den Klassen zu finden.
+
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<textarea data-template>
+<i class="fas fa-flask"></i> Wo stehen wir?
+===========
+
+Wir sind an der fachlichen Analyse und erarbeiten exemplarisch das Klassenmodell:
+
+<img src="004_ooa_klassenmodell/wo_stehen_wir.png" />
+
+Wir verzichten bewusst auf die weitere Analyse aus Zeitgründen.
+
+Note:
+* Wir werden in der Design-Phase Sequenz- Aktivitäts und Zustandsdiagramme kennenlernen.
+
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<textarea data-template>
+<i class="fas fa-flask"></i> Was ist ein Klassenmodell?
+===========
+
+Das **Klassenmodell** bildet Objekte, resp. "Typen von Objekten", und deren Attribute und Beziehungen ab.
+
+Dabei orientiert sich das Klassenmodell an der realen Welt, so wie auch wir "Objekte wahrnehmen".
+
+Für die formelle Darstellung verwenden wir das **UML-Klassendiagramm**, um das Klassenmodell zu erstellen.
+
+**Ziel**: Die Objekte / Klassen der realen Welt / der Problemstellung möglichst wirklichkeitsgetreu formal darzustellen.
+
+**Frage**: Gehört das Klassenmodell zum **dynamischen** oder **statischen** Modell?
+
+<!-- .element class="fragment" --> **Antwort**: Klar zum statischen Modell. Abläufe werden im Klassenmodell keine modelliert.
+
+Note:
+* Objekte wahrnehmen: Ein Ojekt HAT Attribute, wir können damit etwas MACHEN (Operationen), und ein
+  Objekt steht in Beziehung zu anderen Objekten (z.B. ein AUTO hat 4 Räder).
+
+</textarea>
+</section>
+
+
+
+<section>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> UML-Klassendiagramm
+    ===========
+
+    <img src="004_ooa_klassenmodell/uml_klassendiagramm.png" style="width: 70%" />
+
+    Das Klassendiagramm
+    * zeigt die konkreten Objekte resp. **Klassen** von Objekten wie Dinge / Personen / Rollen / Orte / Behälter
+    * zeigt, welche **Attribute** die Klassen haben
+    * zeigt, welche **Beziehungen** zwischen den Klassen existieren
+    * zeigt **Generalisierungen** (Vererbungen) von Klassen
+    * zeigt die Operationen, welche mit den Objekten ausgeführt werden können (hier nicht ersichtlich)
+    * in der Analyse-Phase: entspricht NICHT der technischen Umsetzung! Die technische Implementation wird bewusst weggelassen. Konzentration auf das Business-Modell!
+    </textarea>
+    </section>
+
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Was sind OO-Klassen?
+    ===========
+
+    **Fragen:**
+
+    * Was ist eine **Klasse** im objektorientierten Sinn?
+    * Aus was besteht eine objektorientierte Klasse?
+
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Was ist eine (objektorientierte) Klasse?
+    ===========
+
+    * <!-- .element class="fragment" --> Eine **Klasse** ist ein Bauplan für konkrete **Objekte**
+    * <!-- .element class="fragment" -->  Wie eine Blaupause eines Hauses zeigt die Klasse, wie ein späteres Objekt "auszusehen hat"
+    * <!-- .element class="fragment" -->  Sie definiert somit formal konkrete Objekte durch eine Beschreibung.
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Aus was besteht eine objektorientierte Klasse?
+    ===========
+
+    * <!-- .element class="fragment" --> Eine Klasse hat einen Namen
+    * <!-- .element class="fragment" --> Sie hat Attribute (Eigenschaften)
+    * <!-- .element class="fragment" --> Sie definiert Operationen (Methoden), welche auf die Attribute eine Auswirkung haben
+    * <!-- .element class="fragment" --> Durch Verbindugen mit anderen Klassen (über Attribute/Operationen) werden auch Beziehungen modelliert
+    </textarea>
+    </section>
+</section>
+
+<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<textarea data-template>
+<i class="fas fa-flask"></i> Finden von Klassen
+===========
+
+**Frage**: Wie gehen Sie vor, um Klassen für das Klassenmodell/Klassendiagramm zu finden?
+
+* <!-- .element class="fragment" --> **Dokumentanalyse**: Pflichtenhefte, Ausdrucke, Rechnungen, Screenshots ... Also alles, was der Kunde an Unterlagen verfügbar hat.
+* <!-- .element class="fragment" --> **Analyse der Use-Cases**: Die erstellen Use-Cases sollten bereits recht umfassend mögliche Klassenkandidaten erwähnen.
+
+Note:
+* Objekte wahrnehmen: Ein Ojekt HAT Attribute, wir können damit etwas MACHEN (Operationen), und ein
+  Objekt steht in Beziehung zu anderen Objekten (z.B. ein AUTO hat 4 Räder).
+
+</textarea>
+</section>
+
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Übung: Finden von Klassen, Attributen, Generalisierungen
+===========
+
+**Aufgabe:**
+
+* Erstellen Sie ein erstes Klassenmodell mit Klassen, Attributen und Generalisierungen für das Bibliothekssystem
+* Material:
+  * **Checkliste 002 - Klassen** [(Moodle)](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_002_Klassen.pdf?forcedownload=1)
+  * **Checkliste 004 - Attribute** [(Moodle)](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_004_Attribute.pdf?forcedownload=1)
+  * **Checkliste 005 - Generalisierungen** [(Moodle)](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_005_Generalisierung.pdf?forcedownload=1)
+  * **Anforderungen an das Bibliothekssystem** [(Moodle)](https://moodle.bztf.ch/mod/resource/view.php?id=15218)
+* Nehmen Sie die Checklisten zur Hand und lesen Sie sie durch.
+* Suchen Sie mögliche Klassen-Kanditaten im Dokument "Anforderungen an ein Bibliothekssystem" (Abschnitt **Konstruktive Schritte** in der Checkliste 002)
+* Suchen Sie mögliche Klassen-Attribute (Abschnitt **Konstruktive Schritte** in der Checkliste 004)
+* Suchen Sie mögliche Klassen-Generalisierungen (Abschnitt **Konstruktive Schritte** in der Checkliste 005)
+* Erstellen Sie ein UML-Klassendiagramm in VisualParadigm mit Klassen, Attributen, Generalisierungen
+* **Bewerten** Sie Ihr Modell anhand des Abschnitts **Analytische Schritte** in den Checklisten: Dieses Kapitel hilft Ihnen, das Klassenmodell zu verbessern / zu bewerten.
+
+* **Bedenken Sie** Dies ist das Analysemodell: Es zeigt noch KEINE technischen Zusammenhänge! Machen Sie sich noch KEINE Gedanken, wie Sie dies technisch umsetzen wollen!
+
+**Abgabe**
+
+* Das UML-Diagramm wie oben beschrieben als Hausaufgaben-Abgabe einreichen
+
+Note:
+Als kurze Einführung zeige ich ein Beispiel anhand der Checkliste 002:
+* VisualParadigm: Wie macht man ein Klassendiagramm
+* Hinweis auf Aufbau der Checkliste: Konstruktive Schritte, Analytische Schritte
+* erstes Beispiel zum Finden einer Klasse am Anforderungs-Dokument
+* Schüler arbeiten lassen
+* Hinweis auf Hausaufgabe
+</textarea>
+</section>
+
+
+
+
+
+
+<section id="detailplan" data-markdown>
+<textarea data-template>
+Detailplan Lektion 4 - 01.03.2018 (Woche 9)
+===========================================
+
+Material
+--------
+* Checkliste_002_Klassen.pdf (auf Moodle)
+* Checkliste_003_Assoziationen.pdf (auf Moodle)
+* Checkliste_004_Attribute.pdf (auf Moodle)
+* Checkliste_005_Generalisierungen.pdf (auf Moodle)
+* UML-Notationsübersicht (auf Moodle)
+* Anforderung Bibliothekssystem (Moodle)
+* Use-Case-Beschreibungen von Hausaufgaben
+
+Ziele
+-----
+
+* Besprechung der Hausaufgabe: Use-Case-Beschreibung
+* Sie wissen, was objektorientierte Klassen/Objekte, Assoziationen, Attribute sind und kennen die Vorteile dieses Modells
+* Die Schüler können durch Analyse Fachklassen finden und in einem UML-Diagramm darstellen
+* Die Schüler können das Fachklassen-UML inkl. Generalisierungen und Attributen herleiten
+* Die Schüler kennen Bewertungskriterien für Klassen, Attribute und Generalisierungen
+
+Hausaufgaben
+--------------
+
+* Ergänzen des Klassendiagramms um Attribute, Beziehungen, Generalisierungen
+* Abgabe: ein UML-Diagramm mit dem Analyse-Klassenmodell
+
+Detailplan
+----------
+
+* 07:30 (ca. 5min): Begrüssung, Ziel
+* 07:35 (ca. 20min): Besprechung Use-Case-Beschreibung, 1-2 Schüler stellen Lösung vor, Fragen beantworten, Korrekturen
+* 07:55 (ca. 15min): Theorie Klassenmodell
+* 08:10 (ca. 10min): Klassenfindung: Vorgehen (Aufzeigen)
+* 08:20 (Rest): Klassenfindung: Praxis mit VisualParadigm / UML / Dokumentanalyse
+  * Finden von Klassen
+  * Finden von Attributen
+  * Finden von Generalisierungen
+* 09:00: Abgabe Hausaufgabe
+  * Fertigstellen des Klassenmodells:
+    * UML mit Klassen mit Attributen
+    * Generalisierungen (Vererbung)
+    * Versuchen Sie bereits, Beziehungen zwischen den Klassen zu finden.
+* 09:05: Ende
+</textarea>
+</section>
+{% endblock %}

@@ -1,0 +1,206 @@
+{% extends "./_base_template.html" %}
+{% block title %}Lektion 5 - OOA - Klassenmodell{% endblock %}
+
+{% block sections %}
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Thema: OOA - Klassenmodell
+=============================
+
+Heutiges Ziel
+-------------
+
+* Besprechung der Hausaufgabe: Wir besprechen das Klassenmodell mit Klassen, Attributen, Generalisierungen
+* Sie wissen, was Assoziationen sind und können diese ermitteln und modellieren
+
+### Hausaufgaben
+
+* Fertigstellen des Klassenmodells:
+* Klassendiagrammmit Assoziationen
+
+</textarea>
+</section>
+
+<section>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Klassenmodell
+    ===========
+
+    Wir besprechen das Klassenmodell mit Klassen, Attributen, Generalisierungen
+
+    * Wie haben Sie folgende Entitäten modelliert:
+      * Benutzer, Kunde, Jugendlicher, Erwachsener
+      * Welche Vererbungsstruktur haben Sie gewählt?
+
+    * Die Attribute **ISBN, Autor, Sprache** werden für mehrere Medien-Arten benötigt. Wie haben Sie dies im Diagramm modelliert?
+
+    * Welche Klassen und Attribute haben Sie für die Medien gefunden? Welche Vererbungsstruktur haben Sie gewählt?
+
+    Note:
+    * Zu jeder Frage zeigt ein Schüler seine Lösung am Diagramm.
+    * Am Schluss Aufzeigen meiner Beispiellösung, nächste Folie
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Beispiellösung
+    ===========
+
+    <img style="height:600px" src="005_ooa_klassenmodell/klassen_attribute_generalisierung.png" />
+
+    Note:
+    * Ich habe bewusst auf die Beziehungen verzichtet: Diese finden wir erst im nächsten Schritt
+    * Das Klassenmodell bildet KEINE technischen Details ab: Wir befinden uns in der Analysephase, wo wir bewusst auf technische Einschränkungen verzichten.
+    * Es wurden auch nicht alle Attribute aufgezeigt, nur die für die Use Cases / Anforderungen wichtigsten.
+    * Sie können auch mehrere Klassendiagramme anfertigen, um die Übersicht zu gewähren: Gruppieren Sie dann die Klassendiagramme z.B. nach Thema.
+    </textarea>
+    </section>
+</section>
+
+<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<textarea data-template>
+<i class="fas fa-flask"></i> Wo stehen wir?
+===========
+
+Wir sind an der fachlichen Analyse und erarbeiten exemplarisch das Klassenmodell:
+
+<img src="004_ooa_klassenmodell/wo_stehen_wir.png" />
+
+Wir verzichten bewusst auf die weitere Analyse aus Zeitgründen.
+
+Note:
+* Wir werden in der Design-Phase Sequenz- Aktivitäts und Zustandsdiagramme kennenlernen.
+
+</textarea>
+</section>
+
+<section>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Finden von Assoziationen zwischen Klassen
+    ===========
+
+    **Frage:**
+
+    Was sind Assoziationen? Was ist eine Aggregation, was eine Komposition?
+
+    * <!-- .element class="fragment" --> **Assoziationen** definiert Beziehungen zwischen Klassen.
+    * <!-- .element class="fragment" --> **Aggregation:** (selten in Analyse, besser einfache Assoziation): Teile sind unabhängig voneinander (zB. Benutzer hat Medien ausgeliehen → Medien bleiben bestehen, wenn Benutzer gelöscht wird)
+    * <!-- .element class="fragment" --> **Komposition:** „Besteht aus“: Teile sind Abhängig von der Klassen, die sie beinhaltet, und existieren nur so lange wie die Hauptklasse.
+
+    <div class="fragment">
+    <p>Assoziationen definieren wie in der realen Welt, wie Objekte "zusammenhängen".</p>
+    <p><strong>Beispiele:</strong></p>
+    <ul>
+        <li>"Eine Firma **hat mehrere** Mitarbeiter (1:n)"</li>
+        <li>"Eine Bestellung **gehört zu** einer Person" (1:1, n:1)</li>
+        <li>"Eine Person ist Mitarbeiter einer Firma (**hat und gehört zu**, n:m)"</li>
+    </ul>
+    </div>
+
+
+    </textarea>
+    </section>
+
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> UML-Werkzeuge für Assoziationen
+    ===========
+
+    <img src="005_ooa_klassenmodell/uml_assoziationen.png" />
+
+    *  Wir zeichnen **Assoziationen** zwischen Klassen
+    *  Alle Assoziationen besitzen eine **Multiplizität** (1:n, 1:1, n:m etc...)
+    *  **Kompositionen** und **Aggregationen** werden in der Analyse sparsam eingesetzt.
+    *  Wo notwendig, schreiben Sie einen Assoziations- oder Rollenname hin
+    * Verzichten Sie auf den Attribut-Member in der Klasse für Beziehungen. Besser Assoziationsname (z.B. kein "bestellung"-Attribut auf Kunde).
+
+    Note:
+    Die UML-Werkzeuge direkt in VisualParadigm zeigen. Möglichkeiten für die Assoziations-Definition kurz durchgehen. Schüler sollen
+    gleich mitmachen.
+    </textarea>
+    </section>
+</section>
+
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Übung: Finden von Assoziationen zwischen Klassen
+===========
+
+**Aufgabe:**
+
+* Ergänzen Sie Ihr Klassenmodell um Assoziationn.
+* Material:
+  * **Checkliste 003 - Assoziationen** [(Moodle)](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_003_Assoziationen.pdf?forcedownload=1)
+  * **Anforderungen an das Bibliothekssystem** [(Moodle)](https://moodle.bztf.ch/mod/resource/view.php?id=15218)
+* Nehmen Sie die Checkliste zur Hand und lesen Sie sie durch.
+* Suchen Sie mögliche Assoziationen (Abschnitt **Konstruktive Schritte** in der Checkliste)
+* Ergänzen Sie Ihr UML-Klassendiagramm in VisualParadigm um Assoziatioen
+* **Bewerten** Sie Ihr Modell anhand des Abschnitts **Analytische Schritte** in den Checklisten: Dieses Kapitel hilft Ihnen, das Klassenmodell zu verbessern / zu bewerten.
+
+* **Bedenken Sie** Dies ist das Analysemodell: Es zeigt noch KEINE technischen Zusammenhänge! Machen Sie sich noch KEINE Gedanken, wie Sie dies technisch umsetzen wollen!
+
+**Abgabe**
+
+* Das UML-Diagramm wie oben beschrieben als Hausaufgaben-Abgabe einreichen (PNG, PDF)
+
+Note:
+Als kurze Einführung zeige ich ein Beispiel anhand der Checkliste 003:
+* Hinweis auf Aufbau der Checkliste: Konstruktive Schritte, Analytische Schritte
+* erstes Beispiel zum Finden einer Assoziation: Buch < - > Sprache
+* Schüler arbeiten lassen
+* Hinweis auf Hausaufgabe
+</textarea>
+</section>
+
+
+
+
+
+
+<section id="detailplan" data-markdown>
+<textarea data-template>
+Detailplan Lektion 5 - 08.03.2018 (Woche 10)
+===========================================
+
+Material
+--------
+* Checkliste_002_Klassen.pdf (auf Moodle)
+* Checkliste_003_Assoziationen.pdf (auf Moodle)
+* Checkliste_004_Attribute.pdf (auf Moodle)
+* Checkliste_005_Generalisierungen.pdf (auf Moodle)
+* UML-Notationsübersicht (auf Moodle)
+* Anforderung Bibliothekssystem (Moodle)
+* Use-Case-Beschreibungen von Hausaufgaben
+* UML-Diagramme von Hausaufgaben (Schüler), Beispiellösung von mir
+
+Ziele
+-----
+
+* Besprechung der Hausaufgabe: Klassenmodell mit Klassen, Attributen, Generalisierungen
+* Die Schüler wissen, wie Assoziationen gefunden werden und können diese modellieren
+
+Hausaufgaben
+--------------
+
+* Fertigstellen des Klassendiagrammes mit Attributen
+* Abgabe: ein UML-Diagramm mit dem Analyse-Klassenmodell (PNG, PDF)
+
+Detailplan
+----------
+
+* 07:30 (ca. 5min): Begrüssung, Ziel
+* 07:35 (ca. 20min): Besprechung Use-Case-Beschreibung, 1-2 Schüler stellen Lösung vor, Fragen beantworten, Korrekturen
+* 07:55 (ca. 30min): Theorie Assoziationen inkl. UML-Einführung
+* 08:25 (Rest): Assoziationen finden: Praxis mit VisualParadigm / UML / Dokumentanalyse
+  * Finden von Assoziationen
+* 09:00: Abgabe Hausaufgabe
+  * Fertigstellen des Klassenmodells
+* 09:05: Ende
+</textarea>
+</section>
+{% endblock %}
