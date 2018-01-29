@@ -1,4 +1,4 @@
-{% extends "./_base_template.html" %}
+{% extends "../_base_template.html" %}
 {% block title %}Lektion 3 - OOA - Use Cases{% endblock %}
 
 {% block sections %}
@@ -47,7 +47,7 @@ Note:
 <i class="fas fa-flask"></i> Analysemodells: Vorgehensweise
 ===========
 
-<img src="003_use_cases/vorgehen.png" style="width: 350px; float: left; margin-right: 10px" />
+<img src="vorgehen.png" style="width: 350px; float: left; margin-right: 10px" />
 
 <!-- .element: style="margin-left: 360px" --> Die beiden hier vorgestellten Vorgehensmodelle haben sich in der Praxis in vielen Projekten bewährt, sind aber keineswegs feste Regeln.
 Wir sprechen vom **szenariobasierten Vorgehen** und vom **datenbasierten Vorgehen**:
@@ -78,7 +78,7 @@ Note:
 * Das **Use-Case-Diagramm** dient als erste Diskussionsgrundlage und grenzt das / ein System ab: Es enthält mehrere **Use-Cases**.
 * Die **Use-Case-Beschreibung** ist die genaue textuelle Formulierung des Use-Case(-Diagramms).
 
-<img src="003_use_cases/use_case_diagramm.png" />
+<img src="use_case_diagramm.png" />
 
 Note:
 * An dieser Stelle praktische Vorführung in VisualParadigm:
@@ -89,31 +89,40 @@ Note:
 </textarea>
 </section>
 
+<section>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Erarbeiten von Use-Cases
+    ===========
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
-<textarea data-template>
-<i class="fas fa-flask"></i> Erarbeiten von Use-Cases
-===========
+    Praktische Übung
+    ----------------
 
-Praktische Übung
-----------------
+    * Sie identifizieren die wichtigsten Use-Cases anhand der **Anforderung Bibliothekssystem**
+    * Ziel: **ein Use-Case-Diagramm** des Systems "Bibliotheksverwaltung"
+      * Sie haben die möglichen Aktoren identifiziert
+      * Sie haben die wichtigsten Use-Cases identifiziert
+      * Sie haben ev. bereits inlcude- oder extend-Beziehungen gefunden
+    * Nehmen Sie die Checklist "Use Cases" zur Hilfe
+      * Identifzieren Sie Ereignisse
+      * Identifizieren Sie die Aktoren
+    * Arbeiten Sie in 2er- und 3er-Gruppen
+    * Zeit: ca. 15-20 Minuten
+    * Danach stellt Ihre Gruppe die Lösung am Beamer vor.
 
-* Sie identifizieren die wichtigsten Use-Cases anhand der **Anforderung Bibliothekssystem**
-* Ziel: **ein Use-Case-Diagramm** des Systems "Bibliotheksverwaltung"
-  * Sie haben die möglichen Aktoren identifiziert
-  * Sie haben die wichtigsten Use-Cases identifiziert
-  * Sie haben ev. bereits inlcude- oder extend-Beziehungen gefunden
-* Nehmen Sie die Checklist "Use Cases" zur Hilfe
-  * Identifzieren Sie Ereignisse
-  * Identifizieren Sie die Aktoren
-* Arbeiten Sie in 2er- und 3er-Gruppen
-* Zeit: ca. 15-20 Minuten
-* Danach stellt Ihre Gruppe die Lösung am Beamer vor.
+    Note:
+    </textarea>
+    </section>
 
-Note:
-</textarea>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Beispiellösung Use-Cases für das Bibliothekssystem
+    ===========
+
+    <img src="use_cases_bibsys.png" style="background-color: white; width: 80%"/>
+    </textarea>
+    </section>
 </section>
-
 
 
 <section data-markdown data-separator-notes="^Note:" class="bigger-2">
@@ -160,55 +169,4 @@ Die Hausaufgabe ist via Moodle abzugeben (1 Use-Case-Beschreibung)
 </section>
 
 
-
-
-
-
-
-
-
-<section id="detailplan" data-markdown>
-<textarea data-template>
-Detailplan Lektion 3 - 22.02.2018 (Woche 8)
-===========================================
-
-Material
---------
-* Checkliste_001_Use-Case.pdf (auf Moodle)
-* AUSGEDRUCKTE Checkliste_001_Use-Case.pdf  mit markierten Textstellen für Diagramme!
-* Anforderung Bibliothekssystem (Moodle)
-* Use Case-Diagramm Bibliothekssystem (vorbreitet für mich)
-* Use-Case-Beschreibung „Medium am Terminal ausleihen“ (auf Moodle)
-* Use-Case-Schablone (auf Moodle)
-
-Ziele
------
-
-* Die Schüler kennen das OO-Analysemodell und wissen, wie man dies erarbeitet
-* Die Schüler kennen Use Cases und -Diagramme und können diese selber erstellen
-
-* Use-Case-Beschreibung erstellen:
-  * Medium via Webseite verlängern
-  * Medienrückgabe am Schalter (Spezialfälle beachten, z.B. Einfordern von Gebühren)
-
-Detailplan
-----------
-
-* 07:30 (ca. 5min): Begrüssung, Ziel
-* 07:35 (ca. 10min): Folien Analysemodell, Vorgehensweise
-* 07:45 (ca. 10min): Use Case-Diagramme: Einführung, Elemente anschauen: Aktoren, System, Use-Cases, Include, Extend
-* 07:55 (ca. 15min): Aufgabe Use-Cases finden
-  * Schüler erfassen in 2- bis 3-er-Gruppen die Use-Cases als Use-Case-Diagramm und zeigen ihre Lösung am Beamer, vergleichen mit anderer Gruppe, Diskussion
-* 08:10 (5min): Pause
-* 08:15 (ca. 30min): Besprechung der Use-Case-Diagramme
-  * Gruppen führen Diagramme am Beamer vor. Diskussion: Was ist gut / weniger gut, was fehlt? → Gruppe 2 dasselbe
-* 08:45 (ca. 15min): Use-Case-Beschreibung
-  * Use-Case-Beschreibung mit Schablone durchgehen
-  * Use-Case anhand eines Beispieles mit Klasse durchführen: Medium am Terminal ausleihen: --> anhand Checkliste 001
-* 09:00: Abgabe Hausaufgabe
-  * jeder Schüler erhält einen Use Case. Löseln.
-  * Schüler können beginnen, wenn noch Zeit vorhanden
-* 09:05: Ende
-</textarea>
-</section>
 {% endblock %}

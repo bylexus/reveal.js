@@ -1,4 +1,4 @@
-{% extends "./_base_template.html" %}
+{% extends "../_base_template.html" %}
 {% block title %}Lektion 5 - OOA - Klassenmodell{% endblock %}
 
 {% block sections %}
@@ -48,7 +48,7 @@ Heutiges Ziel
     <i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Beispiellösung
     ===========
 
-    <img style="height:600px" src="005_ooa_klassenmodell/klassen_attribute_generalisierung.png" />
+    <img style="height:600px" src="klassen_attribute_generalisierung.png" />
 
     Note:
     * Ich habe bewusst auf die Beziehungen verzichtet: Diese finden wir erst im nächsten Schritt
@@ -66,7 +66,7 @@ Heutiges Ziel
 
 Wir sind an der fachlichen Analyse und erarbeiten exemplarisch das Klassenmodell:
 
-<img src="004_ooa_klassenmodell/wo_stehen_wir.png" />
+<img src="../004_ooa_klassenmodell/wo_stehen_wir.png" />
 
 Wir verzichten bewusst auf die weitere Analyse aus Zeitgründen.
 
@@ -110,7 +110,7 @@ Note:
     <i class="fas fa-flask"></i> UML-Werkzeuge für Assoziationen
     ===========
 
-    <img src="005_ooa_klassenmodell/uml_assoziationen.png" />
+    <img src="uml_assoziationen.png" />
 
     *  Wir zeichnen **Assoziationen** zwischen Klassen
     *  Alle Assoziationen besitzen eine **Multiplizität** (1:n, 1:1, n:m etc...)
@@ -124,6 +124,27 @@ Note:
     </textarea>
     </section>
 </section>
+
+<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<textarea data-template>
+<i class="fas fa-flask"></i> Vorgehen zum Finden von Assoziationen zwischen Klassen
+===========
+
+** Nehmen Sie die Checkliste __003 Assoziationen__ zur Hand**
+
+Wie auch bei der Klassenfindung dienen uns Dokument- und Use-Case-Analysen zur Findung von Assoziationen.
+Mit steigernder Erfahrung findet dies gleichzeitig mit der Klassenfindung statt.
+
+* Assoziationen **nur für die Aufgaben der Use-Cases definieren**, nicht alle fachlich möglichen
+* Erster Schritt: Finden der **Assoziationen ohne Multiplizitäten**. Sind dies einfache Assoziationen, Aggregationen oder Kompositionen? Richtwert: Im Zweifelsfall einfache Assoziation, sonst Komposition. Aggregationen sind selten.
+* Definieren der **Assoziationsnamen** / Rollennamen, wo nötig.
+* Schnappschuss / Historie?
+  * **Schnappschuss**: 0..1-Multiziplität (z.B. Buch hat Autor, Buch ist ausgeliehen von …).
+  * **Historie**: Many-Multiplizität (zB. Benutzer hat Medien ausgeliehen)
+* Liegt eine **Muss- oder Kann-Beziehung** vor? (0…, 1… 1..1)
+</textarea>
+</section>
+
 
 
 <section data-markdown data-separator-notes="^Note:">
@@ -157,50 +178,4 @@ Als kurze Einführung zeige ich ein Beispiel anhand der Checkliste 003:
 </textarea>
 </section>
 
-
-
-
-
-
-<section id="detailplan" data-markdown>
-<textarea data-template>
-Detailplan Lektion 5 - 08.03.2018 (Woche 10)
-===========================================
-
-Material
---------
-* Checkliste_002_Klassen.pdf (auf Moodle)
-* Checkliste_003_Assoziationen.pdf (auf Moodle)
-* Checkliste_004_Attribute.pdf (auf Moodle)
-* Checkliste_005_Generalisierungen.pdf (auf Moodle)
-* UML-Notationsübersicht (auf Moodle)
-* Anforderung Bibliothekssystem (Moodle)
-* Use-Case-Beschreibungen von Hausaufgaben
-* UML-Diagramme von Hausaufgaben (Schüler), Beispiellösung von mir
-
-Ziele
------
-
-* Besprechung der Hausaufgabe: Klassenmodell mit Klassen, Attributen, Generalisierungen
-* Die Schüler wissen, wie Assoziationen gefunden werden und können diese modellieren
-
-Hausaufgaben
---------------
-
-* Fertigstellen des Klassendiagrammes mit Attributen
-* Abgabe: ein UML-Diagramm mit dem Analyse-Klassenmodell (PNG, PDF)
-
-Detailplan
-----------
-
-* 07:30 (ca. 5min): Begrüssung, Ziel
-* 07:35 (ca. 20min): Besprechung Use-Case-Beschreibung, 1-2 Schüler stellen Lösung vor, Fragen beantworten, Korrekturen
-* 07:55 (ca. 30min): Theorie Assoziationen inkl. UML-Einführung
-* 08:25 (Rest): Assoziationen finden: Praxis mit VisualParadigm / UML / Dokumentanalyse
-  * Finden von Assoziationen
-* 09:00: Abgabe Hausaufgabe
-  * Fertigstellen des Klassenmodells
-* 09:05: Ende
-</textarea>
-</section>
 {% endblock %}
