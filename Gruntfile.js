@@ -79,13 +79,15 @@ module.exports = function(grunt) {
                       middlewares.unshift(function(req, res, next) {
                           var parts = require('url').parse(req.url);
                           var pathname = parts.pathname;
+                          var webrootRel =path.relative(pathname,'/') || '.';
 
                           if (pathname.match(/\/$/)) {
                               pathname += 'index.html';
                           }
                           if (pathname.match(/\.html$/)) {
                               res.end(nunjucks.render(path.join('.',pathname), {
-                                  project: grunt.config.get('pkg.project')
+                                  project: grunt.config.get('pkg.project'),
+                                  webroot: webrootRel
                               }));
                           } else {
                               return next();
@@ -202,7 +204,6 @@ module.exports = function(grunt) {
 	// Dependencies
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
@@ -217,8 +218,10 @@ module.exports = function(grunt) {
               // Concat specified files.
               var processedContent = f.src.map(function(filepath) {
                 // Read file source.
+                var webrootRel =path.relative(path.dirname(filepath),'./') || '.';
                 var content = nunjucks.render(path.join('.',filepath), {
-                  project: grunt.config.get('pkg.project')
+                  project: grunt.config.get('pkg.project'),
+                  webroot: webrootRel
                 });
                 return content;
               }).join('\n');
