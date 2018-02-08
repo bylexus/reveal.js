@@ -25,5 +25,6 @@ Detailplan
   * Schüler sammeln Begriffe am Flipboard, erörtern diese
 * 07:45 (ca. 20 min): Theorieblock Vorgehensmodelle
 * 08:05 (5min): Pause
-* 08:10 bis Ende: UML-Diagramme erörtern, ordnen
+* 08:10 bis Ende: UML-Diagramme erörtern, ordnen:
+  Schüler ordnen ausgelesene UML-Diagramme dem dynamischen oder statischen Modell zu (Flipchart)
 * 09:05: Ende

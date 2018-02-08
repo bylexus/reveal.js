@@ -4,50 +4,44 @@
  * Copyright (C) 2011-2012 Hakim El Hattab, http://hakim.se
  */
 
-
 // Default mixins and settings -----------------
 @import "../template/mixins";
 @import "../template/settings";
 // ---------------------------------------------
 
-
-
 // Include theme-specific fonts
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700,400italic,700italic);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 
-
 // Override theme settings (see ../template/settings.scss)
-$mainFont: 'Open Sans', sans-serif;
+$mainFont: "Open Sans", sans-serif;
 $mainColor: #333;
 $mainFontSize: 14px;
 
 $headingTextTransform: none;
-$headingFont: 'Quicksand', sans-serif;
+$headingFont: "Quicksand", sans-serif;
 $headingColor: #333;
 $headingLetterSpacing: -0.08em;
 $headingTextShadow: none;
 $heading1Size: 2.11em;
 $heading2Size: 1.55em;
 $heading3Size: 1.2em;
-$heading4Size: 1.00em;
+$heading4Size: 1em;
 
 $backgroundColor: #f7fbfc;
 $linkColor: #3b759e;
-$linkColorHover: lighten( $linkColor, 20% );
+$linkColorHover: lighten($linkColor, 20%);
 $selectionBackgroundColor: #134674;
 
 // Fix links so they are not cut off
 .reveal a {
-	line-height: 1.3em;
+  line-height: 1.3em;
 }
 
 // Background generator
 @mixin bodyBackground() {
-	@include radial-gradient( #add9e4, #f7fbfc );
+  @include radial-gradient( #add9e4, #f7fbfc );
 }
-
-
 
 // Theme template ------------------------------
 @import "../template/theme";
@@ -55,47 +49,53 @@ $selectionBackgroundColor: #134674;
 
 // -- Alex Theme additions ---
 .reveal {
-    .slides {
-        text-align: left;
-        h2, h3, h4 {
-            margin-top: 10px;
-            margin-bottom: 5px;
+  .slides {
+    text-align: left;
+    h2,
+    h3,
+    h4 {
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    section {
+      &.bigger-2 {
+        h1 {
+          font-size: $heading1Size*1.5;
         }
-
-        section {
-            &.bigger-2 {
-                h1 {
-                    font-size: $heading1Size*1.5;
-                }
-                h2 {
-                    font-size: $heading2Size*1.5;
-                }
-                h3 {
-                    font-size: $heading3Size*1.5;
-                }
-                h4 {
-                    font-size: $heading4Size*1.5;
-                }
-                li,p {
-                    font-size: $mainFontSize*1.5;
-                    line-height: $mainFontSize*2.5;
-                }
-            }
+        h2 {
+          font-size: $heading2Size*1.5;
         }
+        h3 {
+          font-size: $heading3Size*1.5;
+        }
+        h4 {
+          font-size: $heading4Size*1.5;
+        }
+        li,
+        p {
+          font-size: $mainFontSize*1.5;
+          line-height: $mainFontSize*2.5;
+        }
+      }
 
+      img {
+          border: none;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      }
     }
+  }
 
-    footer {
-        text-align: right;
-        position: fixed;
-        top: 0;
-        padding: 0.2em;
-        font-size: 0.8em;
-        width: 100vw;
-    }
+  footer {
+    text-align: right;
+    position: fixed;
+    top: 0;
+    padding: 0.2em;
+    font-size: 0.8em;
+    width: 100vw;
+  }
 
-    ul.fa-ul {
-        list-style-type: none;
-    }
+  ul.fa-ul {
+    list-style-type: none;
+  }
 }
-
