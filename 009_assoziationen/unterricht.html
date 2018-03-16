@@ -1,0 +1,404 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 9 - Assoziationen{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Besprechung Hausaufgabe Sequenzdiagramme
+=============================
+
+TODO
+
+</textarea>
+</section>
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> OOD - Implementation von Assoziationen
+=============================
+
+Heutiges Ziel
+-------------
+
+* Sie wissen, wie die verschiedenen Assoziationen in der OOD-Phase modelliert und in Java implementiert werden.
+
+### Hausaufgaben
+
+* Fertigstellen der Assoziations-Implementationen
+</textarea>
+</section>
+
+<section>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Kardinalität von Assoziationen
+    ===========
+
+    **Assoziationen** definieren **Beziehungen** zwischen Klassen / Objekten. Wie im richtigen Leben können Beziehungen unterschiedliche **Kardinalitäten** (Multiplizitäten) aufweisen:
+
+    Ein **Haus** hat mehrere Zimmer, ein **Zimmer** gehört zu einem Haus.
+
+    Welche Kardinalitäten (Assoziationen) kennen Sie, und wie heissen die? Wie zeichnet man die in UML?
+
+    * <!-- .element class="fragment" --> **„belongs to“, many-to-one, n:1:**<br />ein Objekt einer Klasse gehört zu einem Objekt einer anderen Klasse
+    * <!-- .element class="fragment" --> **„has one“, one-to-one, 1:1:**<br />ein Objekt einer Klasse gehört zu einem Objekt einer anderen Klasse
+    * <!-- .element class="fragment" --> **„has many“, one-to-many, 1:n:**<br />ein Objekt einer Klasse hat viele (besitzt) Objekte einer anderen Klasse
+    * <!-- .element class="fragment" --> **„has and belongs to many“, many-to-many, n:m:**<br />ein Objekt einer Klasse hat und gehört zu vielen Objekten einer anderen Klasse
+
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Assoziationen - belongs to (n:1)
+    ===========
+
+    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+
+    <img src="n_1_undefined.png" />
+
+    Navigierbarkeit: erlaubte und nicht erlaubte Navigation: Von Objekt A kann Objekt B abgefragt werden, umgekehrt nicht.
+
+    <img src="n_1_traversable.png" />
+
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Assoziationen - has one (1:1)
+    ===========
+
+    Achtung: bei 1:1-Beziehungen ist es nicht praktikabel, beide Seiten mit der Kardinalität "1" zu versehen: Dies impliziert, dass immer beide Seiten gleichzeitig erstellt werden müssen (Henne-Ei-Problem).
+    Vielmals wird auf mind. einer Seite die Kardinalität "0..1" gewählt:
+
+    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+
+    <img src="1_1_undefined.png" />
+
+    Navigierbarkeit: erlaubte und nicht erlaubte Navigation: Von Objekt A kann Objekt B abgefragt werden, umgekehrt nicht.
+
+    <img src="1_1_traversable.png" />
+
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Assoziationen - one-to-many (1:n)
+    ===========
+
+    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+
+    <img src="1_n_undefined.png" />
+
+    Navigierbarkeit: erlaubte und nicht erlaubte Navigation: Von Objekt A kann Objekt B abgefragt werden, umgekehrt nicht.
+
+    <img src="1_n_traversable.png" />
+
+    Darstellung durch Komposition: Dies impliziert, dass die "Many"-Seite nicht alleine existieren kann, dass die Objekte also gelöscht werden, wenn die "one"-Seite gelöscht wird:
+
+    <img src="1_n_composition.png" />
+
+    </textarea>
+    </section>
+
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Assoziationen - many-to-many (n:m)
+    ===========
+
+    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+
+    <img src="n_m_undefined.png" />
+
+    Navigierbarkeit: erlaubte und nicht erlaubte Navigation: Von Objekt A kann Objekt B abgefragt werden, umgekehrt nicht.
+
+    <img src="n_m_traversable.png" />
+    </textarea>
+    </section>
+</section>
+
+
+<section>
+    <section data-separator-notes="^Note:" class="bigger-2">
+    <h1><i class="fas fa-graduation-cap"></i> Implementation von Assoziationen und Kardinalitäten in Java</h1>
+
+    <p>Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
+
+   <p><strong>belongs-to, many-to-one, n:1 (KlasseA gehört zu KlasseB)</strong>, Traversierbarkeit: von A nach B</p>
+
+    <pre class="fragment"><code class="java">
+    public class A {
+        // Abbildung der Assoziation:
+        private B gehoereZuB;
+
+        // Zuweisungs-Setter:
+        public void setB(B b) {
+            this.gehoereZuB = b;
+        }
+
+        // Abbildung der Traversierbarkeit (von A nach B):
+        public B getB() {
+            return this.gehoereZuB;
+        }
+    }
+
+    public class B {
+        // weiss nichts von ihrem Glück: keine Traversierbarkeit zu A
+    }
+    </code></pre>
+    </section>
+
+    <section data-separator-notes="^Note:" class="bigger-2">
+    <h1><i class="fas fa-graduation-cap"></i> Implementation von Assoziationen und Kardinalitäten in Java</h1>
+
+    <p>Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
+
+   <p><strong>has-many, one-to-many, 1:n (KlasseA hat B's)</strong>, Traversierbarkeit: von A nach B</p>
+
+    <pre class="fragment"><code class="java" data-noescape>
+    public class A {
+        // Abbildung der Assoziation: Variante 1: Als Array
+        private B[] gehoereZuB = new KlasseB[10];
+
+        // Abbildung der Assoziation: Variante 2: Als Collection (Liste)
+        private List&lt;B&gt; gehoereZuB = new ArrayList&lt;B&gt;
+
+        // Zuweisungs-Setter:
+        public void addB(B b) {
+            // mit Array: Suchen eines freien Indexes, dann Speichern in Array:
+            int i = 2; // wie auch immer dies passiert
+
+            // mit Collection:
+            this.gehoereZuB.add(b);
+        }
+        // Abbildung der Traversierbarkeit (von A nach B):
+        // mit Array:
+        public B[] getAllBs() {
+            return this.gehoereZuB;
+        }
+
+        // Abbildung der Traversierbarkeit (von A nach B):
+        // mit Collection:
+        public List&lt;B&gt; getAllBs() {
+            return this.gehoereZuB;
+        }
+    }
+
+    public class B {
+        // weiss nichts von ihrem Glück: keine Traversierbarkeit zu A
+    }
+    </code></pre>
+    </section>
+
+    <section data-separator-notes="^Note:" class="bigger-2">
+    <h1><i class="fas fa-graduation-cap"></i> Implementation von Assoziationen und Kardinalitäten in Java</h1>
+
+    <p>Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
+
+   <p><strong>has-one, 1:1 (KlasseA hat ein B und umgekehrt)</strong></p>
+
+    <pre class="fragment"><code class="java">
+    public class A {
+        // Abbildung der Assoziation:
+        private B meinB;
+
+        // Zuweisungs-Setter:
+        public void setB(B b) {
+            this.meinB = b;
+
+            // Objektmodell muss in BEIDEN Objekten aktualisiert werden:
+            // Da die Traversierbarkeit in beide Richtungen geht, müssen auch beide Seiten aktualisiert werden:
+            if (this.meinB.getA() != this) {
+                this.meinB.setA(this);
+            }
+        }
+
+        // Abbildung der Traversierbarkeit (von A nach B):
+        public B getB() {
+            return this.meinB;
+        }
+    }
+
+    public class B {
+        // Abbildung der Assoziation:
+        private A meinA;
+
+        // Zuweisungs-Setter:
+        public void setA(A a) {
+            this.meinA = a;
+
+            // Objektmodell muss in BEIDEN Objekten aktualisiert werden:
+            // Da die Traversierbarkeit in beide Richtungen geht, müssen auch beide Seiten aktualisiert werden:
+            if (this.meinA.getB() != this) {
+                this.meinA.setB(this);
+            }
+        }
+
+        // Abbildung der Traversierbarkeit (von B nach A):
+        public A getA() {
+            return this.meinA;
+        }
+    }
+    </code></pre>
+    </section>
+
+    <section data-separator-notes="^Note:" class="bigger-2">
+    <h1><i class="fas fa-graduation-cap"></i> Implementation von Assoziationen und Kardinalitäten in Java</h1>
+
+    <p>Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
+
+   <p><strong>many-to-many, n:m (KlasseA hat KlasseB's, Klasse B's hat KlasseA's)</strong></p>
+
+    <pre class="fragment"><code class="java">
+    public class A {
+        // Abbildung der Assoziation:
+        private List&lt;B&gt; b = new ArrayList&lt;B&gt;();
+
+        // Zuweisungs-Setter:
+        public void addB(B b) {
+            this.b.add(b);
+
+            // Objektmodell muss in BEIDEN Objekten aktualisiert werden:
+            // Da die Traversierbarkeit in beide Richtungen geht, müssen auch beide Seiten aktualisiert werden:
+            if (this.b.getAllAs().contains(this) != true) {
+                this.b.getAllAs().add(this);
+            }
+        }
+
+        // Abbildung der Traversierbarkeit (von A nach B):
+        public List&lt;B&gt; getAllBs() {
+            return this.b;
+        }
+    }
+
+    public class B {
+        // Genau gleich wie A, einfach umgekehrt ;-)
+    }
+    </code></pre>
+    </section>
+</section>
+
+
+
+
+
+
+<section>
+    <section data-markdown class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-wrench"></i> gemeinsame Implementationsaufgabe
+    =============================
+
+    Wir lösen folgende Aufgabe gemeinsam (exemplarisch):
+
+    „many-to-One“-Assoziation designen und implementieren: **„Benutzer gehört zu Person“**
+
+    * Verfeinern /Implementieren Sie das UML-Klassendiagramm für die Beziehung „Benutzer“ und „Person“
+    * Tragen Sie die notwendigen Attribute UND Operationen in das Klassendiagramm ein.
+    * Tragen Sie die Assoziations-RICHTUNG ein: In welche Richtung müssen Daten abgerufen werden können?
+    * Implementieren Sie die Klassen Benutzer und Person mit der Beziehung „Benutzer gehört zu Person“ (Many-to-One) in Java
+    * Schreiben Sie eine kleine Testklasse, welche:
+    * einem Benutzer eine Person zuordnet
+    * Das Benutzer-Objekt und die und die zugehörige Person ausgibt, durch Benützung der Traversierbarkeit auf Ebene Benutzer (System.out.println)
+
+    </textarea>
+    </section>
+
+    <section data-markdown class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-wrench"></i> Implementationsaufgabe Benutzer -> Person
+    =============================
+
+    Erweiterung des Analyse-UML:
+    <img src="benutzer_person_uml.png" />
+
+    </textarea>
+    </section>
+</section>
+
+<section>
+    <section data-markdown class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-wrench"></i> Selbständige Implementationsaufgabe 1
+    =============================
+
+    Sie lösen folgende Aufgabe selbständig:
+
+    **Aufgabe 1:** „One-To-One“-Assoziation designen und implementieren: **„Benutzer hat Benutzerausweis“**
+
+
+    * Verfeinern / Implementieren Sie das UML-Klassendiagramm für die Beziehung „Benutzer“ und „Ausweis“ (Jeder Benutzer hat einen Benutzerausweis mit einer Nummer)
+      * Tragen Sie die notwendigen Attribute UND Operationen ein
+      * Tragen Sie die Assoziations-RICHTUNG ein: In welche Richtung müssen Daten abgerufen werden können?
+    * Implementieren Sie die Klassen Benutzer und Ausweis mit der Beziehung „Benutzer hat einen Ausweis“ (one-to-one) in Java
+    * Schreiben Sie eine kleine Testklasse, welche:
+      * einem Benutzer einen Ausweis zuordnet
+      * Das Benutzer-Objekt und den zugehörigen Ausweis ausgibt, duch die Traversierbarkeit auf Ebene Benutzer (System.out.println)
+
+    </textarea>
+    </section>
+</section>
+
+<section>
+    <section data-markdown class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-wrench"></i> Selbständige Implementationsaufgabe 2
+    =============================
+
+    Sie lösen folgende Aufgabe selbständig:
+
+    **Aufgabe 2:** „One-To-Many“-Assoziation designen und implementieren: **„Person hat mehrere MedienExemplare“** (für Ausleihe)
+
+    * Verfeinern / Implementieren Sie das UML-Klassendiagramm für die Beziehung „Person“ und „MediumExemplar“
+      * Tragen Sie die notwendigen Attribute UND Operationen ein
+      * Tragen Sie die Assoziations-RICHTUNG ein: In welche Richtung müssen Daten abgerufen werden können?
+    * Implementieren Sie die Klassen Benutzer und MediumExemplar mit der Beziehung „Person hat mehrere MedienExemplare“ (one-to-many) in Java
+    * Schreiben Sie eine kleine Testklasse, welche:
+      * einer Person zwei existierende MedienExemplare zuordnet (Ausleihe)
+      * Das Person-Objekt und die zugehörigen Exemplare ausgibt, durch die Traversierbarkeit auf Ebene Person (System.out.println)
+
+    </textarea>
+    </section>
+</section>
+
+<section>
+    <section data-markdown>
+    <textarea data-template>
+    <i class="fas fa-wrench"></i> Selbständige Implementationsaufgabe 3
+    =============================
+
+    Sie lösen folgende Aufgabe selbständig:
+
+    **Aufgabe 3:** „Many-To-Many“-Assoziation designen und implementieren: **„Medium hat mehrere Kategorien, Kategorie hat mehrere Medien“**
+
+    * Verfeinern / Implementieren Sie das UML-Klassendiagramm für die Beziehung „Medium“ und „Kategorie“
+      * Tragen Sie die notwendigen Attribute UND Operationen ein
+      * Tragen Sie die Assoziations-RICHTUNG ein: In welche Richtung müssen Daten abgerufen werden können?
+      * Beziehen Sie auch die vererbten Klassen mit ein (z.B. Buch, CD etc.)
+    * Implementieren Sie die Klassen **Medium** und **Buch** (erbt von Medium) und Kategorie mit der Beziehung „Medium hat und gehört zu Kategorien“ in Java
+    * Schreiben Sie eine kleine Testklasse, welche:
+        * mehrere Kategorien erstellt
+        * ein Buch (Medium) erstellt
+        * Diesem Buch mehrere Kategorien zuordnet
+        * alle Medien einer Kategorie ausgeben kann (Aus Sicht Kategorie: welche Medien gehören zu dieser Kategorie)
+
+    </textarea>
+    </section>
+</section>
+
+<section>
+    <section data-markdown>
+    <textarea data-template>
+    <i class="fas fa-flask"></i> Hausaufgaben
+    =============================
+
+        Abgabe der 3 Aufgaben
+        * Quellcode / Java-Snippet
+        * UML-Diagramm (Bild, PNG) der jeweiligen Assoziation
+
+    </textarea>
+    </section>
+</section>
+{% endblock %}

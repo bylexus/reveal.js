@@ -42,4 +42,4 @@ Bemerkung zum Unterricht
 08.02.2018:
 * 1. Teil nach ca. 30 Min fertig
 * VM in Betrieb nehmen ebenfalls: so sind noch 30min übrig geblieben,
-  welche man noch füllen sollte.
+  welche man noch füllen sollte. Z.B: OO-Konzept: Polymorphismus

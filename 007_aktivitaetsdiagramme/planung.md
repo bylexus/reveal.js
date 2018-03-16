@@ -6,6 +6,7 @@ Material
 * Folien
 * VisualParadigm
 * Checkliste 006 Aktivitätsdiagramme auf Moodle
+* BibSys-Eclipse-Projekt auf Moodle (zip)
 
 Ziele
 -----
@@ -26,7 +27,11 @@ Detailplan
   * Swim Lanes
   * Verzweigungen / Vereinigung
 * 08:05 (5min): Pause
-* 08:10 (40min): Schülerarbeit: Aktivitätsdiagramm entwerfen: Medien am Terminal ausleihen
+* 08:10 (5min) Inbetriebnahme BibSys-Java-Projekt
+* 08:10 (40min): Schülerarbeit: Aktivitätsdiagramm entwerfen: Analyse des Bibsys-Programms bis Anzeige Maske "AusleiheListView"
+  * Ziel ist, dass die Schüler den Code durch Analyse verstehen
+  * aus dem Ablauf "Start" > "login" > "Hauptmenu" > "AusleiheListView" soll ein Aktivitätsdiagramm gezeichnet werden.
+  * Es sollen Swim Lanes mit den einzelnen involvierten Klassen erstellt werden, und der Ablauf bis zur Anzeige der AusleiheListView aufgezeigt werden
   * Hinweis auf Checkliste: Vorgehen anhand Checkliste erläutern
 * 08:50 (Rest): Besprechen Fortschritt Aktivitätsdiagramm, Hausaufgabe
 * 09:05: Ende

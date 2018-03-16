@@ -69,7 +69,7 @@ Note:
 </section>
 
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:" >
 <textarea data-template>
 <i class="fas fa-flask"></i> Erarbeiten von Use-Cases
 ===========
@@ -77,6 +77,9 @@ Note:
 * ein „Use Case“ zeigt einen bestimmten Anwendungsfall des Systems, eine Aktivität, welche ein Aktor mit dem System "ausführt".
 * Das **Use-Case-Diagramm** dient als erste Diskussionsgrundlage und grenzt das / ein System ab: Es enthält mehrere **Use-Cases**.
 * Die **Use-Case-Beschreibung** ist die genaue textuelle Formulierung des Use-Case(-Diagramms).
+* Wir unterscheiden **Geschäftsanwendungsfälle** und **Systemanwendungsfälle**:
+  * **Geschäftsanwendungsfälle** beschreiben einen geschäftlichen Ablauf ohne mögliche systemtechnische Umsetzung. Wir lassen diese aus.
+  * **Systemanwendungsfälle** beschreiben Interaktionen mit einem (Hard- oder Software-)System.
 
 <img src="use_case_diagramm.png" />
 
@@ -156,9 +159,12 @@ Note:
 <i class="fas fa-tasks"></i> Hausaufgaben
 ===========
 
-* Sie erstellen eine Use-Case-Beschreibung zum Use-Case
-  **"Medium via Webseite verlängern"**:
-  * **ein Benutzer verlängert ein ausgeliehenes Medium online via Web-Plattform.**
+* Sie erstellen EINE Use-Case-Beschreibung zum einem ausgelesenen Use-Case:
+  * **"Medium via Webseite verlängern"**:ein Benutzer verlängert ein ausgeliehenes Medium online via Web-Plattform.
+  * **Rückgabe am Schalter**: ein Benutzer gibt ein Buch am Schalter zurück
+  * **Benutzer registrieren**: Benutzer registriert sich online für einen neuen Account (bis zum einsatzbereiten Account)
+  * **Medien erfassen**: ein Bibliotheksmitarbeiter erfasst ein neues Medium mit mehreren Exemplaren in der Applikation
+  * **Medien via Web verlängern**: Ein Benutzer möchte ein bereits ausgeliehenes Medium via Web-Oberfläche verlängern.
 
 * Nehmen Sie die Checkliste **"Use Cases"** zur Hilfe
 * überlegen Sie sich erst die Schritte für den Standardfall (80% der Szenarien)

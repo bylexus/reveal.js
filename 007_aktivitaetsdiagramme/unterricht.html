@@ -26,10 +26,11 @@ Heutiges Ziel
 
 * Sie wissen, was ein Aktivitätsdiagramm ist und wo man es einsetzt
 * Sie können eigene Aktivitätsdiagramme für Ihr Software-Design entwickeln
+* Sie entwerfen ein Aktivitätsdiagramm durch Analyse eines bestehenden Programms
 
 ### Hausaufgaben
 
-* UML Aktivitätsdiagramm entwerfen
+* UML Aktivitätsdiagramm erstellen
 
 </textarea>
 </section>
@@ -44,6 +45,7 @@ Heutiges Ziel
     * Es eignet sich sehr gut, um komplexe Use-Cases resp. Abläufe zu präzisieren. Es stellt einen komplexen Ablauf / Aktivität als grafisches **„Flussdiagramm“** dar.
     * Es besteht aus einem **Kontrollfuss** (Ablauf) und einem **Datenmodell** (Datenaustausch zwischen den Aktionen / Funktionen)
     * Ein- und Ausgabeobjekte sind optional, es können auch Start- und Endknoten verwendet werden.
+    * Objektflüsse können aufgezeigt werden (wie "wandern" Objekte durch das Programm)
 
     <img src="aktivitaetsdiagramm.png" style="width: 1000px" />
     </textarea>
@@ -58,7 +60,8 @@ Heutiges Ziel
       Szenarien später bei den Sequenzdiagrammen.
 
       <img src="decisions.png" />
-    * Benutzen Sie **"Swim Lanes"** (horizontale/vertikale Gruppierungen), um die Aktivitäten den verantwortlichen Modulen zuzuordnen.
+    * Benutzen Sie **"Swim Lanes"** (horizontale/vertikale Gruppierungen), um die Aktivitäten den verantwortlichen Modulen zuzuordnen:
+      Dies können z.B. die Software-Layer sein, oder auch einzelne Klassen / Objekte, wo die Aktivität stattfindet.
 
       <img src="swim_lane.png" />
     </textarea>
@@ -76,8 +79,30 @@ Kurze Einführung in Aktivitätsdiagramme mit VisualParadigm: Wir schauen uns di
 * Aktivitätsrahmen
 * Actions/Schritte
 * Start/Endknoten
+* Objektfluss, Input-/Output-Pins
 * Verzweigungen / Zusammenführungen
 * Swim Lanes
+
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<textarea data-template>
+<i class="fas fa-wrench"></i> Inbetriebnahme des Bibsys-Prototypen
+===========
+
+Auf Moodle finden Sie einen rudimentären Prototypen des Programm "Bibsys":
+
+* Der Prototyp ist ein Java-Konsolen-Programm
+* Es zeigt exemplarisch einige wenige Schritte: Login, Hauptmenu, Ausleih-Liste
+* Es implementiert eine rudimentäre Persistenz-Schicht: Alle Daten werden als Java-Objekte serialisiert und im Filesystem abgelegt.
+
+Wir nehmem das Programm gemeinsam in Betrieb.
+
+Beim ersten Start werden ein paar Demo-Daten angelegt.
+
+* Benutzer: "benutzer1", "benutzer2", "benutzer3"
+* Passwort: "1", "2", "3"
 
 </textarea>
 </section>
@@ -89,20 +114,24 @@ Kurze Einführung in Aktivitätsdiagramme mit VisualParadigm: Wir schauen uns di
 
 Aktivitätsdiagramme sind wichtig, um komplexe Programmabläufe zu planen / zu dokumentieren.
 
-**Aufgabe:**
+Ich stelle Ihnen einen rudimentären, lauffähigen Prototypen von "Bibsys" zur Verfügung. Entwickeln Sie daraus durch Analyse des Programmcodes ein Aktivitätsdiagramm:
+**Code-Analyse** ist eine gängige Art, an Abläufe "heranzukommen": Gerade bei alten, bestehenden Applikationen ist Code-Analyse vielmals die einzige Möglichkeit,
+um komplexe Abläufe zu ermitteln.
 
-Entwickeln Sie ein Aktivitätsdiagramm für folgenden Use Case:
+**Lesen von Code** ist eine wichtige Fähigkeit, die Sie als Entwickler lernen (müssen): Ca. 80% des Entwickleralltags besteht aus LESEN, nicht SCHREIBEN von Code.
 
-**Medien an Scanner-Terminal ausleihen**
+**Aufgabe: Analyse des BibSys-Programms als Aktivitätsdiagramm**
 
-Der Benutzer scannt diverse Medien am Scanner-Terminal. Entwerfen Sie einen **Detaillierten Programmablauf** als Aktivitäts-Diagramm.
+Entwickeln Sie ein Aktivitätsdiagramm durch Analyse des Bibsys-Codes:
 
- * überlegen Sie sich die notwendigen (technischen, programmatischen) Schritte von der Authentifizierung bis zur Abmeldung am Terminal
- * Teilen Sie die Schritte in folgende "Swim Lanes" ein: **"Frontend/Presentation", "Business-Logik", "Persistent/Speicherung"**
- * überlegen Sie sich die verschiedenen Szenarien (Verzweigungen), die auftreten können (z.B. User unbekannt etc.)
- * Nehmen Sie dazu die **Anforderung des Bibliothekssystems** und die Use Cases zur Hilfe: Diese definieren die geforderte Funktionalität.
- * Nehmen Sie die [ **"Checkliste 006 Aktivitätsdiagramme"** ](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_006_Aktivita%CC%88tsdiagramm.pdf?forcedownload=1) zur Hilfe: Sie zeigt Ihnen, auf welche Kriterien Sie achten müssen.
- * Prüfen Sie die **Qualität Ihres Aktivitätsdiagrammes** anhand der "analaytischen Schritte" in der Checkliste.
+* Das Diagramm zeigt den Ablauf vom Programmstart -> Maske Login (Klasse LoginView) -> Maske Hauptmenu (Klasse MainMenuView) -> Maske Ausleihe-Liste (Klasse AusleihListView)
+* Das Diagramm zeigt auch die Verzweigungen auf (fehlerhafter Login, Masken beenden, etc.): Es zeigt also kein Szenario, sondern das Ablaufdiagramm mit allen Eventualitäten bis zur Ausleih-Liste-Maske.
+* Teilen Sie die Aktivitäten in **Swim Lanes** ein: Eine Swim Lane zeigt die **Klasse**, welches die Aktivität ausführt.
+
+* analysieren Sie (technischen, programmatischen) Schritte vom Programmstart bis zur Maske "Ausleihe-Liste", wie oben beschrieben
+* Analysieren Sie sich die verschiedenen Szenarien (Verzweigungen), die auftreten können (z.B. User unbekannt etc.)
+* Nehmen Sie die [ **"Checkliste 006 Aktivitätsdiagramme"** ](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_006_Aktivita%CC%88tsdiagramm.pdf?forcedownload=1) zur Hilfe: Sie zeigt Ihnen, auf welche Kriterien Sie achten müssen.
+* Prüfen Sie die **Qualität Ihres Aktivitätsdiagrammes** anhand der "analaytischen Schritte" in der Checkliste.
 
 Am Ende der Stunde (ca. 15min vor Schluss) schauen wir Ihren Stand an.
 

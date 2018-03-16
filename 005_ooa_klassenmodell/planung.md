@@ -28,7 +28,7 @@ Detailplan
 ----------
 
 * 07:30 (ca. 5min): Begrüssung, Ziel
-* 07:35 (ca. 20min): Besprechung Use-Case-Beschreibung, 1-2 Schüler stellen Lösung vor, Fragen beantworten, Korrekturen
+* 07:35 (ca. 20min): Besprechung Klassendiagramm, Fragen zu den HA in den Folien
 * 07:55 (ca. 30min): Theorie Assoziationen inkl. UML-Einführung
 * 08:25 (Rest): Assoziationen finden: Praxis mit VisualParadigm / UML / Dokumentanalyse
   * Finden von Assoziationen

@@ -33,6 +33,7 @@ Detailplan
 * 07:35 (ca. 20min): Besprechung Use-Case-Beschreibung, 1-2 Schüler stellen Lösung vor, Fragen beantworten, Korrekturen
 * 07:55 (ca. 15min): Theorie Klassenmodell
 * 08:10 (ca. 10min): Klassenfindung: Vorgehen (Aufzeigen)
+  * Klassendiagramm in VisualParadigm aufzeigen: Klassen, Attribute, Generalisierungen, Beziehungen
 * 08:20 (Rest): Klassenfindung: Praxis mit VisualParadigm / UML / Dokumentanalyse
   * Finden von Klassen
   * Finden von Attributen

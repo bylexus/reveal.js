@@ -31,7 +31,7 @@ Heutiges Ziel
 
 ### Hausaufgaben
 
-* UML Sequenzdiagramm entwerfen
+* UML Sequenzdiagramme entwerfen
 </textarea>
 </section>
 
@@ -85,14 +85,14 @@ Kurze Einführung in Sequenzdiagramme mit VisualParadigm: Wir schauen uns die wi
 
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-wrench"></i> Szenario entwickeln
+<i class="fas fa-wrench"></i> Analyse-Szenario entwickeln
 ===========
 
 Sequenzdiagramme sind wichtig, um die zeitliche Interaktion zwischen den beteiligten Kommunikationspartner / Objekten / Klassen aufzuzeigen.
 
 **Aufgabe:**
 
-Entwickeln Sie ein Sequenzdiagramm für folgendes Szenario:
+Entwickeln Sie ein ANALYSE-Sequenzdiagramm für folgendes Szenario:
 
 **Ein Buch an RFID-Terminal ausleihen: Benutzer ist gültig, Medium ist kostenpflichtig **
 
@@ -115,4 +115,41 @@ Stellen Sie das Sequenzdiagramm fertig. Einreichen via Moodle.
 </textarea>
 </section>
 
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-wrench"></i> Design-Szenario analysieren
+===========
+
+Sequenzdiagramme werden in der Design-Phase verwendet, um die zeitlichen Abläufe von Meldungen (Methodenaufrufen) zwischen Objekten / Klassen darzustellen.
+
+**Haus-Aufgabe:**
+
+Analysieren Sie das bereits bestehende TECHNISCHE Szenario vom Bibsys-Prototypen (durch Analyse des Java-Codes):
+
+1. Starten Sie den Bibsys-Prototypen
+2. Loggen Sie sich ein (Username: benutzer1, Passwort: 1), Szenario: erfolgreiches Login
+3. Wählen Sie "1 Ausgeliehene Medien anzeigen"
+4. die Medienliste wird angezeigt.
+
+Zeichnen Sie den gesamten Ablauf dieses Szenarios als technisches Sequenzdiagramm auf:
+
+* Welche Klassen / Objekte sind involviert
+* Welche Methoden werden in welcher Reihenfolge ausgeführt
+* Nehmen Sie dazu die **Anforderung des Bibliothekssystems** und die Use Cases zur Hilfe: Diese definieren die geforderte Funktionalität.
+* Nehmen Sie die [ **"Checkliste 007 Sequenzdiagramm"** ]( https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_007_Szenario.pdf?forcedownload=1) zur Hilfe: Sie zeigt Ihnen, auf welche Kriterien Sie achten müssen.
+* Prüfen Sie die **Qualität Ihres Sequenzdiagrammes** anhand der "analaytischen Schritte" in der Checkliste.
+</textarea>
+</section>
+
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i>Hausaufgaben
+===========
+
+* UML-Sequenzdiagramm zum Analysemodell "Medium am RFID-Terminal ausleihen"
+* UML-Sequenziagramm des Designmodells des Java-Prototypen (Einloggen, Auflisten der ausgeliehenen Medien)
+
+</textarea>
+</section>
 {% endblock %}
