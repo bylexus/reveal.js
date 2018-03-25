@@ -7,7 +7,9 @@
 <i class="fas fa-flask"></i> Besprechung Hausaufgabe Sequenzdiagramme
 =============================
 
-TODO
+Beispiellösung ANALYSE-Sequenzdiagramm aus Einheit 8: Medium am Terminal ausleihen:
+
+<img src="../008_sequenzdiagramme/beispielloesung_seqenzdiagramm.png" />
 
 </textarea>
 </section>
@@ -53,7 +55,7 @@ Heutiges Ziel
     <i class="fas fa-graduation-cap"></i> Assoziationen - belongs to (n:1)
     ===========
 
-    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+    Navigierbarkeit: ungerichtet (gilt in beide Richtungen, oder dem Entwickler überlassen): Es existieren auf beiden Seiten Zugriffsmöglichkeiten auf die andere Seite.
 
     <img src="n_1_undefined.png" />
 
@@ -72,7 +74,7 @@ Heutiges Ziel
     Achtung: bei 1:1-Beziehungen ist es nicht praktikabel, beide Seiten mit der Kardinalität "1" zu versehen: Dies impliziert, dass immer beide Seiten gleichzeitig erstellt werden müssen (Henne-Ei-Problem).
     Vielmals wird auf mind. einer Seite die Kardinalität "0..1" gewählt:
 
-    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+    Navigierbarkeit: ungerichtet (gilt in beide Richtungen, oder dem Entwickler überlassen): Es existieren auf beiden Seiten Zugriffsmöglichkeiten auf die andere Seite.
 
     <img src="1_1_undefined.png" />
 
@@ -88,7 +90,7 @@ Heutiges Ziel
     <i class="fas fa-graduation-cap"></i> Assoziationen - one-to-many (1:n)
     ===========
 
-    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+    Navigierbarkeit: ungerichtet (gilt in beide Richtungen, oder dem Entwickler überlassen): Es existieren auf beiden Seiten Zugriffsmöglichkeiten auf die andere Seite.
 
     <img src="1_n_undefined.png" />
 
@@ -108,7 +110,7 @@ Heutiges Ziel
     <i class="fas fa-graduation-cap"></i> Assoziationen - many-to-many (n:m)
     ===========
 
-    Navigierbarkeit: ungerichtet (wird später definiert oder dem Entwickler überlassen)
+    Navigierbarkeit: ungerichtet (gilt in beide Richtungen, oder dem Entwickler überlassen): Es existieren auf beiden Seiten Zugriffsmöglichkeiten auf die andere Seite.
 
     <img src="n_m_undefined.png" />
 
@@ -121,6 +123,25 @@ Heutiges Ziel
 
 
 <section>
+    <section data-markdown data-separator-notes="^Note:" class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Implementation von Assoziationen und Kardinalitäten in Java
+    ===========
+
+    Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
+
+   * **belongs-to, many-to-one, n:1** (KlasseA gehört zu KlasseB)</strong>, Traversierbarkeit: **von A nach B**
+   * **has-many, one-to-many, 1:n** (KlasseA hat B's)</strong>, Traversierbarkeit: **von A nach B**
+   * **has-one, 1:1** (KlasseA hat ein B und umgekehrt), **beidseitige Navigierbarkeit**
+   * **many-to-many, n:m** (KlasseA hat KlasseB's, Klasse B's hat KlasseA's), **beidseitige Navigierbarkeit**
+
+   * Versuchen Sie, in den nächsten Minuten eine Beispielimplementation für Ihr Problem zu finden:
+     * Jeder Schüler setzt EINE Assoziation in Java um
+     * Sie erklären den anderen Ihre Lösung am Beamer
+    </textarea>
+    </section>
+
+
     <section data-separator-notes="^Note:" class="bigger-2">
     <h1><i class="fas fa-graduation-cap"></i> Implementation von Assoziationen und Kardinalitäten in Java</h1>
 
@@ -197,7 +218,7 @@ Heutiges Ziel
 
     <p>Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
 
-   <p><strong>has-one, 1:1 (KlasseA hat ein B und umgekehrt)</strong></p>
+   <p><strong>has-one, 1:1 (KlasseA hat ein B und umgekehrt), beidseitige Navigierbarkeit</strong></p>
 
     <pre class="fragment"><code class="java">
     public class A {
@@ -249,7 +270,7 @@ Heutiges Ziel
 
     <p>Wie implementieren Sie folgende Assoziationen und Kardinalitäten in Java?</p>
 
-   <p><strong>many-to-many, n:m (KlasseA hat KlasseB's, Klasse B's hat KlasseA's)</strong></p>
+   <p><strong>many-to-many, n:m (KlasseA hat KlasseB's, Klasse B's hat KlasseA's), beidseitige Navigierbarkeit</strong></p>
 
     <pre class="fragment"><code class="java">
     public class A {
@@ -319,7 +340,7 @@ Heutiges Ziel
 </section>
 
 <section>
-    <section data-markdown class="bigger-2">
+    <section data-markdown>
     <textarea data-template>
     <i class="fas fa-wrench"></i> Selbständige Implementationsaufgabe 1
     =============================
@@ -330,12 +351,19 @@ Heutiges Ziel
 
 
     * Verfeinern / Implementieren Sie das UML-Klassendiagramm für die Beziehung „Benutzer“ und „Ausweis“ (Jeder Benutzer hat einen Benutzerausweis mit einer Nummer)
+      * Ziel: beim **Login am Terminal** verwenden wir die Nummer auf dem Ausweis, um den Benuztzer zu finden:
+          * Der Benutzer scant seinen Ausweis
+          * Aufgrund der Nummer müssen wir den Benutzer ermitteln können
+          * Überlegen Sie sich die Traversierbarkeit!
+
       * Tragen Sie die notwendigen Attribute UND Operationen ein
       * Tragen Sie die Assoziations-RICHTUNG ein: In welche Richtung müssen Daten abgerufen werden können?
+
     * Implementieren Sie die Klassen Benutzer und Ausweis mit der Beziehung „Benutzer hat einen Ausweis“ (one-to-one) in Java
     * Schreiben Sie eine kleine Testklasse, welche:
       * einem Benutzer einen Ausweis zuordnet
-      * Das Benutzer-Objekt und den zugehörigen Ausweis ausgibt, duch die Traversierbarkeit auf Ebene Benutzer (System.out.println)
+      * Das Ausweis-Objekt und den zugehörigen Benutzer ausgibt, duch die Traversierbarkeit auf Ebene Ausweis (System.out.println)
+    * **BONUS**: Bauen Sie im BibSys-Prototypen den Login so um, dass anstatt eines Benutzername/Passworts nun eine Ausweisnummer eingegeben werden kann!
 
     </textarea>
     </section>
@@ -349,14 +377,15 @@ Heutiges Ziel
 
     Sie lösen folgende Aufgabe selbständig:
 
-    **Aufgabe 2:** „One-To-Many“-Assoziation designen und implementieren: **„Person hat mehrere MedienExemplare“** (für Ausleihe)
+    **Aufgabe 2:** „One-To-Many“-Assoziation designen und implementieren: **„Person hat mehrere Medien** (für Ausleihe)
 
-    * Verfeinern / Implementieren Sie das UML-Klassendiagramm für die Beziehung „Person“ und „MediumExemplar“
+    * Verfeinern / Implementieren Sie das UML-Klassendiagramm für die Beziehung „Person“ und „Medium
       * Tragen Sie die notwendigen Attribute UND Operationen ein
       * Tragen Sie die Assoziations-RICHTUNG ein: In welche Richtung müssen Daten abgerufen werden können?
-    * Implementieren Sie die Klassen Benutzer und MediumExemplar mit der Beziehung „Person hat mehrere MedienExemplare“ (one-to-many) in Java
+    * "Medium" an sich ist eine abstrakte Klasse und kann nicht instanziert werden: Implementatieren Sie mind. 1 implementierende Klasse (z.B. *Buch*).
+    * Implementieren Sie die Klassen Benutzer und Medium mit der Beziehung „Person hat mehrere Medien (ausgeliehen) (one-to-many) in Java
     * Schreiben Sie eine kleine Testklasse, welche:
-      * einer Person zwei existierende MedienExemplare zuordnet (Ausleihe)
+      * einer Person zwei existierende Medien, z.B. Bücher, zuordnet (Ausleihe)
       * Das Person-Objekt und die zugehörigen Exemplare ausgibt, durch die Traversierbarkeit auf Ebene Person (System.out.println)
 
     </textarea>
@@ -394,9 +423,9 @@ Heutiges Ziel
     <i class="fas fa-flask"></i> Hausaufgaben
     =============================
 
-        Abgabe der 3 Aufgaben
-        * Quellcode / Java-Snippet
-        * UML-Diagramm (Bild, PNG) der jeweiligen Assoziation
+    Abgabe der 3 Aufgaben:
+    * Quellcode / Java-Snippet
+    * UML-Diagramm (Bild, PNG) der jeweiligen Assoziation
 
     </textarea>
     </section>

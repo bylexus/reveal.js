@@ -1,0 +1,115 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 11 - Design Pattern - MVC{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Besprechung Hausaufgaben: Umsetzen Assoziationen
+=============================
+
+TODO
+
+</textarea>
+</section>
+
+<section data-markdown class="bigger-2">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Design Pattern
+=============================
+
+Heutiges Ziel
+-------------
+
+* Sie wissen, was man unter "Design Pattern" versteht
+* Sie kennen das MVC-Design Pattern
+* Sie können das MVC-Design-Pattern im Code anwenden
+
+### Hausaufgaben
+
+* Implementieren der Maske "Buch-Detail" unter Einsatz des MVC-Design-Pattern
+
+</textarea>
+</section>
+
+<section>
+    <section data-markdown class="bigger-2">
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Was sind Design Pattern?
+    =============================
+
+    * Design Patterns lösen bekannte, wiederkehrende Entwurfsprobleme.
+    * Sie fassen Design- und Architekturwissen in kompakter und wiederverwertbarer Form zusammen.
+    * Design Pattern sind nur **„Denkmuster“**, keine konkrete Software (im Gegensatz zu Frameworks und Libraries)
+
+    * Sie orientieren sich an den wichtigen **Software-Entwurfsprinzipien**:
+    * <!-- .element class="fragment" --> DRY - Don't Repeat Yourself!
+    * <!-- .element class="fragment" --> Single Responsibility, Separation of Concerns
+    * <!-- .element class="fragment" --> Open-Closed Principle: Offen für Erweiterungen, geschlossen für Änderungen
+    * <!-- .element class="fragment" --> Liskov Substitution Principle (Kindklasse kann an Stelle der Elternklasse stehen)
+
+    </textarea>
+    </section>
+
+    <section data-markdown >
+    <textarea data-template>
+    <i class="fas fa-graduation-cap"></i> Liskov Substitution Principle
+    =============================
+
+        "Eine Kindklasse kann an jeder Stelle einer Elternklasse eingesetzt werden." - Was bedeutet dies?
+
+        * Wichtigstes Konzept der objektorientierten Programmierung
+        * wurde 1993 von der amerikanischen Informatikerin Barbara Liskov formuliert
+          <img src="Barbara_Liskov.PNG" width="100"/>
+        * Damit ist garantiert, dass Operationen, die auf ein Elternobjekt ausgeführt werden,
+          auch von der Kindklasse korrekt ausgeführt werden.
+
+        Siehe: https://de.wikipedia.org/wiki/Liskovsches_Substitutionsprinzip
+    </textarea>
+    </section>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Design Pattern
+=============================
+
+Quelle: http://java-design-patterns.com/patterns/
+
+Design Pattern werden grob in Kategorien eingeteilt:
+
+* Architektur:
+* Behavioral
+* Creational
+* Structural
+* Presentation
+
+Wir lernen folgende Pattern kennen:
+
+* MVC - Presentation
+* Adapter
+* Factory Method
+* Strategy
+* Observer / Observable
+
+</textarea>
+</section>
+
+
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Hausaufgaben
+=============================
+
+Übungen zu Aggregationen
+* Implementation der Komposition **"Person - Benutzer"**: eine Person hat max. 1 Benutzer. Der Benutzer wird über die Person verwaltet.
+* Implemenation der Komposition **"Benutzer hat Rechnungen"**: Einem Benutzer können mehrere Rechnungen zugewiesen werden.
+* Durchgängige Verwaltung: Beim Löschen der Person müssen Benutzer und deren Rechnungen mit gelöscht werden.
+
+<img src="person-benutzer-rechnung.png" />
+
+</textarea>
+</section>
+{% endblock %}
