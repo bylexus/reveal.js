@@ -7,7 +7,7 @@
 <i class="fas fa-flask"></i> Besprechung Hausaufgaben Assoziationen
 =============================
 
-TODO
+Demonstration der Aufgaben am Beamer
 
 </textarea>
 </section>
@@ -108,12 +108,20 @@ Versuchen Sie, in den nächsten Minuten eine Implementation zu folgendem Problem
     <i class="fas fa-flask"></i> Hausaufgaben
     =============================
 
-    Übungen zu Aggregationen
+    Übungen zu Komposition
     * Implementation der Komposition **"Person - Benutzer"**: eine Person hat max. 1 Benutzer. Der Benutzer wird über die Person verwaltet.
     * Implemenation der Komposition **"Benutzer hat Rechnungen"**: Einem Benutzer können mehrere Rechnungen zugewiesen werden.
     * Durchgängige Verwaltung: Beim Löschen der Person müssen Benutzer und deren Rechnungen mit gelöscht werden.
 
     <img src="person-benutzer-rechnung.png" />
+
+    Erstellen Sie die notwendigen Klassen und ein **Demoprogramm**, welches die Komposition demonstriert:
+
+    * Erstellen Sie ein Person-Objekt
+    * Erzeugen Sie über das Person-Objekt ein Benutzer-Objekt
+    * Erzeugen Sie über das Benutzer-Objekt zwei Rechnungen
+    * Listen Sie die Rechnungen via das Personen-Objekt auf: <br />Ausgabe (1 Zeile pro Rechnung): "Name: [name], Vorname: [vorname] ([Benutzername]): Rechnung vom [datum]: [betrag]"
+    * Initiieren Sie das "Löschen" der Person: Zeigen Sie auf, dass beim Löschen auch die abhängigen Objekte gelöscht werden.
 
     </textarea>
     </section>

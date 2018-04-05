@@ -20,7 +20,8 @@ Hausaufgaben
 Detailplan
 ----------
 
-* 07:30 (ca. 10min): Besprechung HA von letztem Mal: Aktivitätsdiagramm Medien am Terminal ausleihen
+* 07:30 (ca. 15min): Besprechung HA von letztem Mal: Aktivitätsdiagramm technische Analyse
+  Eingehen auf Programmcode, Analyse der Persistenzschicht
 * 07:40 (ca. 15min): Folien Szenario / Sequenzdiagramm
 * 07:55 (ca. 10min): Einführung Sequenzdiagramm mit Visual Paradigm
   * Beispielprojekt aufmachen

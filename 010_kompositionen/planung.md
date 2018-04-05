@@ -5,6 +5,7 @@ Material
 --------
 * Folien
 * VisualParadigm
+* Source-Code-Beispiele in Eclipse: source/M326_Examples/
 
 
 Ziele

@@ -5,7 +5,8 @@ Material
 --------
 * Folien
 * VisualParadigm
-* Checkliste 007 - Szenarien
+* Source-Code-Beispiele in Eclipse: source/M326_Examples/
+
 
 Ziele
 -----
@@ -13,6 +14,8 @@ Ziele
 
 Hausaufgaben
 ---------------
+
+* Implementationsaufgabe 1-3 umsetzen. Ziel: die Schüler zeigen in der nächsten Lektion ihre Lösung am Beamer
 
 
 Detailplan
@@ -22,6 +25,6 @@ Detailplan
 * 07:40 (ca. 20min): Theorie Assoziationen in Java
 * 08:00 (ca. 30min): Implementatoin von Assoziationen:
   * Jeder Schüler soll versuchen, eine Assoziation in Java zu implementieren (selbständig).
-  * Jeder SChüler zeigt kurz auf, wie er dies gelöst hat.
+  * Jeder Schüler zeigt kurz auf, wie er dies gelöst hat.
 * 08:30 (ca. 15min) Gemeinsame Implementationsaufgabe
 * 08:45: Erklären der selbständigen Assoziationsaufgaben

@@ -1,35 +1,31 @@
-Detailplan Lektion 10 - 26.04.2018 (Woche 17)
+Detailplan Lektion 11 - 03.05.2018 (Woche 18)
 ===========================================
 
 Material
 --------
 * Folien
-* VisualParadigm
+* Eclipse-Projekt BibSys
+* Merkblatt MVC Design Pattern
 
 
 Ziele
 -----
-* Sie wissen, was Kompositions-Beziehungen bedeuten
-* Sie können Kompositionen in Java implementieren
+* Sie wissen, was man unter "Design Pattern" versteht
+* Sie kennen das MVC-Design Pattern
+* Sie können das MVC-Design-Pattern im Code anwenden
 
 Hausaufgaben
 ---------------
 
-* Implementation von Kompositions-Problem in Java: Person -> Benutzer -> Rechnung
+*
 
 
 Detailplan
 ----------
 
-* 07:30 (ca. 30min): Besprechung HA von letztem Mal: Implementationen von Assoziationen
-* 08:00 (ca. 30min): Selbständige Implementationsaufgabe: Beispiel Assoziation KlasseA/KlasseB:
-  * Schüler implementieren das Demoprogramm
-  * 1-2 Schüler stellen ihre Lösung vor
-* ca. 08:00: Auslosen der Design Patterns
-  * Singleton
-  * Factory Method
-  * Observer/Observable
-  * Adapter
-  * Strategy
-* Abgabe Hausaufgaben: Übung zu Komposition: Person -> Benutzer -> Rechnung
+* 07:30 (ca. 30min): Besprechung HA von letztem Mal: Implementationen von Kompositionen
+* 08:00 (ca. 20min): Theorie zu Design Patterns
+* 08:20 (ca. 20min): Selbständiges Einlesen in MVC-Pattern, Beantworten von Fragen
+* 08:40 (Rest): Besprechen der MVC-Fragen
+* 09:00: Abgabe der HA: Umsetzen der View "Ausleihe via Barcode-Scan"
 * 09:05: Ende
