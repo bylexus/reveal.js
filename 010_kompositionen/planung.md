@@ -6,6 +6,7 @@ Material
 * Folien
 * VisualParadigm
 * Source-Code-Beispiele in Eclipse: source/M326_Examples/
+* Moodle-Beschreibung für Design-Pattern-Kurzvortrag: Eintrag vom 24. Mai
 
 
 Ziele
