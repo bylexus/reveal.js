@@ -11,7 +11,7 @@
     "build": "grunt"
   },
   "project": {
-    "name": "M326 - Objektorientiert entwerfen und implementieren"
+    "name": "M151 - DB in Webapp einbinden"
   },
   "author": {
     "name": "Hakim El Hattab",

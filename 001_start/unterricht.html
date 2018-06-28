@@ -1,0 +1,125 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 1 - Willkommen{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Heutiges Ziel
+--------------
+
+
+* Sie wissen, was wir in diesem Modul / Semester tun
+* Sie kennen die Aufgabenstellung der Projektarbeit
+* Sie haben die Entwicklungs-VM erhalten resp. wissen, welche Software Sie benötigen
+* Sie haben eine lauffähige Entwicklungsumgebung, und das Projekt-Skelett funktioniert
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Thema &amp; Jahresplan
+--------------
+
+**Thema**:
+
+* Entwickeln einer eigenen Web-Applikation mit Datenbank, in Projektarbeit
+* Entwicklung eines eigenen Web-MVC-Frameworks
+* Entwerfen und Umsetzen von Sicherheitsmassnahmen für Web-Applikationen
+
+
+**Jahresplan**:
+
+Siehe Moodle
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Projektarbeit
+--------------
+
+Siehe Projektarbeits-Beschrieb auf Moodle. Suchen Sie auf **nächstes Mal** das Thema / die Applikation für Ihre Projektarbeit. Ein paar Beispielthemen, welche sich eignen würden:
+* Blog-System mit Benutzerverwaltung, ev. Seiten- und Themen-Verwaltung
+* Wiki-System (à la Dokuwiki)
+* Issue-Tracking-System
+* Forum (mehrere Foren, verschiedene Rollen etc.)
+* Medien- resp. Photo-Verwaltung und -Publikation
+
+Suchen Sie nicht zu weit, und vor allem: **Planen Sie nicht zu viel Funktionalität ein**: Das Projekt muss vor den Weihnachtsferien abgegeben werden (ca. 15 Lektionen Zeit im Unterricht)!
+
+Richtgrösse: Ca. 4-6 Entitäten / ca. 4-6 Bildschirmmasken
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Benötigte Software für den Unterricht
+--------------
+
+Wir entwickeln eine Web-Applikation auf Basis HTML/CSS, PHP, MySQL. Sie erhalten eine virtuelle Maschine (VirtualBox), welche alle nötige Software bereits enthält.
+Wenn Sie Ihr eigenes Setup installieren wollen, benötigen Sie folgende Software:
+
+Software | Details
+---------|---------
+Apache HTTP Web-Server | >= 2.4<br />`mod_rewrite` aktiviert<br />`AllowOverride all` für das Webroot-Verzeichnis
+PHP >= 7.0 | - als Apache-Modul<br />- als CLI-Programm<br />- Module: `json`, `mbstring`, `mysql`, `pdo`, `pdo_mysql`
+MySQL Server + Client | >= 5.0
+MySQL Workbench | Oder ein anderes MySQL-Management-Programm
+Programmier-Editor | z.B. Sublime, Atom, VS Code (sehr zu empfehlen)
+Browser | Mit guten Debugging-Möglichkeiten, z.B. Chrome (Sehr gut), Firefox
+UML-Tool | VisualParadigm
+
+Fertiger Out-of-the-Box-Web-Entwicklungs-Stack für Windows: https://bitnami.com/stack/wamp
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - Funktionsweise des Skelett-Projektes
+=============================
+
+Datei-Struktur
+--------------
+```
+webroot/
+├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests landen in index.php
+├── composer.json         # composer-Konfiguration: Composer ist der Paketmanager/Autoloader für PHP
+├── composer.phar         # composer-binary. Ausführen mit: php composer.phar [...]
+├── index.php             # Web-Einstieg. Alle Requests landen in diesem Script.
+├── src/
+│   └── classes           # Basis-Verzeichnis des PHP-Namespaces "M151", siehe composer.json
+└── vendor                # Composer-libraries
+    └── autoload.php      # composer-Autoloader-Script
+```
+
+Redirect auf `index.php` für alle nicht-Datei-Anforderungen
+----------------
+
+* Ziel: Alle Nicht-Datei-URLs landen in einem Einstiegsscript: Dies ist der Einstiegspunkt in unsere Applikation.
+* Dies wird via Apache-Redirect-Anweisung in `.htaccess` konfiguriert.
+
+Weiteres
+----------
+
+* Composer: PHP Pakte- und Autoloading-Mechanismen
+  * Wichtige Kommandos: siehe Moodle
+* Namespaces in PHP (Support von Composer included)
+  * Namespaces helfen, Namenskonflikte von Klassen zu vermeiden
+  * Composer unterstützt das Autoloading von Klassen mit Namespaces
+</textarea>
+</section>
+{% endblock %}

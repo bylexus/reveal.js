@@ -1,0 +1,224 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 2 - Web-Architektur{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Heutiges Ziel
+--------------
+
+* Sie kennen die Web-Architektur
+* Sie wissen, wie HTTP-Requests / Responses funktionieren
+* Sie kennen den Unterschied zwischen statischen / dynamischen Seiten
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Web-Architektur - was ist das?
+=============================
+
+<img src="web_architektur.png" width="1000" />
+
+Die grundlegende Web-Architektur ist in 3 "Tiers" (Stufen, Schichten) aufgeteilt:
+
+* Client: Web-Browser, Darstellung und View-Logik
+* Applikationsserver: Applikationslogik, Auslieferung der View (Web-Seiten)
+* Datenbank-Server: Persistierung der Daten
+
+Jede Schicht kann in sich auch komplexer ausgelegt werden (Redundanzen, komplexe Datenbank-Struktur, etc.), der Grundaufbau ist jedoch immer derselbe.
+
+In unserem Fall verwenden wir:
+
+* HTML/CSS/JavaScript auf der View-Seite (im Browser)
+* Apache Web-Server mit PHP-Modul auf der Applikationsserver-Seite
+* MySQL-Datenbank auf der Persistenz-Seite
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Ablauf eines Web-Requests
+=============================
+
+<img src="request_response.png" />
+
+
+1. Der Client sendet einen **HTTP Request** zum Server. Der Request beinhaltet die notwendigen Informationen, damit der Server "weiss", was er zu tun hat:
+  * eine **URL** identifiziert die angeforderte Ressource
+  * Zusatzdaten werden als URL-Parameter oder Post-Body geliefert
+2. Der Server nimmt den Request entgegen, analysiert ihn und übergibt die Information der Applikationslogik.
+   Je nach Logik / Anforderung muss der Server nun Datenbank-Anfragen ausführen, Dateien suchen, Daten aufbereiten.
+   In jedem Fall bereitet er eine Antwort vor in Form eines:
+3. **HTTP Response**: Der Server sendet seine generierte Antwort in Form einer HTTP Response. Die Response beinhaltet:
+  * einen Status-Code (**HTTP-Code**)
+  * Meta-Informationen zur Response (**Header** Länge der Antwort, Datentyp etc.)
+  * die eigentliche Information im **HTTP Body**
+
+<i class="far fa-hand-point-right"></i> Web-Requests gehen IMMER vom Client aus. Der Server macht nicht von sich aus Requests zum Client.
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Aufbau einer URL
+=============================
+
+<img src="url_aufbau.png" />
+
+Die **URL** (Uniform Resource Locator) definiert, welche „Ressource“ der Client anfordert. Es ist eine Art "Postadresse". Es ist nun Aufgabe des Web-Servers, die richtige Ressource (Web-Seite, Bild, Datei, JSON-Antwort etc.) aufzubereiten und auszuliefern. Sie besteht aus folgenden Teilen:
+
+* Protokoll/Schema: welches Protokoll wird für den Aufruf verwendet? (http, https, ftp …)
+* Host: Adressierung des (physischen) Hosts: die „Hausadresse“ des Webservers
+* Pfad: Adressierung der Ressource innerhalb des Hosts: die „Wohnungsadresse“ innerhalb des Hauses
+* Parameter: Zusätzliche Informationen, nicht Teil der Adresse der Ressource
+* Fragment: Client-seitige Information (z.B. Seiten-Anker), für Server nicht relevant
+
+Frage: Welche Teile der Information einer URL ist für den **Client** (Absender), welche Teile für den **Server** (Empfänger) wichtig?
+
+* <!-- .element: class="fragment" data-fragment-index="1" -->Protokoll, Host, Fragment: wird für den **Client** für die Adressierung benötigt.
+* <!-- .element: class="fragment" data-fragment-index="1" -->(Host,) Pfad, Parameter: wird für den **Server** für die Identifizierung der Ressource benötigt.
+</textarea>
+</section>
+
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> HTTP Request / Response
+=============================
+<img src="request_response_detail.png" width="500" />
+* Der **REQUEST** wird vom Client initiiert und teilt dem Server mit, was er von ihm will.
+* Der Server lokalisiert / generiert die Ressource und antwortet mit einer RESPONSE.
+* Die erste Zeile des **REQUEST** Headers besteht aus:
+  * **HTTP-Verb** (GET, POST, PUT, DELETE)
+  * Ressourcen-Pfad
+  * Parameter
+* Ein Request Body wird nur im POST/PUT-Fall gesendet.
+* Die **RESPONSE** besteht immer aus:
+  *  Header:
+    * erste Zeile: HTTP Response Code (200 = OK, 403 = Not found etc)
+    * weitere Header
+  * Leerzeile
+  * Response Body
+
+<i class="far fa-hand-point-right"></i> Schauen Sie sich einen Request / Response in der Browser-Debug-Konsole an!
+</textarea>
+</section>
+
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Verarbeitung durch den Web-Server / PHP
+=============================
+
+Wir unterscheiden zwischen **statischen Seiten** und **dynamischen Seiten**:
+
+* Statische Seiten: Der Web-Server liefert eine bereits vorhandene Datei ohne Modifikation aus (Bilder, HTML-Files, ....)
+* Dynamische Seiten: Der Web-Server übergibt das angeforderte Script an einen Prozessor (in unserem Fall PHP): Dieser arbeitet das Script ab,
+  welches eine Antwort generiert. Der Web-Server liefert diese Script-Antwort aus.
+
+**Beispiel statische Seite**
+
+Der Web-Server liefert (HTML-)Dateien mit fixem Inhalt aus:
+Beispiel: index.html:
+
+```html
+<html>
+    <head><title>Hello</title></head>
+    <body>
+        <h1>Hello, World!</h1>
+        <p>Es ist genau: 27. Juni 2018, 09:22</p>
+    </body>
+</html>
+```
+
+**Beispiel dynamische Seite mit PHP**
+
+Der Web-Server prozessiert das Script-File mit dem PHP-Interpreter, und liefert das Endresultat aus:
+Beispiel: index.php:
+
+```html
+<html>
+    <head><title>Hello</title></head>
+    <body>
+        <h1>Hello, <?php echo $user; ?>!</h1>
+        <p>Es ist genau: <?php echo strfrime('%d. %m. %Y %H:%M'); ?></p>
+    </body>
+</html>
+```
+<i class="far fa-hand-point-right"></i> Nach dem Prozessieren durch den PHP-Interpreter:
+```html
+<html>
+    <head><title>Hello</title></head>
+    <body>
+        <h1>Hello, World!</h1>
+        <p>Es ist genau: 27. Juni 2018, 09:22</p>
+    </body>
+</html>
+```
+<i class="far fa-hand-point-right"></i> Der PHP-Interpreter wertet den Code zwischen `<?php` und `?>` und **ERSETZT** diese Teile mit der Ausgabe des Codes dazwischen.
+
+**Frage**: Sieht der Client einen Unterschied zwischen einer statischen und einer dynamischen Webseite?
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Informationen zum Request in PHP
+=============================
+
+**Variable $_REQUEST**
+
+Die globale `$_REQUEST`-Variable enthält:
+* alle GET-Parameter
+* alle POST-Parameter
+* alle Cookies
+
+**Beispiel:**
+
+Request:
+http://www.meine-seite.ch/index.php?arg1=alex
+
+Ausgabe in PHP:
+
+
+```php
+<?php
+   echo $_REQUEST['arg1']; // → Ausgabe: „alex“
+?>
+```
+
+
+
+**Variable $_SERVER**
+Die globale `$_SERVER`-Variable enthält Informationen zur Server- und Script-Umgebung, wie z.B.:
+* aufgerufene URL
+* aufgerufenes Script
+* HTTP-Methode (GET/POST etc)
+* ... und vieles mehr.
+
+Beispiel:
+
+Request:
+http://www.meine-seite.ch/index.php?arg1=alex
+
+Ausgabe in PHP:
+
+```php
+<?php
+    echo $_SERVER['REQUEST_METHOD']; // GET
+    echo $_SERVER['SCRIPT_NAME']; // Web-Pfad
+    var_dump($_SERVER); // alles ausgeben
+?>
+```
+</textarea>
+</section>
+{% endblock %}
