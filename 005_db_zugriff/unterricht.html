@@ -1,0 +1,273 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 5 - DB-Anbindung{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Heutiges Ziel
+--------------
+
+* Sie wissen, wie Sie eine Datenbank in PHP anbinden
+* Sie wissen, wie Sie Daten aus der Datenbank abfragen und aktualisieren
+* Sie können Formulardaten vom Frontend lesen und auswerten.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wie kommuniziert PHP mit einer Datenbank?
+=============================
+
+<img src="php-to-db.png" width="80%" />
+
+PHP „spricht“ kein SQL: es benötigt also ein „Zwischenstück“, einen Datenbank-Treiber:
+Dies erledigt **PHP PDO** für uns: PDO ist ein objektorientiertes Interface zu Datenbanken.
+
+Siehe http://php.net/manual/en/book.pdo.php.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wir erstellen eine Datenbank
+=============================
+
+* Datenbank-Verbindung mit MySQL Workbench herstellen
+* Demo-Script (example_db.sql): erstellt eine neue Datenbank mit einer einfachen Benutzer-Tabelle:
+
+<img src="workbench.png" width="80%" />
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wir stellen eine Verbindung in PHP zur Datenbank her
+=============================
+
+In PHP hat sich die PDO-Library (PHP Data Objects) etabliert:
+Dies ist ein objektorientiertes Interface für Datenbank-Verbindungen.
+Damit stellen wir eine Verbindung zur Datenbank her:
+
+```php
+    // DB Parameter definieren:
+    $dsn = 'mysql:host=mysql;port=3306;dbname=notekeeper';
+    $username = 'notekeeper';
+    $password = 'notekeeper';
+    $options = array(
+        // Wichtig: damit die Daten als utf-8 codierte Strings geliefert werden
+        \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
+    );
+
+    // Datenbankverbindung aufbauen:
+    $dbh = new \PDO($dsn, $username, $password, $options);
+
+    if ($dbh) {
+        echo "Erfolg! Datenbankverbindung hergestellt";
+    }
+
+    // $dbh ist eine Referenz auf ein PDO-Objekt, unser "Handler" zur Datenbank.
+```
+
+Nach erfolgreichem Verbindungsaufbau beinhaltet die Variable `$dbh` ein Objekt der Klasse `PDO` (siehe http://php.net/manual/en/book.pdo.php)
+
+**Hinweise:**
+
+* Es macht Sinn, den Verbindungsaufbau an einem **zentralen Ort im Programm** zu machen:
+  Die Verbindung wird später an verschiedenen Stellen wieder benötigt.
+  Z.B. kann eine Funktion „getConn()“ dafür sorgen, dass die Verbindung geliefert wird oder bei Bedarf erzeugt wird.<br />
+  <i class="far fa-hand-point-right"></i> Welches Design Pattern kommt Ihnen da in den Sinn?
+* system-spezifische Daten wie Usernamen uns Passwörter **gehören nicht in den Programmcode**,
+  sondern müssen anderweitig zur Verfügung gestellt werden (z.B. in einem eigenen config-Script, ini-File etc…).
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+=============================
+
+**Schritt 1: Formular mit Login / Passwort-Feldern an Browser ausgeben (Beispiel aus LoginController.php)**
+
+Wir verwenden eine Controller-Action unseres MVC-Frameworks, um ein HTML-Formular mit Login-Feldern auszugeben:
+
+```html
+<html>
+<body>
+    <h1>Login</h1>
+    <form action="login_try" method="POST">
+        <label>Username:
+            <input type="text" name="login">
+        </label>
+        <label>Passwort:
+            <input type="password" name="passwort">
+        </label>
+        <button type="submit">login</button>
+    </form>
+</body>
+</html>
+```
+
+<img src="login_form.png" width="50%" />
+
+Beim Absenden („login“-Button) werden die Daten als HTTP-Post an die url „login_try“ geschickt. Wir können diese Daten nun
+in einem 2. Schritt auswerten.
+
+(Demonstration im Browser)
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+=============================
+
+**Schritt 2: Parameter auf der Server-seite auslesen**
+
+Das abgeschickte HTML-Formular „landet“ nun in einem PHP-Script, in unserem Fall in einer Controller-Action-Funktion.
+HTTP-Parameter können in PHP folgendermassen ausgelesen werden:
+
+* die globale Variable `„$_GET“` enthält HTTP-GET-Parameter (URL-Parameter)
+* die globale Variable `„$_POST“` enthält HTTP-POST-Parameter, wie sie von unserem Formular geschickt wurden
+
+Beispiel-Code (komplettes Beispiel siehe LoginController.php):
+
+```php
+    <?php
+    // Auslesen der POST-Parameter, "the PHP Way":
+    $login    = $_POST['login'];
+    $passwort = $_POST['passwort'];
+    echo „Ihre Eingabe: {$login}, {$passwort}“;
+```
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+=============================
+
+**Schritt 3: Eingabedaten mit Datenbank-Einträgen vergleichen**
+
+Nun ist es an der Zeit zu prüfen, ob die eingegebenen Daten einem Benutzer entsprechen. Dazu suchen wir den Benutzer-Datensatz
+in der Datenbank, dessen Login / Passwort mit den eingegebenen Daten übereinstimmen.
+
+1. wir erstellen / holen die Datenbank-Verbidung wie oben aufgezeigt (Variable $dbh, im Beispiel)
+2. wir setzten einen SQL-Query-Befehl an die Datenbank ab:
+
+```php
+    <?php
+    // PDOStatement erstellen: Query senden:
+    $stm = $dbh->query("SELECT * FROM benutzer WHERE login = '{$username}' AND passwort = '{$pw}'");
+
+    // PDOStatement auslesen: fetch() holt den nächsten Record, fetchAll() holt alle Records:
+    $result = $stm->fetch();
+
+    // Ausgabe des Resultats:
+    if ($result) {
+        echo "<div style='background-color: green; padding: 1em;'>Hallo, {$result['vorname']}!</div>";
+    } else {
+        // oder Fehlerausgabe:
+        echo "<p>Ooops, Login-Fehler!</p>";
+    }
+```
+**Hinweis:**<br />
+In diesem Query wurden keinerlei Eingabeprüfungen vorgenommen: Auf Sicherheitsprobleme wie SQL-Injection gehen wir zu
+einem späteren Zeitpunkt ein. Als Hinweis hierzu sei erwähnt, dass PDO ebenfalls „Prepared SQL Statements“ unterstützt,
+welches solche Sicherheitsprobleme lösen kann.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+=============================
+
+**Wir aktualisieren Daten: letzter Login festhalten**
+
+Natürlich können wir neben Datenbank-Anfragen zum Daten lesen auch Daten aktualisieren.
+Wir wollen für dieses Beispiel den Benutzer-Record des eingeloggten Benutzers aktualisieren,
+sodass der Zeitpunkt des letzten erfolgreichen Logins festgehalten wird.
+
+**Schritt 1: Wir erstellen ein UPDATE-SQL-Query**
+
+Wir aktualisieren die Spalte `„letzter_login“` des vorher abgefragten Benutzers:
+
+```
+$updateQuery = "UPDATE benutzer SET letzter_login = now() WHERE id = {$result['id']}";
+```
+
+`now()` steht hierbei für „jetzt“, während dem wir die ID des zu aktualisierenden Datensatzes aus dem vorherigen
+Resultat lesen.
+
+**Schritt 2: Wir senden das Query an den Datenbank-Server**
+
+Wir verwenden wiederum unsere Datenbank-Verbindung, rufen nun aber anstatt „query()“ die Funktion „exec()“ auf:
+exec() wird bei Anfragen benutzt, welche kein Resultat (keine Abfrage) liefert:
+
+```
+    $res = $dbh->exec($updateQuery);
+    if ($res) {
+        // alles OK, kein Fehler aufgetreten.
+    }
+```
+
+**Schritt 3: Wir kontrollieren den Vorgang**
+
+Wir können nun den Datensatz nochmals auslesen, um das aktualisierte Datum abzuholen:
+
+```
+    $readQuery = "SELECT * FROM benutzer WHERE id = {$result['id']}";
+    $result = $dbh->query($readQuery)->fetch();
+    $lastLogin = $result['letzter_login'];
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Diskussion: Einbau ins Framework
+=============================
+
+Wir haben nun verschiedene Funktionen rund um die Datenbank benutzt.
+Da wir ein MVC-Framework entwickeln, sollen solche Standard-Funktionen natürlich auch ins Framework einfliessen.
+Versuchen Sie, Antworten auf folgende Fragen zu finden:
+
+* Die DB-Connection ist sehr zentral. Wie sorgen wir dafür, dass diese von allen Programmteilen / Klassen aus verfügbar ist?
+* Datenbank-Verbindungsparameter sind auf verschiedenen Systemen vermutlich unterschiedlich (Test, Produktion):<br />
+  Wo definieren Sie die Datenbank-Verbindungsparameter, sodass diese vom Programmcode unabhängig sind?
+* Wir werden vermutlich an vielen Stellen in unserem Programm immer wieder ähnliche Abfragen machen:
+  * **c**reate: Daten erstellen (z.B. Benutzer)
+  * **r**ead: Daten lesen (z.B. Benutzer)
+  * **u**pdate: Daten speichern (z.B. Benutzer aktualisieren)
+  * **d**elete: Daten löschen
+  * <i class="far fa-hand-point-right"></i> gemeinhin unter **CRUD**-Operationen bekannt
+  *  Damit diese Abfragen nicht im ganzen Programm erneut geschrieben werden müssen, soll auch dies vereinfacht werden.
+    Wie könnte eine solche Lösung aussehen? (Denken Sie an das „M“ von MVC)
+* Wo sehen Sie Sicherheitsprobleme bei Datenbank-Zugriffen?
+
+ <i class="far fa-hand-point-right"></i> Versuchen Sie, Ihr Framework um ein „Model“ resp. um mehrere Model-Klassen zu erweitern, welches Ihnen die gängigsten Datenbank-Abfragen und -Funktionen abnimmt! Wie sieht das Klassen-Diagramm dazu aus?
+
+ **Empfehlung**: Ich empfehle Ihnen, pro "Entität" (z.B. "Benutzer") eine Model-Klasse zu erstellen, welche wichtige Funktionen wie z.B. "find", "insert" etc. für diese Entität zur Verfügung stellt. Abstrahieren Sie dies mit einer übergeordneten Model-Klasse, um gleiche Funktionalität in einer Eltern-Klasse zusammenzufassen!
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
+=============================
+
+Nächstes Kapitel auf [separatem Foliensatz](unterricht_teil2.html).
+</textarea>
+</section>
+{% endblock %}

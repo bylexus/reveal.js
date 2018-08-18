@@ -20,6 +20,14 @@ Ziele
 Detailplan
 ----------
 
+08:20 ( 5min )      Begrüssung, Beschreibung des Moduls 151, Ziel
+08:25 ( ca. 5min )  Jahresplan, Hinweise auf Kurzreferate und Abgabetermine, Moodle
+08:30 ( ca. 30min)  Setup VirtualBox VM
+09:00 ( 5min )      Pause
+09:05 ( rest )      Einführung in Projekt-Bootstrap (Inbetriebnahme, .htaccess-Rewrite, index.php)
+09:55 Ende
 
 Bemerkung zum Unterricht
 ------------------------
+
+* Hinweise auf composer (Benutzung CLI, composer.json, Namespaces), Namespacing in PHP beim Skeleton-Erklärung

@@ -1,0 +1,122 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 5 - DB-Anbindung{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Heutiges Ziel
+--------------
+
+* Sie wissen, wie Sie eine Datenbank in PHP anbinden
+* Sie wissen, wie Sie Daten aus der Datenbank abfragen und aktualisieren
+* Sie können Formulardaten vom Frontend lesen und auswerten.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
+=============================
+
+**Fragen:**
+
+* Wie werden Daten (User-Eingaben) an den Server gesendet?
+* Und wie lesen Sie diese auf der Serverseite aus?
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
+=============================
+
+**Fragen:**
+
+* Wie werden Daten (User-Eingaben) an den Server gesendet?
+* Und wie lesen Sie diese auf der Serverseite aus?
+
+**Antwort:**
+
+* Möglichkeit 1: Via GET-URL-Parameter eines Links
+
+HTML-Beispiel:
+```
+<a href=“/meine/seite.php?id=5&name=Alex>Link</a>
+```
+
+Dieser Link löst einen HTTP GET-Request aus, welcher die Parameter „id“ und „name“ an den Server übermittelt.
+Überprüfen Sie dies in der Browser-Konsole: Sehen Sie in der Konsole, wo / wie die Parameter mitgeschickt werden?
+
+* Möglichkeit 2: Via HTML-Form POST-Parameter:
+
+HTML-Beispiel:
+```
+<form action=“/meine/seite.php“ method=“POST“>
+    <input type=“text“ name=“nachname“ />
+    <input type=“text“ name=“vorname“ />
+    <button type=“submit“>Absenden</button>
+</form>
+```
+
+Diese Formulardaten werden als HTTP POST-Request an den Server geschickt: Die Parameter „nachname“ und „vorname“ werden
+übermittelt.
+
+Überprüfen Sie dies in der Browser-Konsole: Sehen Sie in der Konsole, wo / wie die Parameter mitgeschickt werden?
+
+* Möglichket 3: Via Ajax (asynchronous java script, nicht im Detail behandelt):
+ebenfalls HTTP-Anfragen (GET, POST, PUT, DELETE)
+
+<i class="far fa-hand-point-right"></i> In jedem Fall antwortet der Server nach der Verarbeitung mit einer Response,
+welche als neue Seite dargestellt wird (ausser Ajax).
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
+=============================
+
+Wie verarbeiten wir Parameter auf der Server-Seite (PHP)?
+
+In unserem MVC-Framework landet der Request wie gewohnt in einem Controller in einer Action-Methode. Beispiel:
+
+```php
+class FormController extends Controller {
+    /**
+     * HTML-Formulardaten auslesen / verarbeiten
+     */
+    public function postForm(Request $req) {
+        // Auslesen der POST-Parameter, "the PHP Way":
+        $name= $_POST['nachname'];
+        $vorname = $_POST['vorname'];
+
+
+        // Oder via eigener Framework-Funktionen, welche Sie entwickeln können:
+        // $req ist ein Objekt der Request-Klasse welches mein Framework beim Aufruf erstellt und an die Action-Methode übergibt.
+        // Sie beinhaltet die Funktion "getParam", welche Request-Parameter aus $_GET/$_POST ausliest und liefert:
+        $name = $req->getParam('name');
+        $vorname = $req->getParam('vorname');
+
+        echo "Eingaben: Name: {$name}, Vorname: {$vorname}";
+    }
+}
+```
+HTTP-Post- resp. GET-Parameter können in PHP mittels den globalen Variablen `„$_POST“` resp. `„$_GET“` ausgelesen werden.
+
+Es empfiehlt sich, **Controller-Funktionen zu erstellen**, welche dies vereinfachen
+(im oberen Beispiel ist dies die Funktion `„getParam()“`, welche in der Controller-Basisklasse definiert ist:
+
+Diese fasst z.B. GET- und POST-Variablen zusammen, sodass man als Entwickler nicht mehr unterscheiden muss, und
+erlaubt z.B. die Angabe eines Standard-Wertes, falls der Parameter nicht geliefert wurde.
+
+</textarea>
+</section>
+
+{% endblock %}

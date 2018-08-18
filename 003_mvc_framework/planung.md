@@ -1,4 +1,4 @@
-Detailplan Lektion 2 - 29.08.2018 (Woche 35)
+Detailplan Lektion 3 - 29.08.2018 (Woche 35)
 ===========================================
 
 Material
