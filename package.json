@@ -11,7 +11,7 @@
     "build": "grunt"
   },
   "project": {
-    "name": "M326 - Objektorientiert entwerfen und implementieren"
+    "name": "M411 - Algorithmen und Datenstrukturen"
   },
   "author": {
     "name": "Hakim El Hattab",

@@ -1,0 +1,121 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 4 - Linked Lists{% endblock %}
+
+{% block sections %}
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Lektion 4 - Linked Lists
+=============================
+
+Ziel der Lektion:
+
+* Sie verstehen den Aufbau einer Linked List
+* Sie können eine Linked List in Java selber programmieren
+* Sie haben die fehlenden Methoden der Linked List ausprogrammiert
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Hausaufgaben - Implementation der List-Methoden
+=============================
+
+* Wir schauen uns die Implementationen der List-Funktionen an:
+
+* **`appendNode()`**
+* **`printList()`**
+* **`insertNode()`**
+* **`removeNode()`**
+* **`moveNode()`**
+
+</textarea>
+</section>
+
+<section>
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Intermezzo - Vergleich mit Array-Operationen
+=============================
+
+Rufen sie sich nochmals die folgenden Funktionen ins Gedächtnis:
+
+* `appendNode()`
+* `insertNode()`
+* `removeNode()`
+
+Fragen:
+* Können Sie diese ohne Weiteres mit Arrays implementieren?
+* Wo liegt der grosse Unterschied zu Listen, wenn Sie diese Methoden mit Arrays implementieren müssen?
+* Wie gross ist der rechnerische Aufwand in den beiden Datenstrukturen, um diese beiden Operationen durchzuführen?
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Intermezzo - Vergleich mit Array-Operationen
+=============================
+
+Erinnern wir uns an die Einführungslektion:
+
+**Arrays sind:**
+
+* mühsam, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* mühsam, wenn man einzelne Elemente einfügen oder entfernen muss
+* super, wenn man auf Elemente zugreifen muss (nach Index)
+
+**Listen sind:**
+
+* super, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* super, wenn man einzelne Elemente einfügen oder entfernen muss
+* mühsam, wenn man auf Elemente zugreifen muss (nach Index)
+
+
+<i class="far fa-hand-point-right"></i> Wir halten also fest:
+
+* Einfüge- und Verschiebe-Operationen in **Listen** sind **billig** (in Rechenzeit)
+* Einfüge- und Verschiebe-Operationen in **Arrays** sind **teuer** (in Rechenzeit)
+* Direktzugriff auf eine bestimmte Position in **Listen** ist **teuer** (in Rechenzeit)
+* Direktzugriff auf eine bestimmte Position in **Arrays** ist **billig** (in Rechenzeit)
+
+
+<i class="far fa-hand-point-right"></i> Wir müssen also genau überlegen, welche Datenstruktur wir für unser Problem verwenden -
+Listen wie auch Arrays sind nicht für alle Problemstellungen gleich gut geeignet!
+
+Wir beschäftigen uns später im Modul noch genauer mit der Effizienz von Algorithmen.
+</textarea>
+</section>
+</section>
+
+<section>
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Weitere Methoden für die Liste
+=============================
+
+Wir können nun bereits Elemente einfügen, verschieben, entfernen. Um die Liste in der Praxis benutzen zu können,
+braucht es noch ein paar Methoden mehr.
+
+Was denken Sie, könnten noch für Methoden nützlich sein, um die Liste in der Praxis benützen zu können?
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Weitere Methoden für die Liste
+=============================
+
+z.B.:
+
+* eine **`count()`**-Methode, welche die Anzahl Elemente zurückgibt
+* eine **`find()`**-Methode, welche eine Node anhand eines Wertes findet
+* eine **`getNodeAt()`**-Methode, welche eine Node an einer bestimmten Position zurückgibt
+
+<i class="far fa-hand-point-right"></i> Implementieren Sie diese 3 Methoden in der LinkedList-Klasse!
+
+</textarea>
+</section>
+</section>
+
+{% endblock %}

@@ -1,0 +1,125 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 5 - Linked Lists{% endblock %}
+
+{% block sections %}
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Lektion 5 - Linked Lists - Übungen
+=============================
+
+Ziel der Lektion:
+
+* Komplexer Datentyp als Node-Value
+* Sie fühlen sich im Umgang mit Listen sicher - Übungen
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists 3
+=============================
+
+Besprechung Hausaufgaben:
+
+* Implementation von count(), find() und getNodeAt() fertigstellen
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - komplexe Datentypen als Werte
+=============================
+
+Bis anhin haben wir in unserer Linked List nur Integer-Werte gespeichert. Damit können wir noch nicht viel anfangen. Eine LinkedList sollte natürlich auch "sinnvolle" Daten speichern können.
+
+Erinnern Sie sich an die 2. Lektion, Thema **Komplexe Datentypen**? Anstelle des Datentyps "int" (Ganzzahl) können wir für unsere ListNode auch komplexe Datentypen verwenden.
+
+**Strings** in Java sind beispielsweise bereits komplexe Datentypen: Strings sind intern Arrays von char-Werten, also einzelnen Zeichen. Der Datentyp String stellt zudem verschiedene Methoden
+für die Verarbeitung zur Verfügung, wie "length()", "equals()", "substring()" etc.
+
+Frage:
+
+* Haben Sie eine Idee, wie Sie unseren LinkedList / ListNode-Code anpassen müssen, um darin Strings zu speichern?
+* Welche Methoden müssen Sie somit anpassen?
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - komplexe Datentypen als Werte
+=============================
+
+Als Erstes sorgen wir dafür, dass unsere ListNode den Datentyp "String" als Daten aufnehmen kann:
+
+```java
+public class ListNode {
+    public String data; // anstatt int
+    public ListNode next;
+    public ListNode prev;
+}
+```
+
+Nun müssen wir unsere LinkedList-Klasse ebenfalls entsprechend anpassen: Überall dort, wo jetzt int verwenet wird, wird String eingesetzt:
+
+```java
+public class LinkedList {
+    public ListNode head;
+
+    public ListNode appendNode(String data) {
+        // ....
+    }
+    // .....
+}
+```
+
+Somit kann unsere LinkedList nun mit Strings umgehen!
+
+**Frage**:
+
+Scheint Ihnen diese Lösung sinnvoll? Wo sehen Sie Probleme / Nachteile?
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - komplexe Datentypen als Werte
+=============================
+
+Mit String als Datentyp haben wir bereits eine mächtige Datenstruktur, welche wir verwenden können. In der folgenden Übung wollen wir dies vertiefen.
+
+**Übung**
+
+* Passen Sie Ihre Linked-List-Struktur so an, dass Sie Strings als Daten speichern kann. Testen Sie die einzelnen Funktionen in einem Beispiel aus.
+* Sortiertes einfügen: Ergänzen Sie Ihre LinkedList-Klasse um die Funktion **"appendSorted(String data)"**:
+  * Sie funktioniert grundsätzlich gleich wie die vorhandene **appendNode**-Funktion: Sie fügt eine neue Node in die Liste ein.
+  * Der entscheidende Unterschied liegt aber an der Einfügeposition: Die neue Node (der neue String) wird alphabetisch eingefügt:<br />
+    Die neue Node soll VOR der Node eingefügt werden, welche im Alphabet nach dem anzufügenden String kommt.
+  * Verwenden Sie dazu die String-Methode **"compareTo(String other)"**: Lesen Sie nach, wie diese Methode funktioniert.
+
+
+Testen Sie die Liste mit folgenden Werten:
+
+1. Sheriff Woody
+2. Buzz Lightyear
+3. Jessie
+4. Rex
+5. Hamm
+6. Mr. Potato Head
+
+Fügen Sie diese Werte nacheinander mit **appendSorted** ein. Ein anschliessendes "printList()" sollte folgendes ausgeben:
+
+Buzz Lightyear<br />
+Hamm<br />
+Jessie<br />
+Mr. Potato Head<br />
+Rex<br />
+Sheriff Woody<br />
+
+</textarea>
+</section>
+
+{% endblock %}

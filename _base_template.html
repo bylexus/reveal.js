@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="{{webroot}}/css/theme/alex.css">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="{{webroot}}/lib/css/zenburn.css">
+        <link rel="stylesheet" href="{{webroot}}/lib/css/github.min.css">
 
         <!-- font awesome -->
         <script defer src="{{webroot}}/lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
@@ -48,12 +48,17 @@
                 transition: 'slide',
                 center: false,
                 //history: window.location.search.match( /print-pdf/gi ) ? false : true,
+                //math: {
+                //    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js',
+               //     config: 'TeX-MML-AM_CHTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                //},
                 dependencies: [
                     { src: '{{webroot}}/plugin/markdown/marked.js' },
                     { src: '{{webroot}}/plugin/markdown/markdown.js' },
                     { src: '{{webroot}}/plugin/zoom-js/zoom.js' },
                     { src: '{{webroot}}/plugin/notes/notes.js', async: true },
                     { src: '{{webroot}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                    //{ src: '{{webroot}}/plugin/math/math.js', async: true }
                 ]
             });
         </script>
