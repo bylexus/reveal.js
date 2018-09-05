@@ -7,7 +7,7 @@ Material
 * Unterrichts-Unterlagen
 * example_db.sql
 * Code-Beispiele zum Thema DB Connect, DB query, Daten Senden / Parameter auslesen
-  Siehe Beispiel-Projekt, Stand datenbank_abfragen
+  Siehe Beispiel-Projekt, Branch datenbank_abfragen
 
 Ziele
 -----
@@ -20,8 +20,9 @@ Ziele
 Detailplan
 ----------
 
-08:20 ( ca. 30min )
-08:50 ( rest )        Selbständige Umsetzung MVC-Grundgerüst
+08:20 ( ca. 40min): Lektion zum Thema DB-Verbindung, Abfrage, insert, update, delete
+09:00 ( ca. 10 min ): Thema Formulardaten auslesen im Backend
+09:10 (Rest): Selbständige Umsetzung MVC-Grundgerüst
 09:55 Ende
 
 Bemerkung zum Unterricht

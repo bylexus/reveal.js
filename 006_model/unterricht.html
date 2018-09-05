@@ -1,0 +1,74 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 6 - Model{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Heutiges Ziel
+--------------
+
+* Umsetzen / Implementieren einer Model-Klasse: Kapselung von Datenbank-Zugriffen
+* Sie können die Grundstruktur für Ihr MVC-Web-Framework in Code umsetzen
+
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
+=============================
+
+Wir haben letztes Mal verschiedene Funktionen rund um die Datenbank benutzt:
+
+* Abfragen mittels SQL SELECT
+* Änderungen mittels SQL INSERT/UPDATE
+* Löschen mittels SQL DELETE
+
+Da wir ein MVC-Framework entwickeln, sollen solche Standard-Funktionen natürlich auch ins Framework einfliessen.
+Versuchen Sie, Antworten auf folgende Fragen zu finden:
+
+* Die DB-Connection ist sehr zentral. Wie sorgen wir dafür, dass diese von allen Programmteilen / Klassen aus verfügbar ist?
+
+* Datenbank-Verbindungsparameter sind auf verschiedenen Systemen vermutlich unterschiedlich (Test, Produktion):<br />
+  Wo definieren Sie die Datenbank-Verbindungsparameter, sodass diese vom Programmcode unabhängig sind?
+
+* Wir werden vermutlich an vielen Stellen in unserem Programm immer wieder ähnliche Abfragen machen:
+  * **c**reate: Daten erstellen (z.B. Benutzer)
+  * **r**ead: Daten lesen (z.B. Benutzer)
+  * **u**pdate: Daten speichern (z.B. Benutzer aktualisieren)
+  * **d**elete: Daten löschen
+  * <i class="far fa-hand-point-right"></i> gemeinhin unter **CRUD**-Operationen bekannt
+  *  Damit diese Abfragen nicht im ganzen Programm erneut geschrieben werden müssen, soll auch dies vereinfacht werden.
+    Wie könnte eine solche Lösung aussehen? (Denken Sie an das „M“ von MVC)
+* Wo sehen Sie Sicherheitsprobleme bei Datenbank-Zugriffen?
+
+ <i class="far fa-hand-point-right"></i> Versuchen Sie, Ihr Framework um ein „Model“ resp. um mehrere Model-Klassen zu erweitern, welches Ihnen die gängigsten Datenbank-Abfragen und -Funktionen abnimmt! Wie sieht das Klassen-Diagramm dazu aus?
+
+ **Empfehlung**: Ich empfehle Ihnen, pro "Entität" (z.B. "Benutzer") eine Model-Klasse zu erstellen, welche wichtige Funktionen wie z.B. "find", "insert" etc. für diese Entität zur Verfügung stellt. Abstrahieren Sie dies mit einer übergeordneten Model-Klasse, um gleiche Funktionalität in einer Eltern-Klasse zusammenzufassen!
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
+=============================
+
+**Unterricht am 26.09.2018 fällt aus - Selbststudium**
+
+Ich werde Ihnen auf Moodle an diesem Datum ein Beispiel einer Model-Klasse aufschalten, welches
+eine mögliche Umsetzung der oben gezeigten Fragestellung aufzeigt.
+
+Studieren Sie diesen Code, und versuchen Sie ihn zu verstehen. Ziel ist, dass Sie eine Grundlage
+für Ihr eigenes Model-Konzept erarbeiten können.
+
+Notieren Sie sich allenfalls Fragen dazu, oder tauschen Sie sich mit ihren Mitschülern aus.
+
+</textarea>
+</section>
+{% endblock %}

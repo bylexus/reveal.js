@@ -119,4 +119,73 @@ erlaubt z.B. die Angabe eines Standard-Wertes, falls der Parameter nicht geliefe
 </textarea>
 </section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Komplexes Beispiel: Login-Formular-Prüfung
+=============================
+
+Die folgenden Beispiel-Code-Ausschnitte zeigen eine mögliche Umsetzung für ein Login-Formular inkl.
+Prüfung des Logins.
+
+**Controller-Klasse für Login-Routen:**
+
+```php
+// Controller-Klasse fuer Login-Routen:
+class LoginController extends Controller {
+    /**
+     * Ein HTML-Formular ausliefern, route: /login
+     */
+    public function loginForm(Request $req) {
+        $error = false;
+        if ($req->getParam('failed')) {
+            $error = 'Login-Fehler!';
+        }
+        // HTML-View-Script laden und ausgeben:
+        $view = new View('login-form.html');
+        $view->assign('error',$error);
+        $view->render();
+    }
+
+    /**
+     * Login überprüfen, Formulardaten von /login form, Route: /login_try
+     */
+    public function loginTry(Request $req) {
+        $username = $req->getParam('login');
+        $pw = $req->getParam('passwort');
+
+        if ($username === 'alex' && $pw === 'easy') {
+            echo "<div style='background-color: green; padding: 1em;'>Hallo, {$username}!</div>";
+            echo "<a href='{$this->routeUrl('/login')}'>Zur&uuml;ck zum Login</a>";
+        } else {
+            $this->redirectTo('/login?failed=true');
+        }
+    }
+}
+```
+
+** login-form.html: View-Script für Login-Form-Action (siehe loginForm())**:
+
+```html
+<!-- login-form.html, View-Script fuer loginForm-Action -->
+<html>
+<body>
+    <h1>Login</h1>
+    <?php if ($error) { ?>
+        <div style="background-color: red"><?php echo $error; ?></div>
+    <?php } ?>
+    <form action="<?php echo $this->routeUrl('/login_try'); ?>" method="POST">
+        <label>Username: <input type="text" name="login"></label>
+        <label>Passwort: <input type="password" name="passwort"></label>
+        <button type="submit">login</button>
+    </form>
+</body>
+</html>
+```
+
+<i class="far fa-hand-point-right"></i> Die Funktion `$this->routeUrl()` stellt eine Funktion dar, um eine "fertige" URL zu erzeugen. Diese Funktion
+können Sie entwickeln (müssen aber nicht).
+
+</textarea>
+</section>
+
 {% endblock %}
