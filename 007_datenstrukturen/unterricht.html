@@ -7,16 +7,13 @@
 <i class="fas fa-graduation-cap"></i> Lektion 7 - Basis-Datenstrukturen
 =============================
 
-Ziele für die nächsten beiden Lektionen
+Ziele der Lektion:
 
 * Sie wissen, wie Variablen im Arbeitsspeicher organisiert werden
 * Sie kennen die Unterschiede von typisierten / nicht typisierten Programmiersprachen
 * Sie kennen die drei Eigenschaften von Daten
 * Sie kennen die zwei Grundprinzipien, warum abstrakte Datentypen definiert werden
-* Sie können die Struktur "Stack" anhand eines Beispiels erklären
-* Sie können Arrays in Java anwenden
-* Sie verstehen die Komplexität von Einfügen / Entfernen-Operationen mit Arrays
-* Sie kennen die Java-Klasse "Vector"
+* Sie kennen die Datenstruktur "Stack" und können Sie an einem Beispiel erklären
 
 </textarea>
 </section>
@@ -35,7 +32,7 @@ Versuchen Sie, folgende Kontrollfragen zu beantworten:
 * Was sind "Daten", wenn wir vom Computerprogrammen reden?
 * Wie werden Daten im Speicher des Computers abgelegt / gespeichert?
 * Wie haben Sie Zugriff auf diese Daten in Ihrem Programm?
-* Nennen Sie die drei Eingenschaften von Daten!
+* Nennen Sie die drei Eigenschaften von Daten!
 
 **Datentypen:**
 
@@ -67,7 +64,7 @@ wird dazu in Zeichen/Zahlen oder Zeichenketten codiert. Die Codierung erfolgt ge
   * In Java können Adressbereiche **nicht** direkt zugegriffen werden. Um die Freigabe kümmert sich der **Garbage Collector**.
 
 
-** Nennen Sie die drei Eingenschaften von Daten!**
+** Nennen Sie die drei Eigenschaften von Daten!**
 
 * Die **Bezeichnung** erklärt den semantischen Teil (die Bedeutung) des Datenobjekts.
 * Die **Wertemenge** bestimmt die Syntax (die Form oder Codier-Regel) des Datenobjekts.
@@ -84,7 +81,7 @@ wird dazu in Zeichen/Zahlen oder Zeichenketten codiert. Die Codierung erfolgt ge
 
 <img src="speicherabbild.jpg" width="50%" />
 
-* Der Arbeitsspeicher hat somit nur Zellen von 8 bit Grösse.
+* Der Arbeitsspeicher hat nur Zellen von 8 bit Grösse.
 * Je nach Datentyp benötigt man somit mehr oder weniger 8-bit-Zellen.
 * auf einem 64-bit-System benötigt somit ein einfacher Integer 8 Speicherzellen à 8 bit!
 * Je nach System / Programmiersprache sind die Datentypen anders definiert. (Java: ein int ist 32bit, C: int benötigt die native Prozessor-Breite, also heute meist 64bit)
@@ -138,7 +135,7 @@ Wie wir solche Datentypen selber definieren können, sehen wir im Kapitel "Abstr
 <i class="fas fa-graduation-cap"></i> Datentypen - (un)typisierte Sprachen
 =============================
 
-**Was ist ein abstrakter Datentyp? Machen Sie ein Beispiel!**
+**Was ist der Unterschied zwischen typisierten und untypisierten Datentypen?**
 
 Nicht alle Programmiersprachen gehen mit Datentypen "gleich streng" um: Je nach Sprache kann eine Variable, einmal definiert, nur diesen Datentyp speichern, oder eben unterschiedliche.
 
@@ -173,7 +170,7 @@ a = "Hello";  // --> führ zu einem Compilerfehler!
 <i class="fas fa-graduation-cap"></i> Datentypen - Abstrakte Datentypen
 =============================
 
-**Was ist der Unterschied zwischen typisierten und untypisierten Datentypen?**
+**Was ist ein abstrakter Datentyp? Machen Sie ein Beispiel!**
 
 Der abstrakte Datentyp ist ein wichtiges Konzept in der modernen Informatik: Die Philosophie der objektorientierten Sprachen
 basiert genau auf dieser Idee.
@@ -242,27 +239,46 @@ Bei diesem Rucksack (oder Datentyp) gibt es verschiedene Funktionen:
 * **Anschauen**: oberstes Element anschauen, ohne es zu entnehmen
 * **Leer**: Diese Operation prüft, ob der Rucksack leer ist.
 
-**Konkrete Definition des Datentyps**
+Dieser Datentyp findet an ganz unterschiedlichen Orten ihren Einsatz:
+
+* **History**: Ihr Browser speichert eine Reihe von vorher aufgerufenen URLs - in Form eines Stacks
+* **Undo**: Eine Undo-Funktion in Ihrem Programm speichert die zuletzt ausgeführten Kommandos
+* **Taschenrechner** mit "Reverse Polish Notation" (3, 3, +, 2, \* --&gt; (3 + 3) \* 2), wird mittels Stacks umgesetzt
+
+Wir wollen einen Stack als abstrakten Datentyp definieren. Damit wir die Definition von der Implementation trennen können,
+definieren wir ein _Interface_, eine Schnittstellendefinition:
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Datentypen - Abstrakte Datentypen
+=============================
+
+**Beispiel: Datentyp _Stack_**
+
+**Definition des Datentyps als Interface (ohne Implementation)**
 
 ```java
 public interface Stack {
 	/**
-	 * Wir wollen etwas (ein int) im Stack ablegen (keine negativen Zahlen erlaubt)
-	 * @param x
+	 * Wir wollen etwas (ein String) im Stack ablegen
+	 * @param String
 	 */
-	void push(int x);
+	void push(String x);
 
 	/**
 	 * Die Funktion pop() gibt uns das oberste Element zurück, und entfernt es aus dem Stack
-	 * @return int
+	 * @return String
 	 */
-    int pop();
+    String pop();
 
     /**
      * Die Funktion peek() liefert das oberste Element, ohne es jedoch aus dem Stack zu entfernen
-     * @return int
+     * @return String
      */
-    int peek();
+    String peek();
 
 	/**
 	 * Gibt einen Boolean zurück ob der Stack leer ist oder nicht
@@ -271,8 +287,9 @@ public interface Stack {
 	boolean isEmpty();
 }
 ```
+Das Java-Interface definiert uns hier den Datentyp _Stack_:
 
-Das Java-Interface definiert uns hier den Datentyp _Stack_: Die Implementation dazu werden Sie selbständig angehen (siehe Moodle, StackAufgabe).
+<i class="far fa-hand-point-right"></i> Die Implementation dazu werden Sie selbständig angehen (siehe Moodle, StackAufgabe).
 </textarea>
 </section>
 {% endblock %}

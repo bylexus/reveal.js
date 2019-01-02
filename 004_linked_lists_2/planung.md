@@ -8,6 +8,7 @@ Material
 * Foliensatz (Moodle)
 * Eclipse
 * Script von C. Inauen auf Moodle
+* Beispiellösung LinkedList
 * Übungen auf Moodle
 
 Ziele
@@ -40,4 +41,13 @@ Ideen
 * weitere Übungen zu Linked Lists
   * Zählen der Elemente: count()-Funktion
   * Node an bestimmter Position zurückgeben: getNodeAt()-Methode
+
+Input nach Unterricht:
+- Schüler hatten mühe, insert / remove / move zu implementieren. Wir haben diese Funktionen dann in Gruppenarbeiten zu 2/3 Leuten im Unterricht entwickelt.
+Danach Vorstellung durch Schüler.
+
+Wichtig: Hinweis auf Pointer-Diagramm. Den Schülern hats
+vielmans daran gefehlt, dass sie sich nicht vorstellen konnten, welche pointer wie umgebogen werden.
+--> Aufzeigen Pointer-Diagrammes am Flipchart.
+
 

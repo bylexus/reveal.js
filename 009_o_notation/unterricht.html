@@ -1,0 +1,620 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 9 - Laufzeitanalyse{% endblock %}
+
+{% block sections %}
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Lektion 9 - Laufzeitanalyse
+=============================
+
+Ziele:
+
+* Sie können die O-Notation, den Sinn und Zweck in eigenen Worten beschreiben
+* Sie kennen die wichtigsten Komplexitätsklassen
+* Sie können Algorithmen in ihrer Komplexität richtig bewerten.
+
+</textarea>
+</section>
+
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Lektion 9 - Laufzeitanalyse
+=============================
+
+(Siehe auch Script V1.2 von C. Inauen, Kapitel 9 "Laufzeitanalyse")
+
+Schauen Sie sich folgenden Algorithmus an:
+
+```java
+public int sumTo(int grenze) {
+    int summe = 0;
+    for (int i = 1; i <= grenze; i++) {
+        summe = summe + i;
+    }
+    return summe;
+}
+```
+
+* Was macht dieser Algorithmus?
+* Ist dieser Algorithmus effizient?
+* Wie bewerten Sie die "Effizienz" eines Algorithmus? Welche Kriterien schauen Sie da an?
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Effizienz-Parameter
+=============================
+
+Für die Effizienz eines Algorithmus sind 3 Parameter relevant:
+
+* **Rechenzeit**: Anzahl der durchgeführten Elementaroperationen in Abhängigkeit von der Eingabegrösse
+* **Speicherplatz**: Maximale Speicherverbrauch während der Ausführung des Algorithmus in Abhängigkeit von der Komplexität der Eingabe
+* **Bandbreite**: Wie gross ist die erforderliche Datenübertragung
+
+Wir betrachten bei der Effizienzanalyse ausschliesslich die **Rechenzeit in Abhängigkeit der Eingabegrösse**.
+
+Auf unser Beispiel von vorhin gemünzt (übrigens die Summe aller ganzen Zahlen von 1 - n):
+
+* Wieviele Rechenschritte benötigt unser Algorithmus?
+* Wie "mühsam" sind die einzelnen Rechenschritte (Komplexitätsanalyse)?
+* Wie verhält sich die Anzahl Rechenschritte zur Eingeabegrösse (in unserem Beispiel: obere Grenze)?
+
+<i class="far fa-hand-point-right"></i>Komplexität: Wir suchen also eine **mathematische Funktion, welche die Komplexität in Abhängigkeit der Eingabegrösse darstellt.**
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Praktisches Beispiel: Heuballen
+=============================
+
+**Praktisches Beispiel**: Sie müssen einem befreundeten Landwirt helfen, seine Heuballen vom Lastwagen in die Scheune zu tragen. Wie lange dauert dies?
+
+* **Eingabegrösse**: Anzahl Heuballen
+* **Anzahl Rechenschritte**: Was muss ich mit einem einzelnen Heuballen machen, bis er in der Scheune ist? (Abladen, Treppre rauftragen, ...)
+
+--> Komplexitätsanalyse: Wie aufwändig sind die einzelnen Schritte, also das Einbringen eines Heuballens?
+
+* Eingabegrösse: Charakterisierung unserer Daten: Welche "Eingabegrösse" ist relevant für unseren Algorithmus?
+* Berechnungsschritte: Bestimmen der abstrakten Operationen pro Eingabe / pro Durchlauf
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Praktisches Beispiel: Heuballen
+=============================
+
+Spielen wie dies für die Heuballen durch!
+
+* Unser Wagen hat 120 Heuballen geladen
+* Wir brauchen folgende Schritte: Abladen, zur Scheune laufen, freien Platz suchen, abladen
+
+<i class="far fa-hand-point-right"></i> Wir benötigen also **4 Einzelschritte** pro Heuballen, also total **4 * 120 Schritte**.
+
+Wir können dies auch in Abhängigkeit der Eingabegrösse schreiben:
+
+**Komplexität T => T(4*n)**
+
+<i class="far fa-hand-point-right"></i> Wir haben somit eine mathematische Funktion definiert, welche uns in Abhängigkeit der Eingabegrösse die Komplexität berechnet.
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Komplexitätsanalyse - Grundsätzliches
+=============================
+
+Auf Algorithmen bezogen bedeutet dies folgendes:
+
+* **Eingabegrösse**: Anzahl Bytes, Anzahl Objekte, Anzahl Stellen ...
+* **Berechnungsschritte**: Speicherzugriffe, Berechnungsschritte, Funktionsaufrufe ...
+* **Komplexitätsanalyse**: Mathematische Analyse.
+
+<i class="far fa-hand-point-right"></i> Bei der Komplexitätsanalyse gehen wir immer vom **Worst Case** aus!
+
+Was bedeutet dies?
+
+**Beispiel: Finden eines Wertes in einem Array:**
+
+```java
+int find(int[] array, int wert) {
+    for (int i = 0; i < array.length; i++) {
+        if (array[i] == wert) {
+            return i;
+        }
+    }
+    return -1;
+}
+```
+
+* Wieviel Mal durchlaufen wir die Schlaufe...
+  * im **BESTEN** Fall? (1 mal)
+  * im **SCHLECHTESTEN** Fall? (n mal)
+
+<i class="far fa-hand-point-right"></i> Wir müssen für die Analyse davon ausgehen, dass der **schlechteste** Fall eintritt.
+
+Die Berechnung eines "durchschnittlichen" Wertes ist sehr, sehr schwierig, und kommt immer auch auf die Eingabedaten an.
+Für die Komplexitätsanalyse verwenden wir daher nur den schlechtesten Fall: Damit muss gerechnet werden.
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Komplexitätsanalyse - Beispiel
+=============================
+
+Spielen wir das Beispiel vom Anfang durch:
+
+```java
+public int sumTo(int n) {
+    int summe = 0;
+    for (int i = 1; i <= grenze; i++) {
+        summe = summe + i;
+    }
+    return summe;
+}
+```
+
+* Was ist unsere **Eingabegrösse**? --> `int n`: Je höher "n", desto mehr Schritte sind nötig
+* Wieviele **Berechnungsschritte** werden benötigt?
+  * 1x Summe initialisieren
+  * 1x i initialisieren
+  * n mal i mit Grenze vergleichen
+  * n mal Summe aufaddieren
+  * n mal i erhöhen
+
+--> Wir erhalten also folgende Funktion in Abhängigkeit von "n":
+
+T(n): 1 + 1 + n + n + n = 3n + 2
+
+<i class="far fa-hand-point-right"></i>Dieser Algorithmus hat also eine lineare (proportionale) Abhängigkeit zu seiner Eingabegrösse.
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Komplexitätsanalyse - Beispiel 2
+=============================
+
+Ein zweites Beispiel:
+
+```java
+// wieviele doppelte Elemente gibt es im Array? Naiver Ansatz:
+public int doubleElements(int[] a) {
+    int count = 0;
+    for (int i = 0; i <= a.length; i++) {
+        for (int j = 0; j < a.length; j++) {
+            if (i != j && a[i] == a[j]) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
+```
+
+* Was ist unsere **Eingabegrösse**? --> Länge von a = n
+* Wieviele **Berechnungsschritte** werden benötigt?
+  * 1x i initialisieren
+  * 1x j initialisieren
+  * n mal i mit Länge von a vergleichen
+  * n * n mal j mit Länge von a vergleichen
+  * n * n mal Werte vergleichen (i,j), auslesen und vergleichen, hochzählen (4 Schritte)
+
+--> Wir erhalten also folgende Funktion in Abhängigkeit von "n":
+
+T(n): 1 + 1 + n + n^2 + 4*n^2 = 5n^2 + n + 2
+
+<i class="far fa-hand-point-right"></i>Dieser (zugegeben naive) Algorithmus hat also eine **quadratische** Abhängigkeit zu seiner Eingabegrösse.
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> O-Notation
+=============================
+
+Für die Effizienzanalyse von Algorithmen wird eine spezielle mathematische Notation verwendet,
+die als **O-Notation** bezeichnet wird. Die O-Notation erlaubt es, Algorithmen auf einer höheren Abstraktionsebene
+miteinander zu vergleichen.
+
+Algorithmen können mit Hilfe der O-Notation unabhängig von Implementierungsdetails,
+wie Programmiersprache, Compiler und Hardware-Eigenschaften, verglichen werden.
+
+> Bei der O-Notation werden die asymptotischen oberen Schranke für Aufwandsfunktion angegeben.
+In anderen Worten: Wir stellen mit der O-Notation immer das Worst-Case-Szenario dar.
+Die O-Notation zeigt nur die Effizient-**Klasse**, also die Tendenz, wie sich ein Algorithmus zur
+Eingabegrösse verhält. Deshalb werden Koeffizienten und nicht dominante Terme weggelassen.
+
+$T( 3n+2 ) = Θ(n)$
+
+<img src="bigo.png" width="70%" />
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> O-Notation - Rechenregeln
+=============================
+
+Verständliches Beispiel:
+
+> Wenn Sie eine Funktion $g(n)\,=\,n^3\,+\,2\,*\,n^2$ betrachten, so ist der Term $n^3$ in dieser Funktion dominant
+gegenüber dem Term $2∗n^2$. Das kann man mathematisch beweisen, aber lassen wir das.
+Wir ignorieren also den Term $2∗n^2$ und schreiben:
+Die Komplexität dieser Funktion ist $n^3=O(n)$.
+<strong>Beachten Sie: Das Gleichheitszeichen ist nicht als “mathematisches Gleich” zu interpretieren.</strong>
+Es geht um Mengen, die Darstellung $n^3\,\in\,O(n)$ wäre eigentlich besser, aber weniger verbreitet.
+
+Aus diesem Beispiel folgen ein paar **“Rechenregeln”**:
+
+**Addition**
+
+1. $f(n)\,=\,n\,+\,3\,\Longrightarrow\,f(n)\,=\,Θ(n)$: Konstante Summanden werden vernachlässigt
+2. $f(n)\,=\,n^2\,+\,3n\,\Longrightarrow\,f(n)\,=\,Θ(n^2)$: Es zählt der Summand mit dem stärkeren Wachstum
+
+**Multiplikation**
+
+1. $f(n)\,=\,3n\,\Longrightarrow\,f(n)\,=\,Θ(n)$: Konstante Faktoren werden vernachlässigt
+2. $f(n)\,=\,n^2\,*\,3n\,\Longrightarrow\,f(n)\,=\,Θ(n^3)$: Es zählt die Summe der Exponenten
+
+Wir können somit auch mit Thermen der O-Notation rechnen:
+
+$O(1) + O(n^2) + O(n) = O(1 + n^2 + n) = O(n^2)$
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> O-Notation - Komplexitätsklassen
+=============================
+
+Es gibt eine Reihe von Standard-Komplexitätsklassen - hier eine Liste in aufsteigender Reihenfolge des Aufwandes:
+
+* $O(1)$: der konstante Aufwand (einige Suchverfahren für Hashtabellen, Array-Index-Zugriff)
+* $O(log(n))$: der logarithmische Aufwand (allgemeine Suchverfahren für Tabellen (Baum-Suchverfahren)
+* $O(n)$: der lineare Aufwand (für sequenzielle Suche, Suche in Texten, syntaktische Analyse von Programmen)
+* $O(n*log(n))$: (Sortieren)
+* $O(n2)$: der quadratische Aufwand (einige dynamische Optimierungsverfahren (z.B. optimale Suchbäume), Multiplikation Matrix-Vektor)
+* $O(n^k)\,für\,k\,\ge\,0$: der polynomiale Aufwand (Verschiedene, zum Beispiel Matrizen Multiplikationen)
+* $O(2^n)$: der exponentielle Aufwand (viele Optimierungsprobleme )
+</textarea>
+</section>
+
+
+<section>
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 1: Sequenz von Befehlen
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;
+  x = x + 1;
+  return x;
+}
+```
+<strong>$f(n) = O(???)$</strong>
+</textarea>
+</section>
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 1: Sequenz von Befehlen
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;    // O(1)
+  x = x + 1;    // O(1)
+  return x;     // O(1)
+}
+```
+**$O(f(n)) = O(1) + O(1) + O(1) = 3\*O(1) = O(3\*1)$**
+</textarea>
+</section>
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 1: Sequenz von Befehlen
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;    // O(1)
+  x = x + 1;    // O(1)
+  return x;     // O(1)
+}
+```
+**$O(f(n)) = O(1) + O(1) + O(1) = 3\*O(1) = O(3\*1)$**
+
+Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(1)$</strong>
+
+<i class="far fa-hand-point-right"></i> KONSTANTE Komplexität!
+</textarea>
+</section>
+</section>
+
+
+
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 2: Schleifen
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;
+  for (int i=0; i < n; i++) {
+    x = x + 1;
+  }
+  return x;
+}
+```
+<strong>$f(n) = O(???)$</strong>
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 2: Schleifen
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;                      // O(1)
+  for (int i=0; i < n; i++) {     // i=0: O(1), i<n: n*O(1), i++: n*O(1)
+    x = x + 1;                    // n*O(1)
+  }
+  return x;                       // vernachlässigen wir schon... wir wissen: O(1) + O(1) = O(1)
+}
+```
+
+<strong>$O(f(n)) = O(1) + O(1) + n\*O(1) + n\*O(1) + n\*O(1) = 2\*O(1) + 3\*O(n) = O(3\*n + 2)$</strong>
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 2: Schleifen
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;                      // O(1)
+  for (int i=0; i < n; i++) {     // i=0: O(1), i<n: n*O(1), i++: n*O(1)
+    x = x + 1;                    // n*O(1)
+  }
+  return x;                       // vernachlässigen wir schon... wir wissen: O(1) + O(1) = O(1)
+}
+```
+<strong>$O(f(n)) = O(1) + O(1) + n\*O(1) + n\*O(1) + n\*O(1) = 2\*O(1) + 3\*O(n) = O(3\*n + 2)$</strong>
+
+Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(n)$</strong>
+
+<i class="far fa-hand-point-right"></i> LINEARE Komplexität!
+</textarea>
+</section>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 3: Hmm... Was ist das?
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;
+  for (int i=0; i < 5; i++) {
+    x = x + 1;
+  }
+  return x;
+}
+```
+<strong>$O(f(n)) = O(1) + O(1) + 5\*O(1) + 5\*O(1) + 5\*O(1) = 17\*O(1)$</strong>
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 3: Hmm... Was ist das?
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;                     // O(1)
+  for (int i=0; i < 5; i++) {    // i=0: O(1), i<5: 5*O(1), i++: 5*O(1)
+    x = x + 1;
+  }
+  return x;
+}
+```
+<strong>$O(f(n)) = O(1) + O(1) + 5\*O(1) + 5\*O(1) + 5\*O(1) = 17\*O(1)$</strong>
+
+Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(1)$</strong>
+
+<i class="far fa-hand-point-right"></i> KONSTANTE Komplexität, trotz Schlaufe!
+</textarea>
+</section>
+</section>
+
+
+
+
+
+
+
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 4: Hmm... Nochmals Was ist das?
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;
+  for (int i=0; i < n; i = 2*i) {
+    x = x + 1;
+  }
+  return x;
+}
+```
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Beispiel 4: Hmm... Nochmals Was ist das?
+-----------------------------------
+
+```java
+public int berechne(int n) {
+  int x = 0;
+  for (int i=1; i < n; i = 2*i) {
+    x = x + 1;
+  }
+  return x;
+}
+```
+<strong>$O(f(n)) = O(1) + O(1) + \log_2(n)\times{O(1)} + \log_2(n)\times{O(1)} + \log_2(n)\times{O(1)} = O(3*\log_2(n) + 2)$</strong>
+
+Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(log_2(n))$</strong>
+
+<i class="far fa-hand-point-right"></i> LOGARITHMISCHE Komplexität: Die Anzahl Rechenschritte erhöht sich mit einer logarithmischen Funktion in Abhängigkeit von $n$
+</textarea>
+</section>
+</section>
+
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Weitere Übungen
+----------------
+
+Finden Sie die Komplexitätsklasse der folgenden Algorithmen!
+
+1. Unser Beispiel von zu beginn: Komplexität?
+```java
+public int sumTo(int grenze) {
+    int summe = 0;
+    for (int i = 1; i <= grenze; i++) {
+        summe = summe + i;
+    }
+    return summe;
+}
+```
+
+2. Selbes Ergebnis wie 1): Komplexität?
+```java
+public int sumTo(int grenze) {
+    return grenze * (grenze + 1) / 2;
+}
+```
+
+Zusatzfage: Wie nennt man diesen Algorithmus?
+
+3. Sie haben die Komplexität der einzelnen Schritte eines Algorithmus analysiert, und kommen auf folgende Ergebnisse:
+    * Schritt 1: $O(3n^3)$
+    * Schritt 2: $O(5n^2)$
+    * Schritt 3: $O(\frac{n}{2})$
+    * Schritt 4: $O(n^2)$
+
+Berechnen Sie die totale Komplexitätsklasse dieses Algorithmus!
+
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> O-Notation - Praxis
+=============================
+
+Weitere Übungen
+----------------
+
+<ol start="4"><li>Welche Komplexitätsklasse hat unsere **appendNode()**-Methode der LinkedList-Klasse aus dem ersten Teil des Moduls?</li></ol>
+<ol start="5"><li>Was müssen Sie in der LinkedList-Klasse anpassen, um **appendNode()** auf O(1) zu beschleunigen?</li></ol>
+
+<ol start="6"><li>Berechnen Sie die Komplexitätsklasse dieses Algorithmus!</li></ol>
+
+```java
+// data ist ein der Grösse nach sortierter Zahlen-Array.
+public boolean binarySearch(int[] data, int key)
+{
+     int size = data.length;
+     int low = 0;
+     int high = size - 1;
+
+     while(high >= low) {
+          int middle = (low + high) / 2;
+          if(data[middle] == key) {
+              return true;
+          }
+          if(data[middle] < key) {
+              low = middle + 1;
+          }
+          if(data[middle] > key) {
+              high = middle - 1;
+          }
+     }
+     return false;
+}
+```
+</textarea>
+</section>
+</section>
+{% endblock %}

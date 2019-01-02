@@ -36,6 +36,5 @@ Lektion: 09:25 - 10:10, 10:15 - 11:00
 Ideen
 --------
 
-* Einführung komplexer Datentyp als Wert: Beispiel: "Adresse": Liste so erweitern, dass dieser Typ verwendet werden kann. Such-Funktion über z.B. Nachname erstellen.
-* Elemente suchen: siehe oben Adresse
-* Stack mit Liste implementieren (Abgabe Stack-Gerüst)
+* Einführung komplexer Datentyp als Wert: Beispiel: "String": Liste so erweitern, dass dieser Typ verwendet werden kann.
+* appendSorted() umsetzen, mit String als Datentyp

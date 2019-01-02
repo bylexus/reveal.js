@@ -15,6 +15,9 @@
         <!-- font awesome -->
         <script defer src="{{webroot}}/lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
 
+        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_SVG-full">
+        </script>
+
         <!-- Printing and PDF exports -->
         <script>
             var link = document.createElement( 'link' );
@@ -48,17 +51,17 @@
                 transition: 'slide',
                 center: false,
                 //history: window.location.search.match( /print-pdf/gi ) ? false : true,
-                //math: {
+                math: {
                 //    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js',
-               //     config: 'TeX-MML-AM_CHTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-                //},
+                   config: 'TeX-MML-AM_CHTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+                },
                 dependencies: [
                     { src: '{{webroot}}/plugin/markdown/marked.js' },
                     { src: '{{webroot}}/plugin/markdown/markdown.js' },
                     { src: '{{webroot}}/plugin/zoom-js/zoom.js' },
                     { src: '{{webroot}}/plugin/notes/notes.js', async: true },
-                    { src: '{{webroot}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-                    //{ src: '{{webroot}}/plugin/math/math.js', async: true }
+                    { src: '{{webroot}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '{{webroot}}/plugin/math/math.js', async: true }
                 ]
             });
         </script>

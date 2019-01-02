@@ -1,0 +1,228 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 8 - Programmierparadigmen{% endblock %}
+
+{% block sections %}
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Lektion 8 - Programmier-Paradigmen
+=============================
+
+Ziele für die Lektion:
+
+* Sie kennen die 4 grundlegenden Programmierparadigmen und kennen deren Eigenschaften
+* Sie können die Spezifikation von funktionalen Algorithmen lesen
+* Sie können Termdefinitionen für funktionale Programmierung lesen und umsetzen
+* Sie können funktionale und imperative Algorithmen vergleichen
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-flask"></i> Stack-Aufgabe
+=============================
+
+Schauen wir uns die Stack-Aufgabe vom letzten Mal an (Eclipse, Code). Fragen dazu?
+
+Wenn Sie das `Main()`-Programm betrachten: Spielt es eine Rolle, wie der Stack intern implementiert ist?
+
+<i class="far fa-hand-point-right"></i> Die **Implementation** ist hier nicht interessant: Wir haben mit dem Stack somit
+einen Datentypen definiert, welcher die folgenden Prinzipen wahrt:
+
+* Geheimnisprinzip: Sie müssen nicht wissen, wie der Stack intern funktioniert
+* Prinzip der Wiederverwendbarkeit: Die Stack-Implementation können Sie in vielen Ihrer Programme verwenden.
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Programmierparadigmen
+=============================
+
+Lesen Sie Kapitel 7 im Inauen-Script - Programmierparadigmen!
+
+Wir wollen das Wichtigste daraus zusammen zusammenfassen.
+
+> Paradigma: Denkmuster, welches das wissenschaftliche Weltbild eine Zeit prägt
+
+Ein Algorithmenparadigma sollte daher ein Denkmuster darstellen, das die Formulierung und den Entwurf von Algorithmen und
+damit letztendlich von Programmiersprachen grundlegend prägt. Oder etwas kürzer: Ein Muster für den Entwurf und die Formulierung
+von Algorithmen.
+
+<i class="far fa-hand-point-right"></i> Wir schauen uns die für uns wichtigsten Programmierparadigmen an.
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Programmierparadigmen
+=============================
+
+* **Funktionales Paradigma** - wichtig, werden wir lernen
+* **Logisches Paradigma** - interessant, aber sprengt den Rahmen
+* **Imperatives Paradigma** - wichtig, kennen Sie bereits
+* **Objektorientiertes Paradigma** - wichtig, kennen Sie bereits
+
+Wir verschaffen uns heute einen kurzen Überblick über das funktionale Paradigma - die anderen kennen Sie bereits, oder lassen wir weg.
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Funktionales Paradigma
+=============================
+
+In diesem Abschnitt wird es etwas “mathematisch”. Wir benötigen allerdings diese mathematische Syntax um funktionale Algorithmen
+beschreiben zu können.
+
+### Funktionsdefinition
+
+Eine Funktion <em>f</em> ist eine Relation zwischen einer Eingabemenge **X** und einer Ausgabemenge **Y** mit der Eigenschaft:
+
+> Für alle $x \in X$, und $y,y' \in Y$ mit $(x,y),(x,y') \in f$ gilt: $y=y'$
+
+Eine nicht-mathematische Übersetzung davon lautet: Für alle Variablen x aus dem Eingabebereich X und für alle Variablen y
+und y-Strich aus dem Ausgabebereich Y, mit der Bedingung das die Eingabe von x zu y führt und die Eingabe von x zu y-Strich
+führt, GILT : das y gleich y-Strich ist  --> Auf Deutsch: **Bei gleichen Eingangsparametern führt eine Funktion IMMER zum selben Ergebnis**.
+
+Wir schreiben dann üblicherweise $f(x)=y$ anstatt $(x,y) \in f$ und deklarieren eine Funktion durch
+
+1. $f : X \rightarrow Y$
+2. mit $X : Eingabemenge$
+3. mit $Y : Ausgabemenge$
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Funktionales Paradigma
+=============================
+
+### Termdefinition
+
+
+Bsp. : Terme natürlicher Zahlen
+
+1. Sei $int$ der Typ der natürlichen Zahlen,
+2. $V_{int}$ eine Menge von Variablen vom Typ T<sub>int</sub>
+3. und $C_{int} =\mathbb{N}={1,2,3...}$
+
+Mögliche Funktionen auf natürliche Zahlen sind
+
+* "+": $int \times int \to int$ (“Addition auf Natürliche Zahlen ist erlaubt und definiert”)
+* "*": $int \times int \to int$ (“Multiplikation auf Natürliche Zahlen ist erlaubt und definiert”)
+
+Daraus folgt, dass
+
+> 3+4, (8+9)x10, X x 4+1 sind dann Terme natürlicher Zahlen.
+
+Daraus folgt WEITERHIN, dass:
+
+> eine Funktion, welche ja einen Term darstellt, durch den resultierenden Term ersetzt werden kann: <br />$3 + 4 + f(2,3) = 3 + 4 + 5$
+
+In Java bedeutet dies beispielsweise:
+
+```java
+String a = "Alex";
+String sub = a.substring(3); // == "Alex".substring(3);
+String lower = sub.toLowerCase(); // == a.substring(3).toLowerCase() == "Alex".substring(3).toLowerCase()
+System.out.println(lower);
+// gleich:
+System.out.println("Alex".substring(5).toLowerCase());
+```
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Funktionales Paradigma
+=============================
+
+### Signatur einer Funktion
+
+Die Signatur einer Funktion definiert die Input und die Output Parameter einer Funktion. Allgemein:
+
+> Name mit Stelligkeit: $Parameter mit Typ \times ... \times Parameter mit Typ \rightarrow Typ des Rückgabewertes$
+
+**Beispiel**: die Signatur des Anwendungsbeispiels von vorhin (Addieren-Funktion auf int-Werten) wäre:
+
+> Signatur : $f : int \times int \rightarrow int$
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Funktionales Paradigma
+=============================
+
+### Auswertung einer Funktion
+
+Fragen dazu?
+
+Auszug aus dem Script, Kapitel 7.3.4:
+
+
+Das Auswerten einer Funktion entspricht nichts anderem, als das effektive Ausführen der Funktion mit konkreten Werten.
+
+Beispiel:
+
+
+* $f(p,q,x,y) := if\ (p\ \vee\ q)\,\ then\ \,\ (2x + 1)\ \,\ else\ \,\ (3y\ -\ 1)$
+* Signatur: $f : bool\ \times\ bool\ \times\ int\ \times\ int \rightarrow\ int$
+* Aufruf: $f(true,true,3,4)$ wird zu 7
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Funktionales Paradigma
+=============================
+
+### Definiertheit einer Funktion
+
+Fragen dazu?
+
+Siehe Script Kapitel 7.3.5
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Imperatives Paradigma
+=============================
+
+Das imperative Paradigma kennen wir bereits - von Sprachen wie C, Java. Es basiert auf einem abstrakten Rechnermodell, welchem
+man Anweisungen gibt.
+
+Dieses Konzept kennen Sie - Fragen dazu?
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-flask"></i> Übungen zum funktionalen Paradigma
+=============================
+
+Spielen Sie nun die Übungen zum funktionalen Paradigma durch - Inauen-Script Kapitel 8 - Programmierparadigmen
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Laufzeit von Algorithmen
+=============================
+
+Lesen über Herbstferien:
+
+* Inauen-Script, Kapitel 9 (Laufzeitanalyse)
+* http://www.saar.de/~awa/ONotation.html (O-Notation)
+
+</textarea>
+</section>
+{% endblock %}

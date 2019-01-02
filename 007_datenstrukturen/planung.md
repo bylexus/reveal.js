@@ -9,19 +9,16 @@ Material
 * Stack-Aufgabe (Moodle)
 * Eclipse
 * Script von C. Inauen auf Moodle
-* Übungen auf Moodle
+* AufgabeStack Eclipse-Projekt auf Moodle
 
-Ziele für die nächsten beiden Lektionen
+Ziel
 -----
 
 * Sie wissen, wie Variablen im Arbeitsspeicher organisiert werden
 * Sie kennen die Unterschiede von typisierten / nicht typisierten Programmiersprachen
 * Sie kennen die drei Eigenschaften von Daten
 * Sie kennen die zwei Grundprinzipien, warum abstrakte Datentypen definiert werden
-* Sie können die Struktur "Stack" anhand eines Beispiels erklären
-* Sie können Arrays in Java anwenden
-* Sie verstehen die Komplexität von Einfügen / Entfernen-Operationen mit Arrays
-* Sie kennen die Java-Klasse "Vector"
+* Sie kennen die Datenstruktur "Stack" und können Sie an einem Beispiel erklären
 
 Hausaufgaben
 --------------
@@ -47,6 +44,3 @@ Ideen
 - Script zum Lesen von Inauen, dann Kontrollfragen / Folien
 - Hausaufgabe: Stack-Implementation
 
-- 2. Lektion
-- Einfüge- und Löschfunktionen in Arrays, dadurch Komplexität erkennen
-   --> Einführen der Vector-Klasse aus java.util
