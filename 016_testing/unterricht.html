@@ -1,0 +1,253 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 16 - Testing {% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - DB in Web-App einbinden
+=============================
+
+Heutiges Ziel
+--------------
+
+* Sie wissen, was „Software Testing“ bedeutet
+* Sie kennen den Unterschied zwischen Black- und Whitebox-Testing
+* Sie kennen die Phasen des Software-Testings
+* Sie können Testfälle aus Anforderungen / Change Requests ableiten
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+Sie haben Ihren Change Request erfolgreich umgesetzt / ausprogrammiert. Bevor Sie nun Ihr angepasstes Programm auf die Leute los lassen,
+müssen Sie Ihre Software testen.
+
+**Kurze Wiederholung aus dem Modul 326 - Fragen an Sie:**
+
+* Software Testing - Was testen wir bei Software?<br /><br /><br />
+* Welche Test-Arten und Test-Methoden kennen Sie (persönlich)?
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Was testen wir bei Software? **
+
+* Ablauf / richtige Logik
+* Richtige Resultate / erfüllt Anforderungen
+* Benutzerfreundlichkeit
+* Fehleingaben abfangen
+* Sicherheit („Hackability“)
+* Kompatibilität
+* Performance
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Welche Test-Arten resp. Test-Methoden gibt es? **
+
+<img src="test_methoden.png" width="70%" />
+
+<img src="test_arten.png" width="60%" />
+
+<i class="far fa-hand-point-right"></i> Software-Testing ist ein sehr weiter Begriff und wird ganz unterschiedlich interpretiert.
+Quelle zum Thema: https://de.wikipedia.org/wiki/Softwaretest
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Test-Methoden: Whitebox-Testing **
+
+* testet interne Strukturen oder Abläufe eines Programms
+* Kenntnis des Programmcodes sind notwendig
+* Der Tester definiert Input-Werte, um bestimmte Code-Pfade zu testen und mit dem erwarteten Output zu vergleichen.
+
+Verwendung normalerweise bei:
+
+* Unit-Tests
+* API-Tests
+* Code-Coverage
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Test-Methoden: Blackbox-Testing **
+
+* testet die Software als „Black Box“, um die Funktionalität mit den Anforderungen zu vergleichen.
+* es besteht kein Zugriff auf den Programmcode oder Wissen um die internen Strukturen.
+* Die Tester wissen nur, was „das Programm tun soll“.
+* „Test Cases“ beschreiben Input, Output und Vorgehen zum Testen.
+
+Verwendung normalerweise bei:
+* System-Tests
+* Spezifikations-Tests
+* User-Acceptance, Abnahme-Tests
+* Performance-Tests
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Test-Methoden: Blackbox-Testing **
+
+* testet die Software als „Black Box“, um die Funktionalität mit den Anforderungen zu vergleichen.
+* es besteht kein Zugriff auf den Programmcode oder Wissen um die internen Strukturen.
+* Die Tester wissen nur, was „das Programm tun soll“.
+* „Test Cases“ beschreiben Input, Output und Vorgehen zum Testen.
+
+Verwendung normalerweise bei:
+* System-Tests
+* Spezifikations-Tests
+* User-Acceptance, Abnahme-Tests
+* Performance-Tests
+
+<i class="far fa-hand-point-right"></i> zu beiden Methoden gibt es sowohl manuelle wie auch automatisierte Test-Verfahren.
+
+Auf automatisierte Test-Arten gehen wir aufgrund Zeitmangels nicht ein. Ein grosses Thema ist das so genannte „Unit Testing“,
+automatisierte Tests, um Programmteile zu prüfen. Kurz zusammengefasst entwickelt man ein Testprogramm, um das eigentliche Programm zu testen.
+
+<i class="far fa-hand-point-right"></i> Siehe dazu zum Beispiel jUnit (http://junit.org/junit5/), und PHPUnit (https://phpunit.de/): Solche Bibliotheken sind mittlerweile für alle Programmiersprachen verfügbar.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Test-Stufen **
+
+Jede Stufe der Software-Entwicklung erfordert eine andere Test-Stufe / Test-Zyklus.
+Eine Entwicklungsstufe wird in der entsprechenden Test-Stufe geprüft:
+
+<img src="test_stufen.png" width="80%" />
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Test-Phasen **
+
+<img src="phasen_modell.png" width="80%" />
+
+Definition / Inhalt der Phasen: siehe https://de.wikipedia.org/wiki/Softwaretest#Testplanung
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing
+=============================
+
+** Das Wichtigste: die Planung: Erstellen Sie ein Test-Konzept! **
+
+Egal, wie Sie testen, das Wichtigste ist die Planung (siehe vorhergehende Folie). Dazu erstellen Sie ein
+**Testkonzept**:
+
+Das Testkonzept definiert: **WER** testet **WAS** mit welchen **METHODEN** und was sind die **VORAUSSETZUNGEN**
+
+Siehe **HERMES**, das Informatik-Projektframework des Bundes zu diesem Thema:
+
+Siehe http://www.hermes.admin.ch/szenarien/szenario_50_Alles/scenario/de/ergebnis_testkonzept.html
+
+Ein Testkonzept soll über folgende Punkte Auskunft geben:
+
+* Testziele: Was ist der Sinn Ihrer Tests? Was wollen Sie erreichen?
+* Testobjekte: Was testen Sie konkret?
+* Testarten: WIE testen Sie? (Unit Tests, manuelle Systemtests ...)
+* Voraussetzungen (Tester, Vorkenntnisse)
+* Fehlerklassen
+* Start- und Abbruchbedingungen
+* Test-Infrastruktur
+  * Systeme, Aufbau
+  * (Test-)Daten
+  * Hilfsmittel
+* Testfälle: Beschreiben Sie alle Testfälle anhand nachfolgendem Protokoll:
+  http://www.hermes.admin.ch/szenarien/szenario_50_Alles/scenario/de/ergebnis_testprotokoll.html
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Testing - Testfall entwickeln
+=============================
+
+**Entwickeln von Testfällen anhand Change Requests**
+
+Wir erarbeiten einen Testfall für einen Blackbox-Test für manuelle Systemtests am Beispiel des Change Requests von letzter Woche:
+
+> **„Benutzer müssen deaktiviert werden können. Inaktive Benutzer dürfen sich nicht mehr einloggen können.“**
+
+* Der Testfall deckt die Anforderung ab.
+* Der Testfall wird in mehreren Test-Schritten beschrieben, durchgeführt und kontrolliert.
+* Es wird unterschieden zwischen **„konstruktiven“** und **„destruktiven“** Testfällen:
+  * konstruktive Tests decken das Szenario so ab, wie beschrieben.
+  * destruktive Tests versuchen, anhand von Fehleingaben / Fehlverhalten das Szenario "zu sprengen", resp.
+  testen das Verhalten bei Fehleingaben/ Störungen.
+
+Ein **Test-Protokoll** besteht aus:
+
+* einem Testffall-Teil, welcher den Testfall als Ganzes beschreibt
+* aus einzeln durchzuführenden Schritten, mit folgenden Informationen:
+  * Schritt-Nr.
+  * Kurzbeschreibung/Titel
+  * Vorbedingungen, Eingabeparameter (z.B. „als User X durchführen“)
+  * genaue Beschreibung des Tests (Ablauf, auszuführende Schritte …)
+  * erwartetes Ergebnis
+  * tatsächliches Ergebnis
+
+
+**Aufgabe:**
+
+Sie finden auf Moodle eine Vorlage zu einem Testprotokoll (grober Überblick auf der nächsten Seite).
+* Entwickeln Sie mind. 2 Testfälle: einen Konstruktiven und einen Destruktiven Testfall anhand der Protokollvorlage.
+* Überlegen Sie sich die notwendigen Testschritte und halten Sie diese im Protokoll fest.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Testing - Testfall entwickeln
+=============================
+
+**Aufbau eines Testprotokolls**
+
+Sie finden Vorlagen auf Moodle, sowohl eine vom Projektmanagement-Framework "HERMES" sowie eine eigene, welche sich aber
+an HERMES orientiert.
+
+Der Aufbau sieht folgendermassen auf:
+
+<img src="testprotokoll_ueberblick.png" width="60%" />
+
+</textarea>
+</section>
+{% endblock %}

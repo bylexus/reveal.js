@@ -14,7 +14,18 @@ Heutiges Ziel
 * Sie wissen, was „Stateless“ und „Stateful“ für eine Web-Applikation bedeutet
 * Sie wissen, wofür Stateful Sessions benötigt werden
 * Sie können eine stateful Session in PHP aufbauen und benützen
+</textarea>
+</section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Thema Model / Query Builder / Repository
+=============================
+
+Sind noch Fragen zum Thema Model / Query Builder / Repository / DB-Abfragen?
+
+**Ziel:** Das Model-Konstrukt soll die SQL-Abfragen so weit wie möglich abstrahieren / verallgemeinern, sodass sich
+der Programmierer in grossen Teilen der Applikation nicht mehr mit Datenbanken / SQL herumschlagen muss.
 
 </textarea>
 </section>
@@ -242,6 +253,10 @@ use M151\Application;
 
 // Beispiel-Controller: Siehe diese und nachfolgende Folien
 class LoginController extends Controller {
+   public function __construct() {
+       // Die Session wird z.B. im Constructor gestartet:
+       session_start();
+   }
     /**
      * Ein HTML-Formular ausliefern (Route: /login)
      */

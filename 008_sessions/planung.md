@@ -7,6 +7,7 @@ Material
 * Unterrichts-Unterlagen
 * Git-Code, Branch: session_state
 * Aufgabenblatt zum Referat Web-Bedohungen
+* Los-Zettel (Datum UND Referat)
 
 Ziele
 -----
@@ -27,4 +28,12 @@ Detailplan
 
 Bemerkung zum Unterricht
 ------------------------
+
+
+* Trottmann: XSS, 21.11.
+* Thymnios: XRFS, 21.11.
+* SQL INjection, 21.11.
+* Directory Traversal, 14.11.
+* Session Hijacking, 14.11,
+* Brute Force, Brunner, 14.11.
 

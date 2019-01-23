@@ -24,10 +24,8 @@ Detailplan
 08:25 (25 min) Fragestellung rund um Model aufzeigen (Folie): Schüler erhalten Zeit (20min), um hier eine Antwort zu finden
 08:50 (20 min) Beantworten der Fragen durch einzelne Schüler, sollen kurz eine Lösung am Flipchart skizzieren
 09:15 (Rest) Projektarbeitszeit
-09:50: Hinweis auf Lektionenausfall, Selbststudium
+09:50: Hinweis auf Lektionenausfall, Selbststudium, FREISCHALTEN des Unterrichtsmaterials nach dem Unterricht!
 09:55: Ende
 
 Bemerkung zum Unterricht
 ------------------------
-
-
