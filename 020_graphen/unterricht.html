@@ -64,7 +64,7 @@ Dies könnte z.B. ein Router-Netzwerk darstellen.
 
 **Gerichteter Graph - Darstellung**
 
-<img src="gerichteter_graph.png" with="40%" />
+<img src="gerichteter_graph.png" width="40%" />
 
 Auch hier haben wir wieder eine Liste von Knoten (V, Vertices), und Kanten (E, Edges). Dabei gibt die Tupel-Reihenfolge (1,2) gleich
 die Richtung vor: von Knoten 1 nach Knoten 2.
@@ -81,11 +81,43 @@ Google Page Rank benutzt beispielsweise einen gerichteten Graphen: Welche Websei
 
 **Gewichteter Graph - Darstellung**
 
-<img src="gewichteter_graph.png" with="40%" />
+<img src="gewichteter_graph.png" width="30%" />
 
 Gewichtete Graphen werden immer dort verwendet, wo die Kanten selber eine Information (z.B. Strecke, Kosten, mögliche Geschwindigkeit) beinhalten:
 Beispielsweise kann ein Strassen-Netzwerk in den Kanten die Geschwindigkeitsangabe speichern. Dies ist für einen Weg-Finde-Algorithmus
 z.B. wichtig, um zu entscheiden, welchen Weg er als "schnellsten" berechnet.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Graphen - Anwendung: Kürzeste Route
+=============================
+
+**Gewichteter Graph - wir suchen die kürzeste Route von San Jose nach San Francisco **
+
+<img src="Strassennetz.png" width="60%" />
+
+* Versuchen Sie in 2 Gruppen, einen Algorithmus zum Finden der kürzesten Route zu entwickeln!
+* Machen Sie dies auf Papier - ohne Programmcode. Beschreiben Sie Ihr Vorgehen, sodass Sie dies
+  später in einen Algorithmus umsetzen könnten!
+* Zeigen Sie diesen Algorithmus am Beispiel San Jose nach San Francisco!
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Graphen - Anwendung: Kürzeste Route
+=============================
+
+**Gewichteter Graph - wir suchen die kürzeste Route von San Jose nach San Francisco **
+
+<img src="Strassennetz.png" width="60%" />
+
+Ein solcher Algorithmus nennt man **Shortest Path Algorithmus**. Dieser berühmte Algorithmus wurde von Edsger W. Dijkstra im Jahre 1956 entwickelt.
+Siehe https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
+
 </textarea>
 </section>
 
@@ -185,17 +217,5 @@ Erstellen Sie folgende Klassen:
 </textarea>
 </section>
 
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Übungen Graphen
-=============================
-
-- Datenstruktur Graph mit Adjazenzmatrix
-- Umsetzen eines Graphen für ein einfaches Strassennetz
-- Anwendung: Dijkstra-Algorithmus
-
-</textarea>
-</section>
 
  {% endblock %}
