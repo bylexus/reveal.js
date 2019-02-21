@@ -2,7 +2,7 @@
 {% block title %}Lektion 1 - Willkommen{% endblock %}
 
 {% block sections %}
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> M326 - 1 Einstieg, Willkommen
 =============================
@@ -12,22 +12,19 @@ Objektorientiert entwerfen und implementieren
 Heutiges Ziel
 -------------
 
-<ul class="fa-ul">
-<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Willkommen</li>
-<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Kennenlernen</li>
-<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Infos zur Organisation des Unterrichts</li>
-<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Semester-Agenda: Was machen wir überhaupt?</li>
-<li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Inbetriebnahme der Unterrichts-VM in VirtualBox
-    <ul class="fa-ul">
-    <li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>Eclipse / Java</li>
-    <li><span class="fa-li"><i class="far fa-thumbs-up"></i></span>VisualParadigm / UML</li>
-    </ul>
-</li>
-</ul>
+* Willkommen!
+* Kennenlernrunde
+* Infos zur Organisation des Unterrichts
+* Semester-Agenda: was machen wir überhaupt?
+* Inbetriebnahme der Unterrichts-Tools / -VM in VirtualBox
+  * Eclipse / Java
+  * VisualParadigm / UML
+* Kennenlernen VisualParadigm
+* Kurzrepetition: Klassen, Vererbung, Polymorphismus
 </textarea>
 </section>
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-user"></i> Willkommen!
 ===========
@@ -36,7 +33,7 @@ Wer bin ich?
 ------------
 
 <div style="display: flex; align-content:flex-start;align-items: flex-start">
-<img src="{{webroot}}/001_start/ich-thumb.jpg" style="width: 300px;margin-right: 20px;margin-top: 0" />
+<img src="{{webroot}}/001_start/alexander_schenkel_portrait_rotated.jpg" style="width: 300px;margin-right: 20px;margin-top: 0" />
 <div >
 <ul class="fa-ul">
 <li><span class="fa-li"><i class="far fa-building"></i></span>Beruflich:
@@ -51,7 +48,7 @@ Wer bin ich?
 <li><span class="fa-li"><i class="fas fa-home"></i></span>Privat:
     <ul class="fa-ul">
     <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Wohnhaft in Islikon</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Vater von 2 Buben, 8 und 5</li>
+    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Vater von 2 Buben, 9 und 6</li>
     <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Computer-Enthusiast, Linux- und OpenSource-Fan, Software-Bastler, VIM-User</li>
     <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Sonstige Hobbys: Krimis, SciFi, Comics, Feuerwehr, Musik (machen)</li>
     </ul>
@@ -62,7 +59,7 @@ Wer bin ich?
 </textarea>
 </section>
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-users"></i> Wer sind Sie?
 ===========
@@ -77,7 +74,7 @@ Erzählen Sie kurz zwei, drei Dinge zu Ihnen:
 </textarea>
 </section>
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Wie stelle ich mir den Unterricht vor?
 ======================================
@@ -94,7 +91,7 @@ Erzählen Sie kurz zwei, drei Dinge zu Ihnen:
 </textarea>
 </section>
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-gavel"></i> Regeln
 ======================================
@@ -106,25 +103,36 @@ Erzählen Sie kurz zwei, drei Dinge zu Ihnen:
 </section>
 
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
  Organisatorisches
 ======================================
 
-* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=481)
-* Hausaufgaben: bis am Abend vor der Lektion abgegeben (auf Moodle)
+* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=735)
+* Hausaufgaben: bis am Abend vor der Lektion abgegeben (Aufgaben jeweils auf Moodle)
 * Die Hausaufgaben sind Teil des Unterrichts-Stoffes. Es liegt in Ihrer Verantwortung, diese zu machen.
-* Absenzen: bis am Abend per Mail / SMS / Telefon gemeldet (Ausnahme: Krankheit)
+* Absenzen: bis am Abend per Mail / SMS / Telefon gemeldet (Ausnahme: Krankheit), das kennen Sie ja schon
+* Pausen: Ich möchte auf die 5-minuten-Pause verzichten, und lasse Sie lieber 5min früher gehen - sind Sie damit
+  einverstanden?
+
+Organisation Moodle
+---------------------
+
+* Alle Unterlagen elektronisch auf Moodle
+* Jede Woche mit Folien und Material vorhanden
+* <i class="far fa-hand-point-right"></i> Wir schauen es uns an
 </textarea>
 </section>
 
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-calendar"></i> Semester-Agenda
 ======================================
 
 ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmodnr=326&noheader=1
+
+**Mein Ziel für Sie**: Sie lernen, wie Sie von der Idee (des Kunden) bis zur Umsetzung in Software gelangen.
 
 * **Grundkonzepte der Objektorientierung**
   * Folgende Grundkonzepte setze ich VORAUS und werden wir nicht mehr behandeln:
@@ -138,12 +146,12 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
   * Design Patterns (**Kurzreferate zu Design Pattern**)
 * **Testing**
   * Entwickeln von Testfällen und -Protokollen
-* Fallstudie **(Modulprüfung, LBV 326-1, 21.06.2018, 4 Lektionen)**
+* Fallstudie **(Modulprüfung, LBV 326-1, 21.06.2018, 4 Lektionen Fallstudie)**
 </textarea>
 </section>
 
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-code"></i> Programmiersprache
 ======================================
@@ -156,7 +164,7 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
 </section>
 
 
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-desktop"></i> Unterrichts-VM
 ======================================
@@ -176,5 +184,14 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
 </section>
 
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-desktop"></i> Repetition Klassen / Vererbung / Polymorphismus
+======================================
+
+* Wir befassen und **ganz kurz** nochmals mit den Grundlagen der objektorientierten Programmierung
+* [ siehe nächste Folien ](./unterricht_polymorphismus.html)
+</textarea>
+</section>
 
 {% endblock %}

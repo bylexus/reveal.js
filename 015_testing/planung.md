@@ -1,22 +1,25 @@
-Ideen zu Übungen Design Pattern
+Lektion 15 - 14.06.2018 - Testing
 ===================================
 
-Singleton:
+Material
+--------
+* Folien
+* Eclipse-Projekt BibSys
 
-* AppManager: Zugriff auf globale Daten
+Ziele
+-----
 
-Factory Method:
+* Sie wissen, was „Software-Testing“ bedeutet
+* Sie kennen verschiedene Test-Methoden
+* Sie können Systemtests aus Use-Cases / Szenarien ableiten
 
-* Medium anhang Nummer suchen / zurückgeben
+Hausaufgaben
+---------------
 
-Observer / Observable:
-* Terminal/Scanner, auf Scan-Event warten, dann Login-Versuch
+Testfall "Medium am Terminal ausleihen" als Testprotokoll mit Testschritten erarbeitet
 
-Adapter:
-* Persistenzschicht, Zugriff auf Daten
+Detailplan
+----------
 
-
-Strategy-Pattern:
-  * verschiedene Sortier-Algorithmen / Sortieren nach anderen Kriterien
-  * Druck-Klasse für Konten-Druck (ausgeliehene Medien):
-    * Druck am Terminal (Quittung) sieht anders aus als Druck auf Webseite
+* 07:30 (ca. 10min):
+* 09:05: Ende

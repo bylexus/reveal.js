@@ -2,7 +2,7 @@
 {% block title %}Lektion 2 - Einführung OOA / OOD{% endblock %}
 
 {% block sections %}
-<section data-markdown class="bigger-2">
+<section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Thema: Einführung in OOA / OOD
 =============================
@@ -23,7 +23,7 @@ Heutiges Ziel
 </textarea>
 </section>
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-comments"></i> Diskussion
 ===========
@@ -37,10 +37,10 @@ Seine erste Aussage lautet:
 
 > „Wir brauchen eine App für die Erfassung von Neophyten im Feld. Wir möchten sie auf einer Karte erfassen und dann Bekämpfungsmassnahmen definieren und organisieren.“
 
-<ul class="fa-ul">
-<li><span class="fa-li"><i class="far fa-question-circle"></i></span>Wie gehen Sie vor? Welche Schritte führen Sie durch, bis der Kunde sein fertiges Produkt "in den Händen" hält?</li>
-<li><span class="fa-li"><i class="far fa-question-circle"></i></span>Wo sehen Sie Schwierigkeiten/Herausforderungen beim Entwerfen / Entwickeln komplexer Systeme?</li>
-</ul>
+* Wie gehen Sie vor? Welche Schritte führen Sie durch, bis der Kunde sein fertiges Produkt "in den Händen" hält?
+* Welche Schwierigkeiten/Herausforderungen sehen Sie bei der Umsetzung einer solchen Anforderung?
+  * welche Probleme entstehen beim **Kunden**?
+  * welche Probleme haben  Sie als **Entwickler**?
 
 <i class="fas fa-arrow-right"></i> Schreiben Sie Ihre Stichworte ans Flipboard und erläutern Sie diese!
 
@@ -63,7 +63,7 @@ Note:
 </section>
 
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-comments"></i> Kommunikationsprobleme
 ===========
@@ -82,7 +82,7 @@ Note:
 </textarea>
 </section>
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-comments"></i> Gemeinsame Kommunikation: UML!
 ===========
@@ -103,7 +103,7 @@ Wir verwenden UML für unsere objektorienterte Analyse und Planung. UML bietet v
 </textarea>
 </section>
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-sitemap"></i> Vorgehensmodell
 ===========
@@ -124,7 +124,7 @@ Das hier aufgezeigte Vorgehensmodell ist grundsätzlich generisch und **nicht nu
 </textarea>
 </section>
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-comments"></i> Phase: Objektorientierte Analyse (OOA)
 ===========
@@ -143,7 +143,7 @@ Ziel der Phase:
 </section>
 
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-comments"></i> Objektorientierte Analyse mit Use Cases
 ===========
@@ -158,7 +158,7 @@ von der Technik beschreiben. Sie helfen, das Problem formal zu erfassen, meist d
 </section>
 
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-sitemap"></i> Vorgehenweise objektorientierte Analyse
 ===========
@@ -183,7 +183,7 @@ Aus den erstellten Use-Cases kann dann das **statische** und **dynamische** Mode
 </section>
 
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-sitemap"></i> Statisches Modell, dynamisches Modell
 ===========
@@ -205,6 +205,12 @@ Aus den erstellten Use-Cases kann dann das **statische** und **dynamische** Mode
 
 <i class="fas fa-flask"></i>**Übung**: Sie ordnen verschiedene UML-Diagramme dem richtigen Modell zu (statisch oder dynamisch).
 
+Machen Sie eine Aussage zu Ihrem Diagramm):
+
+* Warum statisch / dynamisch?
+* Für was wird dieses Diagramm benutzt?
+* Können Sie solche Diagramme mit dem Endkunden besprechen?
+
 Note:
 * Die Schüler erhalten verschiedene UML-Diagramme auf Papier (Auf A4 vorbreiten)
 * Sie teilen dies am Flipchart in die 2 Kategorien ein
@@ -213,7 +219,7 @@ Note:
 </section>
 
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-sitemap"></i> Objektorientierte Design-Phase (OOD)
 ===========
@@ -233,7 +239,7 @@ Zur OOD-Phase kommen wir später im Verlauf des Semesters.
 </textarea>
 </section>
 
-<section data-markdown data-separator-notes="^Note:" class="bigger-2">
+<section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
 <i class="fas fa-tasks"></i> Hausaufgaben
 ===========
@@ -241,8 +247,8 @@ Zur OOD-Phase kommen wir später im Verlauf des Semesters.
 Übungsprojekt Bibliothekssystem: Als durchgängiges Beispiel werden wir aufgrund eines einfachen Pflichtenheftes ein Bibliothekssystem entwerfen.
 
 * Lesen Sie die [ „Anforderung Bibliothekssystem“ (Moodle) ](https://moodle.bztf.ch/mod/resource/view.php?id=15218) durch.
-* überlegen Sie sich, unabhängig von der technischen Umsetzung, welche Rollen (Personen) und Abläufe Sie im Pflichtenheft finden.
-* Überlegen Sie sich, unabhängig von der technischen Umsetzung, wo Sie Unklarheiten / Ungenauigkeiten feststellen. Was ist Ihnen nicht klar? Wo sehen Sie genaueren Erklärungsbedarf?
+* überlegen Sie sich, _unabhängig von der technischen Umsetzung_, welche Rollen (Personen) und Abläufe Sie im Pflichtenheft finden.
+* Überlegen Sie sich, _unabhängig von der technischen Umsetzung_, wo Sie Unklarheiten / Ungenauigkeiten feststellen. Was ist Ihnen nicht klar? Wo sehen Sie genaueren Erklärungsbedarf?
 * Ziel ist, in der nächsten Stunden einzelne Use-Cases erstellen / bearbeiten zu können.
 </textarea>
 </section>

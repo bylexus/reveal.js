@@ -1,10 +1,10 @@
-Detailplan Lektion 3 - 22.02.2018 (Woche 8)
+Detailplan Lektion 3 - 21.02.2019
 ===========================================
 
 Material
 --------
 * Checkliste_001_Use-Case.pdf (auf Moodle)
-* AUSGEDRUCKTE Checkliste_001_Use-Case.pdf  mit markierten Textstellen für Diagramme!
+* Checkliste_001_Use-Case.pdf  mit markierten Textstellen für Diagramme!
 * Anforderung Bibliothekssystem (Moodle)
 * Use Case-Diagramm Bibliothekssystem (vorbreitet für mich)
 * Use-Case-Beschreibung „Medium am Terminal ausleihen“ (auf Moodle)

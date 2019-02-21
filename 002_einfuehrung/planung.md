@@ -27,7 +27,6 @@ Detailplan
   * Begriffe zu Schwierigkeiten / Herausforderungen
   * auf Papierstreifen, an Flipchart mit Magneten
 * 07:45 (ca. 20 min): Theorieblock Vorgehensmodelle
-* 08:05 (5min): Pause
 * 08:10 bis Ende: UML-Diagramme erörtern, ordnen:
   * Schüler ordnen ausgelesene UML-Diagramme dem dynamischen oder statischen Modell zu (Flipchart)
   * ausgelesene Diagramme verteilen an Schüler: Jeder sagt kurz etwas dazu: Warum statisch / dynamisch?

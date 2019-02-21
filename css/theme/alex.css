@@ -292,6 +292,10 @@ body {
   .reveal .slides section img {
     border: none;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+  .reveal .slides pre code {
+    font-size: 8pt;
+    line-height: 10pt;
+    max-height: initial; }
 
 .reveal footer {
   text-align: right;

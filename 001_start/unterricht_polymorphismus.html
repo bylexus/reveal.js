@@ -1,0 +1,168 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 1 - Willkommen{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M326 - 1 Repetition: Polymorphismus
+=============================
+
+Ziel
+---------
+
+* kurze Repetition: Klassen, Vererbung, Polymorphismus
+* Sie wissen, was Polymorphismus in objektorientierten Programmiersprachen bedeutet und können das Konzept anwenden
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-user"></i> Repetition - Klassen in Java
+===========
+
+**Frage 1**: Was ist eine **Klasse** in Java und aus was besteht sie? Machen Sie ein Beispiel!
+
+**Frage 2**: Was bedeutet **Vererbung** in Java? Machen Sie ein Beispiel!
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-user"></i> Repetition - Klassen in Java
+===========
+
+**Frage 1**: Was ist eine **Klasse** in Java und aus was besteht sie? Machen Sie ein Beispiel!
+
+* Eine Klasse bildet den **Bauplan** für reale Objekte (Instanzen)
+* Objekte **kapseln** Daten und Operationen darauf: Operationen und Daten bilden eine Einheit
+
+```java
+class Auto {
+    // Daten / Attribute:
+    private String marke;
+    private String farbe;
+    private Integer baujahr;
+
+    // Konstruktur: wird beim Instanzieren aufgerufen:
+    public Auto(String marke, String farbe, Integer baujahr) {
+        this.marke = marke;
+        this.farbe = farbe;
+        this.baujahr = baujahr;
+    }
+
+    // Methoden / Operationen:
+    public String getMarke() {
+        return this.marke;
+    }
+    public void setMarke(String marke) {
+        this.marke = marke;
+    }
+}
+
+// neue Instanz (Objekt) erzeugen:
+Auto a = new Auto("Ford", "rot", 2004);
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-user"></i> Repetition - Vererbung in Java
+===========
+
+**Frage 2**: Was bedeutet **Vererbung** in Java? Machen Sie ein Beispiel!
+
+* Klassen können ihre Eigenschaften an Kindklassen vererben
+* Kindklassen erben alle Eigenschaften (Operationen, Attribute) von der Elternklasse **und können diese erweitern / überschreiben**
+
+```java
+class Fahrzeug {
+    private String marke;
+    private Integer anz_raeder;
+
+    public void fahren() {
+        System.out.println(".....");
+    }
+}
+
+class Auto extends Fahrzeug {
+    private Integer ps;
+    public Auto(Integer ps) {
+        this.anz_raeder = 4;
+        this.ps = ps;
+    }
+
+    // Kindklassen können Methoden der Elternklasse überschreiben:
+    public void fahren() {
+        System.out.println("vroooooooooom");
+    }
+
+    // Methode, welche es nur in der Klasse Auto gibt:
+    public void hupen() {
+        System.out.println("Huuup");
+    }
+}
+
+class Fahrrad extends Fahrzeug {
+    public Fahrrad() {
+        this.anz_raeder = 2;
+    }
+}
+
+Fahrzeug f = new Fahrzeug();
+f.fahren(); // .....
+f.hupen(); // geht nicht! hupen() gibts nur in Auto
+
+Auto a = new Auto(200);
+a.fahren(); // vroooooooooom
+a.hupen(); // geht!
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-user"></i> Repetition - Polymorphismus
+===========
+
+Polymorphismus:
+
+> Ein Objekt einer Kind-Klasse kann überall dort eingesetzt werden, wo ein Objekt der Elternklasse erwartet wird.
+
+<i class="far fa-hand-point-right"></i> Dies ist ein sehr wichtiges Konzept der objektorientierten Programmierung!
+
+Was bedeutet dies nun genau?
+
+```java
+// Eine Variable, welche ein Objekt vom Typ "Fahrzeug" speichern kann:
+Fahrzeug f;
+
+// Die Variable kann nun sowohl Fahrzeuge, Autos wie auch Fahrräder speichern:
+f = new Fahrzeug(); // klar, die Variable ist ja vom Typ Fahrzeug
+f = new Auto(); // denn Auto ist eine Kind-Klasse von Fahrzeug
+f = new Fahrrad(); // denn Fahrrad ist eine Kind-Klasse von Fahrzeug
+
+
+// Die Methode lass_fahren nimmt alle Arten von Fahrzeugen entgegen - sie muss nur wissen,
+// dass Fahrzeuge eine Methode "fahren" haben:
+public void lass_fahren(Fahrzeug f) {
+    f.fahren();
+}
+
+//lass_fahren kann nun sowohl von Fahrzeug- Auto und Fahrrad-Objekten genutzt werden: die verlange Klasse ist Fahrzeug,
+// Auto und Fahrrad sind Kindklassen, und können somit an jeder Stelle eingesetzt werden, wo ein Objekt der Elternklasse
+// erwartet wird!
+Fahrzeug f = new Fahrzeug();
+lass_fahren(f);
+
+Auto a = new Auto();
+lass_fahren(a);
+
+Fahrrad velo = new Fahrrad();
+lass_fahren(velo);
+```
+</textarea>
+</section>
+{% endblock %}

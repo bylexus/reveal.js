@@ -34,7 +34,9 @@ Detailplan
   * → Eine VM ist vorbereitet, alle Tools vorinstalliert
   * UML-Tools (VisualParadigm, StarUML)
   * Eclipse IDE
-* 08:15: Pause (5min)
+* Wenn noch Zeit: Kurzrepetition zum Thema Klassen, Vererbung, Polymorphismus - separater Foliensatz und Übung auf Moodle
+  * Frage 1 + 2 zum Thema Klassen: Schüler sollen zu Zweit eine Lösung erarbeiten
+  * Polymorphismus gemeinsam anschauen / besprechen
 * 09:05: Ende
 
 Bemerkung zum Unterricht

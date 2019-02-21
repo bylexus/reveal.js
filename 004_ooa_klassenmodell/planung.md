@@ -1,4 +1,4 @@
-Detailplan Lektion 4 - 01.03.2018 (Woche 9)
+Detailplan Lektion 4 - 28.02.2019
 ===========================================
 
 Material
