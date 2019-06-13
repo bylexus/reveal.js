@@ -23,7 +23,8 @@ Detailplan
 ----------
 
 * 07:30 (ca. 10min): Besprechung HA von letztem Mal
-* 07:40 (ca. 10min): Folien OOD Einführung
+* 07:40 (ca. 10min): Folien OOD Einführung: Zusammentragen der Begriffe durch Schüler: welche technischen Aspekte müssen wir in der Design-Phase festlegen?
+                     --> Sammlung an Flipchart!
 * 07:50 (ca. 10min): Recherche der Schüler zum Thema Systemarchitektur / Softwarearchitektur
 * 08:00 (ca. 15min): Besprechung Recherche, Pause
 * 08:15 (5min): Pause

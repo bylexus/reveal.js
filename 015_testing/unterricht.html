@@ -4,6 +4,17 @@
 {% block sections %}
 <section data-markdown>
 <textarea data-template>
+<i class="fas fa-graduation-cap"></i> Design Patterns - Besprechung
+=============================
+
+* Haben Sie noch Fragen zum Thema Design Patterns?
+* Wollen Sie eine der Übungen zusammen anschauen / besprechen?
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
 <i class="fas fa-graduation-cap"></i> Software Testing
 =============================
 
@@ -13,6 +24,30 @@ Ziel
 * Sie wissen, was „Software-Testing“ bedeutet
 * Sie kennen verschiedene Test-Methoden
 * Sie können Systemtests aus Use-Cases / Szenarien ableiten
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Gruppenarbeit - Software-Tests
+=============================
+
+Sie erhalten von Ihrem Chef den Auftrag, einen Teil des Bibsys-Systems zu testen:
+
+> "Testen Sie die Login-Funktionalität. Es ist eine der wichtigsten Funktionen, welche funktionieren muss!"
+
+Nun, aber was heisst das nun genau? Erarbeiten Sie in 2 Gruppen Ihr Vorgehen. Beschreiben Sie zum konkreten Beispiel
+Ihr konkretes Vorgehen:
+
+* **WAS** testen Sie? Beschreiben Sie, welche Aspekte des Programmteils Sie testen!
+* **WIE** testen Sie? Wie gehen Sie genau vor, um diese Tests durchzuführen?
+  * Wenn Sie unterschiedliche Aspekte testen, beschreiben Sie auch die (ev.) unterschiedlichen Vorgehensweisen beim Testen!
+* **Wichtige Aspekte**: Überlegen Sie sich, was wichtige Aspekte / wichtige Kriterien sind, die Ihre Tests erfüllen müssen!
+  Machen Sie eine Liste dieser Aspekte!
+* **Was fehlt Ihnen bei der Formulierung Ihres Chefs zum Testing-Auftrag?**
+
+Bereiten Sie Ihre Gedanken soweit auf, dass Sie sie der anderen Gruppe (am Whiteboard) erklären können.
+Zeit: ca. 15min
 </textarea>
 </section>
 
@@ -152,6 +187,30 @@ Definition / Inhalt der Phasen: siehe
 
 <section data-markdown>
 <textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testkonzept und Testprotokoll
+=============================
+
+Software-Tests bestehen immer aus zwei Teilen:
+
+* Das **Testkonzept** beschreibt, was wie mit welchen Daten getestet werden soll, und definiert die Test-Infrastruktur.
+* Das **Testprotokoll** dient dem Festhalten der Durchführung der Tests: Wer hat die Tests wann durchgeführt, mit welchem
+  Ergebnis.
+
+Ziel ist immer die **Nachvollziehbarkeit**: Die Tests müssen reproduzierbar sein, also genau so wiederholt werden können.
+
+Das IT-Framework **HERMES** (http://www.hermes.admin.ch/) bietet Ihnen dazu viele Informationen und Vorlagen.
+Die Unterlagen rund ums Testing finden Sie hier:
+
+http://www.hermes.admin.ch/anwenderloesung/vorlagen.xhtml
+
+Wir schauen uns kurz das Konzept und Protokoll von Hermes an.
+
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
 <i class="fas fa-graduation-cap"></i> Systemtest / Testfall erarbeiten
 =============================
 
@@ -172,9 +231,9 @@ Wir erarbeiten **einen Testfall** für **manuelle Systemtests** am Beispiel BibS
   * tatsächliches Ergebnis
 
 <i class="fas fa-arrow-alt-circle-right"></i> Erarbeiten Sie den Testfall für den Use Case **„Medium am Terminal ausleihen“**,
-resp. das Szenario "Medium am Terminal ausleihen", vom 29. März 2018, auf Moodle [Beispiellösung Analyse-Sequenzdiagramm](https://moodle.bztf.ch/mod/resource/view.php?id=19563)
+siehe Moodle vom 21.Februar 2019 - Analysemodell: https://moodle.bztf.ch/course/view.php?id=735#section-19
 
-Als Vorlage dient Ihnen die [ Testfall-Vorlage ](https://moodle.bztf.ch/mod/resource/view.php?id=15222) auf Moodle.
+Als Vorlage dient Ihnen die [ Testfall-Vorlage ](https://moodle.bztf.ch/mod/resource/view.php?id=21615) auf Moodle.
 </textarea>
 </section>
 {% endblock %}

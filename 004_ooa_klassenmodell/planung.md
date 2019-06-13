@@ -38,6 +38,7 @@ Detailplan
   * Finden von Klassen
   * Finden von Attributen
   * Finden von Generalisierungen
+  * **Aufzeigen Vorgehen**: 1. Modul **Textual Analysis**, dann **Create Model Element** --> Klassenmodell
 * 09:00: Abgabe Hausaufgabe
   * Fertigstellen des Klassenmodells:
     * UML mit Klassen mit Attributen

@@ -1,6 +1,7 @@
 /* global module:false */
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
+    var sass = require('node-sass');
 	var root = grunt.option('root') || '.';
     var path = require('path');
     var nunjucks = require('nunjucks');
@@ -36,6 +37,9 @@ module.exports = function(grunt) {
 		},
 
 		sass: {
+            options: {
+                implementation: sass
+            },
 			core: {
 				src: 'css/reveal.scss',
 				dest: 'css/reveal.css'

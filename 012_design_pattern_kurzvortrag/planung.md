@@ -18,7 +18,7 @@ Hausaufgaben
 Detailplan
 ----------
 
-* 07:30 (ca. 10min): Besprechung HA von letztem Mal: Übung zu MVC "Medien am Terminal ausleihen", wenn es jemand gemacht hat
-* 07:40 Design-Pattern-Vorträge, ca. 15min / Schüler
-* 08:55 ev. Einführung nächste Lektion, Übungen zu Design Pattern
+* 07:30 Design-Pattern-Vorträge, ca. 15min / Schüler
+* 08:30 (ca. 20min): Besprechung HA von letztem Mal: HTML-Composite-Übung,
+* 08:55 XML-Export, kombinierte Übung MVC/Composite, Arbeit an weiteren Aufgaben
 * 09:05: Ende

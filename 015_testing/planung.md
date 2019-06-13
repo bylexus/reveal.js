@@ -21,5 +21,6 @@ Testfall "Medium am Terminal ausleihen" als Testprotokoll mit Testschritten erar
 Detailplan
 ----------
 
-* 07:30 (ca. 10min):
+* 07:30 (ca. 10min): Nachbesprechung Übungen Design Pattern - nach Input der Schüler, wenn noch Fragen sind
+* 07:40 (ca. 15min): Gruppenarbeit zu Software Testing - Erarbeiten
 * 09:05: Ende

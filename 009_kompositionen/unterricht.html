@@ -1,0 +1,165 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 10 - Assoziationen - Kompositionen{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Besprechung Hausaufgaben Assoziationen
+=============================
+
+Demonstration der Aufgaben am Beamer
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> OOD - Implementation von Kompositionen
+=============================
+
+Heutiges Ziel
+-------------
+
+* Sie wissen, was Kompositions-Beziehungen sind
+* Sie können Kompositionen in Java implementieren
+* Auslosen der Design-Pattern für Kurzpräsentation/Merkblatt
+
+### Hausaufgaben
+
+* Fertigstellen der Kompositions-Übungen
+
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kompositionen
+===========
+
+Wir haben letztes Mal verschiedene Beziehungen kennengelernt:
+
+* one-to-many (1:n)
+* one-to-one (1:1)
+* many-to-one (oder belongs-to, n:1)
+* many-to-many (n:m)
+
+Wir schauen uns heute die **Kompositionen** an. Kompositionen sind ein
+Spezialfall der one-to-many-Beziehung. Nämlich?
+
+<img src="1_n_composition.png" />
+
+<!-- .element class="fragment" -->Bei **Kompositionen** ist das Ganze (one)
+verantwortlich für die Existenz und Speicherung seiner Teile (many).
+Sie beschreibt, wie sich etwas Ganzes aus Einzelteilen zusammensetzt und diese
+kapselt.
+
+</textarea>
+</section>
+
+
+<section>
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kompositionen
+===========
+
+Bei **Kompositionen** ist das Ganze (one) verantwortlich für die Existenz und Speicherung seiner Teile (many).
+
+Wie setzen Sie dies nun in Java um?
+
+Versuchen Sie, in den nächsten Minuten eine Implementation zu folgendem Problem zu finden:
+
+* KlasseA ist die "Ganze" (one)-Klasse einer Komposition
+* KlasseB ist die "Teile" (many)-Klasse einer Komposition
+* KlasseA stellt folgendes sicher:
+  * Sie kann ihre Teile erzeugen
+  * Sie kann ihre Teile ausgeben / zurückliefern
+  * Sie kann ihre Teile löschen
+  * wenn KlasseA gelöscht wird, werden auch ihre Teile gelöscht
+* Erstellen Sie ein Java-Programm, welches diese Anforderungen demonstriert:
+  * Eine Fabrik erzeugt Autos: Ein Auto besteht aus Chassis, Räder und einem Motor.
+  * Die Fabrik baut das Auto und liefert es aus
+  * Die Fabrik nimmt ein Auto entgegen und verschrottet es.
+* **Wie stellen Sie die Maximal-Bedingung (4 Räder) sicher?**
+
+<img src="auto_fabrik.png" width="30%" />
+
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kompositionen
+===========
+
+* **Wie stellen Sie die Maximal-Bedingung (4 Räder) sicher?**
+
+Die oben gezeigte Komposition (Auto hat 4 Räder) hat eine Maximalbedingung: Es dürfen nicht mehr als 4 Räder "angehängt" werden.
+
+Dies kann am einfachsten in der `addRad()`-Methode des Autos geprüft werden:
+
+```java
+class Auto {
+   private List<Rad> raeder = new ArrayList<>();
+   public void addRad(Rad r) {
+       if (this.raeder.size() < 4) {
+           this.raeder.add(rad);
+       } else {
+            throw new Exeption("Zuviele Räder!");
+       }
+   }
+}
+```
+
+</textarea>
+</section>
+</section>
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Design Patterns: Auslosung
+=============================
+
+Nach den Frühlingsferien werden Sie eine Kurzpräsentation / Merkblatt
+zu einem **Design Pattern** erstellen. Wir werden nächstes Mal sehen, was Design Patterns
+sind. Damit Sie sich bereits mit "Ihrem" Design Pattern beschäftigen können, losen
+wir heute die Patterns aus:
+
+* Singleton
+* Factory Method
+* Observer/Observable
+* Adapter
+* Strategy
+
+</textarea>
+</section>
+</section>
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Hausaufgaben
+=============================
+
+Übungen zu Komposition
+* Implementation der Komposition **"Person - Benutzer"**: eine Person hat max. 1 Benutzer. Der Benutzer wird über die Person verwaltet.
+* Implemenation der Komposition **"Benutzer hat Rechnungen"**: Einem Benutzer können mehrere Rechnungen zugewiesen werden.
+* **ACHTUNG**: Pro Rechnungs-TYP darf der Benutzer **nur 1 offene Rechnung haben**
+* Durchgängige Verwaltung: Beim Löschen der Person müssen Benutzer und deren Rechnungen mit gelöscht werden.
+* Erstellen Sie die notwendigen zusätzlichen Klassen selbständig!
+
+<img src="person-benutzer-rechnung.png" />
+
+Erstellen Sie die notwendigen Klassen und ein **Demoprogramm**, welches die Komposition demonstriert:
+
+* Erstellen Sie ein Person-Objekt
+* Erzeugen Sie über das Person-Objekt ein Benutzer-Objekt
+* Erzeugen Sie über das Benutzer-Objekt zwei Rechnungen. Demonstrieren Sie, dass die Zusatzbedingung "1 offene Rechnung pro Benutzer und Typ" eingehalten wird.
+* Listen Sie die Rechnungen via das Personen-Objekt auf: <br />Ausgabe (1 Zeile pro Rechnung): "Name: [name], Vorname: [vorname] ([Benutzername]): Rechnung vom [datum]: [betrag]"
+* Initiieren Sie das "Löschen" der Person: Zeigen Sie auf, dass beim Löschen auch die abhängigen Objekte gelöscht werden.
+
+</textarea>
+</section>
+</section>
+{% endblock %}
