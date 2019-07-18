@@ -10,10 +10,8 @@
 Heutiges Ziel
 --------------
 
-
 * Sie wissen, was wir in diesem Modul / Semester tun
 * Sie kennen die Aufgabenstellung der Projektarbeit
-* Sie haben die Entwicklungs-VM erhalten resp. wissen, welche Software Sie benötigen
 * Sie haben eine lauffähige Entwicklungsumgebung, und das Projekt-Skelett funktioniert
 
 </textarea>
@@ -30,7 +28,7 @@ Thema &amp; Jahresplan
 **Thema**:
 
 * Entwickeln einer eigenen Web-Applikation mit Datenbank, in Projektarbeit
-* Entwicklung eines eigenen Web-MVC-Frameworks
+* Entwicklung eines **eigenen** Web-MVC-Frameworks
 * Entwerfen und Umsetzen von Sicherheitsmassnahmen für Web-Applikationen
 
 
@@ -54,10 +52,15 @@ Siehe Projektarbeits-Beschrieb auf Moodle. Suchen Sie auf **nächstes Mal** das 
 * Issue-Tracking-System
 * Forum (mehrere Foren, verschiedene Rollen etc.)
 * Medien- resp. Photo-Verwaltung und -Publikation
+* kleines Shop-System
+* ...?
 
-Suchen Sie nicht zu weit, und vor allem: **Planen Sie nicht zu viel Funktionalität ein**: Das Projekt muss vor den Weihnachtsferien abgegeben werden (ca. 15 Lektionen Zeit im Unterricht)!
+Suchen Sie nicht zu weit, und vor allem: **Planen Sie nicht zu viel Funktionalität ein**:
+Ich gebe Ihnen in jeder Lektion etwas Zeit, um am Projekt zu arbeiten: Alles in allem haben Sie ca. 10 Lektionen im Unterricht Zeit, den Rest machen Sie zu Hause.
 
-Richtgrösse: Ca. 4-6 Entitäten / ca. 4-6 Bildschirmmasken
+* Richtgrösse: Ca. 4-6 Entitäten / ca. 4-6 Bildschirmmasken
+* Die App muss ein User-Login / Authentifizierung vorsehen
+* Abgabe: 08: Januar 2020
 </textarea>
 </section>
 
@@ -69,8 +72,8 @@ Richtgrösse: Ca. 4-6 Entitäten / ca. 4-6 Bildschirmmasken
 Benötigte Software für den Unterricht
 --------------
 
-Wir entwickeln eine Web-Applikation auf Basis HTML/CSS, PHP, MySQL. Sie erhalten eine virtuelle Maschine (VirtualBox), welche alle nötige Software bereits enthält.
-Wenn Sie Ihr eigenes Setup installieren wollen, benötigen Sie folgende Software:
+Wir entwickeln eine Web-Applikation auf Basis HTML/CSS, PHP, MySQL. Sie erhalten ein Applikations-Skelett mit den wichtigsten Konfigurationen.
+Sie benötigen folgende Sofware:
 
 Software | Details
 ---------|---------
@@ -81,9 +84,23 @@ MySQL Workbench | Oder ein anderes MySQL-Management-Programm
 Programmier-Editor | z.B. Sublime, Atom, VS Code (sehr zu empfehlen)
 Browser | Mit guten Debugging-Möglichkeiten, z.B. Chrome (Sehr gut), Firefox
 UML-Tool | VisualParadigm
+GIT-Client | z.B. SourceTree: https://www.sourcetreeapp.com/
 
-Fertiger Out-of-the-Box-Web-Entwicklungs-Stack für Windows: https://bitnami.com/stack/wamp
+* Fertiger Out-of-the-Box-Web-Entwicklungs-Stack für Windows: https://bitnami.com/stack/wamp
+* Fertiger Out-of-the-Box-Web-Entwicklungs-Stack für Mac: https://bitnami.com/stack/mamp
 
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> M151 - Setup
+=============================
+
+* Setup WAMP / MAMP / Apache Web Server
+* Konfigurieren Apache-Webroot
+* Inbetriebnahme des App-Skeletts
+* Konfigurieren von git / github classroom: https://classroom.github.com/a/98LCYP3q
 </textarea>
 </section>
 
@@ -96,6 +113,7 @@ Datei-Struktur
 --------------
 ```
 webroot/
+├── .gitignore            # Ignore-File für git: diese Files werden nicht ins Repo aufgenommen
 ├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests landen in index.php
 ├── composer.json         # composer-Konfiguration: Composer ist der Paketmanager/Autoloader für PHP
 ├── composer.phar         # composer-binary. Ausführen mit: php composer.phar [...]
@@ -115,6 +133,7 @@ Redirect auf `index.php` für alle nicht-Datei-Anforderungen
 Weiteres
 ----------
 
+* Apache-Config für Webroot: am Beispiel
 * Composer: PHP Pakte- und Autoloading-Mechanismen
   * Wichtige Kommandos: siehe Moodle
 * Namespaces in PHP (Support von Composer included)

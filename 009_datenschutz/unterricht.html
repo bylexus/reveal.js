@@ -1,5 +1,5 @@
 {% extends "../_base_template.html" %}
-{% block title %}Lektion 9 - Datenschutz {% endblock %}
+{% block title %}Lektion 10 - Datenschutz {% endblock %}
 
 {% block sections %}
 <section data-markdown>
@@ -10,293 +10,336 @@
 Heutiges Ziel
 --------------
 
-* Sie wissen, was der Begriff „Datenschutz“ bedeutet
-* Sie kennen die Begriffe „Vertraulichkeit“, „Integrität“, „Authentizität“ und „Verfügbarkeit“ und können diese erklären
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Datenschutz
-=============================
-
-**Daten schützen**
-
-„Datenschutz“ - „Datensicherheit“ - was bedeutet dies?
-
-_Fragen an die Schüler:_
-
-* Was bedeutet für Sie Datenschutz?
-  * Informationen schützen
-  * Technologischer Schutz
-  * Niemand hat Zugriff auf mein Konto
-  * Niemand weiss, was ich (am Computer) mache
-  * Daten vor Missbrauch schützen
-
-* Was bedeutet für Sie Datensicherheit?
-  * Daten vor Änderungen /  Löschen schützen (vor "Sauron")
-  * Nur ich weiss meine wichtigen Daten
-  * Das Recht, vergessen zu werden
-  * Daten werden sicher abgelegt: z.B. Passwörter als Hash
-  * dass ich nicht überwacht werden / persönliche Daten bleiben persönlich
-
-* Vor wem müssen Sie Daten schützen?
-  * vor Hackern / vor Verbrechern
-  * vor allen "nicht befugten" Leuten
-  * Vor dem Staat
-  * BigData: vor grossen Datensammlern
-
-
-* Welche Daten müssen Sie schützen?
-  * persönliche Daten (die nur mich angehen)
-  * geschäftsrelevante Daten
-  * Staatsdaten (z.B. Sicherheits-Entscheide, Steuderdaten)
-  * Verhalten am Computer
-
-→ wir sammeln Input in der Klasse. Überlegen Sie sich kurz ein paar Stichworte zu den Fragen,
-  und wir sammeln diese dann gemeinsam.
+* Sie wissen, vor was Sie Server und Applikationen schützen müssen
+* Sie kennen die wichtigsten Massnahmen, um Attacken zu vermeiden
 
 </textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-flask"></i> Datenschutz
+<i class="fas fa-flask"></i> HA: Gedanken zu Web-Angriffen
 =============================
 
-**Daten schützen**
+**Antworten zu den Aufgaben von letzter Lektion**: Tragen wir zusammen:
 
-„Datenschutz“ - „Datensicherheit“ - was bedeutet dies?
+* Vor wem (oder was) müssen Sie Ihre Web-Applikation schützen?
 
-_Fragen an die Schüler:_ (Antworten vom letzten Jahr)
-
-* Was bedeutet für Sie Datenschutz?
-  * Daten nicht an Dritte weitergeben
-  * Verwendung von Daten kontrollieren
-  * Daten sicher abgelegt (im Sinne von „nicht für jedermann zugänglich“)
-  * Datenmanipulation verhindern
-* Was bedeutet für Sie Datensicherheit?
-  * Unterschied: technische Umsetzung des Datenschutzes
-  * Zugriff durch andere verhindern / einschränken
-  * Verfügbarkeit
-* Vor wem müssen Sie Daten schützen?
-  * Leute, die nichts mit dem „Angebot“ zu tun haben
-  * Hackern
-  * Marketing-Nutzung der Daten
-  * Schutz vor technischen Problemen
-* Welche Daten müssen Sie schützen?
-  * ...
-
-</textarea>
-</section>
-
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Datenschutz
-=============================
-
-* **Datenschutz** bedeutet, Daten und Informationen vor **„unberechtigtem Zugriff“** zu schützen.
-
-* **Datensicherheit** bedeutet, dass die angeforderten Daten
-  * **vollständig (Integer)** sind und
-  * **von der angegebenen Quelle stammen (Authentisch).**
-
-<i class="far fa-hand-point-right"></i> Was sind „Daten“ aus Sicht einer Web-Applikation?
-
-* Inhalte aus Datenbank, welche auf der Webseite aufbereitet werden
-* Dateien, welche via Web zugänglich / downloadbar sind
-
-**Begriffe**
-
-* „Vertraulichkeit“?
-* „Integrität“?
-* „Authentizität“?
-* „Verfügbarkeit“?
-
-(Erklären Sie!)
-
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Die drei Grundpfeiler der Datensicherheit
-=============================
-
-<img src="grundpfeiler.png" width="70%" />
-
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Vertraulichkeit
-=============================
-
-* Daten sind vertraulich, wenn sie **nur Befugten in zulässiger Weise zugänglich** sind.
-* Informationen müssen also **klassifiziert** werden:
-  * Welche Daten sind öffentlich?
-  * Welche Daten stehen nur einem bestimmten Benutzerkreis zur Verfügung?
-  * Darf dieser Nutzerkreis die Daten bearbeiten, oder nur lesen?
-* Je nach Klassierung der Daten in eine Vertraulichkeitsstufe sind strengere Massnahmen zu definieren,
-  die die Vertraulichkeit gewährleisten, **zum Beispiel**:
-  * Helpdesk-Mitarbeiter müssen eine **Vertraulichkeitsvereinbarung** unterschreiben, dürfen dann aber alle Daten einsehen
-  * Vertrauliche Daten müssen verschlüsselt gespeichert, transportiert und archiviert werden
-  * Normale Mitarbeiter dürfen keinen Zugriff auf Personalakten haben (Lese-Schutz), Mitarbeiter des Human Resource schon
-  * öffentliche Daten müssen vor falscher Manipulation geschützt werden (Schreibschutz)
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Integrität und Authentizität
-=============================
-
-**Integrität** bedeutet:
-* dass jedes Objekt der Informationsverarbeitung **vollständig, unverfälscht und korrekt** ist.
-* dass diese Objekte **nicht verändert**, verfälscht oder gefälscht werden können.
-
-<i class="far fa-hand-point-right"></i> Es wird unterschieden zwischen Integrität von Programmen und Integrität von Informationen:
-
-**Integrität von Programmen** bedeutet:
-* dass nur autorisierte Funktionen ausgeführt werden können (Nur Admins dürfen Benutzer verwalten, z.B.)
-* dass die Funktion auch (nur) das tut, was deren Bestimmung ist
-* dass Schutzmassnahmen getroffen werden, um das Verändern der Funktionalität zu verhindern
-  (z.B. durch Viren, Backdoors, logische Bomben...)
-
-**Integrität von Informationen** bedeutet:
-* die Daten werden korrekt verarbeitet
-* die Daten sind vollständig
-* die Daten sind aktuell
-
-**Authentizität** bedeutet:
-* den Nachweis zu erbringen, dass jemand oder etwas wirklich das ist, was es vorgibt
-* vereinfacht gesagt: dass man sicher sein kann, dass die Datenanforderung vom dem stammt, den er vorgibt zu sein.
-
-<i class="far fa-hand-point-right"></i> Grob zusammengefasst:
-
-**Integrität bedeutet, dass das Programm richtig funktioniert / die Informationen korrekt sind.<br />
-Authentizität bedeutet, dass die Informationen nachweisbar aus der angegeben Quelle stammen.**
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Verfügbarkeit
-=============================
-
-Daten müssen **verfügbar** sein, d.h. man muss auch wirklich darauf zugreifen können.
-
-Daten müssen aber **nicht immer GLEICH** verfügbar sein:
-* Beispiel: Real-Time-Börsendaten: Im Börsengeschäft geht es um Millisekunden. Stehen dort Daten nicht sofort zur Verfügung,
-  kann dies zu Verlustgeschäften führen.
-* Beispiel: Monatsstatistik: Eine Monatsstatistik muss 1) nicht in Millisekunden verfügbar sein, und 2) reicht es,
-  wenn diese in den nächsten Tagen nach Monatsende verfügbar ist.
-
-<i class="far fa-hand-point-right"></i> Das bedeutet, dass Sie je nach Anforderung entsprechende Massnahmen ergreifen müssen,
-um die geforderte Verfügbarkeit garantieren zu können.
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Rechtliche Vorschriften
-=============================
-
-**Datenschutzvorschriften** bestimmen nicht das WIE, sondern nur das WAS und IN WELCHEM MASSE geschützt werden muss.
-
-Als Grundlage dient immer das **Schweizerische Datenschutz-Gesetzt (DSG)**:
-
-https://www.admin.ch/opc/de/classified-compilation/19920153/index.html
-
-Es gibt aber auch Vorschriften, die verlangen, dass z.B. gewisse Datenbestände (Buchhaltung, Log-Daten) eine bestimme Zeit lang aufbewahrt werden.
-
-Aktuelles Beispiel: **DSVGO** (Datenschutz-Grundgesetz der EU):
-
-https://dsgvo-gesetz.de/
-
-Hier wird vor allem geregelt, wer was mit welchen Daten wo/mit wem machen darf.
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Technische und organisatorische Massnahmen zum Datenschutz
-=============================
-
-Wie wird nun dieser Datenschutz sichergestellt? Die Vorschriften definieren nicht, wie die Daten geschützt werden müssen,
-sondern nur was und wie stark dieser Schutz sein muss.
-
-**Stellen Sie Regeln auf**
-
-Viele Datenschutz-Massnahmen lassen sich mit verbindlichen Regeln lösen:
-
-Mitarbeiter im Support z.B. müssen eine „Vertraulichkeitsvereinbarung“ unterzeichnen. Sie kommen naturgemäss mit sensitiven
-Daten in Kontakt, dies kann keine technische Massnahme verhindern.
-Es muss aber klar geregelt sein, was diese Mitarbeiter mit den Daten dürfen.
-
-Diese Vorschriften müssen Sie allerdings auch durchsetzen / kontrollieren.
-
-**Technische Massnahmen**
-
-„Vertrauen ist gut, Kontrolle ist besser“: So könnte man technische Massnahmen verstehen:
-Durch technische Massnahmen wird sichergestellt, dass die „Vertraulichkeit“, „Integrität“, „Authentizität“ und
-„Verfügbarkeit“ auch durchgesetzt werden kann.
-
-Welche technischen Massnahmen kennen Sie, um diese 4 Begriffe des Datenschutzes eingehalten werden können?
-
-<i class="far fa-hand-point-right"></i> Zählen Sie auf!
-
-(Diskussion mit der Klasse / Flipchart)
-
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-graduation-cap"></i> Technische und organisatorische Massnahmen zum Datenschutz
-=============================
-
-**Technische Massnahmen** zum Datenschutz
-
-(mögliche) Lösung der Frage von oben:
-
-* Vertraulichkeit:
-  * Benutzerverwaltung implementieren
-  * Rollen-System implementieren
-  * Rechte-Verwaltung implementieren: Zugriff auf Daten nur für berechtigte Benutzer / Rollen gewähren.
-  * SSL-Verschlüsselung
-* Integrität:
-  * Datenbank-Transaktionen
-  * Datei-Hashes (sieht man viel auf Download-Portalen)
-  * Kryptographie-Signaturen
-* Authentizität
-  * Benutzerverwaltung
-  * Login-Mechanismus
-* Verfügbarkeit
-  * Hardware-Redundanzen (doppeltes Führen von wichtigen Komponenten)
-  * Rechenpower (bei intensiven Kalkulationen)
-
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Angriffe von aussen
-=============================
-
-Kritisch wird die Situation, wenn Ihre Web-Applikation und somit einen Teil der Firmendaten im Internet verfügbar sind.
-Hier reichen Regeln und Verbote nicht. Auch einfache Passwortabfragen reichen vielmals nicht,
-um einen genügenden Schutz zu gewähren.
-
-**Hausaufgabe**
-
-Überlegen Sie sich folgendes:
-* Vor wem (oder was) müssen Sie Ihre ( öffentlich zugängliche ) Web-Applikation schützen?
 * Was für Angriffsmöglichkeiten existieren, um Ihre Web-Applikation zu knacken / an unbefugte Daten zu gelangen?
+</textarea>
+</section>
 
-**Erstellen Sie eine Liste mit Antworten zu diesen beiden Fragen!**
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Schutz vor Hacks / Missbrauch
+=============================
+
+** Must-Do's** für Entwickler von Web-Applikationen
+
+Öffentlich erreichbare Web-Applikationen sind heute täglich Hunderten von Angriffsversuchen ausgesetzt.
+Wir behandeln einige ausgelesene Angriffsszenarien und Gegenmassnahmen in einer späteren Lektion / mit Kurzreferaten.
+
+Wir wollen heute ein paar sehr einfache, aber bereits sehr effektive Massnahmen erarbeiten, welche Sie als Web-Entwickler umsetzen können,
+und bereits viel zur Sicherheit Ihrer Applikation beitragen:
+
+* Programmfehler / Programminformationen unterdrücken / behandeln
+* Passwörter nie im Klartext speichern
+* direkte Links auf vertrauliche Dateien unterbinden
+
+Wir erarbeiten 2 Themen in einer kurzen Gruppenarbeit, und tragen die Ergebnisse dann zusammen.
+
+Zeit:
+* 20 min Erarbeiten Ihres Themas
+* je 10 min Zusammentragen / Erläutern für die Mitschüler
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Schutz vor Hacks / Missbrauch
+=============================
+
+### Gruppenarbeit zum Thema „Fehler / Informationen unterdrücken“
+
+Für erfolgreiche Hacks muss ein Angreifer möglichst viel über das anzugreifende System in Erfahrung bringen: Je mehr der Angreifer weiss,
+desto eher findet er eine (vielleicht schon bekannte?) Lücke. Es muss also unser erstes Ziel sein,
+so wenig Informationen zum System wie möglich preiszugeben.
+
+**Aufgabe:**
+
+1. Öffnen Sie die Seite https://alexi.ch/mvc_webapp/dbtest. Die Seite produziert eine Fehlerausgabe.
+  * Welche Informationen zum System können Sie aus der Antwort (HTTP Body) herausfinden?
+  * Welche zusätzlichen Informationen finden Sie im HTTP-Header?
+2. Die Fehlermeldung wird vom PHP-Programm ausgegeben. Sie finden das Beispiel in der abgelieferten MVC-Webapp-Vorlage in der Datei „DefaultController.php“.
+  Wie können Sie (mittels PHP) verhindern, dass die Fehlerausgabe im Browser angezeigt wird?
+
+<hr />
+
+### Gruppenarbeit zum Thema „Klartext-Passwörter“
+
+Für Login-Mechanismen ist es notwendig, dass Sie in Ihrer Applikation Benutzer und Passwörter speichern, um diese bei einem Login-Versuch vergleichen zu können.
+Es ist eine schlechte Idee, Passwörter im Klartext in Ihrem System abzuspeichern.
+
+**Aufgabe: **
+
+Recherchieren Sie, um folgende Fragen dazu beantworten zu können:
+* Was ist die Gefahr von Klartext-Passwörtern in Ihrer Datenbank?
+* Was bedeutet „Passwort-Hash“, und was ist der Vorteil eines solchen gegenüber eines Klartext-Passworts?
+* Wie erzeugen Sie in PHP einen Passwort-Hash?
+* Wie überprüfen Sie in PHP einen Passwort-Hash?
+* Was ist ein „Hash Salt“, und wo findet er bei Passwort-Hashes Verwendung? Wieso?
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Schutz vor Hacks / Missbrauch: „Must-Do“ für Entwickler von Web-Applikationen
+=============================
+
+Die folgenden Vorkehrungen sind heute Standard und sollten von jedem Web-Applikations-Entwickler beherzigt werden.
+Dies sind die einfachsten, aber bereits sehr effektiven Methoden, um Angriffe / Hacks zu vermindern:
+
+* Programmfehler / Informationen unterdrücken / behandeln
+* direkte Links auf vertrauliche Dateien unterbinden
+* Passwörter nie im Klartext speichern
+
+**Programmfehler / Programminformationen unterdrücken: Stealth Mode!**
+
+Was passiert, wenn in Ihrem Programm ein unvorhergesehener Programmfehler auftritt? (Bsp: unbekannte URL-Route)
+
+Es lohnt sich, dies einmal auszuprobieren. Als Beispiel hier ein Fehler aus unserem MVC-Framework bei einer unbekannten Route:
+
+<img src="screen_error.png" width="80%"/>
+
+Wow, das sind aber schon viele Informationen!
+* Der Angreifer weiss nun, dass die Applikation mit PHP >= 5.3 (Namespaces) läuft
+* Der Angreifer kennt die Datei-Struktur der Applikation UND des Servers
+* <i class="far fa-hand-point-right"></i> dies lässt Rückschlüsse auf bekannte Frameworks zu. So können gezielt bekannte Sicherheitslücken ausgenutzt werden.
+
+Mit solchen Informationen lassen sich dann gezielt Hacks aufspüren. Je mehr ein Hacker über sein Angriffsziel weiss, desto eher findet er eine Lücke.
+Stellen Sie sicher, dass solche Fehler nicht gegen aussen publiziert werden können!
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Fehler im Programm behandeln
+=============================
+
+Fehler passieren, sowohl zur Programmier- wie auch zur Laufzeit. Manche Fehler sind sogar gewollt, wie der oben gezeigte.
+Vermeiden Sie jedoch, dass solche Fehlermeldungen bis zum Browser gelangen.
+
+Eine einfache Methode dazu ist in PHP das Auffangen von Exceptions mittels try/catch, hier am „Ort des Geschehens“ in Application.php
+(dort, wo die Route ermittelt wird und der Fehler auftritt):
+
+**Vorher**
+```php
+public function start() {
+    // --> Hier passiert der Fehler:
+    $routeInfo = Router::findRouteInfo($this->request);
+    $controller = Router::getRouteController($routeInfo);
+    $this->controller = $controller;
+    $this->routeInfo = $routeInfo;
+    $actionFn = $routeInfo['action'];
+    $ret = $controller->$actionFn($this->request);
+}
+```
+
+**Nachher**
+```php
+public function start() {
+    try {
+        // --> Hier passiert der Fehler:
+        $routeInfo = Router::findRouteInfo($this->request);
+        $controller = Router::getRouteController($routeInfo);
+        $this->controller = $controller;
+        $this->routeInfo = $routeInfo;
+        $actionFn = $routeInfo['action'];
+        $ret = $controller->$actionFn($this->request);
+    } catch (\Exception $e) {
+        // … und wird hier aufgefangen und in eine „vertretbare“ Fehlermeldung ausgegeben:
+        echo "Hoppla, da ist ein Fehler aufgetreten! Fehler-Code: {$e->getCode()}.";
+        return;
+    }
+}
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Fehlerausgabe unterdrücken
+=============================
+
+In PHP besteht weiterhin die Möglichkeit, Fehlerausgaben an den Browser ganz zu unterdrücken. Dies ist zur Entwicklungszeit nicht sinnvoll (da mühsam),
+bei Inbetriebnahme auf der Produktion jedoch sehr zu empfehlen.
+
+Folgende Befehle **unterdrücken die Fehleranzeige**: Die Fehler werden dann nur noch im Error-Log des Web-Servers aufgezeichnet:
+
+```php
+// PHP-Fehler nicht mehr anzeigen:
+ini_set('display_errors', 0);
+// PHP-Startup-Fehler (z.B. fehlende Treiber etc.) nicht mehr anzeigen:
+ini_set('display_startup_errors', 0);
+```
+
+Zur **Entwicklungszeit** empfehlen sich folgende Einstellungen:
+
+```php
+// Fehler an Browser anzeigen:
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+// Alle Fehler, Warnungen, Infos etc. ausgeben:
+error_reporting(E_ALL);
+```
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Direkt zugängliche, verlinkte (jedoch vertrauliche) Dateien
+=============================
+
+Gibt es in Ihrem Programm vertrauliche Dateien, welche der (autorisierte) Benutzer herunterladen kann? Sind diese direkt via URL erreichbar, also z.B. so:
+
+http://meine-seite.ch/geheime_dokumente/spionagebericht.pdf
+
+Dies ist eine sehr gefährliche Sicherheitslücke: Der Web-Server liefert jedem, der den Link kennt, diese Datei aus.
+Schlimmer noch, meist sind Suchmacshinen-Crawler "schlau genug", um solche Dateien zu finden: Sie finden ihre geheime Datei also
+sogar via Suchmaschine.
+
+ Haben Sie Dokumente, welche nur von autorisierten Benutzer zugänglich sein dürfen, müssen Sie diese schützen.
+ Links können kopiert, weitergegeben und sogar von Suchmaschinen indiziert werden.
+
+Für den Schutz solcher direkt zugänglicher Dateien haben Sie folgende Möglichkeiten:
+
+1. Verhindern Sie, dass die Dateien direkt via Webserver abgerufen werden können:
+entweder via Apache .htaccess-Direktive:
+```
+# /webroot/geheime_dokumente/.htaccess:
+# Zugriff für alle sperren:
+Deny from all
+```
+oder Sie platzieren die Dokumente ausserhalb des von Apache erreichbaren Web-Roots.
+
+2. Liefern Sie die Dateien über PHP aus, anstatt direkt vom Webserver Apache: So haben Sie die Möglichkeit, den Zugriff anhand des Login zu prüfen, z.B. so:
+```php
+<?php
+// .....
+// BEISPIEL: in Ihrem Controller / Action-Funktion:
+public function getFile(Request $res) {
+    if ($Benutzer_ist_berechtigt === true) {
+        header('Content-Type: application/pdf');
+        readfile('/pfad/zu/meinem/geheimen_dokument.pdf');
+    } else {
+        echo „Fehler: Zugriff verweigert“;
+    }
+}
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Passwörter im Klartext
+=============================
+
+Für Benutzer-Authentifikationen wird in vielen Fällen ein „Shared Secret“ benutzt: Sowohl der Benutzer wie auch der Webserver kennen ein gemeinsames Geheimnis,
+ein Passwort: Durch Vergleich der Passwörter wird der Zugang gewährt / verweigert.
+
+Dazu ist es allerdings notwendig, dass der Server dieses „Shared Secret“ kennt, also speichert.
+
+Viele Applikationen speichern also die Benutzerpasswörter in einer Benutzer-Tabelle:
+
+ID | Login | Passwort
+---|-------|----------
+1  | alex  | abc
+2  | hans  | def
+
+Dies ist sehr problematisch:
+
+1. Die Passwörter sind allen Personen ersichtlich, welche Zugriff auf die Datenbank haben (System-Admins, Applikations-Verantwortliche etc.).
+   Dies verletzt die Datenschutz-Vorgaben: So hat jeder dieser Personen die Möglichkeiten, sich als dieser User auszugeben. Schlimmer noch:
+   Vermutlich kann er mit diesen Login-Daten auch auf ANDEREN Systemen einloggen, wenn der Benutzer aus Bequemlichkeit dieselben Daten verwendet.
+2. Gleiches gilt für Hacker: Eine solche Tabelle ist natürlich gefundenes Fressen für Hacker bei Datendiebstahl:
+   Mit diesen Daten haben die Hacker sofort Zugriff auf andere Dienste unter dem Deckmantel dieser Benutzer → Integritätsverlust
+
+<i class="far fa-hand-point-right"></i> Passwörter im Klartext zu speichern sollte **auf jeden Fall vermieden werden**!
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Passwort-Hashing
+=============================
+
+(Quelle: http://php.net/manual/de/faq.passwords.php)
+
+**Passwort-Hashing** ist eine der grundlegendsten Sicherheitsüberlegungen, die beim Design einer Anwendung bedacht werden müssen.
+Ohne Hashing können im Falle eines erfolgreichen Angriffs alle Userpasswörter in Ihrer Datenbank von einem Angreifer gestohlen und ohne Umwege
+in anderen Anwendungen (seien es Ihre oder die Anderer) benutzt werden. Dies ist oft der Fall, da viele User für verschiedene Dienste die gleichen
+Passwörter verwenden.
+
+Eine **Hash-Funktion** ist eine mathematische **Einweg-Berechnung**: Sie errechnet einen Wert (den Hash) aus einer Eingabemenge (dem Klartext-Passwort).
+Rückrechnen ist aber nicht oder nur mit grossem Aufwand möglich (Quelle: https://de.wikipedia.org/wiki/Hashfunktion)
+
+Wenn Sie Passwörter vor dem Abspeichern in der Datenbank hashen, machen Sie es einen Angreifer schwerer die ursprünglichen Passwörter herauszufinden.
+Sie haben jedoch weiterhin die Möglichkeit eingegebene Userpasswörter zu hashen und die Hashwerte zu vergleichen um herauszufinden,
+ob der User das richtige Passwort eingegeben hat.
+
+Es ist jedoch wichtig zu wissen, dass Hashen nur das Auslesen der Passwörter aus dem Datenspeicher (z.B.: Datenbank oder Datei) erschwert.
+Sollte es einen Angreifer gelingen, Code in Ihre Anwendung einzuschleusen, so kann er die Passwörter der User evtl. Auslesen bevor dieses gehasht werden.
+
+Speichern Sie somit **NUR** Passwort-Hashes ab. Erstellen Sie diese Hashes mit einem sicheren Hash-Algorithmus (siehe Quelle).
+Die Passwort-Tabelle sollte also nur Passwort-Hashes beinhalten:
+
+ID | Login | Passwort
+---|-------|------------------
+1  | alex  | $2y$10$H2dv6O7Oo2yFnarLhDwz4eSEZ7cgYhgZ7mWlNKsnQjtBY9ALPmmba
+2  | hans  | $2y$10$oMEcILNoYpKtxdAiSjPXMuR57ZC64czhmwkzZ4kipwnp34l3eMhEe
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Passwort-Hashes in PHP erzeugen
+=============================
+
+PHP stellt bereits native Funktionen zum Erzeugen und Verifizieren von Passwort-Hashes zur Verfügung:
+
+```php
+<?php
+// Erzeugung eines Hashes (zur Speicherung in der Datenbank):
+$hashwert = password_hash('Mein Passwort',PASSWORD_DEFAULT);
+
+// Vergleichen eines Plain-Text-Passworts mit dem gespeicherten Passwort-Hash (zur Prüfung der Identität):
+$ok = password_verify('Mein eingegebenes Passwort','$2y$10$H2dv6O7Oo2yFnarLhDwz4eSEZ7cgYhgZ7mWlNKsnQjtBY9ALPmmba');
+```
+
+Diese Funktion verwendet automatisch einen modernen, sicheren Hash-Algorithmus.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Hacker greifen an!
+=============================
+
+Eine Web-Applikation kann auf verschiedene Art und Weise angegriffen werden. Sie erarbeiten selbständig ein Thema und stellen dies den anderen
+Schülern in einer Präsentation vor (siehe separate Aufgabenstellung, nächste beiden Lektionen):
+
+Das Thema haben wir bereits ausgelost:
+
+* SQL - Injection
+* Cross Site Scripting (XSS)
+* Session Hijacking
+* Directory Traversal Attack
+* Cross Site Request Forgery (CSRF)
+* Brute Force Attacks
 
 </textarea>
 </section>
