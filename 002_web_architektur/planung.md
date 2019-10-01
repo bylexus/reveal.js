@@ -1,10 +1,12 @@
-Detailplan Lektion 2 - 22.08.2018 (Woche 34)
+Detailplan Lektion 2 - 21.08.2018
 ===========================================
 
 Material
 --------
 
 * Unterrichts-Unterlagen
+* Übung/Quiz zu HTTP-Request auf Moodle
+* Request / Response zeigen via Postman (View -> Postman Console -> Raw)
 
 Ziele
 -----
@@ -17,9 +19,11 @@ Detailplan
 ----------
 
 08:20 ( 5min )      Begrüssung, Beschreibung des Moduls 151
-08:25 ( ca. 40min ) Theorie zu Web-Architektur, HTTP-Requests, statische / dynamische Seiten
-09:05 ( 5min )      Pause
-09:20 ( rest )      Zeit für Projektarbeit, Einführung in Projekt-Bootstrap (Inbetriebnahme, .htaccess-Rewrite, index.php)
+08:25 ( ca. 10min ) Theorie zu Web-Architektur
+08:30 (ca. 30min)   Übung zu  HTTP Requests: Schüler bearbeiten Moodle-Übung, dann gemeinsame Besprechung
+09:00 (ca. 30min)   Besprechung HTTP Quiz, Durchgehen der Antworten gleich am praktischen Beispiel in der Dev-Console
+09:30 (ca. 15min)   Theorie Verarbeitung von PHP-Scripten
+09:45 ( rest )      Zeit für Projektarbeit, Einführung in Projekt-Bootstrap (Inbetriebnahme, .htaccess-Rewrite, index.php)
 09:55 Ende
 
 Bemerkung zum Unterricht

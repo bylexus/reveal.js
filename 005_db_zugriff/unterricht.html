@@ -13,6 +13,7 @@ Heutiges Ziel
 * Sie wissen, wie Sie eine Datenbank in PHP anbinden
 * Sie wissen, wie Sie Daten aus der Datenbank abfragen und aktualisieren
 * Sie können Formulardaten vom Frontend lesen und auswerten.
+* Sie können eine Verbindung zur Datenbank in PHP erstellen und Daten abfragen
 
 </textarea>
 </section>
@@ -79,9 +80,9 @@ Nach erfolgreichem Verbindungsaufbau beinhaltet die Variable `$dbh` ein Objekt d
 
 * Es macht Sinn, den Verbindungsaufbau an einem **zentralen Ort im Programm** zu machen:
   Die Verbindung wird später an verschiedenen Stellen wieder benötigt.
-  Z.B. kann eine Funktion „getConn()“ dafür sorgen, dass die Verbindung geliefert wird oder bei Bedarf erzeugt wird.<br />
-  <i class="far fa-hand-point-right"></i> Welches Design Pattern kommt Ihnen da in den Sinn?
-* system-spezifische Daten wie Usernamen uns Passwörter **gehören nicht in den Programmcode**,
+  Z.B. kann eine Funktion „getConn()“ dafür sorgen, dass die Verbindung geliefert wird oder bei Bedarf erzeugt wird.<br /><br />
+  <i class="far fa-hand-point-right"></i> **Welches Design Pattern kommt Ihnen da in den Sinn?**<br/><br/>
+* system-spezifische Daten wie Usernamen uns Passwörter **gehören nicht in den Standard-Programmcode**, und sicher nicht ins Software Repository,
   sondern müssen anderweitig zur Verfügung gestellt werden (z.B. in einem eigenen config-Script, ini-File etc…).
 </textarea>
 </section>

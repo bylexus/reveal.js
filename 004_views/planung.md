@@ -1,4 +1,4 @@
-Detailplan Lektion 4 - 05.09.2018 (Woche 36)
+Detailplan Lektion 4 - 11.09.2019
 ===========================================
 
 Material
@@ -20,6 +20,7 @@ Detailplan
 
 08:20 ( ca. 30min )  Fragen beantworten zur Grundstruktur MVC vom letzten Mal
 08:50 ( ca. 30min )  View-Konzept anhand Folie / Beispiel
+09:20 ( rest )       Schüler entwickeln einer View-Architektur mittels Template engine oder selber
 09:20 ( rest )       Selbständige Arbeit am Projekt
 09:55 Ende
 

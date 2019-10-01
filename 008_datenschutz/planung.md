@@ -1,4 +1,4 @@
-Detailplan Lektion 9 - 24.10.2018 (Woche 43)
+Detailplan Lektion 8 - 23.10.2019
 ============================================
 
 Material

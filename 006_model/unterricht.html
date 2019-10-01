@@ -10,13 +10,14 @@
 Heutiges Ziel
 --------------
 
-* Umsetzen / Implementieren einer Model-Klasse: Sie können Datenbank-Zugriffe in einer Model-Klasse kapseln
+* Umsetzen / Implementieren einer Model-Klasse:
+  Sie können Datenbank-Zugriffe in einer Model-Klasse kapseln
 * Sie können die Grundstruktur für Ihr MVC-Web-Framework in Code umsetzen
-
 
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
@@ -28,46 +29,95 @@ Wir haben letztes Mal verschiedene Funktionen rund um die Datenbank benutzt:
 * Änderungen mittels SQL INSERT/UPDATE
 * Löschen mittels SQL DELETE
 
-Da wir ein MVC-Framework entwickeln, sollen solche Standard-Funktionen natürlich auch ins Framework einfliessen.
+Da wir ein MVC-Framework entwickeln, sollen solche Standard-Funktionen natürlich auch ins Framework
+einfliessen.
 Versuchen Sie, Antworten auf folgende Fragen zu finden:
 
-* Die DB-Connection ist sehr zentral. Wie sorgen wir dafür, dass diese von allen Programmteilen / Klassen aus verfügbar ist?
-
+* Die DB-Connection ist sehr zentral.<br />
+  <i class="far fa-hand-point-right"></i> Wie sorgen wir dafür, dass diese von allen Programmteilen
+  / Klassen aus verfügbar ist? ** Wie lösen Sie dies mit OO-Werkzeugen?**
 * Datenbank-Verbindungsparameter sind auf verschiedenen Systemen vermutlich unterschiedlich (Test, Produktion):<br />
-  Wo definieren Sie die Datenbank-Verbindungsparameter, sodass diese vom Programmcode unabhängig sind?
-
+  <i class="far fa-hand-point-right"></i> **Wo / wie definieren Sie die Datenbank-Verbindungsparameter, sodass diese vom Programmcode unabhängig sind?**
 * Wir werden vermutlich an vielen Stellen in unserem Programm immer wieder ähnliche Abfragen machen:
   * **c**reate: Daten erstellen (z.B. Benutzer)
   * **r**ead: Daten lesen (z.B. Benutzer)
   * **u**pdate: Daten speichern (z.B. Benutzer aktualisieren)
   * **d**elete: Daten löschen
   * <i class="far fa-hand-point-right"></i> gemeinhin unter **CRUD**-Operationen bekannt
-  *  Damit diese Abfragen nicht im ganzen Programm erneut geschrieben werden müssen, soll auch dies vereinfacht werden.
-    Wie könnte eine solche Lösung aussehen? (Denken Sie an das „M“ von MVC)
-* Wo sehen Sie Sicherheitsprobleme bei Datenbank-Zugriffen?
+  *  Damit diese Abfragen nicht im ganzen Programm erneut geschrieben werden müssen, soll auch dies vereinfacht werden. <br />
+    <i class="far fa-hand-point-right"></i> **Wie könnte eine solche Lösung aussehen?** (Denken Sie an das „M“ von MVC)
+* <i class="far fa-hand-point-right"></i> **Wo sehen Sie Sicherheitsprobleme bei Datenbank-Zugriffen?**
 
- <i class="far fa-hand-point-right"></i> Versuchen Sie, Ihr Framework um ein „Model“ resp. um mehrere Model-Klassen zu erweitern, welches Ihnen die gängigsten Datenbank-Abfragen und -Funktionen abnimmt! Wie sieht das Klassen-Diagramm dazu aus?
+ <i class="far fa-hand-point-right"></i> Finden Sie in den nächsten Minuten gemeinsam
+ eine Antwort auf die oben genannten Fragen:
 
- **Empfehlung**: Ich empfehle Ihnen, pro "Entität" (z.B. "Benutzer") eine Model-Klasse zu erstellen, welche wichtige Funktionen wie z.B. "find", "insert" etc. für diese Entität zur Verfügung stellt. Abstrahieren Sie dies mit einer übergeordneten Model-Klasse, um gleiche Funktionalität in einer Eltern-Klasse zusammenzufassen!
+ * Zentrale DB-Connection: wie lösen Sie das?
+ * Datenbank-Verbindungsparameter: Wie legen Sie diese ab, wie organisieren Sie diese?
+ * Welche Struktur (OO) definieren Sie, um gemeinsame DB-Abfragen zu "sammeln"?
 
 </textarea>
 </section>
-
 
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
 =============================
 
-**Unterricht am 26.09.2018 fällt aus - Selbststudium**
+**Zentrale DB-Connection: wie lösen Sie das?**
 
-Ich werde Ihnen auf Moodle an diesem Datum ein Beispiel einer Model-Klasse aufschalten, welches
-eine mögliche Umsetzung der oben gezeigten Fragestellung aufzeigt.
+* z.B. mittels einer **Singleton-Klasse**, welche das PDO-Objekt einmalig instanziert und
+  jeweils ausliefern kann
+* oder über eine zentral erreichbare Funktion im Controller (z.B. im Parent-Controller),
+  welche die DB-Verbindung einmal aufbaut und liefern kann
 
-Studieren Sie diesen Code, und versuchen Sie ihn zu verstehen. Ziel ist, dass Sie eine Grundlage
-für Ihr eigenes Model-Konzept erarbeiten können.
+** Datenbank-Verbindungsparameter: Wie legen Sie diese ab, wie organisieren Sie diese?**
 
-Notieren Sie sich allenfalls Fragen dazu, oder tauschen Sie sich mit ihren Mitschülern aus.
+* in einem separaten Config-File, welches:
+  * nicht Teil des Software-Repositories ist
+  * ausserhalb des Webroot liegt (um Direktzugriff darauf zu vermeinden)
+    Bsp:
+```php
+  <?php
+  // separate config.php-Datei:
+  $db = 'testdb';
+  $user = 'testuser';
+  $pw = 'testpw';
+```
+```php
+  <?php
+  // Einlesen der Konfiguration in PHP:
+  include('config.php');
+  // nun stehen die Variablen lokal zur Verfügung:
+  $conn = new Connection($db, $user, $pw);
+```
+
+
+
+** Welche Struktur (OO) definieren Sie, um gemeinsame DB-Abfragen zu "sammeln"?**
+
+<i class="far fa-hand-point-right"></i> Siehe nächste Folie: QueryBuilder-Struktur
+
+</textarea>
+</section>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
+=============================
+
+SQL-Abstraktion: die QueryBuilder-Klasse
+
+Um die für alle Entiäten / Modelle anfallenden SQLs zu abstrahieren, empfehle ich Ihnen
+die Entwicklung einer Query-Builder-Infrastruktur. Dies könnte in etwa so aussehen:
+
+<img src="UML_QueryBuilder.png" width="70%"/>
+
+Die QueryBuilder-Klasse ist die Basisklasse, welche alle notwendigen SQL-Queries
+für spezifische Entitäten erstellen und ausführen kann. Diese Klassen sollen die
+Model-spezifischen SQLs "bauen" und ausführen können.
+
+<i class="far fa-hand-point-right"></i> Siehe Code-Beispiele auf Moodle.
 
 </textarea>
 </section>

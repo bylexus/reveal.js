@@ -297,3 +297,7 @@ body {
 
 .reveal ul.fa-ul {
   list-style-type: none; }
+
+.enlarge {
+  font-size: 2em !important;
+  line-height: 2.2em !important; }

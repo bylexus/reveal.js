@@ -101,6 +101,12 @@ GIT-Client | z.B. SourceTree: https://www.sourcetreeapp.com/
 * Konfigurieren Apache-Webroot
 * Inbetriebnahme des App-Skeletts
 * Konfigurieren von git / github classroom: https://classroom.github.com/a/98LCYP3q
+
+Sie verwalten Ihren Quellcode mit der Quellcode-Verwaltung GIT, und pushen den Code
+in das Github Classroom-Repository.
+
+**Ziel**: Sie geben Ihr Projekt als GIT-Repository ab. Am 08. Januar 2020 ist Ihr gesamter,
+lauffähiger Code inkl. Dokumentation im GIT Classroom-Repository gespeichert.
 </textarea>
 </section>
 
@@ -112,16 +118,19 @@ GIT-Client | z.B. SourceTree: https://www.sourcetreeapp.com/
 Datei-Struktur
 --------------
 ```
-webroot/
+.
 ├── .gitignore            # Ignore-File für git: diese Files werden nicht ins Repo aufgenommen
-├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests landen in index.php
+├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests werden verboten
 ├── composer.json         # composer-Konfiguration: Composer ist der Paketmanager/Autoloader für PHP
-├── composer.phar         # composer-binary. Ausführen mit: php composer.phar [...]
-├── index.php             # Web-Einstieg. Alle Requests landen in diesem Script.
-├── src/
+├── composer              # composer-binary. Ausführen mit: php composer.phar [...]
+├── m151-docker           # Docker-Konfiguration
+├── src
 │   └── classes           # Basis-Verzeichnis des PHP-Namespaces "M151", siehe composer.json
 └── vendor                # Composer-libraries
     └── autoload.php      # composer-Autoloader-Script
+└── webroot
+    ├── .htaccess         # Apache-Redirect-Anweisung: Alle Requests landen in index.php
+    └── index.php         # Initial-Script, alle Requests landen hier
 ```
 
 Redirect auf `index.php` für alle nicht-Datei-Anforderungen

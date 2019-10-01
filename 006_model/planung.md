@@ -1,4 +1,4 @@
-Detailplan Lektion 6 - 19.09.2018 (Woche 38)
+Detailplan Lektion 6 - 25.09.2019
 ============================================
 
 Material
@@ -21,7 +21,8 @@ Detailplan
 ----------
 
 08:20 (5 min) Begrüssung, Ziele
-08:25 (25 min) Fragestellung rund um Model aufzeigen (Folie): Schüler erhalten Zeit (20min), um hier eine Antwort zu finden
+08:25 (10min) Fragen zum Kapitel MVC-Grundlagen, Views beantworten
+08:35 (25 min) Fragestellung rund um Model aufzeigen (Folie): Schüler erhalten Zeit (20min), um hier eine Antwort zu finden
 08:50 (20 min) Beantworten der Fragen durch einzelne Schüler, sollen kurz eine Lösung am Flipchart skizzieren
 09:15 (Rest) Projektarbeitszeit
 09:50: Hinweis auf Lektionenausfall, Selbststudium, FREISCHALTEN des Unterrichtsmaterials nach dem Unterricht!

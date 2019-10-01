@@ -1,5 +1,5 @@
 {% extends "../_base_template.html" %}
-{% block title %}Lektion 8 - State, Sessions{% endblock %}
+{% block title %}Lektion 7 - State, Sessions{% endblock %}
 
 {% block sections %}
 <section data-markdown>
@@ -35,6 +35,13 @@ der Programmierer in grossen Teilen der Applikation nicht mehr mit Datenbanken /
 <i class="fas fa-graduation-cap"></i> Kurzreferate zu "Web-Bedrohungen"
 =============================
 
+** Angriff! ** Nachrichten zu Attacken auf Webseiten gehören mittlerweile zum
+Alltag. Als Web-Entwickler müssen Sie die Gefahren des Webs kennen.
+
+<img style="float:right" src="security_schaubild.jpg" width="40%" />
+
+Sie erarbeiten einen Kurzvortrag zu einem Thema der Web-Security.
+
 Siehe Aufgabenblatt auf Moodle: "Aufgabe Referat 'Web-Bedrohungen'
 
 **Themen:**
@@ -48,15 +55,14 @@ Siehe Aufgabenblatt auf Moodle: "Aufgabe Referat 'Web-Bedrohungen'
 
 **Ziel:**
 
-Sie kennen die Gefahr einer Web-Bedrohung und können Gegenmassnahmen ergreifen.
-Sie können die Bedrohung sowie die Gegenmassnahme erklären.
+* Sie kennen die Gefahr einer Web-Bedrohung und können Gegenmassnahmen ergreifen.
+* Sie können die Bedrohung sowie die Gegenmassnahme erklären.
 
 Wir losen die Themen aus.
 
 **Vorträge:**
 
-* 14.11.2018 (3x)
-* 21.11.2018 (3x)
+* 13.11.2019 (3x)
 
 </textarea>
 </section>
@@ -72,15 +78,34 @@ Wir losen die Themen aus.
 
 Stellen sie sich folgendes Szenario eines Seitenaufrufs im Internet von zwei unterschiedlichen Benutzern vor:
 
+<style>
+    .small-p {
+        margin-bottom: 1.5em !important;
+    }
+</style>
+<div style="display: flex">
 <img src="request_example.png" width="40%" />
+<div style="margin-left: 10px">
+    <h3>Fragen:</h3>
+    <ul>
+        <li class="small-p">Sie sehen hier mehrere Requests von unterschiedlichen Clients.<br />
+            <strong>Aufgrund welcher (HTTP-)Informationen "weiss" der Server, welchen Client er nun gerade bedient?</strong>
+        </li>
+        <li class="small-p">
+            Was setzt eine solche Identifizierung des Clients (Browser, User) auf der Server-Seite voraus?
+        </li>
+        <li class="small-p">
+            Was setzt eine solche Identifizierung des Clients (Browser, User) auf der Client-Seite voraus?
+        </li>
+        <li class="small-p">
+            Sieht das HTTP-Protokoll ünerhaupt eine Client-Identifizierung vor? Wenn ja, wie?
+        </li>
+    </ul>
+</div>
+</div>
 
-
-**Fragen:**
-
-* Sieht das HTTP-Protokoll eine Client-Identifizierung vor? Wenn ja, wie?
-* Dies sind ja mehrere Requests. Wie kann die Applikation über mehrere Requests hinweg Informationen über bestimmte Clients "aufbewahren"?
-* Was setzt dies auf der Server-Seite voraus?
-* Was setzt dies auf der Client (User, Browser)-Seite voraus?
+<i class="far fa-hand-point-right"></i> Diskutieren Sie diese Fragen kurz in der Klasse, wir besprechen
+Ihre Antworten gleich im Anschluss.
 
 </textarea>
 </section>
@@ -156,9 +181,11 @@ Der einzige Weg, einen Benutzer wieder zu erkennen, führt über eine Art „Tic
 
 **Wie wird der Session Key übermittelt?**
 
-Es gibt verschiedene Wege, wie nun der Session Key übermittelt werden kann. Eine Möglichkeit, welche sich etabliert hat und fester Bestandteil von Browsern und PHP ist, ist via „Session Cookie“:
+Es gibt verschiedene Wege, wie nun der Session Key übermittelt werden kann. Eine Möglichkeit,
+welche sich etabliert hat und fester Bestandteil von Browsern und Sprachen wie PHP ist,
+ist via **„Session Cookie“**:
 
-Ein Cookie ist ein Textschnippsel, welcher die besuchte Webseite / der Web-Server im Browser des Users „platziert“. Das Cookie wird vom Web-Server erzeugt und als Antwort auf einen Request im HTTP-Header mitgeschickt.
+Ein **Cookie** ist ein Textschnippsel, welcher die besuchte Webseite / der Web-Server im Browser des Users „platziert“. Das Cookie wird vom Web-Server erzeugt und als Antwort auf einen Request im HTTP-Header mitgeschickt.
 Der Web-Browser sendet nun den Inhalt dieses Text-Schnippsels **bei allen weiteren Requests** zu dieser Web-Seite automatisch wieder mit, ebenfalls als Teil des HTTP-Headers.
 
 <img src="session_log.png" width="100%" />

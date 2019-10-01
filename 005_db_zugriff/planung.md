@@ -1,4 +1,4 @@
-Detailplan Lektion 5 - 12.09.2018 (Woche 37)
+Detailplan Lektion 5 - 18.09.2019
 ============================================
 
 Material

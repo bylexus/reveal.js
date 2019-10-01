@@ -45,6 +45,7 @@ und bereits viel zur Sicherheit Ihrer Applikation beitragen:
 * Programmfehler / Programminformationen unterdrücken / behandeln
 * Passwörter nie im Klartext speichern
 * direkte Links auf vertrauliche Dateien unterbinden
+* Speichern Sie nur Daten, die Sie wirklich benötigen!
 
 Wir erarbeiten 2 Themen in einer kurzen Gruppenarbeit, und tragen die Ergebnisse dann zusammen.
 
@@ -102,6 +103,7 @@ Dies sind die einfachsten, aber bereits sehr effektiven Methoden, um Angriffe / 
 * Programmfehler / Informationen unterdrücken / behandeln
 * direkte Links auf vertrauliche Dateien unterbinden
 * Passwörter nie im Klartext speichern
+* Speichern Sie nur Daten, die Sie wirklich benötigen!
 
 **Programmfehler / Programminformationen unterdrücken: Stealth Mode!**
 
@@ -320,6 +322,39 @@ $ok = password_verify('Mein eingegebenes Passwort','$2y$10$H2dv6O7Oo2yFnarLhDwz4
 ```
 
 Diese Funktion verwendet automatisch einen modernen, sicheren Hash-Algorithmus.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Datenspeicherung, Zugriffs-Schutz
+=============================
+
+**Speichern Sie nur Daten, die Sie wirklich benötigen,** und schützen Sie den Zugriff
+auf diese.
+
+Gerade wenn Sie personenbezogene Daten verarbeiten, ist dies umso wichtiger: Benötigen Sie
+wirklich ein Foto? Eine Sozialversicherungs-Nummer? Eine Telefonnummer? Wenn nicht,
+**erfassen Sie diese nicht!**.
+
+** Angriffsmethode: _Direct Object Reference_**
+
+Beim _Direct Object Reference_-Angriff nutzt der Angreifer aus, dass Sie bestimmte
+Ressourcen via URL / Parameter referenzieren können. Beispiel:
+
+Sie rufen Ihr persönliches User-Profil ab. Dabei ruft die Applikation folgende URL auf:
+
+    https://my-app/users/profile?id=233
+
+Die so mitgelieferte ID Ihres Benutzers liefert Ihre Profildaten. Ein Angreifer kann nun versuchen,
+den Aufruf einfach mit einer anderen User-ID auszuführen:
+
+    https://my-app/users/profile?id=999
+
+
+**Sie müssen also durch Berechtigungsprüfungen auf der _Server-Seite_ sicherstellen,
+dass solche Direktzugriff nur von berechtigten Benutzern erfolgen kann!**
 
 </textarea>
 </section>

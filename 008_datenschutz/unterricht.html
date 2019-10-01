@@ -1,5 +1,5 @@
 {% extends "../_base_template.html" %}
-{% block title %}Lektion 9 - Datenschutz {% endblock %}
+{% block title %}Lektion 8 - Datenschutz {% endblock %}
 
 {% block sections %}
 <section data-markdown>
@@ -11,7 +11,8 @@ Heutiges Ziel
 --------------
 
 * Sie wissen, was der Begriff „Datenschutz“ bedeutet
-* Sie kennen die Begriffe „Vertraulichkeit“, „Integrität“, „Authentizität“ und „Verfügbarkeit“ und können diese erklären
+* Sie kennen die Begriffe „Vertraulichkeit“, „Integrität“, „Authentizität“ und „Verfügbarkeit“
+und können diese erklären
 </textarea>
 </section>
 
@@ -24,37 +25,19 @@ Heutiges Ziel
 
 „Datenschutz“ - „Datensicherheit“ - was bedeutet dies?
 
+<img src="security_schaubild.jpg" width="40%" />
+
 _Fragen an die Schüler:_
 
 * Was bedeutet für Sie Datenschutz?
-  * Informationen schützen
-  * Technologischer Schutz
-  * Niemand hat Zugriff auf mein Konto
-  * Niemand weiss, was ich (am Computer) mache
-  * Daten vor Missbrauch schützen
-
 * Was bedeutet für Sie Datensicherheit?
-  * Daten vor Änderungen /  Löschen schützen (vor "Sauron")
-  * Nur ich weiss meine wichtigen Daten
-  * Das Recht, vergessen zu werden
-  * Daten werden sicher abgelegt: z.B. Passwörter als Hash
-  * dass ich nicht überwacht werden / persönliche Daten bleiben persönlich
-
 * Vor wem müssen Sie Daten schützen?
-  * vor Hackern / vor Verbrechern
-  * vor allen "nicht befugten" Leuten
-  * Vor dem Staat
-  * BigData: vor grossen Datensammlern
-
-
 * Welche Daten müssen Sie schützen?
-  * persönliche Daten (die nur mich angehen)
-  * geschäftsrelevante Daten
-  * Staatsdaten (z.B. Sicherheits-Entscheide, Steuderdaten)
-  * Verhalten am Computer
 
-→ wir sammeln Input in der Klasse. Überlegen Sie sich kurz ein paar Stichworte zu den Fragen,
-  und wir sammeln diese dann gemeinsam.
+<i class="far fa-hand-point-right"></i> Wir sammeln Input in der Klasse in einem **Padlet**:
+
+
+https://padlet.com/alex_schenkel/kgu9m119p67b <!-- .element class="enlarge" -->
 
 </textarea>
 </section>
@@ -71,21 +54,27 @@ _Fragen an die Schüler:_
 _Fragen an die Schüler:_ (Antworten vom letzten Jahr)
 
 * Was bedeutet für Sie Datenschutz?
-  * Daten nicht an Dritte weitergeben
-  * Verwendung von Daten kontrollieren
-  * Daten sicher abgelegt (im Sinne von „nicht für jedermann zugänglich“)
-  * Datenmanipulation verhindern
+  * Informationen schützen
+  * Technologischer Schutz
+  * Niemand hat Zugriff auf mein Konto
+  * Niemand weiss, was ich (am Computer) mache
+  * Daten vor Missbrauch schützen
 * Was bedeutet für Sie Datensicherheit?
-  * Unterschied: technische Umsetzung des Datenschutzes
-  * Zugriff durch andere verhindern / einschränken
-  * Verfügbarkeit
+  * Daten vor Änderungen /  Löschen schützen (vor "Sauron")
+  * Nur ich weiss meine wichtigen Daten
+  * Das Recht, vergessen zu werden
+  * Daten werden sicher abgelegt: z.B. Passwörter als Hash
+  * dass ich nicht überwacht werden / persönliche Daten bleiben persönlich
 * Vor wem müssen Sie Daten schützen?
-  * Leute, die nichts mit dem „Angebot“ zu tun haben
-  * Hackern
-  * Marketing-Nutzung der Daten
-  * Schutz vor technischen Problemen
+  * vor Hackern / vor Verbrechern
+  * vor allen "nicht befugten" Leuten
+  * Vor dem Staat
+  * BigData: vor grossen Datensammlern
 * Welche Daten müssen Sie schützen?
-  * ...
+  * persönliche Daten (die nur mich angehen)
+  * geschäftsrelevante Daten
+  * Staatsdaten (z.B. Sicherheits-Entscheide, Steuderdaten)
+  * Verhalten am Computer
 
 </textarea>
 </section>
@@ -201,24 +190,44 @@ um die geforderte Verfügbarkeit garantieren zu können.
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Rechtliche Vorschriften
+<i class="fas fa-graduation-cap"></i> Schutz von Daten
 =============================
 
-**Datenschutzvorschriften** bestimmen nicht das WIE, sondern nur das WAS und IN WELCHEM MASSE geschützt werden muss.
+Für den Datenschutz und die Datensicherheit bestehen verschiedene Möglichkeiten:
 
-Als Grundlage dient immer das **Schweizerische Datenschutz-Gesetzt (DSG)**:
+<strong>§</strong> Rechtliche Regelungen
+------------------------
 
-https://www.admin.ch/opc/de/classified-compilation/19920153/index.html
+Rechtliche Regelungen und Vorschriften definieren die Rahmenbedingungen,
+wie mit (ihren) Daten umgegangen werden darf.
 
-Es gibt aber auch Vorschriften, die verlangen, dass z.B. gewisse Datenbestände (Buchhaltung, Log-Daten) eine bestimme Zeit lang aufbewahrt werden.
+Dies beinhaltet:
 
-Aktuelles Beispiel: **DSVGO** (Datenschutz-Grundgesetz der EU):
+* Gesetzte (siehe nächste Folien)
+* interne Vorschriften (Non-Disclosure Agreements etc)
+* Auskunftsrechte und -Pflichten eines Users / Anbieters
+* ...
 
-https://dsgvo-gesetz.de/
+<i class="fas fa-cogs"></i> Technische Massnahmen
+------------------------
 
-Hier wird vor allem geregelt, wer was mit welchen Daten wo/mit wem machen darf.
+Neben Regulatorien müssen Sie natürlich auch auf technischem Weg den Datenschutz und die Datensicherheit gewährleisten. Wir sehen die Möglichkeiten auf den nächsten Folien.
+
+<i class="far fa-user"></i> Speicherung von Daten
+------------------------------------------------------
+
+Der beste Datenschutz ist, Daten **nicht** zu speichern: Was Sie nicht haben,
+kann Ihnen auch nicht abhanden kommen:
+
+<i class="far fa-hand-point-right"></i> Speichern Sie daher nur Daten, die Sie auch
+wirklich benötigen, _solange_ sie sie benötigen!
+
+* Brauchen Sie wirklich die private UND die mobile Telefonnummer Ihrer User?
+* Brauchen Sie wirklich eine Sozialversicherungsnummer UND ein Geburtsdatum?
+* Können Sie Personendaten nach Abschluss einer Support-Anfrage nicht wieder löschen?
 </textarea>
 </section>
+
 
 <section data-markdown>
 <textarea data-template>
@@ -228,7 +237,7 @@ Hier wird vor allem geregelt, wer was mit welchen Daten wo/mit wem machen darf.
 Wie wird nun dieser Datenschutz sichergestellt? Die Vorschriften definieren nicht, wie die Daten geschützt werden müssen,
 sondern nur was und wie stark dieser Schutz sein muss.
 
-**Stellen Sie Regeln auf**
+**§ Stellen Sie Regeln auf**
 
 Viele Datenschutz-Massnahmen lassen sich mit verbindlichen Regeln lösen:
 
@@ -238,17 +247,15 @@ Es muss aber klar geregelt sein, was diese Mitarbeiter mit den Daten dürfen.
 
 Diese Vorschriften müssen Sie allerdings auch durchsetzen / kontrollieren.
 
-**Technische Massnahmen**
+<i class="fas fa-cogs"></i> **Technische Massnahmen**
 
 „Vertrauen ist gut, Kontrolle ist besser“: So könnte man technische Massnahmen verstehen:
 Durch technische Massnahmen wird sichergestellt, dass die „Vertraulichkeit“, „Integrität“, „Authentizität“ und
 „Verfügbarkeit“ auch durchgesetzt werden kann.
 
-Welche technischen Massnahmen kennen Sie, um diese 4 Begriffe des Datenschutzes eingehalten werden können?
+Welche technischen Massnahmen kennen Sie, um diese 4 Begriffe des Datenschutzes umzusetzen?
 
-<i class="far fa-hand-point-right"></i> Zählen Sie auf!
-
-(Diskussion mit der Klasse / Flipchart)
+<i class="far fa-hand-point-right"></i> https://padlet.com/alex_schenkel/bvpwovao9zfh <!-- .element class="enlarge" -->
 
 </textarea>
 </section>
@@ -280,6 +287,31 @@ Welche technischen Massnahmen kennen Sie, um diese 4 Begriffe des Datenschutzes 
 
 </textarea>
 </section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Rechtliche Vorschriften
+=============================
+
+**Datenschutzvorschriften** bestimmen nicht das WIE, sondern nur das WAS und IN WELCHEM MASSE geschützt werden muss.
+
+Als Grundlage dient immer das **Schweizerische Datenschutz-Gesetzt (DSG)**:
+
+https://www.admin.ch/opc/de/classified-compilation/19920153/index.html
+
+Es gibt aber auch Vorschriften, die verlangen, dass z.B. gewisse Datenbestände (Buchhaltung, Log-Daten) eine bestimme Zeit lang aufbewahrt werden.
+
+Aktuelles Beispiel: **DSVGO** (Datenschutz-Grundgesetz der EU):
+
+https://dsgvo-gesetz.de/
+
+Hier wird vor allem geregelt, wer was mit welchen Daten wo/mit wem machen darf.
+
+<i class="far fa-hand-point-right"></i> Datenschutzvorschriften und Datensicherheitsvorschriften sind ein sehr wichtiges Instrument, und die Grundlage für die technische Umsetzung: Sie definieren schlussendlich
+die technischen Massnahmen, welche Sie treffen **müssen**.
+</textarea>
+</section>
+
 
 <section data-markdown>
 <textarea data-template>

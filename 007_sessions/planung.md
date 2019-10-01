@@ -1,4 +1,4 @@
-Detailplan Lektion 8 - 03.10.2018 (Woche 40)
+Detailplan Lektion 7 - 02.10.2019
 ============================================
 
 Material
@@ -30,10 +30,8 @@ Bemerkung zum Unterricht
 ------------------------
 
 
-* Trottmann: XSS, 21.11.
-* Thymnios: XRFS, 21.11.
-* SQL INjection, 21.11.
-* Directory Traversal, 14.11.
-* Session Hijacking, 14.11,
-* Brute Force, Brunner, 14.11.
+Themen-Auslosung:
 
+* Kessler:
+* Diggelmann:
+* Turkovic:

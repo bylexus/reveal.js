@@ -65,27 +65,41 @@ Eine Web-Applikation besteht (meist) aus vielen Funktionen / vielen Seiten. Ziel
 
 <i class="far fa-hand-point-right"></i> Die Funktionalität wird jeweils vom Browser angefordert (z.B. indem der User auf einen Link klickt, sich einloggt etc.).
 
-<i class="far fa-hand-point-right"></i> Wir müssen nun dafür sorgen, dass Requests vom Browser von der richtigen Business-Logik abgearbeitet werden. <br />**Ziel ist, dass unsere Requests in einer
-dafür vorgesehenen Methode in einem Conroller landen**. Wie können wir dies bewerkstelligen?
+<i class="far fa-hand-point-right"></i> Wir müssen nun dafür sorgen, dass Requests vom Browser von der richtigen Business-Logik abgearbeitet werden. <br />
+**Ziel ist, dass unsere Requests in einer
+dafür vorgesehenen Methode in einer Controller-Klasse landen**.<br /> Wie können wir dies bewerkstelligen?
 
 </textarea>
 </section>
 
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Ablauf eines Requests an den Server (Backend)
+=============================
+
+**Ziel: Der Requests vom Client führt eine dafür vorgesehene Methode in einer Controller-Klasse aus**.
+
+<img src="ablauf_backend.png" width="100%"/>
+
+</textarea>
+</section>
 
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Ablauf eines Requests
 =============================
 
-**Ziel ist, dass unsere Requests in einer dafür vorgesehenen Methode in einem Conroller landen**
+**Ziel: Der Requests vom Client führt eine dafür vorgesehene Methode in einer Controller-Klasse aus**.
 
 Unser MVC-Framework setzt dies in folgenden Schritten um:
 
-**1. Dispatching:**
+**1. Dispatching: Start, Einstiegspunkt**
 
-Alle Requests landen an einem Entry Point (index.php): Aufgabe dieses Entry Points ist es, das MVC-Framework „in Gang“ zu bringen: Anhand des Requests / der Route muss die richtige Controller-Klasse instanziert werden, und darin die richtige Action-Funktion aufgerufen werden.
+Alle Requests landen an einem Entry Point (index.php): Aufgabe dieses Entry Points ist es, das MVC-Framework
+„in Gang“ zu bringen: Der Request wird soweit analysiert, um das Routing (Schritt 2) anzustossen: URL extrahieren, Parameter auslesen etc.
 
-**2. Routing:**
+**2. Routing: Controller/Action aufrufen**
 
 „Routing“ nennt man das Zuweisen einer URL-Route (eines URL-Pfades) zum richtigen Controller / zur richtigen Action-Funktion. Ein Router entscheidet anhand des Requests, welcher Controller diesen Request abarbeiten wird. Der Router wird im Dispatching instanziert / abgefragt.
 
@@ -94,22 +108,26 @@ Der Router nimmt folgende Parameter des Requests für die Ermittlung der Route:
 * Die HTTP-Methode (z.B. „GET“)
 * weitere HTTP-Parameter (z.B. `?id=5&name=alex`)
 
-**3. Controller:**
+**3. Controller: Request abhandeln**
 
-Nachdem der Controller gefunden wurde, übergibt das Dispatching die Kontrolle an ihn, resp. an die richtige Action-Funktion. Im Normalfall handelt eine Controller-Klasse mehrere Routen ab (z.B. alle Routen, um denen es um Personen-Requests geht), und innerhalb des Controllers wird pro Route eine „Action-Funktion“ aufgerufen, eine Funktion, welche den Request tatsächlich behandelt.
+Nachdem der Controller gefunden wurde, übergibt das Dispatching die Kontrolle an ihn, resp.
+an die richtige Action-Funktion.
+Im Normalfall handelt eine Controller-Klasse mehrere Routen ab (z.B. alle Routen, um denen es um Personen-Requests geht),
+und innerhalb des Controllers wird pro Route eine „Action-Funktion“ aufgerufen, eine Funktion, welche den Request
+tatsächlich behandelt.
 
+**4. View: Output generieren (z.B. HTML)**
 
-**4. View:**
-
-Es ist nun die Aufgabe der Action-Funktion im Controller, die notwendige Business-Logik umzusetzen: Sie sucht die für den Request notwendigen Daten zusammen (Model), und instanziert eine View-Klasse.
+Es ist nun die Aufgabe der Action-Funktion im Controller, die notwendige Business-Logik umzusetzen:
+Sie sucht die für den Request notwendigen Daten zusammen (Model), und instanziert eine View-Klasse.
 Die View-Klasse sorgt für die Aufbereitung der Daten in das Ausgabe-Format (z.B. in HTML).
-
 
 **5. Ausgabe an den Client**
 
 Nachdem die View den Output generiert hat, wird dieser an den Client ausgegeben. Der Request ist somit mit einer Response beantwortet und damit abgeschlossen.
 
 </textarea>
+</section>
 </section>
 
 <section data-markdown>
@@ -157,7 +175,19 @@ Versuchen Sie nun, folgendes programmatisch umzusetzen:
 * ** Routen definieren**: Wie definieren Sie Routen? Welche Datenstruktur ist geeignet, um anhand einer URL den richtigen Controller / die richtige Methode zu finden?
 * ** Controller finden**: Programmieren Sie die Logik, um anhand der requesteten URL den richtigen Controller zu finden / zu instanzieren.
 * ** Action-Methode aufrufen**: Programmieren Sie die Logik, um schlussendlich die richtige Methode im instanzierten Controller aufzurufen.
-* **Ziel:** Ihr Programm kann anhand der URL den richtigen Controller instanzieren, die richtige Methode aufrufen und aus dieser ein Stückchen HTML ausgeben.
+* **Ziel:**
+  * Ihr Programm findet anhand der Route die richtige Controller-Klasse und die Ziel-Methode (Action-Methode).
+  * Ihr Programm kann den gefundenen Controller instanzieren
+  * Ihr Programm kann die richtige Methode in diesem Controller aufrufen
+  * Ihre Action-Methode kann eine Response (HTML) ausgeben
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Umsetzung in unserem Applikations-Skelett
+=============================
 
 ** Hinweise für PHP**:
 
@@ -166,7 +196,7 @@ Versuchen Sie nun, folgendes programmatisch umzusetzen:
 <?php
    // Controller M151\Controller\MeinController instanzieren:
    $controllerName = 'M151\Controller\MeinController';
-   $controllerInstanz = new $controllername();
+   $controllerInstanz = new $controllerName();
 ```
 
 * Aufrufen einer Objekt-Methode anhand ihres Namens:

@@ -29,9 +29,18 @@ Detailplan
 08:20 ( 5min )      Begrüssung, Beschreibung des Moduls 151, Ziel
 08:25 ( ca. 5min )  Jahresplan, Hinweise auf Kurzreferate und Abgabetermine, Moodle
 08:30 (rest)        Einführung in Projekt-Bootstrap (Inbetriebnahme, .htaccess-Rewrite, index.php)
-  * Setup Entwicklungsumgebung mit allen benötigten Tools
+  * Setup Entwicklungsumgebung mit allen benötigten Tools:
+    * W/MAMP-Stack
+    * Github Classroom
   * Inbetriebnahme Skeleton, .htaccess
   * Erklärung composer, autoloading
+    * Beispiel mit Test-Klasse aufzeigen
   * Namespacing, Klassen
 09:55 Ende
 
+Ziel
+----
+
+- Alle Schüler haben eine lauffähige Apache-MySQL-Installation
+- Alle Schüler haben das Skeleton-Template von Git Classroom geklont
+- Alle Schüler konnten das Skeleton-Projekt in Betrieb nehmen
