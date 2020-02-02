@@ -47,6 +47,11 @@ Wir operieren also mit **Werkzeugen** (Einzelschritt) auf einer Art **Datenstruk
 
 Die einfachsten Datentypen in Programmiersprachen nenn man **"Skalare Datentypen"**. Unter skalaren Datentypen versteht man Datentypen, die einen einzelnen Wert speichern können. Man kennt sie auch unter dem Begriff "primitive Datentypen".
 
+> Ein Skalar ist eine mathematische Größe, die allein durch die Angabe eines Zahlenwertes charakterisiert ist<br />
+(Wikipedia, https://de.wikipedia.org/wiki/Skalar_(Mathematik))
+
+Ein Computer-Memory kann grundsätzlich "nur" Zahlen speichern, ein Prozessor kann "nur" Zahlen verarbeiten. Dies sind also die **skalaren Datentypen**. Alle weiteren Strukturen bauen auf diesen einfachen Datentypen auf.
+
 Was kennen Sie für skalare (= primitive) Datentypen in C, resp. Java? Zählen Sie auf!
 
 </textarea>
@@ -56,9 +61,6 @@ Was kennen Sie für skalare (= primitive) Datentypen in C, resp. Java? Zählen S
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Datentypen
 =============================
-
-
-Was kennen Sie für skalare (= primitive) Datentypen in C, resp. Java? Zählen Sie auf!
 
 Wir kennen in Java z.B. folgende skalare Typen:
 
@@ -76,16 +78,13 @@ Folgende Datentypen sind bereits nicht mehr skalar, resp. einfach:
 <i class="far fa-hand-point-right"></i> Schauen wir uns Arrays mit LEGO<sup>&reg;</sup> etwas genauer an.
 Finden Sie Antworten zu folgenden Fragen:
 
-* welche Eigenschaften hat ein Array?
-* wie sind Arrays im Speicher abgelegt?
-* können Sie Elemente an beliebiger Stelle einfügen / entfernen?
-* können Sie Arrays erweitern / kürzen?
-* wie fügen Sie neue / weitere Elemente ein (mehr, als im Array platz haben?)
-* wie entfernen Sie Elemente aus dem Array?
-* Zusammenfassend: Was ist gut (einfach, schnell), was ist nicht gut (kompliziert, langsam) an Arrays?
-
-<hr />
-Reichen diese Datentypen schon aus? Können Sie damit z.B. eine Struktur "Koordinaten (x/y)" abbilden?
+1. welche Eigenschaften hat ein Array?
+1. wie sind Arrays im Speicher abgelegt?
+1. können Sie Elemente an beliebiger Stelle einfügen / entfernen?
+1. können Sie Arrays erweitern / kürzen?
+1. wie fügen Sie neue / weitere Elemente ein (mehr, als im Array platz haben?)
+1. wie entfernen Sie Elemente aus dem Array?
+1. Zusammenfassend: Was ist gut (einfach, schnell), was ist nicht gut (kompliziert, langsam) an Arrays?
 
 </textarea>
 </section>
@@ -118,7 +117,7 @@ int[] b = {1,2,3,4,5}; // erzeugt einen neuen Array mit 5 vordefinierten int-Wer
 int[] a = new int[5]; // erzeugt einen neuen Array mit int-Werten mit 5 Elementen im Heap
 
 // Werte des Arrays setzten:
-a[2] = 3; // settzt den 3. Wert im Array (Achtung: Elemente beginnen bei Stelle 0!)
+a[2] = 3; // setzt den 3. Wert im Array (Achtung: Elemente beginnen bei Stelle 0!)
 
 // einzelnen Wert auslesen:
 int wert = a[3]; // liest den 4. Wert im Array aus und speichert ihn in einer lokalen Variable
@@ -191,7 +190,7 @@ String teil = s1.substring(1,3); // ergibt "le"
 <i class="fas fa-graduation-cap"></i> Komplexe Datentypen
 =============================
 
-Zurück zur Frage: Reichen diese Datentypen für komplexe Probleme schon aus? Können Sie damit z.B. eine Struktur "Koordinaten (x/y)" abbilden?
+Reichen diese Datentypen für komplexe Probleme schon aus? Können Sie damit z.B. eine Struktur "Koordinaten (x/y)" abbilden?
 
 Wir benötigen also ein Werkzeug, um aus einfachen Datentypen komplexere Datentypen zusammenzustellen.
 Beispielsweise besteht ein Datentyp "Koordinate" aus zwei einfachen Zahlen-Werten für X und Y:
@@ -212,7 +211,7 @@ Wie können Sie diese Datenstruktur in Java abbilden?
 <i class="fas fa-graduation-cap"></i> Komplexe Datentypen
 =============================
 
-In Java kennen wir aus der Objektorientierten Programmierung das Konzept der **Klassen**: Klassen sind "Baupläne" für später instanzierte (tatsächlich im Speicher vorhandene) Objekte.
+In Java kennen wir aus der Objektorientierten Programmierung das Konzept der **Klassen**: Klassen sind "Baupläne" für später instanzierte (tatsächlich im Speicher vorhandene) **Objekte**.
 Ähnlich wie der Bauplan eines Hauses (= Klasse) zu einem oder mehreren tatsächlich gebauten Haus (= Objekt) führt.
 
 **Notiz:** Wir behandeln hier Java-Klassen sehr oberflächlich, für unsere Algorithmen optimiert. OO-Programmierung ist ein Kapitel für sich und wird Ihnen in einem separaten Modul beigebracht.
@@ -240,22 +239,31 @@ class Koordinate {
 ```
 
 Wir haben also bereits einen komplexen Datentyp modelliert, welcher aus einfachen, skalaren Typen zusammengesetzt ist.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Komplexe Datentypen
+=============================
 
 **Verwendung**:
 
 Nun können wir den neuen Datentyp in unserem Java-Programm verwenden:
 
 ```java
-// Erzeugen einer Instanz unseres Datentyps:
-Koordinate frauenfeld = new Koordinate();
+// Erzeugen einer Instanz unseres Datentyps (Neues Objekt aus Klasse erzeugen):
+Koordinate frauenfeld = new Koordinate(); // Referenz auf Objekt 'frauenfeld' von Klasse 'Koordinate'
 
-// Beschreiben von Werten:
+// Setzen von öffentlichen Werten:
 frauenfeld.X = 709835;
 frauenfeld.Y = 268281;
 
 // Anwenden von Funktionen:
 System.out.println("Koordinaten Frauenfeld: " + frauenfeld.out());
 ```
+
+<img src="koordinate_objekt.png" />
 
 Kennen Sie weitere komplexe Datentypen, die in Java schon vordefiniert sind?
 
@@ -304,7 +312,7 @@ float schnitt = n.summe() / n.noten.length;
 </section>
 </section>
 
-
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Stack
@@ -318,6 +326,14 @@ Ein Stack ist ein Container für einzelne Werte / Objekte nach dem Prinzip "Firs
 * man kann jeweils ein Element zurückholen (Pop): Es wird das zuletzt hinzugefügte zurückgegeben und aus dem Stack entfernt.
 
 <img src="stack.png" width=400 />
+</textarea>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Stack
+=============================
 
 Eine Stack-Klasse bietet also die Funktionen **`push()`** und **`pop()`** an, und könnte etwa so aussehen:
 
@@ -335,6 +351,7 @@ public class Stack {
 ```
 
 </textarea>
+</section>
 </section>
 
 <section data-markdown>

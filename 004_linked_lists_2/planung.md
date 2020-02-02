@@ -1,5 +1,5 @@
 
-Detailplan Lektion 4 - 03.09.2018
+Detailplan Lektion 4 - 24.02.2020
 ===========================================
 
 Material
@@ -7,7 +7,6 @@ Material
 
 * Foliensatz (Moodle)
 * Eclipse
-* Script von C. Inauen auf Moodle
 * Beispiellösung LinkedList
 * Übungen auf Moodle
 
@@ -16,7 +15,7 @@ Ziele
 
 * Sie verstehen den Aufbau einer Linked List
 * Sie können eine Linked List in Java selber programmieren
-* Sie haben die fehlenden Methoden der Linked List ausprogrammiert
+* Sie können gängige Operationen / Methoden von LinkedLists implementieren
 
 Hausaufgaben
 --------------
@@ -26,14 +25,13 @@ Hausaufgaben
 Detailplan
 ----------
 
-Lektion: 09:25 - 10:10, 10:15 - 11:00
+Lektion: 12:55 - 14:30
 
-* 09:25 (ca. 5min): Begrüssung, Ziel
-* 09:30 (ca 30min): Besprechung Implementationen zu Linked List
-* 10:00 (ca 15min): Vergleich mit Arrays
-* 10:15 (5 min): pause
-* 10:20 (Rest): Weitere Übungen
-* 11:00: Ende
+* 12:55 (ca. 5min): Begrüssung, Ziel
+* 13:00 (ca 30min): Besprechung Implementationen zu Linked List
+* 13:30 (ca 15min): Vergleich mit Arrays
+* 13:45 (Rest): Weitere Übungen
+* 14:25: Ende
 
 Ideen
 --------

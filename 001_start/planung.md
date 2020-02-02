@@ -1,4 +1,4 @@
-Detailplan Lektion 1 - 13.08.2018
+Detailplan Lektion 1 - 03.02.2020
 ===========================================
 
 Material
@@ -26,7 +26,7 @@ Hausaufgaben
 Detailplan
 ----------
 
-Lektion: 09:25 - 10:10, 10:15 - 11:00
+Lektion: 12:55 - 14:30 (90min, 5min Pause)
 
 * 09:25 (ca. 5min): Begrüssung, Ziel ( Folie mit meinen Daten, Folien mit den Links zu Unterrichs-Unterlagen)
 * 09:30: (ca. 5min): Vorstellungsrunde ( Material: Plan Namensliste )

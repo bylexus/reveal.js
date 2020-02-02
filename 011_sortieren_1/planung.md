@@ -14,6 +14,9 @@ Material
 * LEGO - verschieden hohe Türme, Array, für Sortieren
 * Aufgaben / Merkblätter auf Moodle zu BubbleSort / SelectionSort
 
+Infos:
+  * Algorithmen anschaulich: http://algostructure.com/sorting/selectionsort.php
+
 Ziele
 -----
 

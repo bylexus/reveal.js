@@ -13,6 +13,7 @@ Material
   * MazeSolver - Fragen beantworten
 * LEGO - verschieden hohe Türme, Array, für Sortieren
 * Aufgaben / Merkblätter auf Moodle zu InsertionSort, MergeSort, QuickSort
+* Quick Sort with Hungarians: https://www.youtube.com/watch?v=ywWBy6J5gz8
 
 Ziele
 -----

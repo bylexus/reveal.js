@@ -9,8 +9,8 @@
 
 Ziel der Lektion:
 
-* Komplexer Datentyp als Node-Value
 * Sie fühlen sich im Umgang mit Listen sicher - Übungen
+* Anwendung mit komplexem Datentyp: Sortiertes Einfügen mit `Comparator`
 
 </textarea>
 </section>
@@ -22,104 +22,203 @@ Ziel der Lektion:
 
 Besprechung Hausaufgaben:
 
-* Implementation von count(), find(), getPositionOfNode(), swap() und getNodeAt() fertigstellen
+* **`count()`**-Methode
+* **`find(Wert)`**-Methode
+* **`clear()`**-Methode
+* **`swap(Wert1, Wert2)`**-Methode
+* **`getAt(index)`** und eine **`setAt(index, Wert)`**-Methode
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists 3 - Status
+=============================
+
+Sie sollten nun den Umgang mit LinkedLists verstanden haben:
+
+* Sie haben verstanden, wie Linked-Lists funktionieren
+* Sie sind in der Lage, eine Linked-List mit List-Nodes zu erstellen
+* Sie verstehen die in den vorhergehenden Lektionen erstellten Methoden
+  der `LinkedList`-Klasse
+
+<i class="far fa-hand-point-right"></i> Gibt es noch Fragen / Unklarheiten?
 
 </textarea>
 </section>
 
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Linked Lists - komplexe Datentypen als Werte
+<i class="fas fa-graduation-cap"></i> Linked Lists 3 - Übungen
 =============================
 
-Bis anhin haben wir in unserer Linked List nur Integer-Werte gespeichert. Damit können wir noch nicht viel anfangen. Eine LinkedList sollte natürlich auch "sinnvolle" Daten speichern können.
+Sie haben nachher noch Zeit, diverse Übungen auf Moodle zu LinkedLists durchzuführen:
 
-Erinnern Sie sich an die 2. Lektion, Thema **Komplexe Datentypen**? Anstelle des Datentyps "int" (Ganzzahl) können wir für unsere ListNode auch komplexe Datentypen verwenden.
-
-**Strings** in Java sind beispielsweise bereits komplexe Datentypen: Strings sind intern Arrays von char-Werten, also einzelnen Zeichen. Der Datentyp String stellt zudem verschiedene Methoden
-für die Verarbeitung zur Verfügung, wie "length()", "equals()", "substring()" etc.
-
-Frage:
-
-* Haben Sie eine Idee, wie Sie unseren LinkedList / ListNode-Code anpassen müssen, um darin Strings zu speichern?
-* Welche Methoden müssen Sie somit anpassen?
+* Array-To-List: Array in LinkedList überführen
+* 2 Listen zu einer neuen Liste verketten
+* Sub-Liste erstellen (von-bis)
+* Listen auf Gleichheit prüfen
+* Komplexe Übung mit Comparator - siehe nachfolgende Folien
 
 </textarea>
 </section>
 
+<section>
 <section data-markdown >
+
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Linked Lists - komplexe Datentypen als Werte
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Anwendung - sortiertes Einfügen
 =============================
 
-Als Erstes sorgen wir dafür, dass unsere ListNode den Datentyp "String" als Daten aufnehmen kann:
+Wir greifen nun schon etwas vor - wir verwenden nun einen so genannten `Comparator`, welchen
+wir später noch im Detail kennen lernen werden.
+
+Wir möchten unserer `LinkedList`-Klasse eine Methode **`appendSorted`** spendieren -
+sie soll Werte in der Liste anfügen, aber richtig sortiert, also an der richtigen Position.
+
+Nur - Was heisst nun "richtig"? Was würden Sie sagen - kann die Liste überhaupt
+wissen, was Sie mit "richtig sortiert" meinen?
+
+Nehmen wir folgende Klasse `Person`, welche den Namen und das Alter einer Person speichern kann:
 
 ```java
-public class ListNode {
-    public String data; // anstatt int
-    public ListNode next;
-    public ListNode prev;
+public class Person {
+	public String name;
+	public int alter;
+
+	public Person(String name, int alter) {
+		this.name = name;
+		this.alter = alter;
+	}
 }
 ```
 
-Nun müssen wir unsere LinkedList-Klasse ebenfalls entsprechend anpassen: Überall dort, wo jetzt int verwenet wird, wird String eingesetzt:
+Wenn wir nun folgende Instanzen generieren, und mit `appendSorted` einfügen wollen -
+nach welchen Kriterien entscheidet die LinkedList nun, welches die "richtige" Einfüge-
+Reihenfolge ist, damit die Werte sortiert eingefügt werden?
 
 ```java
-public class LinkedList {
-    public ListNode head;
+Person p1 = new Person("Sheriff Woody",56);
+Person p2 = new Person("Buzz Lightyear",28);
+Person p3 = new Person("Jessie", 15);
+Person p4 = new Person("Rex", 25);
+Person p5 = new Person("Hamm", 33);
+Person p6 = new Person("Mr. Potato Head",60);
+```
+</textarea>
+</section>
 
-    public ListNode appendNode(String data) {
-        // ....
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Anwendung - sortiertes Einfügen
+=============================
+
+Antwort: **Die LinkedList kann gar nicht wissen, was _richtig sortiert_ bedeutet!**<br />
+Diese Entscheidung liegt bei Ihnen als Anwender der LinkedList-Klasse!
+
+Das ist natürlich ein Problem - <i class="far fa-hand-point-right"></i> Wir müssen also
+der LinkedList irgendwie mitteilen können, nach welchen Kriterien wir vergleichen wollen.
+
+**Aufgabe 1:**
+
+Unabhängig davon, wie genau wir diese Entscheidung zum Vergleich nun vornehmen -
+dazu kommen wir gleich, nehmen Sie mal an es wird der Name alphabetisch verglichen -
+wie sieht Ihre `appendSorted(Wert)`-Methode in Pseudo-Code aus?
+
+(Pseudo-Code: nicht lauffähiger Code, als Ideen-Skizze hingeschrieben)
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Anwendung - sortiertes Einfügen
+=============================
+
+**Aufgabe 2:**
+
+Sie benötigen für das sortierte Einfügen eine Vergleichsmethode, welche
+zwei Werte (der neu einzufügende und ein bestehender) miteinander vergleicht.
+Wie das geschieht, ist Ihnen überlassen: Bsp. können wir bei unseren `Person`-Objekten
+das Alter vergleichen, anstatt den Namen.
+
+Hier kommt das Java-Interface `Comparator` ins Spiel: ein `Comparator` ist eine Methode,
+welche 2 Objekte entgegennimmt, und zurückgibt, welches der beiden "grösser" ist.
+Was "grösser" bedeutet, entscheidet der Anwender des Comparators.
+
+Unsere appendSorted-Methode muss lediglich den Comparator befragen. Dazu entwerfen wir die
+Methode folgendermassen:
+
+```java
+import java.util.Comparator;
+
+public class LinkedList<T> {
+	public ListNode<T> appendSorted(T data, Comparator<T> cmp) {
+        // ..... etwas Code ....
+        if (cmp.compare(wert1, wert2) < 0) {
+            // cmp hat eine Methode compare, welche 2 Werte vom Typ T entgegennimmt.
+            // ist das Ergebnis < 0, ist wert1 kleiner als wert 2.
+        //
     }
-    // .....
+
+    // ...... noch etwas Code ....
 }
 ```
 
-Somit kann unsere LinkedList nun mit Strings umgehen!
+Unsere Methode erhält also _von aussen_ einen Comparator, welche sie einfach
+abfragen kann! Somit überlassen wir es dem Anwender unserer LinkedList,
+die Vergleichslogik zu implementieren, welche wir benötigen, um das Element einzufügen.
 
-**Frage**:
-
-Scheint Ihnen diese Lösung sinnvoll? Wo sehen Sie Probleme / Nachteile?
+** Entwickeln Sie nun die `appendSorted(Wert, Comparator)`-Methode!**
 
 </textarea>
 </section>
 
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Linked Lists - komplexe Datentypen als Werte
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Anwendung - sortiertes Einfügen
 =============================
 
-Mit String als Datentyp haben wir bereits eine mächtige Datenstruktur, welche wir verwenden können. In der folgenden Übung wollen wir dies vertiefen.
+**Aufgabe 3:**
 
-**Übung**
+Nun fehlt noch der wichtigste Schritt - Den Comparator!
 
-* Passen Sie Ihre Linked-List-Struktur so an, dass Sie Strings als Daten speichern kann. Testen Sie die einzelnen Funktionen in einem Beispiel aus.
-* Sortiertes einfügen: Ergänzen Sie Ihre LinkedList-Klasse um die Funktion **"appendSorted(String data)"**:
-  * Sie funktioniert grundsätzlich gleich wie die vorhandene **appendNode**-Funktion: Sie fügt eine neue Node in die Liste ein.
-  * Der entscheidende Unterschied liegt aber an der Einfügeposition: Die neue Node (der neue String) wird alphabetisch eingefügt:<br />
-    Die neue Node soll VOR der Node eingefügt werden, welche im Alphabet nach dem anzufügenden String kommt.
-  * Verwenden Sie dazu die String-Methode **"compareTo(String other)"**: Lesen Sie nach, wie diese Methode funktioniert.
+Um nun unsere Personen nach Alter zu sortieren, müssen Sie als Anwender der LinkedList
+den Comparator zur Verfügung stellen. Unten finden Sie eine leere Implementation -
+Ihre Aufgabe ist es nun, die Comparator-Methode noch zu vervollständigen.
 
+```java
+import java.util.Comparator;
 
-Testen Sie die Liste mit folgenden Werten:
+public class Main {
 
-1. Sheriff Woody
-2. Buzz Lightyear
-3. Jessie
-4. Rex
-5. Hamm
-6. Mr. Potato Head
+	public static void main(String[] args) {
+		LinkedList<Person> l = new LinkedList<>();
+		Comparator<Person> cmp = new Comparator<Person>() {
+			@Override
+			public int compare(Person s1, Person s2) {
+                // ..... hier kommt Ihr Vergleichs-Code rein -
+                // Rückgabewert:
+                // -1 --> s1 ist "kleiner" als s2
+                // 0 --> s1 und s2 sind gleich
+                // 1 --> s1 ist "gröser" als s2
+			}
+		};
 
-Fügen Sie diese Werte nacheinander mit **appendSorted** ein. Ein anschliessendes "printList()" sollte folgendes ausgeben:
+		l.appendSorted(new Person("Sheriff Woody",56), cmp);
+		l.appendSorted(new Person("Buzz Lightyear",28), cmp);
+		l.appendSorted(new Person("Jessie", 15), cmp);
+		l.appendSorted(new Person("Rex", 25), cmp);
+		l.appendSorted(new Person("Hamm", 33), cmp);
+		l.appendSorted(new Person("Mr. Potato Head",60), cmp);
 
-Buzz Lightyear<br />
-Hamm<br />
-Jessie<br />
-Mr. Potato Head<br />
-Rex<br />
-Sheriff Woody<br />
+		l.printList();
+	}
+}
+
+```
 
 </textarea>
+</section>
 </section>
 
 {% endblock %}

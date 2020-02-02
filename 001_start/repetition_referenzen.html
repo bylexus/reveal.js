@@ -13,11 +13,12 @@
 * Was sind Pointer in C?
 * Wie unterscheiden sich die beiden Konzepte?
 
-<img class="fragment" src="stack_heap.png" />
+<img class="fragment" src="stack_heap.png" width="50%" />
 
 </textarea>
 </section>
 
+<section>
 <section data-markdown >
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Repetition Referenzen in Java
@@ -56,20 +57,6 @@ String a = new String("Hallo");
 // Der Variablen b wird nur die Referenz von a zugewiesen!
 String b = a;
 ```
-
-Genau gleich verhält es sich mit Arrays:
-
-```java
-// Neuer Array wird im Heap erzeugt, und die Referenz darauf im Stack in der Variablen  a gespeichert:
-int[] a = new int[5];
-
-// Der Variablen b wird dieselbe Referenz wie a zugewiesen:
-int[] b = a;
-
-// somit verändern wir dasselbe Objekt:
-b[3] = 42;
-```
-
 </textarea>
 </section>
 
@@ -78,7 +65,44 @@ b[3] = 42;
 <i class="fas fa-graduation-cap"></i> Repetition Referenzen in Java
 =============================
 
-Lösen Sie die Aufgaben zu Referenzen auf Moodle (13. August).
+Genau gleich verhält es sich mit Arrays:
+
+```java
+// Neuer Array wird im Heap erzeugt, und die Referenz darauf im Stack in der Variablen  a gespeichert:
+int[] a = {1,2,3,4,5};
+
+// Der Variablen b wird dieselbe Referenz wie a zugewiesen: Der Wert von a ist eine Referenz:
+int[] b = a;
+
+// somit verändern wir dasselbe Objekt, da b dieselbe Referenz enthält:
+b[3] = 42;
+System.out.println(a[3]); // 42
+```
+
+**Anders** ist es bei einfachen (primitiven) Datentypen:
+
+```java
+int a = 5;
+
+int b = a; // Der Wert von a ist keine Referenz, sondern die Zahl 5.
+
+b = 42; //
+System.out.println(a); // 5
+```
+
+Der Wert von einfachen Datentypen sind nicht Referenzen, sondern ganz einfach der Wert.
+Die **einzigen** einfache Datentypen in Java sind Zahlen-Datentypen. **Alles andere sind Referenz-Typen**.
+
+</textarea>
+</section>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Repetition Referenzen in Java
+=============================
+
+Lösen Sie die Aufgaben zu Referenzen auf Moodle.
 
 </textarea>
 </section>

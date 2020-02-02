@@ -11,8 +11,7 @@ Ziel der Lektion:
 
 * Sie verstehen den Aufbau einer Linked List
 * Sie können eine Linked List in Java selber programmieren
-* Sie haben die fehlenden Methoden der Linked List ausprogrammiert
-
+* Sie können gängige Operationen / Methoden von LinkedLists implementieren
 </textarea>
 </section>
 
@@ -23,11 +22,11 @@ Ziel der Lektion:
 
 * Wir schauen uns die Implementationen der List-Funktionen an:
 
-* **`appendNode()`**
+* **`append()`**
 * **`printList()`**
-* **`insertNode()`**
-* **`removeNode()`**
-* **`moveNode()`**
+* **`insert()`**
+* **`remove()`**
+* **`move()`**
 
 </textarea>
 </section>
@@ -40,9 +39,9 @@ Ziel der Lektion:
 
 Rufen sie sich nochmals die folgenden Funktionen ins Gedächtnis:
 
-* `appendNode()`
-* `insertNode()`
-* `removeNode()`
+* `append()`
+* `insert()`
+* `remove()`
 
 Fragen:
 * Können Sie diese ohne Weiteres mit Arrays implementieren?
@@ -60,15 +59,15 @@ Erinnern wir uns an die Einführungslektion:
 
 **Arrays sind:**
 
-* mühsam, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
-* mühsam, wenn man einzelne Elemente einfügen oder entfernen muss
-* super, wenn man auf Elemente zugreifen muss (nach Index)
+* ineffizient, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* ineffizient, wenn man einzelne Elemente einfügen oder entfernen muss
+* effizient, wenn man auf beliebige Elemente zugreifen muss
 
 **Listen sind:**
 
-* super, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
-* super, wenn man einzelne Elemente einfügen oder entfernen muss
-* mühsam, wenn man auf Elemente zugreifen muss (nach Index)
+* effizient, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* effizient, wenn man einzelne Elemente einfügen oder entfernen muss
+* ineffizient, wenn man auf beliebige Elemente zugreifen muss
 
 
 <i class="far fa-hand-point-right"></i> Wir halten also fest:
@@ -98,6 +97,17 @@ braucht es noch ein paar Methoden mehr.
 
 Was denken Sie, könnten noch für Methoden nützlich sein, um die Liste in der Praxis benützen zu können?
 
+<div class="fragment">
+    <p>Folgende Szenarien kommen in der Praxis viel vor:</p>
+    <ul>
+        <li>Sie möchten wissen, **wieviele Elemente** ihre Liste beinhaltet</li>
+        <li>Sie möchten einen bestimmten Wert **suchen**, um das `ListNode`-Objekt zu erhalten</li>
+        <li>Sie möchten die Liste **leeren**</li>
+        <li>Sie möchten Elemente in der Liste **vertauschen** (z.B. zum Sortieren)</li>
+        <li>Sie möchten Elemente an einer **bestimmten Position** (Index) auslesen / setzen</li>
+    </ul>
+</div>
+
 </textarea>
 </section>
 
@@ -106,20 +116,21 @@ Was denken Sie, könnten noch für Methoden nützlich sein, um die Liste in der 
 <i class="fas fa-graduation-cap"></i> Weitere Methoden für die Liste
 =============================
 
+Dies führt zu folgenden zusätzlichen Methoden für unsere `LinkedList`-Klasse:
 z.B.:
 
 * eine **`count()`**-Methode, welche die Anzahl Elemente zurückgibt
-* eine **`find(int wert)`**-Methode, welche eine Node anhand eines Wertes findet
-* eine **`getNodeAt(int position)`**-Methode, welche eine Node an einer bestimmten Position zurückgibt
-* eine **`getPositionOfNode(ListNode node)`**-Methode, welche eine Node an einer bestimmten Position zurückgibt
-* eine **`swap(ListNode node1, ListNode node2)`**-Methode, welche zwei Nodes miteinander austauscht
+* eine **`find(Wert)`**-Methode, welche eine Node anhand eines Wertes findet
+* eine **`clear()`**-Methode, welche alle Nodes in der Liste entfernt
+* eine **`swap(Wert1, Wert2)`**-Methode, welche den Wert1 mit dem Wert2 vertauscht
+* eine **`getAt(index)`** und eine **`setAt(index, Wert)`**-Methode, um Werte an Position `index` zu lesen/setzen
 
-<i class="far fa-hand-point-right"></i> Implementieren Sie diese 5 Methoden in der LinkedList-Klasse!
+<i class="far fa-hand-point-right"></i> Implementieren Sie diese Methoden in der LinkedList-Klasse!
 
 **Bonus-Aufgabe**:
 
 1. Erstellen Sie eine Liste mit beliebigen (zufälligen, siehe `Math.random()`) Werten.
-2. Erstellen Sie eine Methode, um das grösste Element zu finden, und geben Sie dessen Position aus.
+2. Erstellen Sie eine Methode, um das grösste Element zu finden, und geben Sie dieses aus.
 3. Verschieben Sie das Element an das Ende der Liste. Sie haben nun bereits den ersten Schritt
    eines Sortier-Algorithmus entwickelt.<br />
    **Double-Bonus**: Wie müssen Sie vorgehen, um die GESAMTE Liste nach diesem Schema zu sortieren, sodass Sie

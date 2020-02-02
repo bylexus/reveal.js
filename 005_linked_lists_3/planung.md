@@ -1,5 +1,5 @@
 
-Detailplan Lektion 5 - 10.09.2018
+Detailplan Lektion 5 - 02.03.2020
 ===========================================
 
 Material
@@ -7,34 +7,32 @@ Material
 
 * Foliensatz (Moodle)
 * Eclipse
-* Script von C. Inauen auf Moodle
 * Übungen auf Moodle
 
 Ziele
 -----
 
-* Komplexer Datentyp als Node-Value
 * Sie fühlen sich im Umgang mit Listen sicher - Übungen
+* Anwendung mit komplexem Datentyp: Sortiertes Einfügen mit `Comparator`
+* (Methoden für listenübergreifende Operationen)
 
 Hausaufgaben
 --------------
-
-*
 
 
 Detailplan
 ----------
 
-Lektion: 09:25 - 10:10, 10:15 - 11:00
-
-* 09:25 (ca. 5min): Begrüssung, Ziel
-* 09:30 (ca. 30min): Besprechung der Hausaufgaben (count, find, getNodeAt)
-* 10:00 (): Komplexer Datentyp als Wert der Liste: Theorie
-* xx:xx (): Übungen mit komplexen Datentypen
-* 11:00: Ende
+* 12:55 (ca. 5min): Begrüssung, Ziel
+* 13:00 (ca. 30min): Besprechung der Hausaufgaben (count, find, getNodeAt)
+* 13:30 ():
+* 14:30: Ende
 
 Ideen
 --------
 
-* Einführung komplexer Datentyp als Wert: Beispiel: "String": Liste so erweitern, dass dieser Typ verwendet werden kann.
-* appendSorted() umsetzen, mit String als Datentyp
+* Comparator-Anwendung: eigene Klasse (z.B. Person mit Alter)
+* array-to-list
+* 2 Listen zu einer neuen Liste verketten
+* Sub-Liste erstellen (von-bis)
+* Listen auf Gleichheit prüfen

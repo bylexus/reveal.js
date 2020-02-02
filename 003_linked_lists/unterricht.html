@@ -12,7 +12,7 @@ Ziel der Lektion:
 * Sie können Klassen als komplexe Datenstrukturen in Java nutzen
 * Sie wissen, was Referenzvariablen sind und wie diese mit Objekten im Speicher zusammenhängen
 * Sie verstehen den Aufbau einer Linked List
-* Sie können eine Linked List in Java selber programmieren
+* Sie können eine Linked List in Java als Container-Klasse selber programmieren
 
 </textarea>
 </section>
@@ -105,15 +105,22 @@ System.out.println(n2.schueler); // Ausgabe?
 
 **Folgendes gilt es festzuhalten:**
 
-Arrays sind:
+Arrays sind (ineffizient / efffizient):
 
-* mühsam, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
-* mühsam, wenn man einzelne Elemente einfügen oder entfernen muss
-* super, wenn man auf Elemente zugreifen muss (nach Index)
+* <span class="fragment"> ineffizient</span>, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* <span class="fragment"> ineffizient</span>, wenn man einzelne Elemente einfügen oder entfernen muss
+* <span class="fragment"> effizient</span>, wenn man auf beliebige Elemente zugreifen muss
 
 <i class="far fa-hand-point-right"></i> Wir können also nicht für alle Probleme einfach Arrays benützen:
 Muss viel eingefügt / entfernt werden, oder wissen wir noch nicht genau, wieviel wir speichern wollen,
-wirds mit Arrays mühsam.
+sind **Arrays ineffizient, sprich, langsam und speicherintensiv**.
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Grundlagen Listen
+=============================
 
 Schauen wir uns deshalb eine weitere **Datenstruktur** an: Die **Verketteten Listen**.
 
@@ -139,15 +146,15 @@ Schauen wir uns deshalb eine weitere **Datenstruktur** an: Die **Verketteten Lis
 
 Arrays sind:
 
-* mühsam, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
-* mühsam, wenn man einzelne Elemente einfügen oder entfernen muss
-* super, wenn man auf Elemente zugreifen muss (nach Index)
+* ineffizient, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* ineffizient, wenn man einzelne Elemente einfügen oder entfernen muss
+* effizient, wenn man auf beliebige Elemente zugreifen muss
 
 Listen sind:
 
-* super, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
-* super, wenn man einzelne Elemente einfügen oder entfernen muss
-* mühsam, wenn man auf Elemente zugreifen muss (nach Index)
+* effizient, wenn man nicht genau weiss, wieviele Elemente zu speichern sind
+* effizient, wenn man einzelne Elemente einfügen oder entfernen muss
+* ineffizient, wenn man auf beliebige Elemente zugreifen muss
 
 **Definition Liste:**
 
@@ -168,11 +175,14 @@ dabei durch Referenzen (resp. Pointer) verbunden.
 <i class="fas fa-graduation-cap"></i> Einfach verkettete Liste - Grafisch
 =============================
 
-Wie gesehen bestehen Listen aus einzelnen **List Nodes**, welche miteinander über Referenz-Pointer verbunden sind:
+Listen bestehen aus einzelnen **List Nodes**, welche miteinander über Referenzen / Pointer verbunden sind:
 
 <img src="single_linked_list.png" width="500"/>
 
+Sie sehen hier einen **komplexen Datentyp**, eine Klasse **ListNode**, welche:
 
+1. einen Datenwert, hier eine Integer-Zahl speichern kann
+2. "seine" Nachbar-Node (next), also die nächste Node in der Liste, kennt.
 </textarea>
 </section>
 
@@ -181,19 +191,22 @@ Wie gesehen bestehen Listen aus einzelnen **List Nodes**, welche miteinander üb
 <i class="fas fa-graduation-cap"></i> Einfach verkettete Liste - Code
 =============================
 
-Wir definieren eine `ListNode`-Klasse als komplexen Datentyp:
-
+Wir definieren eine `ListNode`-Klasse als komplexen **Container**-Datentyp in Java:
 
 ```java
-class ListNode {
-    // "Wert" der Node: das kann auch ein beliebig anderer Datentyp / komplexer Typ sein:
-    public int data;
+class ListNode<T> {
+    // "Wert" der Node: das "T" steht für einen beliebigen Datentyp: Wir speichern also
+    // eine Referenz auf "etwas":
+    public T data;
 
     // Referenz / Zeiger auf die nächste Node:
-    public ListNode next;
+    public ListNode<T> next;
 }
 ```
 
+**"T"** steht hier für einen Platzhalter eines Datentyps: Wie auch bei Arrays ist es der
+Liste "egal", welchen Datentyp sie aufnimmt: Wir nennen ihn einfach "T". Erst bei der
+Verwendung durch den Programmierer müssen wir uns auf einen Datentypen festhalten.
 </textarea>
 </section>
 
@@ -214,26 +227,50 @@ Doppelt verkettete Listen kennen ihre "Nachbarn" in beide Richtungen:
 <i class="fas fa-graduation-cap"></i> Doppelt verkettete Liste - Code
 =============================
 
-Wir definieren eine doppelt verlinkte `ListNode`-Klasse als komplexen Datentyp:
+Wir definieren eine doppelt verlinkte `ListNode`-Klasse als komplexen Container-Datentyp:
 
 
 ```java
-class ListNode {
-    // "Wert" der Node: das kann auch ein beliebig anderer Datentyp / komplexer Typ sein:
-    public int data;
+class ListNode<T> {
+    // "Wert" der Node: das "T" steht für einen beliebigen Datentyp: Wir speichern also
+    // eine Referenz auf "etwas":
+    public T data;
 
     // Referenz / Zeiger auf die vorherige / nächste Node:
-    public ListNode next;
-    public ListNode prev;
+    public ListNode<T> next;
+    public ListNode<T> prev;
 }
 ```
 
 </textarea>
 </section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Verkettete Liste - Anwendung
+=============================
+
+Die `ListNode`-Klasse können wir nun instanzieren und verketten:
+
+```java
+// ListNodes erstellen, mit Daten vom Typ (Klasse) "Integer" füllen:
+ListNode<Integer> node1 = new ListNode<>();
+node1.data = 1;
+
+ListNode<Integer> node2 = new ListNode<>();
+node2.data = 2;
+
+// Nodes miteinaner verknüpfen:
+node1.next = node2;
+node2.prev = node1;
+```
+
+Damit haben wir bereits eine verkettete Liste! Dies ist natürlich noch nicht sehr
+anwenderfreundlich: Wir möchten mit Listen ja ähnlich umgehen wie mit Arrays...
+
+</textarea>
 </section>
-
-
-
+</section>
 
 
 <section>
@@ -250,7 +287,12 @@ Vergleich mit "Menschenkette":
 * Was passiert, wenn eine neue Person an einer bestimmten Stelle "eingefügt" wird?
 * Was passiert, wenn eine Person aus der Reihe entfernt wird?
 
-<i class="far fa-hand-point-right"></i> Wir haben also ein paar Anforderungen, was wir mit der Liste machen können müssen.
+<i class="far fa-hand-point-right"></i> Wir haben also ein paar Anforderungen, was wir mit der Liste machen können müssen:
+
+* wir wollen einen neuen Wert **anfügen** (engl: to append)
+* wir wollen einen neuen Wert an einer bestimmten Stelle **einfügen** (engl: to insert)
+* wir wollen einen bestehenden Wert / Node **entfernen** (engl: to remove)
+* wir wollen alle Elemente **durchlaufen**, also etwas tun mit den einzelnen Werten
 
 </textarea>
 </section>
@@ -264,21 +306,23 @@ Vergleich mit "Menschenkette":
 
 Folgende Anforderungen haben wir:
 
-* Liste erstellen
-* Element (Node) anhängen
-* Element (Node) einfügen
-* Element (Node) verschieben
-* Element (Node) entfernen
+* Liste verwalten: wir wollen ähnlich "komfortabel" mit einem Typ "Liste" arbeiten, nicht mit einzelnen ListNodes
+* Wert am Schluss einfügen: Element (Node) anhängen
+* Wert zwischendrin einfügen: Element (Node) einfügen
+* Wert in der Liste verschieben
+* Wert / Element (Node) entfernen
 * Liste ausgeben / durchlaufen
 
 ... ergibt:
 
-* die Datenstruktur **`List`** definieren: Sie repräsentiert die Liste als Ganzes
-* **`appendNode()`** dient zum Anhängen einer Node
-* **`insertNode()`** dient zum Einfügen einer Node
-* **`moveNode()`** dient zum Verschieben einer Node
-* **`removeNode()`** dient zum Entfernen einer Node
-* **`printList()`** dient zum Ausgeben  der Liste
+* die Datenstruktur **`List`** definieren: Sie repräsentiert die Liste als Ganzes:
+* `List` ist verantwortlich für das Verwalten der einzelnen `ListNodes`
+* sie kennt (nur) den Anfang (engl: `head`) der Liste, also die vorderste `ListNode`
+* **`append(Wert)`** dient zum Anhängen einer ListNode, resp. eines Wertes
+* **`insert(Wert, Wert)`** dient zum Einfügen einer ListNode, resp. eines Wertes
+* **`move(Wert, Wert)`** dient zum Verschieben einer ListNode, resp. eines Wertes
+* **`remove(Wert)`** dient zum Entfernen einer ListNode, resp. eines Wertes
+* **`printList()`** dient zum Ausgeben der Elemente der Liste
 
 </textarea>
 </section>
@@ -289,47 +333,51 @@ Folgende Anforderungen haben wir:
 =============================
 
 Wir definieren also unsere `List`-Klasse, welche:
-* unsere Liste als Ganzes repräsentiert
-* Methoden zum Bearbeiten der Liste zur Verfügung stellt:
+* unsere Liste als Ganzes repräsentiert:
+  * Sie ist eine Container-Klasse, welche als Werte einen beliebigen komplexen Datentyp `T` speichern kann
+  * Sie besitzt eine Referenz auf die **erste ListNode**
+  * Sie stellt die gewünschten Methoden zum Bearbeiten der Liste zur Verfügung
 
+Ich zeige Ihnen hier den grundlegenden Aufbau der **List**-Klasse, und
+die Implementation der Methode `append`:
 
 ```java
-public class LinkedList {
+public class LinkedList<T> {
 	// Eine Referenz / Pointer auf die erste Node unserer Liste
-	public ListNode head;
+	public ListNode<T> head;
 
-	public ListNode appendNode(int data) {
-		// Instanzierung der neuen Node, noch "freischwebend":
-		ListNode newNode = new ListNode();
-
-		// Daten auf Node speichern:
-		newNode.data = data;
+	public ListNode<T> append(T newValue) {
+		// Unseren Wert, newValue, "verpacken" wir in eine ListNode,
+		// welche wir dann am Schluss der Liste, also an der letzten ListNode anhängen:
+		ListNode<T> newNode = new ListNode<>();
+		newNode.data = newValue;
 
 		// Anhängen heisst: am Schluss der Liste anfügen. Wir suchen also
-		// den "Schwanz" der Liste:
-		ListNode last = head;
+		// den "Schwanz" der Liste, indem wir von vorne bis zum Schluss
+		// durch die Liste "hangeln":
+		ListNode<T> last = head;
 		while( last != null && last.next != null ) {
 			last = last.next;
 		}
 
-		// Haben wir die letzte Node? dann hängen wir uns an:
-		if (last != null) {
-			last.next = newNode;
-			newNode.prev = last;
-		} else {
-			// Ha! Unsere neue Node ist die Erste!
-			this.head = newNode;
+		// Wir haben noch keine "letzte" Node, da unsere neue Node die erste ist:
+		if (last == null) {
+			this.head = newNode; // unsere neue Node wird zum "Head"
 			newNode.prev = null;
 		}
+		// Wir haben bereits eine "letzte" Node, hängen wir die neue hinten dran:
+		else {
+			last.next = newNode;
+			newNode.prev = last;
+		}
 
-		// next auf unserer neuen Node ist sicher null:
+		// next auf unserer neuen Node ist sicher null (da am Schluss der Liste):
 		newNode.next = null;
 
 		return newNode;
 	}
-
-    // ....
 }
+
 ```
 </textarea>
 </section>
@@ -339,21 +387,51 @@ public class LinkedList {
 <i class="fas fa-graduation-cap"></i> Aufbau / Methoden: List-Klasse
 =============================
 
-Die weiteren Funktionen programmieren und testen Sie selber (Hausaufgabe)
+Nun können wir die `List`-Klasse bereits anwenden,
+und mit Werten, eingepackt in `ListNode`Objekte, füllen:
+
+```java
+public class Main {
+	public static void main(String[] args) {
+        // Neue LinkedList instanzieren:
+		LinkedList<Integer> l = new LinkedList<>();
+
+		// Neue Werte einfügen: nun schon recht komfortabel:
+		l.append(1);
+		l.append(2);
+		l.append(3);
+
+		// Liste durchlaufen (noch nicht so komfortabel):
+		ListNode<Integer> actNode = l.head;
+		while (actNode != null) {
+			System.out.println(actNode.data);
+			actNode = actNode.next;
+		}
+	}
+}
+```
+</textarea>
+</section>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: List-Klasse
+=============================
+
+Die weiteren Funktionen programmieren und testen Sie selber (jetzt, Hausaufgabe)
 
 Ich schlage folgende Reihenfolge vor:
 
-* die **`ListNode`**-Klasse muss implementiert werden.
-* **`appendNode()`** fertig: Bringen Sie das Programm zum Laufen
-* **`printList()`**
-* **`insertNode()`**
-* **`removeNode()`**
-* **`moveNode()`** als Kombination von den vorhergehenden Methoden.
+* die **`ListNode`**-Klasse muss implementiert werden:
+    * **`append(Wert)`** fertig: Bringen Sie das Programm zum Laufen
+    * **`printList()`**
+    * **`insert(Wert a, Wert b)`** (neuer Wert a, Einfügen nach Wert b)
+    * **`remove(Wert)`** (zu entfernender Wert)
+    * **`move(Wert a, Wert b)`** als Kombination der vorhergehenden Methoden.
 
-
-<i class="far fa-hand-point-right"></i> Sie finden das Grundgerüst für `List` auf Moodle.
-
-
+<i class="far fa-hand-point-right"></i> Sie finden das Grundgerüst für `List` und `ListNode`
+auf Moodle.
 </textarea>
 </section>
 </section>

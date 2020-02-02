@@ -23,11 +23,11 @@ auf technischem resp. mathematischem Weg.
 * 1815 : (Augusta) Ada Lovelace arbeitet an ersten "Rechenmaschinen"
 * ...
 
---> _Die Inhalte aus diesem Modul sind alt...und das macht es spannend ;-)_
+--> _Die Inhalte aus diesem Modul sind alt... und sind heute immer noch Top-aktuell!_
 </textarea>
 </section>
 
-
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Zum Modul-Inhalt
@@ -44,7 +44,12 @@ Der Titel des Moduls lautet: "Datenstrukturen und Algorithmen entwerfen und anwe
 <!-- .element: class="fragment" --> Datenstrukturen: dies sind die "Gefässe", in denen wir Daten aufbewahren. Für unterschiedliche Probleme gibt es auch unterschiedliche Arten von "Gefässen."
 
 <!-- .element: class="fragment" --> Algorithmen: dies sind die "Werkzeuge", mit denen wir auf den Daten operieren
-
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Zum Modul-Inhalt
+=================
 
 ** Beispiele von Fragestellungen, welche wir damit lösen wollen / können**
 
@@ -63,6 +68,7 @@ Viele Dinge sind nahe an der Mathematik, und haben auch ihren Ursprung dort.
   ja sogar auf Papier, angewendet werden.
 * Wir werden beispielhaft in Java arbeiten.
 </textarea>
+</section>
 </section>
 
 <section data-markdown>
@@ -122,7 +128,7 @@ Was kennen Sie für Datenstrukturen? Kennen Sie Datenstrukturen aus dem Alltag? 
 <i class="fas fa-graduation-cap"></i> Eigenschaften von Algorithmen
 =================
 
-Ein Algorithmus ist möglicherweise:
+Ein Algorithmus ist:
 
 * **terminierend**, wenn er für alle zulässigen Schrittfolgen stets nach endlich vielen Schritten endet
 * **deterministisch**, wenn in der Auswahl der Verarbeitungsschritte keine Freiheit besteht
@@ -147,13 +153,13 @@ Die mathematische Beschreibung des Euklidschen Algorithmus sieht so aus:
 
 
 1. b|a ⇒ b = ggT(a, b)
-2.  ¬(b|a)⇒ggT(a, b)=ggT(b, a%b)
+2.  ¬(b|a)⇒ ggT(b, a%b) = ggT(a, b)
 
 
 wobei:
 
-* | : die Relation „teilt“ zwischen ganzen Zahlen ohne Rest. Hier: Prüft, ob a geteilt b = 0 ist.
-* "%" die Modulo-Funktion abbildet
+* | : prüft die Teilbarkeit  a durch b: Prüft, ob a geteilt b = 0 ist. Wenn ja, ist b der ggt(a,b).
+* "%" die Modulo-Funktion abbildet (Rest-Funktion)
 * ¬ "falls nicht, dann"
 
 **etwas einfacher:**
@@ -193,7 +199,7 @@ Ausgabe: Ganze Zahl c=ggT(a,b)
     Ansonsten gib euklid(b,r) zurück;
 ```
 
-**Java-Code, iterativ, pessimistisch**
+**Java-Code, iterativ**
 
 ```java
 public int ggT(int a, int b){
@@ -212,7 +218,7 @@ public int ggT(int a, int b){
 }
 ```
 
-**Java-Code, rekursiv, optimistisch**
+**Java-Code, rekursiv**
 
 ```
 public int ggT(int a, int b){
