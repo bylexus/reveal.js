@@ -28,6 +28,7 @@ Sind noch Fragen zu:
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Sortieren von komplexen Datentypen
@@ -76,6 +77,29 @@ public class Main {
 	}
 }
 ```
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Sortieren von komplexen Datentypen
+=============================
+
+
+```java
+// Unser Person-Datentyp:
+public class Person {
+	public String name;
+	public String vorname;
+	public Date geburtstag;
+	// ....
+
+	public Person(String name, String vorname, Date geburtstag) {
+		this.name = name;
+		this.vorname = vorname;
+		this.geburtstag = geburtstag;
+	}
+}
+```
 
 <i class="far fa-hand-point-right"></i> Was bedeutet nun "grösser als", resp. "kleiner als"?<br />
 <i class="far fa-hand-point-right"></i> Müssen Sie nun für jede mögliche Sortiervariante (nach Name, nach Geburtsdatum ....) Ihren Sortier-Algorithmus anpassen?<br />
@@ -85,7 +109,9 @@ public class Main {
 
 </textarea>
 </section>
+</section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Sortieren von komplexen Datentypen - Comparable
@@ -93,8 +119,12 @@ public class Main {
 
 Java hilft uns hier wiederum mit der Collections API. Java stellt dazu zwei Interfaces zur Verfügung:
 
-* Interface `Comparable`: Macht Objekte "Vergleichbar" mit anderen Objekten <br />(https://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html)
-* Interface `Comparator`: Definiert eine Vergleichsfunktion für Sortieralgorithmen<br /> (https://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html)
+* Interface `Comparable`: Macht Objekte "Vergleichbar" mit anderen Objekten <br />(https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html)
+* Interface `Comparator`: Definiert eine Vergleichsfunktion für Sortieralgorithmen<br /> (https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html)
+
+<i class="far fa-hand-point-right"></i> Lesen Sie kurz die beiden verlinkten Dokumente. Beantworten Sie dann die Frage:
+
+**Wie unterscheiden sich die beiden Interfaces `Comparable` und `Comparator`?**
 
 
 ** Comparable-Interface **
@@ -111,6 +141,13 @@ int resultat = a.compareTo(b); // --> resultat ist < 0 (a < b), 0 (a == b), > 0 
 
 String.compareTo entscheidet dies anhand der "lexikalischen Ordnung" der Buchstaben.
 
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Sortieren von komplexen Datentypen - Comparable
+=============================
+
 **Beispiel-Implementation**
 
 ```java
@@ -121,6 +158,7 @@ public class Person implements Comparable<Person> {
 	// Konkrete Implementation von compareTo:
     // Hier wird aufgrund des Namens entschieden, welche Person "kleiner" ist:
 	public int compareTo(Person o) {
+        // Wir greifen hier wiederum auf die compareTo-Methode von "String" zurück:
 		return this.name.compareTo(o.name);
 	}
 }
@@ -142,7 +180,9 @@ Je nach Implementation von `compareTo()` werden die Objekte nun entpsrechend sor
 
 </textarea>
 </section>
+</section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Sortieren von komplexen Datentypen - Comparator
@@ -151,11 +191,19 @@ Je nach Implementation von `compareTo()` werden die Objekte nun entpsrechend sor
 
 ** Comparator-Interface **
 
-Mit dem `Comparable`-Interface können wir nun zwar Objekte auf definierte Weise miteinander vergleichen, aber eben nur auf EINE Weise:
-Wenn wir unsere Personen später nach Geburtsdatum sortieren wollen, stehen wir bereits an: compareTo vergleicht in unserem Fall den Namen.
+Mit dem `Comparable`-Interface können wir nun zwar Objekte auf definierte Weise miteinander vergleichen, aber eben nur auf **EINE** Weise:
+Wenn wir unsere Personen später nach Geburtsdatum sortieren wollen, stehen wir bereits an: compareTo vergleicht in unserem Fall den Namen:
+Wollen wir nach Geburtstag sortieren, müssen wir den Code anpassen.
 
-Hier hilft uns das **Comparator**-Interface: Es liefert das Interface für eine Vergleichsfunktion, welche unabhängig vom "Ziel-Objekt" implementiert werden kann.
+Hier hilft uns das **Comparator**-Interface: Es liefert das Interface für eine Vergleichsfunktion, welche **unabhängig vom "Ziel-Objekt"** implementiert
+ werden kann.
 Viele vorgefertigte Sortier-Funktionen der Collections-API nehmen neben der Liste auch ein Comparator-Objekt mit entgegen (Collections.sort, Arrays.sort).
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Sortieren von komplexen Datentypen - Comparator
+=============================
 
 ** Anwendung **
 
@@ -227,11 +275,11 @@ public class Main {
 	}
 }
 ```
-
-
 </textarea>
 </section>
+</section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Aufgaben
@@ -240,35 +288,45 @@ public class Main {
 Aufgabe 1
 ------------
 
-* Implementieren Sie die Person-Klasse.
+* Implementieren Sie die Person-Klasse mit Name, Vorname, Geburtsdatum (LocalDate).
+* Implementieren Sie das Comparable-Interface auf der Person-Klasse
 * Nehmen Sie Ihre Implementation von BubbleSort und/oder Selection Sort. Bauen Sie diese um, sodass Sie:
-    * Ihrer Sortier-Funktion nun einen Array von Person-Objekten übergeben können (`Person[] arr`)
+    * Ihrer Sortier-Funktion nun eine Liste von Person-Objekten übergeben können (`List<Person> arr`)
     * Ihre Sortier-Funktion das comparable-Interface von Person für den Vergleich benutzt
-* Testen Sie die Funktion in einem Hauptprogramm: Geben Sie jeweils das Anfangs- und das End-Array aus!
-
+* Testen Sie die Funktion in einem Hauptprogramm:
+  * Erstellen Sie eine Liste mit mind. 5 Person-Objekten
+  * Geben Sie jeweils die Liste im Anfangs- und Endzustand aus!
+</textarea>
+</section>
+<section data-markdown>
 Aufgabe 2
 ------------
 
-* Bauen Sie die `compareTo()`-Funktion in Person so um, dass die Sortierung rückwärts (Z-A) erfolgt!
-* Testen Sie die Funktion in einem Hauptprogramm: Geben Sie jeweils das Anfangs- und das End-Array aus!
-* Bauen Sie Ihren Sortieralgorithmus so um, dass Sie WAHLWEISE vorwärts oder rückwärts sortieren können! Sie können die Richtung z.B. als Parameter übergeben:
-  `void bubbleSort(Person[] personen, boolean vorwaerts = true);`
-
-
+* Bauen Sie die `compareTo()`-Funktion in `Person` so um, dass die Sortierung rückwärts (Z-A) erfolgt!
+* Testen Sie die Funktion in einem Hauptprogramm:
+  * Erstellen Sie eine Liste mit mind. 5 Person-Objekten
+  * Geben Sie jeweils die Liste im Anfangs- und Endzustand aus!
+* Bauen Sie Ihren Sortieralgorithmus so um, dass Sie **WAHLWEISE** vorwärts oder rückwärts sortieren können!
+  Sie können die Richtung z.B. als Parameter übergeben:
+  `void bubbleSort(List<Person> personen, vorwaerts = true);`
+</textarea>
+</section>
+<section data-markdown>
 Aufgabe 3
 ------------
 
-* Sorgen Sie in der `compareTo()`-Funktion dafür, dass Ihre Person-Objekte erst nach Name, DANN nach Vorname sortiert wird! (also Daten mit denselben Namen sollen auch nach Vorname richtig sortiert sein)
+* Sorgen Sie in der `compareTo()`-Funktion dafür, dass Ihre Person-Objekte erst nach Name,
+  DANN nach Vorname sortiert wird! (also Daten mit denselben Namen sollen auch nach Vorname richtig sortiert sein)
 * Beispiel:
 ```
-Eingabe-Array: [
+Eingabe-Liste: [
     {name: 'Maler', vorname: 'Chef'},
     {name: 'Meier', vorname: 'Max'},
     {name: 'Maler', vorname: 'Meister'},
     {name: 'Meier', vorname: 'Arnold'},
     {name: 'Maler', vorname: 'Lehrling'}
     ]
-Ausgabe-Array: [
+Ausgabe-Liste: [
     {name: 'Maler', vorname: 'Chef'},
     {name: 'Maler', vorname: 'Lehrling'
     {name: 'Maler', vorname: 'Meister'},
@@ -276,9 +334,8 @@ Ausgabe-Array: [
     {name: 'Meier', vorname: 'Max'}
     ]
 ```
-* Testen Sie die Funktion in einem Hauptprogramm: Geben Sie jeweils das Anfangs- und das End-Array aus!
-
-
+* Testen Sie die Funktion in einem Hauptprogramm: Geben Sie jeweils die Liste im Anfangs- und Endzustand aus!
 </textarea>
+</section>
 </section>
  {% endblock %}

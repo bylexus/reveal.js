@@ -40,8 +40,6 @@ Lektion: 12:55 - 14:30 (90min, 5min Pause)
 * 09:45 (ca. 30 min) Einführung ins Thema, Algorithmen, Foliensatz
 * Pause 5min ca. 10:15
 * 10:20 (Rest): Thema Repetition von Referenzen in Java, ganz kurze Theorie, Aufgabe
-* Wenn Zeit:
-  * Lesen Kapitel 1 aus Script, ggT in Java umsetzen
 * 10:55: Hausaufgaben abgeben (Aufgabe Repetition auf Moodle)
 * 11:00: Ende
 

@@ -1,0 +1,120 @@
+{% extends "../_base_template.html" %}
+{% block title %}Lektion 9 - Iteration, Rekursion, Sortieren{% endblock %}
+
+{% block sections %}
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Nochmals Iteration, Rekursion
+=============================
+
+**Unbekannter Algorithmus**
+
+Wir haben letztes Mal den Pseudo-Code eines unbekannten Algorithmus gesehen:
+
+```
+Funktion f(nr, Liste l):
+    act := 2
+    Erhöhe act solange um 1, bis nr durch act ohne Rest teilbar ist.
+    act in Liste l
+    div := nr / act
+    ist div > 2?
+    wenn ja:
+        rekursiv f(div, Liste l) aufrufen
+    wenn nein:
+        div in Liste l
+    Ergebnis: Liste l
+```
+<i class="far fa-hand-point-right"></i> Wer kann mir kurz erklären, was er macht? Resp. wie er funktioniert?<br />
+<i class="far fa-hand-point-right"></i> Wer hat eine Java-Implementation dazu?
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Nochmals Iteration, Rekursion
+=============================
+
+**Unbekannter Algorithmus**
+
+Der unbekannte Algorithmus **zerlegt eine Zahl in die kleinstmöglichen Faktoren**.
+
+Beispiel:
+
+* Eingabe: 45
+* Ausgabe: [5,3,3]
+
+
+<i class="far fa-hand-point-right"></i> Schauen wir uns die Implementation und die Fragen dazu direkt in Java an.
+
+(Eclipse-Projekt)
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Nochmals Iteration, Rekursion
+=============================
+
+**Maze Solver**
+
+Der Maze-Solver zeigt, dass für relative komplexe Probleme nicht immer ein
+komplizierter Algorithmus notwendig ist - Schauen wir ihn uns an!
+
+(Eclipse-Projekt)
+
+Beantworten Sie folgende Fragen:
+* Ist dies ein **Greedy Algorithmus**?
+* Ist dies ein **Backtracking Algorithmus**?
+* Sehen Sie hier die Anwendung von **Divide and Conquer**?
+* Ist dies ein rekursiver oder iterativer Algorithmus?
+* Welche Komplexität weist dieser Algorithmus auf?
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Nochmals Iteration, Rekursion
+=============================
+
+**Maze Solver**
+
+Der Maze-Solver zeigt, dass für relative komplexe Probleme nicht immer ein
+komplizierter Algorithmus notwendig ist - Schauen wir ihn uns an!
+
+(Eclipse-Projekt)
+
+Beantworten Sie folgende Fragen:
+* Ist dies ein **Greedy Algorithmus**?
+  <i class="far fa-hand-point-right"></i> Ja: Er geht in die erstmögliche Richtung, welche "begehbar" ist, und
+  kommt so schnellstmöglich zum Ziel - Aber vielleicht wäre ein anderer Weg schneller gewesen?
+* Ist dies ein **Backtracking Algorithmus**?
+  <i class="far fa-hand-point-right"></i> Ja: Er versucht einen Weg (rekursiv) zu gehen. Klappt das nicht,
+    geht er zurück und versucht einen anderen Weg.
+* Sehen Sie hier die Anwendung von **Divide and Conquer**?
+  <i class="far fa-hand-point-right"></i> Ja: wir übergeben das "vorwärtsschauen" rekursiv wiederum als Teilproblem,
+     verwenden dabei denselben Algorithmus. Theoretisch könnte man dies auf mehrere Prozesse aufteilen:
+     Jeder Prozess untersucht, parallel zu den anderen, eine Richtung.
+* Ist dies ein rekursiver oder iterativer Algorithmus?
+  <i class="far fa-hand-point-right"></i> Ganz klar rekursiv: solve() ruft sich selber immer wieder auf.
+* Welche Komplexität weist dieser Algorithmus auf?
+  <i class="far fa-hand-point-right"></i> Das ist schon schwierig zu beantworten: Was wäre der Worst Case?
+  Ein Labyrinth nur mit Aussenmauern, Start ganz unten links, Ende ganz oben rechts: Im dümmsten Fall klappert der
+  Algorithmus alle Felder (länge x breite) ab.
+  * Somit:
+    * Eingabegrösse: Anzahl möglicher Felder (l x b) als n
+    * Worst Case: n Felder untersuchen --> O(n)
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Nochmals Iteration, Rekursion
+=============================
+
+Sind noch Fragen zum Thema Iteration, Rekursion, Entwurfsmuster?
+
+Dann weiter mit Sortieren!
+</textarea>
+</section>
+{% endblock %}

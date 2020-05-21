@@ -1,4 +1,4 @@
-Detailplan Lektion 2 - 20.08.2018
+Detailplan Lektion 2 - 10.02.2020
 ===========================================
 
 Material
@@ -6,9 +6,8 @@ Material
 
 * Foliensatz (Moodle)
 * Eclipse
-* Script von C. Inauen auf Moodle
 * Übungen auf Moodle
-* Lego für Array- und Stack-Demonstration
+* Lego für Array-Demonstration und -Investigation
 
 Ziele
 -----
@@ -30,10 +29,12 @@ Detailplan
 
 Lektion: 09:25 - 10:10, 10:15 - 11:00
 
+* Besprechung Hausaufgaben
+  * Unterschied literal String / new String(), int / Integer
 * 09:25 (ca. 5min): Begrüssung, Ziel
-* 09:30 (ca. 30min): Foliensatz, Vortrag mit Interaktion. Folie 3.2: Arrays mit LEGO demonstrieren
+* 09:30 (ca. 30min): Foliensatz, Vortrag mit Interaktion.
+  * Folie 3.2: Arrays mit LEGO demonstrieren
   * Aufteilen in 2 Gruppen, Fragen in Gruppen beantworten (Katalog aufteilen)
-* 10:00 (5min)  Pause
-* 10:05 (15min) Rest der Folien (Folie 4-), Stack, wenn noch Zeit
-* 10:05 (5min)  Übungen zu Arrays, komplexe Datentypen, ( Stack )
+* 10:05 (15min) Rest der Folien (Folie 4-), ohne Stack: lieber Üben
+* 10:05 (5min)  Übungen zu Arrays, komplexe Datentypen
 * 11:00: Ende

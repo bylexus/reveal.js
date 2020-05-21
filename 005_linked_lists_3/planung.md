@@ -25,7 +25,12 @@ Detailplan
 
 * 12:55 (ca. 5min): Begrüssung, Ziel
 * 13:00 (ca. 30min): Besprechung der Hausaufgaben (count, find, getNodeAt)
-* 13:30 ():
+* 13:30 (): Beantworten von Schülerfragen - sie fühlen sich hier recht unsicher.
+  * Dann: weitere Übungen aus 2. LL-Block: Jeder SChüler nimmt sich EINE Aufgabe
+    vor, welche er/sie gegen den Schluss kurz vorstellt.
+* Einführung ins Thema Komplexe Datenstrukturen mit Comparator - Aufteilen der Schüler:
+  Diejenigen, die sich schon sicher fühlen, können das Thema Comparator selbständig erarbeiten
+  anhand der Unterlagen
 * 14:30: Ende
 
 Ideen

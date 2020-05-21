@@ -89,6 +89,51 @@ Wir beschäftigen uns später im Modul noch genauer mit der Effizienz von Algori
 <section>
 <section data-markdown >
 <textarea data-template>
+<i class="fas fa-graduation-cap"></i> Denksport-Aufgabe: Schnelles anhängen
+=============================
+
+Eine Eigenschaft der Linked Lists ist ja, dass **Einfügen schnell sein soll** - Stimmt dies für unsere `List.append()`-Methode?
+
+* Wie lange dauert das Anhängen mit `append` bei einer leeren Liste?
+* Wie lange dauert das Anhängen mit `append` bei einer Listen-Grösse von 10 Elementen?
+* ... von 1'000 Elementen?
+* ... von 1'000'000 Elementen?
+
+```java
+LinkedList<String> liste = new LinkedList<>();
+liste.append("1");
+liste.append("2");
+liste.append("3");
+liste.append("4");
+// .......
+liste.append("10000000");
+```
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Denksport-Aufgabe: Schnelles anhängen
+=============================
+
+<i class="far fa-hand-point-right"></i> Hier haben wir also ein Problem! Unsere Liste ist gar nicht schnell!
+Je länger die Liste wird, desto langsamer wird das Anfügen! Das ist ja wie bei Arrays!
+
+Dagegen müssen wir etwas tun.
+
+** Finden Sie eine Lösung für das Problem**: Das Anfügen eines Elementes soll **immer gleich schnell gehen**,
+egal, wie lange die Liste ist!
+
+<i class="far fa-hand-point-right"></i> Entwickeln Sie in den nächsten Minuten eine mögliche Lösung,
+und stellen Sie diese den Anderen vor!
+
+</textarea>
+</section>
+</section>
+
+<section>
+<section data-markdown >
+<textarea data-template>
 <i class="fas fa-graduation-cap"></i> Weitere Methoden für die Liste
 =============================
 
@@ -98,14 +143,14 @@ braucht es noch ein paar Methoden mehr.
 Was denken Sie, könnten noch für Methoden nützlich sein, um die Liste in der Praxis benützen zu können?
 
 <div class="fragment">
-    <p>Folgende Szenarien kommen in der Praxis viel vor:</p>
-    <ul>
-        <li>Sie möchten wissen, **wieviele Elemente** ihre Liste beinhaltet</li>
-        <li>Sie möchten einen bestimmten Wert **suchen**, um das `ListNode`-Objekt zu erhalten</li>
-        <li>Sie möchten die Liste **leeren**</li>
-        <li>Sie möchten Elemente in der Liste **vertauschen** (z.B. zum Sortieren)</li>
-        <li>Sie möchten Elemente an einer **bestimmten Position** (Index) auslesen / setzen</li>
-    </ul>
+<p>Folgende Szenarien kommen in der Praxis viel vor:</p>
+<ul>
+    <li>Sie möchten wissen, **wieviele Elemente** ihre Liste beinhaltet</li>
+    <li>Sie möchten einen bestimmten Wert **suchen**, um das `ListNode`-Objekt zu erhalten</li>
+    <li>Sie möchten die Liste **leeren**</li>
+    <li>Sie möchten Elemente in der Liste **vertauschen** (z.B. zum Sortieren)</li>
+    <li>Sie möchten Elemente an einer **bestimmten Position** (Index) auslesen / setzen</li>
+</ul>
 </div>
 
 </textarea>

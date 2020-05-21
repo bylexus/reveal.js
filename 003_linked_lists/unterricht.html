@@ -338,8 +338,7 @@ Wir definieren also unsere `List`-Klasse, welche:
   * Sie besitzt eine Referenz auf die **erste ListNode**
   * Sie stellt die gewünschten Methoden zum Bearbeiten der Liste zur Verfügung
 
-Ich zeige Ihnen hier den grundlegenden Aufbau der **List**-Klasse, und
-die Implementation der Methode `append`:
+Grundlegender Aufbau der **List**-Klasse, und die Implementation der Methode `append`:
 
 ```java
 public class LinkedList<T> {
@@ -359,7 +358,6 @@ public class LinkedList<T> {
 		while( last != null && last.next != null ) {
 			last = last.next;
 		}
-
 		// Wir haben noch keine "letzte" Node, da unsere neue Node die erste ist:
 		if (last == null) {
 			this.head = newNode; // unsere neue Node wird zum "Head"
@@ -370,10 +368,8 @@ public class LinkedList<T> {
 			last.next = newNode;
 			newNode.prev = last;
 		}
-
 		// next auf unserer neuen Node ist sicher null (da am Schluss der Liste):
 		newNode.next = null;
-
 		return newNode;
 	}
 }

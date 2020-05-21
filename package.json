@@ -8,7 +8,10 @@
   "scripts": {
     "test": "grunt test",
     "start": "grunt serve",
-    "build": "grunt"
+    "build": "grunt",
+    "start-docker": "docker run --rm -ti -p 8000:8000 -v \"$(pwd)\":/src bzt-node node_modules/.bin/grunt serve",
+    "build-docker": "docker run --name m411 -ti -v \"$(pwd)\":/src bzt-node node_modules/.bin/grunt build",
+    "build-pdf-docker": "docker run --name m411 -ti -v \"$(pwd)\":/src bzt-node node_modules/.bin/grunt build pdf"
   },
   "project": {
     "name": "M411 - Algorithmen und Datenstrukturen"
