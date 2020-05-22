@@ -1,0 +1,19 @@
+@startuml
+
+skinparam BoxPadding 10
+
+package "Web Browser" as browser {
+    component [JavaScript] as js
+}
+package "Web Server" as server {
+    component [Ratchet WS-Server] as ws
+    component [Webserver] as web
+}
+
+browser --> web
+web --> js
+
+js --> ws
+ws --> js
+
+@enduml

@@ -1,5 +1,5 @@
 {% extends "../_base_template.html" %}
-{% block title %}Lektion 11 - Locking {% endblock %}
+{% block title %}Lektion 10 - Locking {% endblock %}
 
 {% block sections %}
 <section data-markdown>
@@ -12,7 +12,8 @@ Heutiges Ziel
 
 * Sie kennen die Problematik bei gleichzeitig bearbeiteten Datensätzen
 * Sie wissen, was „Applikatorisches Locking“ bedeutet
-* Sie kennen eine Technik, wie Sie in Web-Applikationen Datensätze für die gleichzeitige Bearbeitung sperren können
+* Sie kennen eine Technik, wie Sie in Web-Applikationen Datensätze für
+  die gleichzeitige Bearbeitung sperren können
 </textarea>
 </section>
 
@@ -32,8 +33,7 @@ weil noch ein paar Details fehlen.
 Gleichzeitig fällt dem Trainer auf, dass die Spielresultate falsche eingetragen sind.
 Beide bearbeiten den Artikel:
 
-<img src="timing.png" width="60%" />
-
+<img src="timing.png" width="60%" style="float:left;margin-right:10px" />
 Neuer Inhalt des Textfeldes: **„Letztes Wochenende gewannen wir in strömendem Regen 4:2 gegen Weinfelden“.**
 Die Änderung des Trainers wurde durch Ihre spätere Speicherung einfach überschrieben! Der Trainer bedankt sich herzlich...
 
@@ -54,12 +54,21 @@ Aus Sicht des Web-Servers sind die beiden Speichern-Vorgänge **einfach 2 Reques
 
 **Für solche Fälle brauchen wir also einen Sperrmechanismus (Locking)!**
 
-Gruppenarbeit (2er-Gruppen): Entwerfen eines Sperrmechanismus für Web-Applikationen
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Applikatorisches Locking
+=============================
+
+Gruppenarbeit (2er-Gruppen): Entwerfen eines Sperrmechanismus für Dateneingabe im Web
 --------------------------------------------------------------------------
 
 Entwerfen Sie in den nächsten Minuten einen Sperrmechanismus für solche Probleme:
-Ein Datensatz, welcher von jemandem in Bearbeitung ist (Editier-Formular geöffnet, analog WordPress-Beispiel),
-soll nicht ein zweites Mal für eine Bearbeitung geöffnet werden können.
+Ein Datensatz, welcher von jemandem in Bearbeitung ist (Editier-Formular geöffnet,
+analog WordPress-Beispiel),
+soll nicht ein zweites Mal von einem anderen User für eine Bearbeitung geöffnet werden können.
 
 Finden Sie eine Lösung für folgende Fragen:
 
@@ -67,14 +76,17 @@ Finden Sie eine Lösung für folgende Fragen:
     * Wann wird ein Datensatz gesperrt?
     * Wie wird ein Datensatz gesperrt?
     * Wie verhindern Sie das Öffnen eines gesperrten Datensatzes?
-    * <i class="far fa-hand-point-right"></i> Zeigen Sie den Ablauf in einem kurzen Aktivitäts- oder Flussdiagramm!
+    * <i class="far fa-hand-point-right"></i> Zeigen Sie den Ablauf in einem kurzen Aktivitäts-
+      oder Flussdiagramm!
 * **Wie / wann wird ein Datensatz wieder entsperrt?**
-* HTTP ist **zustandslos**: Der Server weiss nicht, ob der Client „noch da ist“. **Wie weiss Ihr Mechanismus, dass der User noch da ist und somit der Lock noch erhalten bleiben muss?**
-* Fassen Sie Ihren Mechanismus kurz in einem Dokument zusammen: Ablauf, ev. ein Diagramm dazu, wenn notwendig.
-* Stellen Sie Ihren Mechanismus den Mitschülern vor.
+* HTTP ist **zustandslos**: Der Server weiss nicht, ob der Client „noch da ist“.
+  **Wie weiss Ihr Mechanismus, dass der User noch da ist und somit der Lock noch erhalten
+  bleiben muss?**
+* Fassen Sie Ihren Mechanismus kurz in einem Dokument zusammen:
+  Ablauf, ev. ein Diagramm dazu, wenn notwendig.
+* Stellen Sie Ihren Mechanismus vor.
 
-**Zeit: 30 Min Erarbeiten, je 10 Min Vorstellung**
-
+**Zeit: 30 Min Erarbeiten, ca. 10 Min Vorstellung**
 </textarea>
 </section>
 
@@ -83,12 +95,13 @@ Finden Sie eine Lösung für folgende Fragen:
 <i class="fas fa-graduation-cap"></i> Applikatorisches Locking
 =============================
 
-**Beispiel Blog-Applikation**
+**Zentrale Locking-Instanz, Semaphor**
 
 Spricht man von einem „Lock“ in der Software-Entwicklung, ist meist die Rede von einem Synchronisationsmechanismus beim
 Zugriff auf eine gemeinsame Ressource von mehreren Threads aus:<br />
 Mehrere Threads eines Multithread-Programm versuchen gleichzeitig ein File zu öffnen, ein Objekt zu schreiben etc.
-(Siehe https://de.wikipedia.org/wiki/Lock).
+(Siehe https://de.wikipedia.org/wiki/Lock). Dies kann mittels Kernel- resp. Betriebssystem-Mitteln
+in vielen Programmiersprachen gelöst werden (Stichwort "Semaphor", https://de.wikipedia.org/wiki/Semaphor_(Informatik))
 
 Web-Applikationen funktionieren etwas anders: Eine Web-Applikation besteht nicht aus einem Prozess mit mehreren Threads:
 Jeder Web-Request wird von einem eigenen Prozess, ja vielleicht sogar von einem eigenen physikalischen Server, abgehandelt.
@@ -98,6 +111,35 @@ der Server bekommt keine Status-Information des Clients.
 
 Somit kann ein „Lock“ auf eine Ressource in Web-Applikationen auch nicht auf Server-Prozessebene erstellt werden:
 Es muss ein Mechanismus entworfen werden, welcher applikationsweit (also auch über mehrere Server hinweg) funktioniert.
+Dazu benötigen wir eine **zentrale Locking-Instanz**, eine so genannte **Semaphor** (https://de.wikipedia.org/wiki/Semaphor_(Informatik))
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Applikatorisches Locking
+=============================
+
+**Zentrale Locking-Instanz: Die Datenbank**
+
+In den meisten Web-Applikationen ist eine Datenbank die "Single source of truth",
+die gemeinsam genutzte Datenbasis oder auch der "Global State" einer Applikation.
+
+Unser Locking-Mechanismus kann also die Datenbank als zentrale Locking-Instanz / Semaphor
+verwenden:
+
+<img src="semaphor.png" />
+
+Dies ist in vielen Fällen die zentrale "Single source of trhuth", welche
+von allen Clients / Servern verwendet wird.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Applikatorisches Locking
+=============================
 
 **Beispiel: Bearbeitung eines Blog-Artikels**
 
@@ -202,8 +244,15 @@ Dies machen wir mit folgenden Schritten:
     <i class="far fa-hand-point-right"></i> eigenen Eintrag wieder entfernen
     2. Haben wir nur einen Lock? Super, somit haben wir einen gültigen Lock!
 5. Wir melden das Ergebnis zurück (Erfolg, Misserfolg)
+</textarea>
+</section>
 
-Die Implementierung könnte beispielhaft folgendermassen aussehen:
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Applikatorisches Locking
+=============================
+
+Die Implementierung von **getLockForArticle()** könnte beispielhaft folgendermassen aussehen:
 
 ```
 protected function getLockForArticle($userId, $articleId) {
@@ -224,7 +273,7 @@ protected function getLockForArticle($userId, $articleId) {
     // ------ Schritt 4: Locks für diese Tabelle / Record zählen:
     $count = (int)$dbconn->query(
         "SELECT COUNT(*) AS cnt FROM locks WHERE table_name = 'blogs' AND record_id = {$articleId} AND user_id <> {$userId}")->fetchColumn(0);
-    if ($count > 0) {
+    if ($count > 1) {
         // Hoppla, mehr als ein Lock! Wir waren nicht die ersten --> Aufräumen, Fehler melden
         $dbconn->exec("DELETE FROM locks WHERE table_name = 'blogs' AND record_id = {$articleId} AND user_id = {$userId}");
         return false;
@@ -259,11 +308,27 @@ welche wir im Frontend-Edit-Formular mit „setInterval()“ alle n Sekunden aus
     //Ajax-Keep-Alive mit jQuery: alle 5 Sekunden Lock erneuern:
     setInterval(function(){
         $.get('./renewLock',{
-            id: <?php echo $articleId; ?> // aktuelle Artikel-ID z.B. via PHP in HTML-Code ausgeben (unschön!)
+            id: $('[name=id]').val() // aktuelle Artikel-ID z.B. via hidden form field
         })
     },5000);
 </script>
+<!--
+    HTML-Form, z.B. vom Backend via PHP-Template erzeugt:
+    beinhaltet aktuelle Record-ID als hidden field:
+-->
+<form>
+    <input type="hidden" name="id" value="5" />
+    <input type="text" name="vorname" value="Alex" />
+</form>
 ```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Applikatorisches Locking
+=============================
+
 Im Backend benötigen wir eine entsprechende Funktion, welche auf den Request („renewLock?id=x“) reagiert:
 
 ```php

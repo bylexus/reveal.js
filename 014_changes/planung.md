@@ -1,4 +1,4 @@
-Detailplan Lektion 15 - 05.12.2018 (Woche 49)
+Detailplan Lektion 14 - 04.12.2019
 ============================================
 
 Material

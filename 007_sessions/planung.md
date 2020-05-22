@@ -32,6 +32,6 @@ Bemerkung zum Unterricht
 
 Themen-Auslosung:
 
-* Kessler:
-* Diggelmann:
-* Turkovic:
+* Kessler: XSS
+* Diggelmann: SQL Injection
+* Turkovic: CSRF

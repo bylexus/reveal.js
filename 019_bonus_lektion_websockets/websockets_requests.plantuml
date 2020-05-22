@@ -1,0 +1,33 @@
+@startuml
+skinparam ParticipantPadding 50
+
+title Ablauf Websocket-Verbinung
+
+participant "Client [TCP:????]" as Client
+participant "Server [TCP:443]" as Server
+
+Client -> Server: HTTP-Request **1**
+note left
+    Der **Client** initiiert die TCP-Verbindung
+    über HTTP
+end note
+Server -->Client: HTTP-Response **1**
+note right
+    Der **Server** bestätigt die Verbindung.
+end note
+
+note left
+    Die TCP-Verbindung
+    **bleibt bestehen**
+end note
+
+... HTTP Upgrade,\nWebSocket-Protokoll übernimmt ...
+
+Client <-> Server: Kommunikation ist nun in \n**beide Richtungen** möglich
+...
+
+Server -> Client: **[ws:]** Daten senden
+Server -> Client: **[ws:]** Daten senden
+Client -> Server: **[ws:]** Anfrage senden
+Server -> Client: **[ws:]** Daten senden
+@enduml

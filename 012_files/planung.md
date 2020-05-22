@@ -1,4 +1,4 @@
-Detailplan Lektion 14 - 28.11.2018 (Woche 48)
+Detailplan Lektion 12 - 20.11.2019
 ============================================
 
 Material

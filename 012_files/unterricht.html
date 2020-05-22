@@ -1,5 +1,5 @@
 {% extends "../_base_template.html" %}
-{% block title %}Lektion 14 - Dateien schützen {% endblock %}
+{% block title %}Lektion 12 - Dateien behandeln / schützen {% endblock %}
 
 {% block sections %}
 <section data-markdown>
@@ -106,10 +106,18 @@ public function upload(Request $req) {
    <i class="far fa-hand-point-right"></i> Siehe http://php.net/manual/de/features.file-upload.post-method.php.
 *  Ein hochgeladenes File kann dann mit der PHP-Funktion "move_uploaded_file()" in das gewünschte Zielverzeichnis / Zielname verschoben werden.<br />
    <i class="far fa-hand-point-right"></i> Siehe http://php.net/manual/de/function.move-uploaded-file.php.
+</textarea>
+</section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Dateien hochladen
+=============================
 <i class="far fa-hand-point-right"></i> Da das File nun im Webroot liegt, kann es auch direkt vom Web-Server, ohne den „Umweg“ über PHP,
 ausgeliefert werden. Jeder, der den Web-Pfad kennt, kann das File downloaden. **Dies ist unter Umständen problematisch,
 wenn die Dateien sensitive Informationen beinhalten.**
+
+Wir werden diese Problematik gleich anschauen.
 </textarea>
 </section>
 
@@ -153,7 +161,6 @@ Oben haben wir gesehen, dass die Dateien beim Hochladen in einem Folder innerhal
 Dateien im Webroot des Webservers können ohne weitere Massnahme Seitens des Entwicklers auch wieder direkt vom Webserver via URL
 ausgeliefert werden:
 
-<img src="file_direct_access.png" width="50%" />
 
 Dies ist problematisch:
 
@@ -161,6 +168,7 @@ Dies ist problematisch:
 * Die Dateien können sogar von Suchrobotern indiziert und gelesen werden
 * Sensitive Daten sind so völlig ungeschützt.
 * Sie können die Autorisation nicht sicherstellen (WER darf das File herunterladen)
+<img src="file_direct_access.png" width="40%" />
 </textarea>
 </section>
 
@@ -176,6 +184,16 @@ Versuchen Sie nun in 2-er-Gruppen, eine PHP-Lösung für diese Probleme zu finde
 * Wie verhindern Sie, dass jeder das File einfach via Link herunterladen kann?
 * Wie sorgen Sie dafür, dass nur BERECHTIGTE User Zugriff auf bestimmte Dateien haben <br />
   (z.B. Zeugnis von User 1 darf nur von User 1 gelesen werden)?
+
+Wir haben dieses Problem schon in einer früheren Lektion behandelt. Sie sollten
+also bereits Antworten für die oben gezeigten Fragen haben.
+
+**Entwickeln Sie nun eine Action-Methode in einem PHP-Demo-Controller**, welche:
+
+* ein vorher hochgeladenes File (z.B. via Pfad-Angabe im Request) ausliefern kann.
+* dabei aber prüft, ob der aktuelle Benutzer dazu berechtigt ist
+* ansonsten eine Fehlermeldung zurückliefert
+* Zeigen Sie ebenfalls, dass das File via Direktlink NICHT zugänglich ist!
 
 <i class="far fa-hand-point-right"></i> Stellen Sie Ihre Idee / Lösung den anderen Schülern vor!
 
@@ -199,7 +217,13 @@ Dazu sind folgende Massnahmen zu treffen:
     * durch Platzieren der Dateien ausserhalb des Webserver-Webroots
 
 2. Die Auslieferung muss nun durch die Applikation (in diesem Fall durch PHP) erfolgen: Somit hat man die Möglichkeit, Zugriffsberechtigungen zu prüfen.
+</textarea>
+</section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Dateien hochladen
+=============================
 **Wir liefern Dateien via PHP aus**
 
 Die Auslieferung durch die server-seitige Applikation, in diesem Beispiel von PHP, hat folgende Vorteile:
@@ -209,7 +233,12 @@ Die Auslieferung durch die server-seitige Applikation, in diesem Beispiel von PH
 
 Die Auslieferung erfolgt somit nicht mehr direkt durch den Web-Server, sondern durch unsere Applikation.
 Da wir nun nicht mehr direkt die Datei in der URL aufrufen, sondern unser serverseitiges Script / URL,
-muss die angeforderte Datei anderweitig angegeben werden.
+muss die angeforderte Datei anderweitig angegeben werden:
+
+* entweder als **Pfad in einem Request-Parameter** <br />(Bsp: `http://meine-seite.ch/download?filename=geheimes-zeugnis.pdf`)
+* oder als **Teil einer URL-Route**, welche Sie in einen Controller / Action leiten:
+    <br />`http://meine-seite.ch/download/route/geheimes-zeugnis.pdf`<br />
+    Hierbei können Sie den Pfad entsprechend aus der Route heraus extrahieren.
 </textarea>
 </section>
 
@@ -247,6 +276,13 @@ public class MyController {
    }
 }
 ```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Dateien hochladen
+=============================
 
 Das sehr minimalistische Beispiel oben zeigt den Vorgang für eine Auslieferung via PHP:
 

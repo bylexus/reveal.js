@@ -1,5 +1,5 @@
 {% extends "../_base_template.html" %}
-{% block title %}Lektion 15 - Change Requests {% endblock %}
+{% block title %}Lektion 14 - Change Requests {% endblock %}
 
 {% block sections %}
 <section data-markdown>
@@ -23,6 +23,7 @@ Heutiges Ziel
 
 
 ** Einleitung **
+
 Ihre Web-Applikation in Version 1.0 ist erstellt und auf dem Server installiert. Nun können Sie einen Moment „Atem holen“.
 Aber schon bald kommen die ersten Änderungswünsche oder Fehlermeldungen der Benutzer: „Könnte man nicht noch ...“,
 „Wenn ich auf X klicke, dann kommt eine Fehlermeldung ..“. Sie fangen sich an, sich Gedanken zur nächsten Version zu machen.
@@ -30,6 +31,11 @@ Aber schon bald kommen die ersten Änderungswünsche oder Fehlermeldungen der Be
 Solche **„Change Request“** kommen in unterschiedlicher Form daher: von einfachen Mails bis zu seitenlangen Dokumentationen in standardisierter Form.
 
 Gemeinsam an allen Formen ist, dass die Änderungen analysiert, eingeteilt, geplant und irgendwann umgesetzt werden müssen.
+
+** Kennen Sie Change Requests aus Ihrem Umfeld?**
+
+* Ein Change Request ist eine standardisierte Form (z.B. Dokument) eines Anpassungswunsches an ein System.<!-- .element class="fragment"-->
+* Ein Change Request erlaubt Ihnen eine strukturierte Planung der Umsetzung der Änderung.<!-- .element class="fragment"-->
 
 </textarea>
 </section>
@@ -86,7 +92,7 @@ Ein paar Beispiele von Issue-Tracking-Systemen:
 **Beispiel**: Änderungswünsche in github (Projekt CackePHP)
 (Quelle: https://github.com/cakephp/cakephp/issues)
 
-<img src="github_issues.png" width="50%" />
+<img src="github_issues.png" width="40%" />
 </textarea>
 </section>
 
@@ -148,9 +154,19 @@ Welche Möglichkeiten haben Sie?
 
 Überlegen Sie sich kurz, wie Sie in verschiedenen Szenarien vorgehen. Welche Schritte müssen  Sie planen, um den Update reibungslos durchzuführen?
 
-* **Szenario 1**: Die Web-Applikation kann gut für eine Stunde abgeschaltet werden.
+* <img src="simple_architecture.png" style="float:right;margin-left:5px" width="200"/>**Szenario 1**: Einfache Systemarchitektur: Die Web-Applikation kann gut für eine Stunde abgeschaltet werden.
 * **Szenario 2**: Die Web-Applikation wird rund um die Uhr von eingeloggten Benutzern verwendet. Abschalten ist für ca. 30 Minuten möglich, aber nur, wenn keine Benutzer mehr eingeloggt sind.
-* **Szenario 3**: Abschalten ist kaum möglich: Die Applikation wird ständig benutzt, und es stehen umfangreiche, inkompatible Datenmigrationen für die neue Version an. Die Benutzer sollen jedoch von der Aktualisierung möglichst nichts merken.
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Eine Web-Applikation updaten
+=============================
+
+* <img src="compex_architecture.png" style="float:right;margin-left:5px" width="300" />**Szenario 3**: Komplexe Architektur: Abschalten ist kaum möglich: Die Applikation wird ständig benutzt, und es stehen umfangreiche, inkompatible Datenmigrationen für die neue Version an.
+   Ebenso haben Sie mehrere Frontend-Applikationsserver im Einsatz.<br />Die Benutzer sollen jedoch von der Aktualisierung möglichst nichts merken.
+
 </textarea>
 </section>
 
@@ -179,10 +195,10 @@ Wir besprechen die Vorgehen dann in der Klasse. Zeit: ca. 20 min
 **Szenario 1**: Die Web-Applikation kann gut für eine Stunde abgeschaltet werden.
 
 Dies ist das einfachste Szenario: Hier können Sie folgende Schritte ohne weitere Massnahmen durchführen:
-* Alte Applikation abschalten / vom Netz nehmen
-* Code installieren
-* SQL-Migrationen ausführen
-* neue Applikation wieder starten
+* Alte Applikation abschalten / vom Netz nehmen<!-- .element class="fragment" -->
+* Code installieren<!-- .element class="fragment" -->
+* SQL-Migrationen ausführen<!-- .element class="fragment" -->
+* neue Applikation wieder starten<!-- .element class="fragment" -->
 </textarea>
 </section>
 
@@ -191,13 +207,29 @@ Dies ist das einfachste Szenario: Hier können Sie folgende Schritte ohne weiter
 <i class="fas fa-flask"></i> Mögliche Vorgehen bei den oben genannten Szenarien
 =============================
 
-**Szenario 2**: Die Web-Applikation wird rund um die Uhr von eingeloggten Benutzern verwendet. Abschalten ist für ca. 30 Minuten möglich, aber nur, wenn keine Benutzer mehr eingeloggt sind.
+**Szenario 2**: Die Web-Applikation wird rund um die Uhr von eingeloggten Benutzern verwendet.
+Abschalten ist für ca. 30 Minuten möglich, aber nur, wenn keine Benutzer mehr eingeloggt sind.
 
-Hier müssen Sie dafür sorgen, dass **die Benutzer vorgängig informiert werden**: Definieren Sie einen Stichzeitpunkt, zu dem alle Benutzer ausgeloggt sein müssen. Blockieren Sie zudem neue Logins ab diesem Zeitpunkt. Diese Programmfunktionalität muss natürlich vorgängig (also in der alten Version bereits) vorgesehen sein.
+Hier ist folgendes Vorgehen sinnvoll:
 
-Nun müssen Sie noch entscheiden, was mit den noch eingeloggten Benutzern passiert, welche zum Stichzeitpunkt nicht ausgeloggt sind: **„Schmeissen“ Sie diese raus, oder warten Sie?**
+* Benutzer informieren
+* Vorgehen nach Szenario 1
+* Benutzer über Abschluss informieren
 
-Sobald Sie keine Benutzer mehr online haben, können Sie wie in Szenario 1 vorgehen. Stellen Sie jedoch sicher, dass Sie innerhalb der genannten Zeit fertig sind und Ihre Applikation wieder verfügbar ist.
+### Benutzer informieren:
+
+Hier müssen Sie dafür sorgen, dass **die Benutzer vorgängig informiert werden**:
+Definieren Sie einen Stichzeitpunkt, zu dem alle Benutzer ausgeloggt sein müssen.
+Blockieren Sie zudem neue Logins ab diesem Zeitpunkt.
+Diese Programmfunktionalität muss natürlich vorgängig (also in der alten Version bereits)
+vorgesehen sein.
+
+<i class="far fa-hand-point-right"></i> Nun müssen Sie noch entscheiden, was mit den noch eingeloggten
+Benutzern passiert, welche zum Stichzeitpunkt nicht ausgeloggt sind:
+**„Schmeissen“ Sie diese raus, oder warten Sie?**
+
+Sobald Sie keine Benutzer mehr online haben, können Sie wie in Szenario 1 vorgehen.
+Stellen Sie jedoch sicher, dass Sie innerhalb der genannten Zeit fertig sind und Ihre Applikation wieder verfügbar ist.
 </textarea>
 </section>
 

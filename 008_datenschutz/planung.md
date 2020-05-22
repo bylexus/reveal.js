@@ -15,7 +15,9 @@ Ziele
 Detailplan
 ----------
 
-08:20 ca. 45min Theorie
+08:20 Einstieg mit Padlet https://padlet.com/alex_schenkel/kgu9m119p67b
+08:30: Theorie Datenschutz, dann selbständiges Lesen der Folien
+08:45: Padlet zum Thema technische Massnahmen: https://padlet.com/alex_schenkel/bvpwovao9zfh
 09:10 rest Arbeit am Projekt
 09:55 Ende
 

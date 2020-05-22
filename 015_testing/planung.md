@@ -1,4 +1,4 @@
-Detailplan Lektion 16 - 12.12.2018 (Woche 50)
+Detailplan Lektion 15 - 11.12.2019
 ============================================
 
 Material
@@ -17,7 +17,9 @@ Ziele
 Detailplan
 ----------
 
-08:20 10min Theorieblock 1
+08:20 (ca. 10min) Einstieg: (Einstieg: Fragen "Was testen wir" und "Test-Arten/Methoden" am Flipchart zusammentragen)
+08:40 (ca. 10min) selbständiges Lesen bis markierte Ende-Folie
+08:50 (ca. 30min) Erarbeiten Testfall, ab Vorlage, danach Besprechung im Plenum
 09:30 Rest: Projektarbeitszeit
 09:55 Ende
 
