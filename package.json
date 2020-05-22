@@ -1,51 +1,32 @@
 {
-  "name": "reveal.js",
-  "version": "3.6.0",
-  "description": "The HTML Presentation Framework",
-  "homepage": "http://revealjs.com",
-  "subdomain": "revealjs",
-  "main": "js/reveal.js",
+  "name": "m151",
+  "version": "1.0.0-2020",
+  "description": "ICT Modul 151 - DB in Webapp einbinden",
+  "main": "index.html",
   "scripts": {
-    "test": "grunt test",
     "start": "grunt serve",
-    "build": "grunt"
+    "build": "grunt build"
   },
   "project": {
     "name": "M151 - DB in Webapp einbinden"
   },
   "author": {
-    "name": "Hakim El Hattab",
-    "email": "hakim.elhattab@gmail.com",
-    "web": "http://hakim.se"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hakimel/reveal.js.git"
+    "name": "Alexander Schenkel",
+    "email": "alex@alexi.ch"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=12.0.0"
   },
-  "devDependencies": {
-    "express": "^4.17.1",
+  "license": "MIT",
+  "dependencies": {
     "grunt": "^1.1.0",
-    "grunt-autoprefixer": "^3.0.4",
     "grunt-cli": "^1.3.2",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-connect": "^2.1.0",
     "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-cssmin": "^3.0.0",
-    "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-retire": "^1.0.9",
-    "grunt-sass": "^3.1.0",
     "grunt-zip": "^0.18.2",
     "mustache": "^4.0.1",
-    "socket.io": "^2.3.0"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "node-sass": "^4.14.1",
-    "nunjucks": "^3.2.1",
-    "puppeteer": "^3.1.0"
+    "nunjucks": "^3.2.1"
   }
 }

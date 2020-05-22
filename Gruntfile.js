@@ -4,7 +4,6 @@ module.exports = function(grunt) {
 	var root = grunt.option('root') || '.';
     var path = require('path');
     var nunjucks = require('nunjucks');
-    var sass = require('node-sass');
 
     nunjucks.configure('.', {
         noCache: true
@@ -64,6 +63,9 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
+			css: {
+				files: root.map(path => path + '/*.css')
+			},
 			html: {
 				files: root.map(path => path + '/*.html')
 			},
@@ -131,13 +133,9 @@ module.exports = function(grunt) {
 
 	// Dependencies
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
-	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-copy' );
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-autoprefixer' );
-	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-zip' );
 
     grunt.registerMultiTask('nunjucks-render', 'generates html files from nunjucks templates', function(){
