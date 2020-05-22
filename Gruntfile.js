@@ -14,62 +14,6 @@ module.exports = function(grunt) {
 	// Project configuration
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		meta: {
-			banner:
-				'/*!\n' +
-				' * reveal.js <%= pkg.version %> (<%= grunt.template.today("yyyy-mm-dd, HH:MM") %>)\n' +
-				' * http://revealjs.com\n' +
-				' * MIT licensed\n' +
-				' *\n' +
-				' * Copyright (C) 2017 Hakim El Hattab, http://hakim.se\n' +
-				' */'
-		},
-
-		uglify: {
-			options: {
-				banner: '<%= meta.banner %>\n',
-				screwIE8: false
-			},
-			build: {
-				src: 'js/reveal.js',
-				dest: 'js/reveal.min.js'
-			}
-		},
-
-		sass: {
-            options: {
-                implementation: sass,
-                sourceMap: false
-            },
-			core: {
-				src: 'css/reveal.scss',
-				dest: 'css/reveal.css'
-			},
-			themes: {
-				expand: true,
-				cwd: 'css/theme/source',
-				src: ['*.sass', '*.scss'],
-				dest: 'css/theme',
-				ext: '.css'
-			}
-		},
-
-		autoprefixer: {
-			core: {
-				src: 'css/reveal.css'
-			}
-		},
-
-		cssmin: {
-			options: {
-				compatibility: 'ie9'
-			},
-			compress: {
-				src: 'css/reveal.css',
-				dest: 'css/reveal.min.css'
-			}
-		},
-
 
 		connect: {
 			server: {
@@ -120,23 +64,6 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
-			js: {
-				files: [ 'Gruntfile.js', 'js/reveal.js' ],
-				tasks: 'js'
-			},
-			theme: {
-				files: [
-					'css/theme/source/*.sass',
-					'css/theme/source/*.scss',
-					'css/theme/template/*.sass',
-					'css/theme/template/*.scss'
-				],
-				tasks: 'css-themes'
-			},
-			css: {
-				files: [ 'css/reveal.scss' ],
-				tasks: 'css-core'
-			},
 			html: {
 				files: root.map(path => path + '/*.html')
 			},
@@ -146,11 +73,6 @@ module.exports = function(grunt) {
 			options: {
 				livereload: true
 			}
-		},
-
-		retire: {
-			js: [ 'js/reveal.js', 'lib/js/*.js', 'plugin/**/*.js' ],
-			node: [ '.' ]
 		},
 
         copy: {
@@ -215,7 +137,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
 	grunt.loadNpmTasks( 'grunt-autoprefixer' );
-	grunt.loadNpmTasks( 'grunt-retire' );
 	grunt.loadNpmTasks( 'grunt-sass' );
 	grunt.loadNpmTasks( 'grunt-zip' );
 
@@ -271,19 +192,7 @@ module.exports = function(grunt) {
     });
 
 	// Default task
-	grunt.registerTask( 'default', [ 'css', 'js' ] );
-
-	// JS task
-	grunt.registerTask( 'js', [ 'uglify' ] );
-
-	// Theme CSS
-	grunt.registerTask( 'css-themes', [ 'sass:themes' ] );
-
-	// Core framework CSS
-	grunt.registerTask( 'css-core', [ 'sass:core', 'autoprefixer', 'cssmin' ] );
-
-	// All CSS
-	grunt.registerTask( 'css', [ 'sass', 'autoprefixer', 'cssmin' ] );
+	grunt.registerTask( 'default', [ 'serve' ] );
 
 	// Package presentation to archive
 	grunt.registerTask( 'package', [ 'default', 'zip' ] );
@@ -292,6 +201,6 @@ module.exports = function(grunt) {
 	grunt.registerTask( 'serve', [ 'connect', 'watch' ] );
 
 	// Run build task: exports everything as standalone html to build/
-	grunt.registerTask( 'build', [ 'css', 'js', 'clean:build', 'nunjucks-render:build', 'copy:build' ] );
+	grunt.registerTask( 'build', [ 'clean:build', 'nunjucks-render:build', 'copy:build' ] );
 
 };
