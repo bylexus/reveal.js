@@ -1,10 +1,10 @@
 /* global module:false */
-const sass = require('node-sass');
 module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var root = grunt.option('root') || '.';
     var path = require('path');
     var nunjucks = require('nunjucks');
+    var sass = require('node-sass');
 
     nunjucks.configure('.', {
         noCache: true
@@ -162,7 +162,7 @@ module.exports = function(grunt) {
                         '!**/*.html',
                         '!**/*.scss',
                         '!css/theme/source/**',
-                        '!node_modules/**',
+                        '!node_modules*/**',
                         '!test/**',
                         '!CONTRIBUTING.md',
                         '!Gruntfile.js',
