@@ -6,35 +6,34 @@
 
         <title>{% block title %}{{ project.name }}{% endblock %}</title>
 
-        <link rel="stylesheet" href="{{webroot}}/css/reveal.css">
-        <link rel="stylesheet" href="{{webroot}}/css/theme/alex.css">
+		<link rel="stylesheet" href="{{webroot}}/dist/reset.css">
+		<link rel="stylesheet" href="{{webroot}}/dist/reveal.css">
+		<link rel="stylesheet" href="{{webroot}}/dist/theme/alex.css" id="theme">
 
         <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="{{webroot}}/lib/css/zenburn.css">
+        <link rel="stylesheet" href="{{webroot}}/lib/css/github.min.css">
 
         <!-- font awesome -->
         <script defer src="{{webroot}}/lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
 
-        <!-- Printing and PDF exports -->
-        <script>
-            var link = document.createElement( 'link' );
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = window.location.search.match( /print-pdf/gi ) ? '{{webroot}}/css/print/pdf.css' : '{{webroot}}/css/print/paper.css';
-            document.getElementsByTagName( 'head' )[0].appendChild( link );
-        </script>
     </head>
     <body>
         <div class="reveal">
+            <header>
+                {% block modulname %}{{ project.name }}{% endblock %}&nbsp;
+                <img src="{{webroot}}/data/logo-kanton-thurgau.svg" style="width: 60px" />
+            </header>
             <div class="slides">
                 {% block sections %}
                 {% endblock %}
             </div>
-            <footer>{% block modulname %}{{ project.name }}{% endblock %} <img src="{{webroot}}/data/logo-kanton-thurgau.svg" style="width: 60px" /></footer>
         </div>
 
-        <script src="{{webroot}}/lib/js/head.min.js"></script>
-        <script src="{{webroot}}/js/reveal.js"></script>
+		<script src="{{webroot}}/dist/reveal.js"></script>
+		<script src="{{webroot}}/plugin/notes/notes.js"></script>
+		<script src="{{webroot}}/plugin/markdown/markdown.js"></script>
+		<script src="{{webroot}}/plugin/highlight/highlight.js"></script>
+		<script src="{{webroot}}/plugin/zoom/zoom.js"></script>
 
         <script>
             // More info about config & dependencies:
@@ -44,17 +43,13 @@
                 widht: 1024,
                 height: 768,
                 slideNumber: 'h.v/t',
-                showNotes: window.location.search.match( /print-pdf/gi ) ? true : false,
                 transition: 'slide',
+                hash: true,
                 center: false,
-                //history: window.location.search.match( /print-pdf/gi ) ? false : true,
-                dependencies: [
-                    { src: '{{webroot}}/plugin/markdown/marked.js' },
-                    { src: '{{webroot}}/plugin/markdown/markdown.js' },
-                    { src: '{{webroot}}/plugin/zoom-js/zoom.js' },
-                    { src: '{{webroot}}/plugin/notes/notes.js', async: true },
-                    { src: '{{webroot}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-                ]
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ],
+                markdown: {
+                    smartypants: true
+                },
             });
         </script>
     </body>
