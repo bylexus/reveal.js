@@ -1,4 +1,4 @@
-Detailplan Lektion 6 - 15.03.2018 (Woche 11)
+Detailplan Lektion 6 - 19.09.2019
 ===========================================
 
 Material
@@ -24,8 +24,8 @@ Detailplan
 
 * 07:30 (ca. 10min): Besprechung HA von letztem Mal
 * 07:40 (ca. 10min): Folien OOD Einführung: Zusammentragen der Begriffe durch Schüler: welche technischen Aspekte müssen wir in der Design-Phase festlegen?
-                     --> Sammlung an Flipchart!
-* 07:50 (ca. 10min): Recherche der Schüler zum Thema Systemarchitektur / Softwarearchitektur
+                     --> Sammlung via Padlet!
+* 07:50 (ca. 10min): Recherche der Schüler zum Thema Systemarchitektur / Softwarearchitektur --> für BibSys-Architektur entwerfen
 * 08:00 (ca. 15min): Besprechung Recherche, Pause
 * 08:15 (5min): Pause
 * 08:20 (ca. 20min): Folien Vorgehen OOD, State Machine, Vorführung in VisualParadigm

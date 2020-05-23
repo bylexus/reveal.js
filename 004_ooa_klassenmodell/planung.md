@@ -39,6 +39,9 @@ Detailplan
   * Finden von Attributen
   * Finden von Generalisierungen
   * **Aufzeigen Vorgehen**: 1. Modul **Textual Analysis**, dann **Create Model Element** --> Klassenmodell
+  * Schüler beginnen mit der Aufgabe Klassenfindung. Ca. 10min vo Schluss wird eine Lösung angeschaut.
+    Analyse der "Anforderung für Bibliothekssystem"
+    Zufällige Auswahl eines Schülers
 * 09:00: Abgabe Hausaufgabe
   * Fertigstellen des Klassenmodells:
     * UML mit Klassen mit Attributen

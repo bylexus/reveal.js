@@ -1,0 +1,196 @@
+@startuml
+
+hide empty members
+
+class Medium {
+    barcode: String
+    titel: String
+}
+
+class MediumExemplar {
+    exemplarNr: Int
+}
+
+class Buch {
+    autor: Person
+    ISBN: String
+}
+
+class DVD {
+    ean: String
+    Interpret
+}
+
+class Benutzer {
+    name:String
+    vorname: String
+    login: String
+}
+
+class Ausleihe {
+    von: Date
+    bis: Date
+}
+
+Medium <-- Buch
+Medium <-- DVD
+
+Medium "1" - "*" MediumExemplar
+
+Ausleihe "*" - "1" Benutzer
+MediumExemplar "*" - "*" Ausleihe
+
+newpage
+
+hide empty members
+
+class Person {
+    name: String
+    vorname: String
+    geburtsdatum: Date
+    adresse: String
+    plz: String
+    ort: String
+}
+
+newpage
+
+hide empty members
+
+object "Luke Skywalker: Person" as luke {
+    name = "Skywalker"
+    vorname = "Lukas"
+    geburtsdatum = Date(13.04.1979)
+    adresse = "Desert Road"
+    plz = "9999"
+    ort = "Tatooine"
+}
+
+newpage
+
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+class Benutzer {
+    person: Person
+    getPerson(): Person
+    setPerson(Person)
+}
+
+class Person {
+    benutzer: Benutzer
+    getBenutzer(): Benutzer
+    createBenutzer(): Benutzer
+}
+
+Person "1" - "0..1" Benutzer: "               "
+
+newpage
+
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+class Medium {
+    exemplare: List<MediumExemplar>
+    getExemplare(): List<MediumExemplar>
+    addMedium(Medium)
+}
+
+class MediumExemplar {
+    exemplarNr: Integer
+}
+
+Medium "1" *- "*" MediumExemplar: "               "
+
+newpage
+
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+class Rechnung {
+    benutzer: Benutzer
+    betrag: Double
+    getBenutzer(): Benutzer
+}
+
+class Benutzer {
+    ...
+}
+
+Rechnung "*" -o "1" Benutzer: "               "
+
+newpage
+
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+class Medium {
+    reserviertVon: List<Benutzer>
+}
+
+class Benutzer {
+    reservierteMedien: List<Medium>
+}
+
+class Reservation {
+    am: Datum
+    von: Benutzer
+    medium: Medium
+}
+
+Benutzer "*" - "*" Medium: "               "
+(Benutzer, Medium) .. Reservation
+
+newpage
+
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+class Medium {
+    barcode: String
+    titel: String
+    kurzbeschreibung: String
+    erworbenAm: Date
+    zusatzMedium: Medium
+}
+
+class Buch {
+    autor: Person
+    ISBN: String
+    standort: String
+    sprache: String
+}
+class Hoerbuch {
+    autor: Person
+    ISBN: String
+    sprache: String
+}
+
+class DVD {
+    ean: String
+    Interpret
+    standort: String
+}
+
+class Ebook {
+    autor: Person
+    ISBN: String
+    sprache: String
+}
+
+
+Medium <-- Buch
+Medium <-- DVD
+Medium <-- Hoerbuch
+Medium <-- Ebook
+@enduml

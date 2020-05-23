@@ -1,4 +1,4 @@
-Detailplan Lektion 2 - 15.02.2018 (Woche 7)
+Detailplan Lektion 2 - 22.08.2019
 ===========================================
 
 Material

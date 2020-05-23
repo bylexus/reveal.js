@@ -1,0 +1,96 @@
+@startuml
+title Analyse-Klassendiagramm Bildverwaltungssystem
+
+class Bild {
+    width: Int
+    height: Int
+    colorModel: ColorModel
+    takenAt: Date
+    lon: Dec
+    lat: Dec
+    Titel: Text
+    Beschreibung: Text
+    Copyright: Text
+}
+
+enum ColorModel {
+    AdobeRgb
+    8BitRgb
+    24BitRgb
+}
+
+class JpegBild extends Bild {
+    Komprimierung: Zahl
+}
+
+class PngBild extends Bild {
+    Transparenz: Bool
+}
+
+class RawBild extends Bild {
+    Kameramodell: Text
+}
+
+class TiffBild extends Bild {
+    Transparenz: Bool
+}
+
+class Filter {
+}
+
+class ZuschnittsFilter extends Filter {
+    x1
+    x2
+    y1
+    y2
+}
+class FarbFilter extends Filter {
+    FarbTyp: Enum
+}
+class KontrastFilter extends Filter {
+    KontrastWert: Zahl
+}
+class HelligkeitFilter extends Filter {
+    HelligkeitsWert: Zahl
+}
+
+class Benutzer {
+    Login: Text
+    Passwort: Text
+    Email: Text
+    Name: Text
+    Vorname: Text
+}
+
+class Ordner {
+    name: Text
+    freigabeTyp: FreigabeTyp
+}
+
+enum FreigabeTyp {
+    public
+    shared
+    private
+}
+
+class Tag {
+    name: Text
+}
+
+class Bildagentur {
+    Verbindungsparameter
+}
+
+class ExportListe {
+    Name: Text
+}
+
+Ordner "1" o-- "*" Ordner
+Bild "*"  --o "1" Ordner
+Benutzer "1" *-- "*" Bild
+Benutzer "1" *-- "*" Ordner : besitzt >
+Benutzer "*" o-- "*" Ordner : Freigabe
+Bild "*" -- "*" Tag
+Bild "1" -- "*" Filter
+Bild "*" -- "*" ExportListe
+@enduml

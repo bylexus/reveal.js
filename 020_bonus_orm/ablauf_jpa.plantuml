@@ -1,0 +1,12 @@
+@startuml
+start
+:EntityManagerFactory (Connection) erstellen;
+:EntityManager erstellen (Session);
+while (Arbeiten mit persistenten Objekten)
+    :Entites laden/abfragen/erstellen;
+    :Entities persistieren;
+endwhile (fertig)
+:EntityManager schliessen (persistieren);
+:EntityManagerFactory (Connection) schliessen;
+stop
+@enduml

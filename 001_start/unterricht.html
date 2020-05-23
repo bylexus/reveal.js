@@ -13,7 +13,6 @@ Heutiges Ziel
 -------------
 
 * Willkommen!
-* Kennenlernrunde
 * Infos zur Organisation des Unterrichts
 * Semester-Agenda: was machen wir überhaupt?
 * Inbetriebnahme der Unterrichts-Tools / -VM in VirtualBox
@@ -21,56 +20,6 @@ Heutiges Ziel
   * VisualParadigm / UML
 * Kennenlernen VisualParadigm
 * Kurzrepetition: Klassen, Vererbung, Polymorphismus
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-user"></i> Willkommen!
-===========
-
-Wer bin ich?
-------------
-
-<div style="display: flex; align-content:flex-start;align-items: flex-start">
-<img src="{{webroot}}/001_start/alexander_schenkel_portrait_rotated.jpg" style="width: 300px;margin-right: 20px;margin-top: 0" />
-<div >
-<ul class="fa-ul">
-<li><span class="fa-li"><i class="far fa-building"></i></span>Beruflich:
-    <ul class="fa-ul">
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Software-Entwickler und Projektleiter bei Kaden und Partner AG, Frauenfeld</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Web-Entwicklung mit PHP, JS/Sencha Ext, PostgreSQL, ReactJS/Redux, mobile Hybrid-Apps</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Erfahrung mit PHP, Java, Ruby, Python, C/C++, Android/iOS-Entwicklung</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>bekannte App: ThurGIS mobile für iOS/Android</li>
-    </ul>
-</li>
-<li><p></p></li>
-<li><span class="fa-li"><i class="fas fa-home"></i></span>Privat:
-    <ul class="fa-ul">
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Wohnhaft in Islikon</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Vater von 2 Buben, 9 und 6</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Computer-Enthusiast, Linux- und OpenSource-Fan, Software-Bastler, VIM-User</li>
-    <li><span class="fa-li"><i class="far fa-dot-circle"></i></span>Sonstige Hobbys: Krimis, SciFi, Comics, Feuerwehr, Musik (machen)</li>
-    </ul>
-</li>
-</ul>
-</div>
-</div>
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-users"></i> Wer sind Sie?
-===========
-
-Erzählen Sie kurz zwei, drei Dinge zu Ihnen:
-* Wie heissen Sie?
-* Wo (in welcher Firma) lernen Sie?
-* Was ist dort Ihre Hauptaufgabe?
-* Welche Programmiersprachen kenne Sie (gut, weniger gut)?
-* Was für Projekte haben Sie schon aktiv mitentwickelt?
-* Sonstiges? (Hobbys, Interessen)
 </textarea>
 </section>
 
@@ -108,10 +57,9 @@ Erzählen Sie kurz zwei, drei Dinge zu Ihnen:
  Organisatorisches
 ======================================
 
-* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=735)
+* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=969)
 * Hausaufgaben: bis am Abend vor der Lektion abgegeben (Aufgaben jeweils auf Moodle)
 * Die Hausaufgaben sind Teil des Unterrichts-Stoffes. Es liegt in Ihrer Verantwortung, diese zu machen.
-* Absenzen: bis am Abend per Mail / SMS / Telefon gemeldet (Ausnahme: Krankheit), das kennen Sie ja schon
 * Pausen: Ich möchte auf die 5-minuten-Pause verzichten, und lasse Sie lieber 5min früher gehen - sind Sie damit
   einverstanden?
 
@@ -146,7 +94,7 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
   * Design Patterns (**Kurzreferate zu Design Pattern**)
 * **Testing**
   * Entwickeln von Testfällen und -Protokollen
-* Fallstudie **(Modulprüfung, LBV 326-1, 21.06.2018, 4 Lektionen Fallstudie)**
+* Fallstudie **(Modulprüfung, LBV 326-1, 19.12.2019, 4 Lektionen Fallstudie, Abtausch mit C. Inauen)**
 </textarea>
 </section>
 
@@ -157,7 +105,7 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
 ======================================
 
 * Wir verwenden beispielhaft Java
-* Wir entwickeln keine komplexe GUI-Applikation, sondern eine einfache Konsolen-Applikation: Es geht um die grundlegenden Konzepte.
+* Wir entwickeln eine sehr einfache GUI-Applikation: Es geht um die grundlegenden Konzepte, nicht um UI-Design.
 * Machen Sie sich mit Eclipse und Basis-Java-Wissen vertraut.
 * Wir bearbeiten ein durchgängiges Beispiel: es wird ein Bibliothekssystem entworfen und Teil-implementiert
 </textarea>
@@ -166,20 +114,15 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-desktop"></i> Unterrichts-VM
+<i class="fas fa-desktop"></i> Unterrichts-Tools
 ======================================
 
-* Linux Mint (auf Ubuntu aufbauend)
-  * Login: bzt-user / PW: admin
-* vorinstallierte Dev-Umgebung:
-  * Eclipse IDE
-  * UML-Tools VisualParadigm
-* VirtualBox-Setup
-  * Import des .ova-Images auf externe HD
-  * neue MAC-Adresse für Netzwerkkarte generieren
-  * Bridge- oder NAT-Netz
-  * mind 2GB, besser 4GB RAM
-  * Grafik-Setup: Zoomfaktor für hochauflösende Displays
+* Wir installieren die notwendigen Tools für den Unterricht
+  * UML-Tools: VisualParadigm
+  * Eclipse IDE: Mind. Java 8, mind. Eclipse Mars (benötigen wir ab dem Kapitel OOD)
+  * Eclipse Window Builder Plugin: http://download.eclipse.org/windowbuilder/latest/
+
+<img src="swing_window_builder.png" />
 </textarea>
 </section>
 

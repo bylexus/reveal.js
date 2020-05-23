@@ -1,4 +1,4 @@
-Detailplan Lektion 3 - 21.02.2019
+Detailplan Lektion 3 - 29.08.2019
 ===========================================
 
 Material
@@ -28,10 +28,9 @@ Detailplan
 * 07:45 (ca. 10min): Use Case-Diagramme mit Visual Paradigm erklären
   * Einführung, Elemente anschauen: Aktoren, System, Use-Cases, Include, Extend
   * Bild exportieren
-* 07:55 (ca. 15min): Aufgabe Use-Cases finden
+* 07:55 (ca. 30min): Aufgabe Use-Cases finden
   * Schüler erfassen in 2- bis 3-er-Gruppen die Use-Cases als Use-Case-Diagramm und zeigen ihre Lösung am Beamer, vergleichen mit anderer Gruppe, Diskussion
   ---> Mehr Zeit einrechnen: ca. 25-30 Min notwendig
-* 08:10 (5min): Pause
 * 08:15 (ca. 30min): Besprechung der Use-Case-Diagramme
   * Gruppen führen Diagramme am Beamer vor. Diskussion: Was ist gut / weniger gut, was fehlt? → Gruppe 2 dasselbe
 * 08:45 (ca. 15min): Use-Case-Beschreibung

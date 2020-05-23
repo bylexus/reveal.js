@@ -1,0 +1,55 @@
+@startuml
+title Bildfilter anwenden mit Strategy-Pattern
+
+
+note as Beschreibung
+    Um auf Bilder verschiedene Filter anzuwenden, verwenden wir das Strategy-Pattern:
+    das Anwenden eines Filters ist die "Strategie", die wir anwenden auf einem Bild:
+    Die **Filter** sind somit die Strategie, unser Programm der Kontext,
+    welche verschiedene Strategien (=Filter) anwendet.
+end note
+
+class Programm {
+    holeAlleFilterFuerPhoto(Photo);
+    filterePhoto(Photo, Filter);
+}
+
+note left of Programm
+    Unser Programm, der **Klient** im Strategy-Pattern, holt alle Filter (Strategien)
+    und nutzt eine PhotoBearbeitungs-Klasse mit verschiedenen Strategien:
+    ""PhotoBearbeitung pb = new PhotoBearbeitung();""
+    ""List<Filter> filter = holeAlleFilterFuerPhoto(photo);""
+    ""for (Filter f : filter) {""
+    ""    pb.filter = f;""
+    ""    pb.filterePhoto(photo); // Anwendung der Strategie""
+    ""}""
+end note
+
+class Photo {
+}
+
+class PhotoBearbeitung {
+    Filter filter;
+    filterePhoto(Photo p)
+}
+note right of PhotoBearbeitung
+    Dies ist der **Kontext** des Strategy-Patterns:
+    Es wendet verschiedene Strategien
+    (Filter) auf den Photos an
+end note
+
+abstract class Filter {
+    void applyFilter(Photo);
+}
+note left of Filter: Strategy-Interface
+
+class MonochromFilter extends Filter {}
+note left of MonochromFilter: Konkrete Strategien
+
+class KontrastFilter extends Filter {}
+
+Programm --> Filter
+Programm --> PhotoBearbeitung
+Programm --> Photo
+PhotoBearbeitung o-- Filter
+@enduml

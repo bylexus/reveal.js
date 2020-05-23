@@ -77,52 +77,65 @@ Note:
 </section>
 
 <section>
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Finden von Assoziationen zwischen Klassen
-    ===========
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Finden von Assoziationen zwischen Klassen
+===========
 
-    **Frage:**
+**Frage:**
 
-    Was sind Assoziationen? Was ist eine Aggregation, was eine Komposition?
+Was sind Assoziationen? Was ist eine Aggregation, was eine Komposition?
 
-    * <!-- .element class="fragment" --> **Assoziationen** definiert Beziehungen zwischen Klassen.
-    * <!-- .element class="fragment" --> **Aggregation:** (selten in Analyse, besser einfache Assoziation): Teile sind unabhängig voneinander (zB. Benutzer hat Medien ausgeliehen → Medien bleiben bestehen, wenn Benutzer gelöscht wird)
-    * <!-- .element class="fragment" --> **Komposition:** „Besteht aus“: Teile sind Abhängig von der Klassen, die sie beinhaltet, und existieren nur so lange wie die Hauptklasse.
+* <!-- .element class="fragment" --> **Assoziationen** definiert Beziehungen zwischen Klassen.
+* <!-- .element class="fragment" --> **Aggregation:** (selten in Analyse, besser einfache Assoziation): Teile sind unabhängig voneinander (zB. Benutzer hat Medien ausgeliehen → Medien bleiben bestehen, wenn Benutzer gelöscht wird)
+* <!-- .element class="fragment" --> **Komposition:** „Besteht aus“: Teile sind Abhängig von der Klassen, die sie beinhaltet, und existieren nur so lange wie die Hauptklasse.
 
-    <div class="fragment">
-    <p>Assoziationen definieren wie in der realen Welt, wie Objekte "zusammenhängen".</p>
-    <p><strong>Beispiele:</strong></p>
-    <ul>
-        <li>"Eine Firma **hat mehrere** Mitarbeiter (1:n)"</li>
-        <li>"Eine Bestellung **gehört zu** einer Person" (1:1, n:1)</li>
-        <li>"Eine Person ist Mitarbeiter einer Firma (**hat und gehört zu**, n:m)"</li>
-    </ul>
-    </div>
+<div class="fragment">
+<p>Assoziationen definieren wie in der realen Welt, wie Objekte "zusammenhängen".</p>
+<p><strong>Beispiele:</strong></p>
+<ul>
+    <li>"Eine Firma **hat mehrere** Mitarbeiter (1:n)"</li>
+    <li>"Eine Bestellung **gehört zu** einer Person" (1:1, n:1)</li>
+    <li>"Eine Person ist Mitarbeiter einer Firma (**hat und gehört zu**, n:m)"</li>
+</ul>
+</div>
+
+<p>&nbsp;</p>
+
+<div class="fragment">
+<i class="far fa-hand-point-right"></i> Schlagen Sie die UML-Notationen dieser Assoziationen selbständig nach, und zeichnen Sie ein Beispiel am Flipchart:
+<ul>
+    <li> 1:n (One-to-Many) </li>
+    <li> n:1 (Many-to-One) </li>
+    <li> 1:1 (One-to-One) </li>
+    <li> n:m (Many-to-Many) </li>
+    <li> Aggregation (Welcher Kardinalität entspricht dies?) </li>
+    <li> Komposition (Welcher Kardinalität entspricht dies?) </li>
+</ul>
+</div>
+
+</textarea>
+</section>
 
 
-    </textarea>
-    </section>
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> UML-Werkzeuge für Assoziationen
+===========
 
+<img src="uml_assoziationen.png" />
 
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> UML-Werkzeuge für Assoziationen
-    ===========
+*  Wir zeichnen **Assoziationen** zwischen Klassen
+*  Alle Assoziationen besitzen eine **Multiplizität** (1:n, 1:1, n:m etc...)
+*  **Kompositionen** und **Aggregationen** werden in der Analyse sparsam eingesetzt.
+*  Wo notwendig, schreiben Sie einen Assoziations- oder Rollenname hin
+* Verzichten Sie auf den Attribut-Member in der Klasse für Beziehungen. Besser Assoziationsname (z.B. kein "bestellung"-Attribut auf Kunde).
 
-    <img src="uml_assoziationen.png" />
-
-    *  Wir zeichnen **Assoziationen** zwischen Klassen
-    *  Alle Assoziationen besitzen eine **Multiplizität** (1:n, 1:1, n:m etc...)
-    *  **Kompositionen** und **Aggregationen** werden in der Analyse sparsam eingesetzt.
-    *  Wo notwendig, schreiben Sie einen Assoziations- oder Rollenname hin
-    * Verzichten Sie auf den Attribut-Member in der Klasse für Beziehungen. Besser Assoziationsname (z.B. kein "bestellung"-Attribut auf Kunde).
-
-    Note:
-    Die UML-Werkzeuge direkt in VisualParadigm zeigen. Möglichkeiten für die Assoziations-Definition kurz durchgehen. Schüler sollen
-    gleich mitmachen.
-    </textarea>
-    </section>
+Note:
+Die UML-Werkzeuge direkt in VisualParadigm zeigen. Möglichkeiten für die Assoziations-Definition kurz durchgehen. Schüler sollen
+gleich mitmachen.
+</textarea>
+</section>
 </section>
 
 <section data-markdown data-separator-notes="^Note:">

@@ -1,0 +1,68 @@
+@startuml
+title Bildübermittlung via Adapter Pattern
+
+
+note as Beschreibung
+    Für die Schnittstellen-Implementation verwenden wir das Adapter-Pattern.
+    Dies erlaubt die Implementation einer eigenen Schnittstelle pro
+    Agency:
+    Der Agency wird entsprechend ein Adapter übergeben:
+    ""ExportAdapter adapter = new AgencyAClientAdapter(...);
+    agency.setAdapter(adapter);
+    agency.export(photos);""
+end note
+
+class Programm {
+    exportToPhotoAgency(List<Photo> photos, Agency agency)
+}
+note left of Programm
+    Aufruf auf Agency mit:
+    ""agency.export(photos)""
+end note
+
+interface ExportAdapter {
+    bool export(List<Photo> photos)
+}
+note left of ExportAdapter
+    Adapter-Interface:
+    stellt eine gemeinsame Methode ""export()"" zur Verfügung
+end note
+
+class Agency {
+    void setAdapter(Adapter a)
+}
+
+
+
+note top of AgencyAClientAdapter
+    Konkreter Adapter
+end note
+class AgencyAClientAdapter implements ExportAdapter {
+}
+
+class AgencyBClientAdapter implements ExportAdapter {
+}
+class AgencyCClientAdapter implements ExportAdapter {
+}
+
+class RestClientA {
+
+}
+
+class SoapClientB {
+
+}
+
+class FtpClientC {
+
+}
+
+Agency ..> ExportAdapter : export(photos)
+
+AgencyAClientAdapter ..> RestClientA
+AgencyBClientAdapter ..> SoapClientB
+AgencyCClientAdapter ..> FtpClientC
+
+Programm .> Agency
+
+@enduml

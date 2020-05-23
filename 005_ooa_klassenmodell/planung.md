@@ -1,4 +1,4 @@
-Detailplan Lektion 5 - 07.03.2019
+Detailplan Lektion 5 - 12.09.2019
 ===========================================
 
 Material
@@ -29,7 +29,14 @@ Detailplan
 
 * 07:30 (ca. 5min): Begrüssung, Ziel
 * 07:35 (ca. 20min): Besprechung Klassendiagramm, Fragen zu den HA in den Folien
-* 07:55 (ca. 30min): Theorie Assoziationen inkl. UML-Einführung
+* 07:55 (ca. 30min): Theorie Assoziationen inkl. UML-Einführung:
+  * Folie "Was sind Assoziationen?": Schüler sollen selbständig UML-Diagramme nachschlagen:
+    * 1:n
+    * 1:1, n:1
+    * n:m
+    * Aggregation
+    * Komposition
+  * --> Schüler zeichnen am Flipchart ein Beispiel der Diagramme. Auswahl je eines Schülers.
 * 08:25 (Rest): Assoziationen finden: Praxis mit VisualParadigm / UML / Dokumentanalyse
   * Finden von Assoziationen
 * 09:00: Abgabe Hausaufgabe
