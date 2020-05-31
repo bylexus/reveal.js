@@ -9,6 +9,7 @@ out/
 log/*.log
 tmp/**
 build/
+m151-build-*/
 node_modules/
 .sass-cache
 css/reveal.min.css

@@ -3,7 +3,11 @@ module.exports = function(grunt) {
 	var port = grunt.option('port') || 8000;
 	var root = grunt.option('root') || '.';
     var path = require('path');
+    var dayjs = require('dayjs');
     var nunjucks = require('nunjucks');
+
+    var today = dayjs().format('YYYY-MM-DD');
+    var builddir = 'm151-build-' + today;
 
     nunjucks.configure('.', {
         noCache: true
@@ -88,6 +92,7 @@ module.exports = function(grunt) {
                         '!css/theme/source/**',
                         '!node_modules*/**',
                         '!test/**',
+                        '!m151-build*/**',
                         '!CONTRIBUTING.md',
                         '!Gruntfile.js',
                         '!LICENSE',
@@ -95,13 +100,13 @@ module.exports = function(grunt) {
                         '!bower.json',
                         '!package*.json'
                     ],
-                    dest: 'build/'
+                    dest: builddir + '/'
                 }]
             }
         },
 
         clean: {
-            build: ['build/']
+            build: ['m151-build-*/']
         },
 
         'nunjucks-render': {
@@ -117,18 +122,10 @@ module.exports = function(grunt) {
                     '!**/_*.html'
                 ],
                 expand: true,
-                dest: 'build/'
+                dest: builddir + '/'
                 }]
             }
-        },
-
-        'pdf': {
-            build: {
-                html: ['build/**/*.html'],
-                options: {}
-            }
         }
-
 	});
 
 	// Dependencies
