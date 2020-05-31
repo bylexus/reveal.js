@@ -58,9 +58,9 @@ Siehe Projektarbeits-Beschrieb auf Moodle. Suchen Sie auf **nächstes Mal** das 
 Suchen Sie nicht zu weit, und vor allem: **Planen Sie nicht zu viel Funktionalität ein**:
 Ich gebe Ihnen in jeder Lektion etwas Zeit, um am Projekt zu arbeiten: Alles in allem haben Sie ca. 10 Lektionen im Unterricht Zeit, den Rest machen Sie zu Hause.
 
-* Richtgrösse: Ca. 4-6 Entitäten / ca. 4-6 Bildschirmmasken
+* Richtgrösse: Ca. 5-8 Entitäten / ca. 6-8 Bildschirmmasken
 * Die App muss ein User-Login / Authentifizierung vorsehen
-* Abgabe: 08: Januar 2020
+* Abgabe: 16. Dezember 2020
 </textarea>
 </section>
 
@@ -72,22 +72,19 @@ Ich gebe Ihnen in jeder Lektion etwas Zeit, um am Projekt zu arbeiten: Alles in 
 Benötigte Software für den Unterricht
 --------------
 
-Wir entwickeln eine Web-Applikation auf Basis HTML/CSS, PHP, MySQL. Sie erhalten ein Applikations-Skelett mit den wichtigsten Konfigurationen.
+Wir entwickeln eine Web-Applikation auf Basis HTML/CSS, PHP, MySQL. Sie erhalten eine lauffähige Infrastruktur
+als **Docker-Container** und einem Applikations-Skelett mit den wichtigsten Konfigurationen.
+
 Sie benötigen folgende Sofware:
 
 Software | Details
 ---------|---------
-Apache HTTP Web-Server | >= 2.4<br />`mod_rewrite` aktiviert<br />`AllowOverride all` für das Webroot-Verzeichnis
-PHP >= 7.0 | - als Apache-Modul<br />- als CLI-Programm<br />- Module: `json`, `mbstring`, `mysql`, `pdo`, `pdo_mysql`
-MySQL Server + Client | >= 5.0
+Docker inkl. `docker-compose` | darin enthaltene Container:<br />- Web-Server-Container mit PHP 7.4<br />- Docsify-Container<br />- PlantUML-Container<br />- MySQL-DB-container
 MySQL Workbench | Oder ein anderes MySQL-Management-Programm
-Programmier-Editor | z.B. Sublime, Atom, VS Code (sehr zu empfehlen)
+Programmier-Editor | z.B. Sublime, Atom, **VS Code** (sehr zu empfehlen)
 Browser | Mit guten Debugging-Möglichkeiten, z.B. Chrome (Sehr gut), Firefox
-UML-Tool | VisualParadigm
+UML-Tool | PlantUML
 GIT-Client | z.B. SourceTree: https://www.sourcetreeapp.com/
-
-* Fertiger Out-of-the-Box-Web-Entwicklungs-Stack für Windows: https://bitnami.com/stack/wamp
-* Fertiger Out-of-the-Box-Web-Entwicklungs-Stack für Mac: https://bitnami.com/stack/mamp
 
 </textarea>
 </section>
@@ -97,25 +94,54 @@ GIT-Client | z.B. SourceTree: https://www.sourcetreeapp.com/
 <i class="fas fa-graduation-cap"></i> M151 - Setup
 =============================
 
-* Setup WAMP / MAMP / Apache Web Server
-* Konfigurieren Apache-Webroot
-* Inbetriebnahme des App-Skeletts
-* Konfigurieren von git / github classroom: https://classroom.github.com/a/98LCYP3q
+* Erstellen und Klonen des github-Classroom-Repositories: https://classroom.github.com/a/4vyMjw_f
+* Erstellen / Starten der Docker-Container:
+```sh
+$ git clone https://github.com/bztfinformatik/m151-webapp-[your-name-here].git
+$ cd m151-webapp-[your-name-here]
+$ docker-compose up
+$ docker exec -ti m151-web composer install
+```
+
+Folgende Container laufen nun:
+
+* Web-Container m151-web (http://localhost:8020/webroot/)
+* Docsify-Container m151-docsify (http://localhost:10000)
+* PlantUML-Server m151-plantuml (http://localhost/10001)
+* MySQL-DB-Container m151-db (TCP Port 3306, User: m151, PW: m151)
 
 Sie verwalten Ihren Quellcode mit der Quellcode-Verwaltung GIT, und pushen den Code
 in das Github Classroom-Repository.
 
-**Ziel**: Sie geben Ihr Projekt als GIT-Repository ab. Am 08. Januar 2020 ist Ihr gesamter,
+**Ziel**: Sie geben Ihr Projekt in Ihrem GIT-Repository ab. Am 16. Dezember 2020 ist Ihr gesamter,
 lauffähiger Code inkl. Dokumentation im GIT Classroom-Repository gespeichert.
 </textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> M151 - Funktionsweise des Skelett-Projektes
+<i class="fas fa-graduation-cap"></i> Repository-Struktur
 =============================
 
-Datei-Struktur
+```text
+.
+├── db-data                     # MySQL-Datenbank-Files
+├── doc                         # Docsify-Inhalt
+│   ├── README.md               #   Startseite
+│   └── _sidebar.md             #   Navigationsleiste
+├── docker                      # Docker-Image-Definitionen
+├── docker-compose.yml          # Docker-Compose-Konfiguration
+└── web                         # Das Webroot des Webservers
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Funktionsweise des PHP-Skelett-Projektes
+=============================
+
+Dateistruktur
 --------------
 ```
 .
@@ -131,13 +157,27 @@ Datei-Struktur
 └── webroot
     ├── .htaccess         # Apache-Redirect-Anweisung: Alle Requests landen in index.php
     └── index.php         # Initial-Script, alle Requests landen hier
+.
+└── web
+    ├── .gitignore            # Ignore-File für git: diese Files werden nicht ins Repo aufgenommen
+    ├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests werden verboten
+    ├── composer.json         # composer-Konfiguration: Composer ist der Paketmanager/Autoloader für PHP
+    ├── composer.lock         # Das lockfile wird von composer selber erstellt.
+    ├── src                   # PHP-Sourcecode
+    │   └── classes           # Namespace-Root "M151". Hier kommen alle PHP-Klassen zu liegen.
+    │       └── Test.php      # Beispiel-Klasse "M151\Test"
+    ├── vendor                # Composer-Libraries
+    │   └── autoload.php      # autoload-File: Dies muss in index.php angezogen werden
+    └── webroot               # öffentlich zugänglicher Web-Pfad (erreichbar via http://localhost:8020/webroot/)
+        ├── .htaccess         # Apache-Redirect-Anweisung: Alle Requests landen in index.php
+        └── index.php         # Einstiegspunkt, "Dispatching"
 ```
 
 Redirect auf `index.php` für alle nicht-Datei-Anforderungen
 ----------------
 
-* Ziel: Alle Nicht-Datei-URLs landen in einem Einstiegsscript: Dies ist der Einstiegspunkt in unsere Applikation.
-* Dies wird via Apache-Redirect-Anweisung in `.htaccess` konfiguriert.
+* Ziel: Alle Nicht-Datei-URLs landen in einem Einstiegsscript (dispatching): Dies ist der Einstiegspunkt in unsere Applikation.
+* Dies wird via Apache-Redirect-Anweisung in `webroot/.htaccess` konfiguriert.
 
 Weiteres
 ----------

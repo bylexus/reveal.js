@@ -64,13 +64,13 @@ module.exports = function(grunt) {
 
 		watch: {
 			css: {
-				files: root.map(path => path + '/*.css')
+				files: root.map(path => path + '/**/*.css')
 			},
 			html: {
-				files: root.map(path => path + '/*.html')
+				files: root.map(path => path + '/**/*.html')
 			},
 			markdown: {
-				files: root.map(path => path + '/*.md')
+				files: root.map(path => path + '/**/*.md')
 			},
 			options: {
 				livereload: true

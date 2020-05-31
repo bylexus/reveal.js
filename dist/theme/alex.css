@@ -4,6 +4,7 @@
  */
 @import url(fonts/league-gothic/league-gothic.css);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic);
+@import url(../../lib/font/oswald-v31-latin/oswald.css);
 /**
  * Solarized colors by Ethan Schoonover
  */
@@ -17,7 +18,7 @@ html * {
 :root {
   --background-color: #fdf6e3;
   --main-font: Lato, sans-serif;
-  --main-font-size: 14pt;
+  --main-font-size: 13pt;
   --main-color: #657b83;
   --block-margin: 20px;
   --heading-margin: 0 0 20px 0;
@@ -73,13 +74,12 @@ html * {
 .reveal h4,
 .reveal h5,
 .reveal h6 {
-  margin: 0 0 20px 0;
+  margin: 20px 0 5px 0;
   color: #586e75;
-  font-family: "League Gothic", Impact, sans-serif;
+  font-family: "Oswald", Impact, sans-serif;
   font-weight: normal;
   line-height: 1.2;
   letter-spacing: normal;
-  text-transform: uppercase;
   text-shadow: none;
   word-wrap: break-word; }
 
@@ -298,13 +298,13 @@ html * {
 
 .reveal header {
   font-family: "Lato", sans-serif;
-  font-size: 12pt;
+  font-size: 10pt;
   color: #657b83;
   text-align: right;
   margin:5px;
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .reveal header img {

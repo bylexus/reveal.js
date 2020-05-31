@@ -6,20 +6,19 @@ Material
 
 * Jahresplan (Moodle)
 * Projekt-Beschrieb (Moodle)
-* Projekt-Skelett (Code, Moodle)
+* Github Classroom-Repos parat
+* Projekt-Skelett (Code, Repo)
 * Infos zum Setup auf Moodle:
-  * W/MAMP-Stack (https://bitnami.com/stack/wamp/installer, https://bitnami.com/stack/mamp/installer)
   * MySQL Workbench: https://www.mysql.com/products/workbench/
   * VS Code: https://code.visualstudio.com/ mit PHP Extension Pack
   * composer (Teil vom Skelett)
-  * Apache-Config
   * git: SourceTree (https://www.sourcetreeapp.com/)
-  * Github classroom invitation: https://classroom.github.com/a/98LCYP3q
+  * Github classroom invitation: https://classroom.github.com/a/4vyMjw_f
 
 Ziele
 -----
 
-* Sie wissen, was wir in diesem Modul / Semester tun
+* Jahresplan: Sie kennen die wichtigsten Daten des Jahres
 * Sie kennen die Aufgabenstellung der Projektarbeit
 * Sie haben eine lauffähige Entwicklungsumgebung, und das Projekt-Skelett funktioniert
 
@@ -28,19 +27,20 @@ Detailplan
 
 08:20 ( 5min )      Begrüssung, Beschreibung des Moduls 151, Ziel
 08:25 ( ca. 5min )  Jahresplan, Hinweise auf Kurzreferate und Abgabetermine, Moodle
-08:30 (rest)        Einführung in Projekt-Bootstrap (Inbetriebnahme, .htaccess-Rewrite, index.php)
-  * Setup Entwicklungsumgebung mit allen benötigten Tools:
-    * W/MAMP-Stack
-    * Github Classroom
-  * Inbetriebnahme Skeleton, .htaccess
+08:30 (rest)        Setup Entwicklungsumgebung mit Docker
+  * Clone des Classroom-Repos
+  * Bauen / Starten der Docker-Container
+  * Test der Infrastruktur:
+    * Docsify
+    * Web-Skelett
   * Erklärung composer, autoloading
     * Beispiel mit Test-Klasse aufzeigen
-  * Namespacing, Klassen
+    * Namespacing, Klassen
 09:55 Ende
 
 Ziel
 ----
 
-- Alle Schüler haben eine lauffähige Apache-MySQL-Installation
-- Alle Schüler haben das Skeleton-Template von Git Classroom geklont
-- Alle Schüler konnten das Skeleton-Projekt in Betrieb nehmen
+- Alle Schüler haben das Skeleton-Projekt von Git Classroom geklont
+- Alle Schüler haben eine lauffähige Entwicklungsumgebung via Docker
+- Alle Schüler konnten das Skeleton-Projekt mit Docker in Betrieb nehmen
