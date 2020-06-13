@@ -4,6 +4,9 @@ module.exports = function(grunt) {
 	var root = grunt.option('root') || '.';
     var path = require('path');
     var nunjucks = require('nunjucks');
+    var dayjs = require('dayjs');
+    var today = dayjs().format('YYYY-MM-DD');
+    var builddir = 'm326-build-' + today;
 
     nunjucks.configure('.', {
         noCache: true
@@ -19,9 +22,8 @@ module.exports = function(grunt) {
 				options: {
 					port: port,
 					base: root,
-					livereload: true,
+					livereload: 35789,
 					open: true,
-					useAvailablePort: true,
                     middleware: function(connect, options, middlewares) {
                       // add Nunjucks template parser for all .html or /-Files
                       middlewares.unshift(function(req, res, next) {
@@ -73,7 +75,7 @@ module.exports = function(grunt) {
 				files: root.map(path => path + '/**/*.md')
 			},
 			options: {
-				livereload: true
+				livereload: 35798
 			}
 		},
 
@@ -88,6 +90,7 @@ module.exports = function(grunt) {
                         '!css/theme/source/**',
                         '!node_modules*/**',
                         '!test/**',
+                        '!m326-build*/**',
                         '!CONTRIBUTING.md',
                         '!Gruntfile.js',
                         '!LICENSE',
@@ -95,13 +98,13 @@ module.exports = function(grunt) {
                         '!bower.json',
                         '!package*.json'
                     ],
-                    dest: 'build/'
+                    dest: builddir + '/'
                 }]
             }
         },
 
         clean: {
-            build: ['build/']
+            build: ['m326-build-*/']
         },
 
         'nunjucks-render': {
@@ -117,18 +120,10 @@ module.exports = function(grunt) {
                     '!**/_*.html'
                 ],
                 expand: true,
-                dest: 'build/'
+                dest: builddir + '/'
                 }]
             }
         },
-
-        'pdf': {
-            build: {
-                html: ['build/**/*.html'],
-                options: {}
-            }
-        }
-
 	});
 
 	// Dependencies
