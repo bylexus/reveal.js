@@ -9,6 +9,7 @@ log/*.log
 tmp/**
 build/
 /m326-build-*/
+/m326-build-*.zip
 node_modules/
 .sass-cache
 css/reveal.min.css
