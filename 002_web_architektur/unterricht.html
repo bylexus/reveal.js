@@ -70,11 +70,13 @@ In unserem Fall verwenden wir:
 
 Wir kennen nun den grundsätzlichen Ablauf eines HTTP-Request - doch wie sieht dies im Detail aus? Wir wollen dies praktisch erfahren.
 
-<strong><i class="far fa-hand-point-right"></i> Quiz auf Moodle (21.08., Quiz HTTP-Requests)</strong>
+<strong><i class="far fa-hand-point-right"></i> Quiz auf Moodle (Quiz HTTP-Requests)</strong>
 
 Zeit: ca. 15-20min
 
-<!-- .element: class="fragment" data-fragment-index="1--> **Bonus**: Untersuchen Sie mit der Netzwerkkonsole die Seite https://www.20min.ch/ . Was fällt Ihnen auf?
+<div class="fragment">
+<strong>Bonus:</strong> Untersuchen Sie mit der Netzwerkkonsole die Seite https://www.20min.ch/ . Was fällt Ihnen auf?
+</div>
 
 </textarea>
 </section>
@@ -94,10 +96,12 @@ Die **URL** (Uniform Resource Locator) definiert, welche „Ressource“ der Cli
 * Parameter: Zusätzliche Informationen, nicht Teil der Adresse der Ressource
 * Fragment: Client-seitige Information (z.B. Seiten-Anker), für Server nicht relevant
 
-Frage: Welche Teile der Information einer URL ist für den **Client** (Absender), welche Teile für den **Server** (Empfänger) wichtig?
+**Frage**:
 
-* <!-- .element: class="fragment" data-fragment-index="1" -->Protokoll, Host, Fragment: wird für den **Client** für die Adressierung benötigt.
-* <!-- .element: class="fragment" data-fragment-index="1" -->(Host,) Pfad, Parameter: wird für den **Server** für die Identifizierung der Ressource benötigt.
+Welche Teile der Information einer URL ist für den **Client** (Absender), welche Teile für den **Server** (Empfänger) wichtig?
+
+* <!-- .element: class="fragment" data-fragment-index="1" -->Protokoll, Host, Fragment: wird für den <strong>Client</strong> für die Adressierung benötigt.
+* <!-- .element: class="fragment" data-fragment-index="1" -->(Host,) Pfad, Parameter: wird für den <strong>Server</strong> für die Identifizierung der Ressource benötigt.
 </textarea>
 </section>
 
@@ -107,20 +111,36 @@ Frage: Welche Teile der Information einer URL ist für den **Client** (Absender)
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> HTTP Request / Response
 =============================
-<img src="request_response_detail.png" width="500" />
-* Der **REQUEST** wird vom Client initiiert und teilt dem Server mit, was er von ihm will.
-* Der Server lokalisiert / generiert die Ressource und antwortet mit einer RESPONSE.
-* Die erste Zeile des **REQUEST** Headers besteht aus:
-  * **HTTP-Verb** (GET, POST, PUT, DELETE)
-  * Ressourcen-Pfad
-  * Parameter
-* Ein Request Body wird nur im POST/PUT-Fall gesendet.
-* Die **RESPONSE** besteht immer aus:
-  *  Header:
-    * erste Zeile: HTTP Response Code (200 = OK, 403 = Not found etc)
-    * weitere Header
-  * Leerzeile
-  * Response Body
+
+<div style="display:flex;align-content:flex-start">
+<img src="request_response_detail.png" width="50%" height="50%" style="margin: 0; margin-right: 10px" />
+<div>
+    <ul>
+        <li>Der <strong>REQUEST</strong> wird vom Client initiiert und teilt dem Server mit, was er von ihm will.</li>
+        <li>Der Server lokalisiert / generiert die Ressource und antwortet mit einer RESPONSE.</li>
+        <li>Die erste Zeile des <strong>REQUEST</strong> Headers besteht aus:
+            <ul>
+                <li><strong>HTTP-Verb</strong> (GET, POST, PUT, DELETE)</li>
+                <li>Ressourcen-Pfad</li>
+                <li>Parameter</li>
+            </ul>
+        </li>
+        <li>Ein Request Body wird nur im POST/PUT-Fall gesendet.</li>
+        <li>Die <strong>RESPONSE</strong> besteht immer aus:
+            <ul>
+                <li>Header:
+                    <ul>
+                        <li>erste Zeile: HTTP Response Code (200 = OK, 403 = Not found etc)</li>
+                        <li>weitere Header</li>
+                    </ul>
+                </li>
+                <li>Leerzeile</li>
+                <li>Response Body</li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</div>
 
 <i class="far fa-hand-point-right"></i> Schauen Sie sich einen Request / Response in der Browser-Debug-Konsole an!
 </textarea>
@@ -128,6 +148,7 @@ Frage: Welche Teile der Information einer URL ist für den **Client** (Absender)
 
 
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Verarbeitung durch den Web-Server / PHP
@@ -153,13 +174,19 @@ Beispiel: index.html:
     </body>
 </html>
 ```
+</textarea>
+</section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Verarbeitung durch den Web-Server / PHP
+=============================
 **Beispiel dynamische Seite mit PHP**
 
 Der Web-Server prozessiert das Script-File mit dem PHP-Interpreter, und liefert das Endresultat aus:
 Beispiel: index.php:
 
-```html
+<pre><code class="html"><script type="text/template">
 <html>
     <head><title>Hello</title></head>
     <body>
@@ -167,9 +194,11 @@ Beispiel: index.php:
         <p>Es ist genau: <?php echo strfrime('%d. %m. %Y %H:%M'); ?></p>
     </body>
 </html>
-```
+</script></code></pre>
+
 <i class="far fa-hand-point-right"></i> Nach dem Prozessieren durch den PHP-Interpreter:
-```html
+
+<pre><code class="html"><script type="text/template">
 <html>
     <head><title>Hello</title></head>
     <body>
@@ -177,14 +206,16 @@ Beispiel: index.php:
         <p>Es ist genau: 27. Juni 2018, 09:22</p>
     </body>
 </html>
-```
+</script></code></pre>
+
 <i class="far fa-hand-point-right"></i> Der PHP-Interpreter wertet den Code zwischen `<?php` und `?>` und **ERSETZT** diese Teile mit der Ausgabe des Codes dazwischen.
 
 **Frage**: Sieht der Client einen Unterschied zwischen einer statischen und einer dynamischen Webseite?
 </textarea>
 </section>
+</section>
 
-
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Informationen zum Request in PHP
@@ -204,16 +235,20 @@ http://www.meine-seite.ch/index.php?arg1=alex
 
 Ausgabe in PHP:
 
-
 ```php
-<?php
-   echo $_REQUEST['arg1']; // → Ausgabe: „alex“
-?>
+<&#x200b;?php
+echo $_REQUEST['arg1']; // → Ausgabe: „alex“
 ```
+</textarea>
+</section>
 
-
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Informationen zum Request in PHP
+=============================
 
 **Variable $_SERVER**
+
 Die globale `$_SERVER`-Variable enthält Informationen zur Server- und Script-Umgebung, wie z.B.:
 * aufgerufene URL
 * aufgerufenes Script
@@ -228,12 +263,12 @@ http://www.meine-seite.ch/index.php?arg1=alex
 Ausgabe in PHP:
 
 ```php
-<?php
+<&#x200b;?php
     echo $_SERVER['REQUEST_METHOD']; // GET
     echo $_SERVER['SCRIPT_NAME']; // Web-Pfad
     var_dump($_SERVER); // alles ausgeben
-?>
 ```
 </textarea>
+</section>
 </section>
 {% endblock %}

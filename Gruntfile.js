@@ -77,7 +77,7 @@ module.exports = function(grunt) {
 				files: root.map(path => path + '/**/*.md')
 			},
 			options: {
-				livereload: true
+				livereload: 35799
 			}
 		},
 
@@ -93,6 +93,7 @@ module.exports = function(grunt) {
                         '!node_modules*/**',
                         '!test/**',
                         '!m151-build*/**',
+                        '!__prepare/**',
                         '!CONTRIBUTING.md',
                         '!Gruntfile.js',
                         '!LICENSE',
@@ -118,6 +119,7 @@ module.exports = function(grunt) {
                     '!node_modules*/**',
                     '!demo.html',
                     '!test/**',
+                    '!__prepare/**',
                     '!plugin/**',
                     '!**/_*.html'
                 ],

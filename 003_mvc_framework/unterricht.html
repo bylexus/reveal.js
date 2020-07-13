@@ -27,11 +27,11 @@ Wir erinnern uns: Das MVC-Design-Pattern teilt die Verantwortlichkeiten von Code
 * **V**iew  (Ansicht)
 * **C** (Logik)
 
-<img src="mvc.png" width="300"/>
+<div><img src="mvc.png" width="300"/></div>
 
 <i class="far fa-hand-point-right"></i> Wie passt dies nun in die Web-Architektur?
 
-<img src="../002_web_architektur/web_architektur.png" width="500" />
+<div><img src="../002_web_architektur/web_architektur.png" width="500" /></div>
 
 * Was / Wo sind die **Models**?
 * Was / Wo sind die **Views**?
@@ -39,6 +39,7 @@ Wir erinnern uns: Das MVC-Design-Pattern teilt die Verantwortlichkeiten von Code
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Web-MVC-Framework
@@ -49,10 +50,20 @@ Wir betrachten MVC aus Sicht des **Applikationsservers** unserer Standard-Archit
 <img src="../002_web_architektur/web_architektur.png" width="500" />
 
 * Die **Models** sind etwelche Daten aus einer Datenbank.
-* Die **Views** sind HTML-Seiten, die der Browser darstellt: Sie werden von der Business Logik / den Controllern ausgeliefert
+* Die **Views** sind Antworten vom Server, die der Browser darstellt: Sie werden von der Business Logik / den Controllern ausgeliefert (z.B. als HTML-Seite)
 * Die **Controller** sind die "Empfänger" von HTTP-Requests: Sie stellen die Verbindung zwischen Daten, und Views her, sie stellen die Business-Logik zur Verfügung.
+</textarea>
+</section>
 
-Eine Web-Applikation besteht (meist) aus vielen Funktionen / vielen Seiten. Ziel des Web-MVC-Modells ist es, zusammengehörige Funktionalität in einem **Controller** zusammenzufassen. Ein Beispiel:
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Web-MVC-Framework
+=============================
+
+Eine Web-Applikation besteht (meist) aus vielen Funktionen / vielen Seiten.
+Ziel des Web-MVC-Modells ist es, Requests zu einem Controller zu **routen** (eine Controller-Klasse aufzurufen):
+
+zusammengehörige Funktionalität wird dabei in einem **Controller** zusammengefasst. Ein Beispiel:
 
 * Ihre Seite besteht aus diversen Seiten / URLs:
   * Login-Seite (`/login`, `/logout`)
@@ -67,9 +78,10 @@ Eine Web-Applikation besteht (meist) aus vielen Funktionen / vielen Seiten. Ziel
 
 <i class="far fa-hand-point-right"></i> Wir müssen nun dafür sorgen, dass Requests vom Browser von der richtigen Business-Logik abgearbeitet werden. <br />
 **Ziel ist, dass unsere Requests in einer
-dafür vorgesehenen Methode in einer Controller-Klasse landen**.<br /> Wie können wir dies bewerkstelligen?
+dafür vorgesehenen Methode in einer Controller-Klasse landen**, also richtig "geroutet" werden.<br /> Wie können wir dies bewerkstelligen?
 
 </textarea>
+</section>
 </section>
 
 <section>
@@ -107,6 +119,13 @@ Der Router nimmt folgende Parameter des Requests für die Ermittlung der Route:
 * den URL-Pfad der angeforderten URL (z.B. „/personen/list“)
 * Die HTTP-Methode (z.B. „GET“)
 * weitere HTTP-Parameter (z.B. `?id=5&name=alex`)
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Ablauf eines Requests
+=============================
 
 **3. Controller: Request abhandeln**
 
@@ -140,6 +159,7 @@ Nachdem die View den Output generiert hat, wird dieser an den Client ausgegeben.
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Umsetzung in unserem Applikations-Skelett
@@ -149,8 +169,8 @@ Wir haben das Applikations-Skelett bereits in Betrieb genommen: Unser `index.php
 Dies ist unser Applikations-Einstieg, unser **Dispatching**. Hier **beginnt** unsere Applikation:
 
 ```php
-<?php
-// index.php --- Dies ist unser "Dispatcher"
+<&#x200b;?php
+# index.php --- Dies ist unser "Dispatcher"
 
 # lade composer autoloader:
 require_once(__DIR__.'/vendor/autoload.php');
@@ -161,20 +181,31 @@ $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '/';
 # extrahiere weitere Request-Parameter:
 $request_params = $_REQUEST;
 
-// Schritt 1: Routen konfigurieren (welche Routen bieten wir an?) --> Das Routing muss Auskunft darüber geben, welche URL an welchen Controller/Methode geschickt wird
-// Schritt 2: Anhand der Route den richtigen Controller instanzieren
-// Schritt 3: Im instanzierten Controller die richtige Methode aufrufen
-// Schritt 4: Diese Methode stellt die Business-Logik dar und generiert die View in Form einer HTML-Antwort
+/**
+ * Schritt 1: Routen konfigurieren (welche Routen bieten wir an?)
+ *            --> Das Routing muss Auskunft darüber geben, welche URL an welchen Controller/Methode geschickt wird
+ * Schritt 2: Anhand der Route den richtigen Controller instanzieren
+ * Schritt 3: Im instanzierten Controller die richtige Methode aufrufen
+ * Schritt 4: Diese Methode stellt die Business-Logik dar und generiert die View in Form einer HTML-Antwort
+ */
 ```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Umsetzung in unserem Applikations-Skelett
+=============================
 
 Aufgabe
 ---------
 
 Versuchen Sie nun, folgendes programmatisch umzusetzen:
 
-* ** Routen definieren**: Wie definieren Sie Routen? Welche Datenstruktur ist geeignet, um anhand einer URL den richtigen Controller / die richtige Methode zu finden?
-* ** Controller finden**: Programmieren Sie die Logik, um anhand der requesteten URL den richtigen Controller zu finden / zu instanzieren.
-* ** Action-Methode aufrufen**: Programmieren Sie die Logik, um schlussendlich die richtige Methode im instanzierten Controller aufzurufen.
+* **Routen definieren**: Wie und wo definieren Sie Routen? Welche Datenstruktur ist geeignet, um anhand einer URL den richtigen Controller / die richtige Methode zu finden?<br />
+  <i class="far fa-hand-point-right"></i> Entwerfen Sie hierzu eine Klasse / eine Klassen-Struktur!
+* **Controller finden**: Programmieren Sie die Logik, um anhand der requesteten URL den richtigen Controller zu finden / zu instanzieren.
+* **Action-Methode aufrufen**: Programmieren Sie die Logik, um schlussendlich die richtige Methode im instanzierten Controller aufzurufen.
 * **Ziel:**
   * Ihr Programm findet anhand der Route die richtige Controller-Klasse und die Ziel-Methode (Action-Methode).
   * Ihr Programm kann den gefundenen Controller instanzieren
@@ -182,18 +213,17 @@ Versuchen Sie nun, folgendes programmatisch umzusetzen:
   * Ihre Action-Methode kann eine Response (HTML) ausgeben
 </textarea>
 </section>
-
+</section>
 
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Umsetzung in unserem Applikations-Skelett
 =============================
 
-** Hinweise für PHP**:
+**Hinweise für PHP**:
 
 * Instanzieren einer Klasse anhand des Namens:
 ```php
-<?php
    // Controller M151\Controller\MeinController instanzieren:
    $controllerName = 'M151\Controller\MeinController';
    $controllerInstanz = new $controllerName();
@@ -201,7 +231,6 @@ Versuchen Sie nun, folgendes programmatisch umzusetzen:
 
 * Aufrufen einer Objekt-Methode anhand ihres Namens:
 ```php
-<?php
    // Methode list() in Klasse MeinController aufrufen:
    $actionMethode = 'list';
    $resultat = $controllerInstanz->$actionMethode();
@@ -209,6 +238,7 @@ Versuchen Sie nun, folgendes programmatisch umzusetzen:
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Weitere Hilfestellungen
@@ -222,6 +252,13 @@ MVC-Sequenzdiagramm
 Siehe Original auf Moodle:
 
 <img src="MVC-Sequenzdiagramm.png" width="500" />
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Weitere Hilfestellungen
+=============================
 
 Vorschlag MVC-Klassen
 ------------------------
@@ -232,5 +269,6 @@ Siehe Original auf Moodle:
 
 
 </textarea>
+</section>
 </section>
 {% endblock %}

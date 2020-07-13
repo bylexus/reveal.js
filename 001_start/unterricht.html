@@ -105,7 +105,7 @@ $ docker exec -ti m151-web composer install
 
 Folgende Container laufen nun:
 
-* Web-Container m151-web (http://localhost:8020/webroot/)
+* Web-Container m151-web (http://localhost:8020/)
 * Docsify-Container m151-docsify (http://localhost:10000)
 * PlantUML-Server m151-plantuml (http://localhost/10001)
 * MySQL-DB-Container m151-db (TCP Port 3306, User: m151, PW: m151)
@@ -125,13 +125,13 @@ lauffähiger Code inkl. Dokumentation im GIT Classroom-Repository gespeichert.
 
 ```text
 .
-├── db-data                     # MySQL-Datenbank-Files
-├── doc                         # Docsify-Inhalt
+├── db-data/                    # MySQL-Datenbank-Files
+├── doc/                        # Docsify-Inhalt
 │   ├── README.md               #   Startseite
 │   └── _sidebar.md             #   Navigationsleiste
-├── docker                      # Docker-Image-Definitionen
+├── docker/                     # Docker-Image-Definitionen
 ├── docker-compose.yml          # Docker-Compose-Konfiguration
-└── web                         # Das Webroot des Webservers
+└── web/                        # Der Web-Code
 ```
 </textarea>
 </section>
@@ -145,30 +145,17 @@ Dateistruktur
 --------------
 ```
 .
-├── .gitignore            # Ignore-File für git: diese Files werden nicht ins Repo aufgenommen
-├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests werden verboten
-├── composer.json         # composer-Konfiguration: Composer ist der Paketmanager/Autoloader für PHP
-├── composer              # composer-binary. Ausführen mit: php composer.phar [...]
-├── m151-docker           # Docker-Konfiguration
-├── src
-│   └── classes           # Basis-Verzeichnis des PHP-Namespaces "M151", siehe composer.json
-└── vendor                # Composer-libraries
-    └── autoload.php      # composer-Autoloader-Script
-└── webroot
-    ├── .htaccess         # Apache-Redirect-Anweisung: Alle Requests landen in index.php
-    └── index.php         # Initial-Script, alle Requests landen hier
-.
 └── web
     ├── .gitignore            # Ignore-File für git: diese Files werden nicht ins Repo aufgenommen
     ├── .htaccess             # Apache-Redirect-Anweisung: Alle Requests werden verboten
     ├── composer.json         # composer-Konfiguration: Composer ist der Paketmanager/Autoloader für PHP
     ├── composer.lock         # Das lockfile wird von composer selber erstellt.
-    ├── src                   # PHP-Sourcecode
+    ├── src/                  # PHP-Sourcecode
     │   └── classes           # Namespace-Root "M151". Hier kommen alle PHP-Klassen zu liegen.
     │       └── Test.php      # Beispiel-Klasse "M151\Test"
-    ├── vendor                # Composer-Libraries
+    ├── vendor/               # Composer-Libraries
     │   └── autoload.php      # autoload-File: Dies muss in index.php angezogen werden
-    └── webroot               # öffentlich zugänglicher Web-Pfad (erreichbar via http://localhost:8020/webroot/)
+    └── webroot/              # öffentlich zugänglicher Web-Pfad (erreichbar via http://localhost:8020/)
         ├── .htaccess         # Apache-Redirect-Anweisung: Alle Requests landen in index.php
         └── index.php         # Einstiegspunkt, "Dispatching"
 ```
@@ -188,6 +175,29 @@ Weiteres
 * Namespaces in PHP (Support von Composer included)
   * Namespaces helfen, Namenskonflikte von Klassen zu vermeiden
   * Composer unterstützt das Autoloading von Klassen mit Namespaces
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Programmieren in PHP
+=============================
+
+Wir programmieren ein Web-Framework in PHP - Machen Sie sich mit folgenden (PHP-)Konzepten vertraut:
+
+* Objektorientiertes Programmieren: https://www.php.net/manual/de/language.oop5.php
+* Class Autoloading und Paketmanager: https://getcomposer.org/
+* PHP Namespacing: https://www.php.net/manual/de/language.namespaces.basics.php
+
+Sie sollten bis nächstes Mal in der Lage sein:
+
+* eigene PHP-Klassen zu entwerfen
+* diese korrekt in einem Namespace zu definieren
+* diese korrekt vom Autoloader zu laden und
+* zu instanzieren / anwenden
+
+**Schauen Sie sich dazu das Web-Skelett an, dort finden Sie bereits ein laufendes Beispiel!**
+
 </textarea>
 </section>
 {% endblock %}

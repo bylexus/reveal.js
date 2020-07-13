@@ -1,4 +1,4 @@
-Detailplan Lektion 3 - 29.08.2018 (Woche 35)
+Detailplan Lektion 3 - 26.08.2020
 ===========================================
 
 Material
@@ -17,11 +17,10 @@ Ziele
 Detailplan
 ----------
 
-08:20: (ca. 20min):  Nachholen von letzter Lektion: Input zu dynamischen / statischen Seiten in PHP
-08:40 ( ca. 30min )  Theorie Folien
-09:10 ( rest )        Selbständige Umsetzung MVC-Grundgerüst: Schüler sollen ihr MVC-Grundgerüst (Dispatching, Routing, Controller, Action-Methode)
+08:35: (ca. 45min):  Theorie Folien
+09:20 ( rest )        Selbständige Umsetzung MVC-Grundgerüst: Schüler sollen ihr MVC-Grundgerüst (Dispatching, Routing, Controller, Action-Methode)
                       umsetzen. Ziel: Grundgerüst bis nächste Lektion fertig
-09:55 Ende
+10:05 Ende
 
 Bemerkung zum Unterricht
 ------------------------
