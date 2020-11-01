@@ -17,8 +17,9 @@ Heutiges Ziel
 
 ### Hausaufgaben
 
-* Durchlesen Anforderungen Bibliothekssystem [auf Moodle](https://moodle.bztf.ch/mod/resource/view.php?id=28527)
-* Ziel: Anforderungen verstehen, erste Ideen und &Uuml;berblick sammeln: Wir verwenden die Erkenntnisse in der nächsten Lektion, um Use Cases daraus abzuleiten.
+* Durchlesen Anforderungen Bibliothekssystem auf **Moodle**
+* Ziel: Anforderungen verstehen, erste Ideen und Überblick sammeln: Wir verwenden die Erkenntnisse in der nächsten Lektion,
+  um Use Cases daraus abzuleiten.
 
 </textarea>
 </section>
@@ -42,13 +43,15 @@ Seine erste Aussage lautet:
   * welche Probleme entstehen beim **Kunden**?
   * welche Probleme haben  Sie als **Entwickler**?
 
-<i class="fas fa-arrow-right"></i> Schreiben Sie Ihre Stichworte ans Flipboard und erläutern Sie diese:
+<i class="fas fa-arrow-right"></i> Schreiben Sie Ihre Stichworte in folgendes Padlet und erläutern Sie diese:
 
 * notwendige Schritte, Arbeiten bis zum fertigen Produkt
 * Probleme auf Kunden- und Entwicklerseite
 
+Padlet: https://padlet.com/alex_schenkel/ar4id4nnl693n6js
+
 Note:
-* Flipboard bereitstellen
+* Padlet bereitstellen: https://padlet.com/alex_schenkel/ar4id4nnl693n6js
 * 2 Spalten:
   * Vorgehen
   * Schwierigkeiten / Herausforderungen
@@ -71,10 +74,10 @@ Note:
 <i class="fas fa-comments"></i> Kommunikationsprobleme
 ===========
 
-* <!-- .element: class="fragment" --> Der _Kunde_ versteht nicht genug von Informatik.
-* <!-- .element: class="fragment" --> Der _Kunde_ ist Experte in seiner Problem-Domäne. Er spricht eine Sprache, die der Informatiker nicht versteht.
-* <!-- .element: class="fragment" --> Der _Informatiker_ versteht nicht genug vom Problem des Kunden.
-* <!-- .element: class="fragment" --> Der _Informatiker_ ist Experte in der (Software)-Entwicklung. Er spricht eine Sprache, die der Kunde nicht versteht.
+* <!-- .element: class="fragment" --> Der <em>Kunde</em> versteht nicht genug von Informatik.
+* <!-- .element: class="fragment" --> Der <em>Kunde</em> ist Experte in seiner Problem-Domäne. Er spricht eine Sprache, die der Informatiker nicht versteht.
+* <!-- .element: class="fragment" --> Der <em>Informatiker</em> versteht nicht genug vom Problem des Kunden.
+* <!-- .element: class="fragment" --> Der <em>Informatiker</em> ist Experte in der (Software)-Entwicklung. Er spricht eine Sprache, die der Kunde nicht versteht.
 
 
 <i class="fas fa-arrow-right"></i> Ziel:
@@ -102,7 +105,7 @@ Wir verwenden UML für unsere objektorienterte Analyse und Planung. UML bietet v
 * Die Sprache ist formal genug, um detaillierte Anforderungen und Umsetzungen darzustellen
 * Es gibt viele Werkzeuge, welche UML beherrschen und aus den Diagrammen gleich Programmteile erzeugen können.
 
-[Übersicht über alle UML-Diagramme auf Moodle](https://moodle.bztf.ch/mod/resource/view.php?id=15220)
+[Übersicht über alle UML-Diagramme auf Moodle](https://moodle.bztf.ch/mod/resource/view.php?id=50193)
 </textarea>
 </section>
 
@@ -115,7 +118,7 @@ Wir verwenden UML für unsere objektorienterte Analyse und Planung. UML bietet v
 <div style="margin-left: 280px">
 <p>
 Wir behandeln das Vorgehensmodell zur Entwicklung von objektorientierter Software.
-Das hier aufgezeigte Vorgehensmodell ist grundsätzlich generisch und **nicht nur ** Objektorientiert-spezifisch.
+Das hier aufgezeigte Vorgehensmodell ist grundsätzlich generisch und <strong>nicht nur</strong> Objektorientiert-spezifisch.
 </p>
 <p> Die objektorientierte Entwicklung oder Vorgehensweise orientiert sich stark an der realen Welt:</p>
 <ul>
@@ -141,7 +144,10 @@ Ziel der Phase:
 
 **Frage:** Welches UML-Werkzeug eignet sich, um Anforderungen an die Software mit dem Kunden zu ermitteln / festzulegen?
 
-<!-- .element: class="fragment" --> **Antwort:** Use-Cases / Use Case Diagramme
+<div class="fragment">
+<strong>Antwort: </strong>
+Use-Cases / Use Case Diagramme
+</div>
 </textarea>
 </section>
 
@@ -167,21 +173,28 @@ von der Technik beschreiben. Sie helfen, das Problem formal zu erfassen, meist d
 ===========
 
 Aus den erstellten Use-Cases kann dann das **statische** und **dynamische** Modell abgebildet werden.
-**WICHTIG**: das Analysemodell befasst sich nicht mit der technischen Umsetzung – Es wird bewusst auf technische Details oder Architekturen während der Analyse verzichtet.
 
-<img src="vorgehensmodell.png" style="float:left; margin-right: 10px; width: 200px" />
-<div style="margin-left: 230px">
+**WICHTIG**: das Analysemodell befasst sich **noch nicht** mit der technischen Umsetzung – Es wird bewusst auf technische Details oder Architekturen während der Analyse verzichtet.
+
+<div style="display:flex">
+<img src="vorgehensmodell.png" style="margin-right:10px"/>
+<div>
 <p>Diese Vorgehensweise ist:</p>
 <ul>
-    <li>**evolutionär**: Das Gesamtsystem wird nicht von Anfang an als Ganzes umgesetzt, sondern es werden kleine Teilsysteme analysiert und umgesetzt (Bsp. Userverwaltung)</li>
-    <li>somit immer auch **iterativ**: Durch die evolutionäre Vorgehensweise ist es immer wieder notwendig, Änderungen und Verfeinerungen am Modell vorzunehmen.</li>
-    <li>Da sich auch viele Programmiersprachen an diesem Paradigma orientieren, brauchen wir zur Analyse und Design unseres Systems ein objektorientiertes Vorgehensmodell.</li>
+    <li><strong>evolutionär</strong>: Das Gesamtsystem wird nicht von Anfang an als Ganzes umgesetzt, sondern es werden kleine Teilsysteme analysiert und umgesetzt (Bsp. Userverwaltung)
+          und mit dem Kunden laufend besprochen.</li>
+    <li>somit immer auch <strong>iterativ</strong>: Durch die evolutionäre Vorgehensweise ist es immer wieder notwendig, Änderungen und Verfeinerungen am Modell vorzunehmen.</li>
+    <li>Da sich viele Programmiersprachen am OO-Paradigma orientieren, brauchen wir zur Analyse und Design unseres Systems ein objektorientiertes Vorgehensmodell.</li>
 </ul>
 </div>
+</div>
 
-<!-- .element: style="font-size: 1em" --> **Frage:** Warum macht man dies so? (iterativ, evolutionär)? Warum entwickelt man das Gesamtsystem nicht „Auf einen Rutsch“?
+**Frage:** Warum macht man dies so? (iterativ, evolutionär)? Warum entwickelt man das Gesamtsystem nicht „Auf einen Rutsch“?
 
-<!-- .element: class="fragment" style="font-size: 1em" --> **Antwort:** Anforderungen lassen sich schwer von Anfang an bis ins Detail formulieren: Meist entstehen die konkreten Anforderungen erst mit ersten Prototypen, während des Testens, oder sogar im Betrieb.
+<div class="fragment">
+    <strong>Antwort:</strong> Anforderungen lassen sich schwer von Anfang an bis ins Detail formulieren:
+    Meist entstehen die konkreten Anforderungen erst mit ersten Prototypen, während des Testens, oder sogar erst im Betrieb!
+</div>
 </textarea>
 </section>
 
@@ -191,14 +204,14 @@ Aus den erstellten Use-Cases kann dann das **statische** und **dynamische** Mode
 <i class="fas fa-sitemap"></i> Statisches Modell, dynamisches Modell
 ===========
 
-<div>
-<div style="float:left; width: 48%;border: 1px solid black;margin-right: 5px;padding: 5px">
+<div style="display:flex">
+<div style="border: 1px solid black;margin-right: 5px;padding: 5px">
     <p><strong>Statisches</strong> Modell:</p>
     <p>
     Das statische Modell zeigt die (Fach-)Klassen, deren Attribute und die Beziehungen zu anderen Klassen. Es sagt aber nichts über die Interaktion / über Abläufe aus.
     </p>
 </div>
-<div style="float:left; width: 48%;border: 1px solid black;padding: 5px">
+<div style="border: 1px solid black;padding: 5px">
     <p><strong>Dynamisches Modell</strong> Modell:</p>
     <p>
     Das dynamische Modell zeigt die Funktionsabläufe, also das Verhalten des Systems, und die Interaktion der einzelnen Klassen / Komponenten miteinander.
@@ -206,11 +219,15 @@ Aus den erstellten Use-Cases kann dann das **statische** und **dynamische** Mode
 </div>
 </div>
 
-<i class="fas fa-flask"></i>**Übung**: Sie ordnen verschiedene UML-Diagramme dem richtigen Modell zu (statisch oder dynamisch).
+<p style="margin-top: 1em">
+    <i class="fas fa-flask"></i><strong>Übung</strong>: Sie ordnen verschiedene UML-Diagramme dem richtigen Modell zu (statisch oder dynamisch).
+</p>
+
+Padlet: https://padlet.com/alex_schenkel/bx6zzp6l7ckylem7
 
 Machen Sie eine Aussage zu Ihrem Diagramm):
 
-* Warum statisch / dynamisch?
+* Warum statisch, warum dynamisch?
 * Für was wird dieses Diagramm benutzt?
 * Können Sie solche Diagramme mit dem Endkunden besprechen?
 
@@ -249,7 +266,7 @@ Zur OOD-Phase kommen wir später im Verlauf des Semesters.
 
 Übungsprojekt Bibliothekssystem: Als durchgängiges Beispiel werden wir aufgrund eines einfachen Pflichtenheftes ein Bibliothekssystem entwerfen.
 
-* Lesen Sie die [ „Anforderung Bibliothekssystem“ (Moodle) ](https://moodle.bztf.ch/mod/resource/view.php?id=15218) durch.
+* Lesen Sie die [ „Anforderung Bibliothekssystem“ (Moodle) ](https://moodle.bztf.ch/mod/resource/view.php?id=50190) durch.
 * überlegen Sie sich, _unabhängig von der technischen Umsetzung_, welche Rollen (Personen) und Abläufe Sie im Pflichtenheft finden.
 * Überlegen Sie sich, _unabhängig von der technischen Umsetzung_, wo Sie Unklarheiten / Ungenauigkeiten feststellen. Was ist Ihnen nicht klar? Wo sehen Sie genaueren Erklärungsbedarf?
 * Ziel ist, in der nächsten Stunden einzelne Use-Cases erstellen / bearbeiten zu können.

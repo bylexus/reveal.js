@@ -32,7 +32,7 @@ Heutiges Ziel
 <section>
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Hierarchien von Objekten mit gleicher Funktionalität
+<i class="fas fa-graduation-cap"></i> Objekt-Hierarchien mit gleicher Funktionalität
 =============================
 
 Sie haben die Aufgabe, UI-Klassen für unser Bibliothekssystem zu entwickeln. Unsere Textmasken bestehen immer
@@ -50,19 +50,27 @@ wieder aus ähnlichen Elementen:
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Hierarchien von Objekten mit gleicher Funktionalität
+<i class="fas fa-graduation-cap"></i> Objekt-Hierarchien mit gleicher Funktionalität
 =============================
 
 Beispiel: die Barcode-Maske ist folgendermassen aufgebaut:
 
 <div style="display:flex;align-items: flex-start;">
-    <img src="ui_komponenten.png" style="margin-right: 40px" />
-    <img src="hierarchie.png" />
+    <img src="ui_komponenten.png" style="margin-right: 40px;width: 250px" />
+    <img src="hierarchie.png" style="width: 400px" />
 </div>
 Zum "Zeichnen" einer Maske müssen schlussendlich alle Elemente aufgerufen / gezeichnet werden, also die ganze Hierarchie "abgearbeitet" werden.
 
-**Aufgabe**: Überlegen Sie sich eine Programmstruktur, um dieses Problem abzubilden. Wie würden Sie
-dies umsetzen? --> Erstellen Sie ein kleines Beispiel, wenn Sie eine Idee haben!
+**Gemeinsame Ideensammlung direkt am Beamer**: (1 zeichnet, alle liefern Input)
+
+* Sie haben hier die Klassen `JWindow`, `JPanel`, `JButton`, `JLabel`. Wie hängen die hier gezeigten Objekte konkret zusammen? 
+  **--> Machen Sie ein UML-Objektdiagramm mit den konkret gezeigten Objekten, welches die Objekte und die Zusammenhänge aufzeigt!**<br >
+  (PlantUML: Objektdiagramme: https://plantuml.com/de/object-diagram)
+* Stellen Sie sich vor, Sie müssten nun den Programmteil umsetzen, der die Elemente tatsächlich auf den Bildschirm zeichnet. Wie gehen Sie vor?
+  * Welche Methoden definieren Sie (zusätzlich) auf den Klassen?
+  * Was haben diese für eine Funktion, resp. welche Methoden rufen Sie wie auf?
+  * **--> Beschreiben Sie diesen Vorgang!**
+
 </textarea>
 </section>
 </section>
@@ -116,26 +124,46 @@ gezeichnet.
 HTML ist eine hierarchische Struktur:
 
 ```
-<html>
-    <body>
+<&#8203;html>
+    <&#8203;body>
         <div>
             <p>Hallo. Klicke auf <a href="https://badwebsite.org">diesen Link!</a></p>
         </div>
-    </body>
-</html>
+    <&#8203;/body>
+<&#8203;/html>
 ```
 
-Wir sehen hier einfache Komponenten: Texte innerhalb von Tags ,und Komposit-Komponenten: Tags wie p, div, a etc.
+Wir sehen hier **einfache Komponenten**: Texte innerhalb von Tags, und **Komposit-Komponenten**: Tags wie p, div, a etc.
 
-Es sollen nun diese HTML-Elemente als Klassen implementiert werden, sodass der HTML-Baum aufgebaut und ausgegeben werden kann, und zwar unter Zuhilfenahme des Komposite-Patterns:
+Es sollen nun diese HTML-Elemente als Klassen implementiert werden, sodass der HTML-Baum aufgebaut und ausgegeben werden kann,
+und zwar unter Zuhilfenahme des Komposite-Patterns:
 
 Das Komponenten-Interface definiert eine `print()`-Methode, welche die Komponente ausgibt (als String ausgibt).
 
 ```java
 interface HtmlNode {
-    public void print(int indent);
+    public void print();
 }
 ```
+
+Konkrete Klassen implementieren nun dieses Interface:
+
+```java
+// Stellt ein HTML-Tag dar, z.B. <p> ... </p>
+public class Tag {
+    public Tag(String tagName) { /* ... */ }
+    public void print() { /* ... */}
+}
+```
+
+```java
+// stellt eine Text-Node dar, z.B. "Hallo, klicke auf "
+public class TextNode {
+    public Tag(String content) { /* ... */ }
+    public void print() { /* ... */}
+}
+```
+
 </textarea>
 </section>
 
@@ -204,7 +232,7 @@ Wir müssen in etwa folgende Struktur als XML exportieren können:
 Als Anwender möchte ich das XML folgendermassen erzeugen können:
 
 ```java
-List<Benutzer> benutzer = holeBenutzerIrgendwie();
+List<&#8203;Benutzer> benutzer = holeBenutzerIrgendwie();
 
 AusleihenXmlGenerator ag = new AusleihenXmlGenerator();
 String xml = ag.createXml(benutzer);

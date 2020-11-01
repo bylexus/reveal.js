@@ -22,41 +22,40 @@ Heutiges Ziel
 </section>
 
 <section>
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Klassenmodell
-    ===========
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Klassenmodell
+===========
 
-    Wir besprechen das Klassenmodell mit Klassen, Attributen, Generalisierungen
+Wir besprechen das Klassenmodell mit Klassen, Attributen, Generalisierungen
 
-    * Wie haben Sie folgende Entitäten modelliert:
-      * Benutzer, Kunde, Jugendlicher, Erwachsener
-      * Welche Vererbungsstruktur haben Sie gewählt?
+* Wie haben Sie folgende Entitäten modelliert:
+    * Benutzer, Kunde, Jugendlicher, Erwachsener
+    * Welche Vererbungsstruktur haben Sie gewählt?
 
-    * Die Attribute **ISBN, Autor, Sprache** werden für mehrere Medien-Arten benötigt. Wie haben Sie dies im Diagramm modelliert?
+* Die Attribute **ISBN, Autor, Sprache** werden für mehrere Medien-Arten benötigt. Wie haben Sie dies im Diagramm modelliert?
 
-    * Welche Klassen und Attribute haben Sie für die Medien gefunden? Welche Vererbungsstruktur haben Sie gewählt?
+* Welche Klassen und Attribute haben Sie für die Medien gefunden? Welche Vererbungsstruktur haben Sie gewählt?
 
-    Note:
-    * Zu jeder Frage zeigt ein Schüler seine Lösung am Diagramm.
-    * Am Schluss Aufzeigen meiner Beispiellösung, nächste Folie
-    </textarea>
-    </section>
+Note:
+* Zu jeder Frage zeigt ein Schüler seine Lösung am Diagramm.
+* Am Schluss Aufzeigen meiner Beispiellösung, nächste Folie
+</textarea>
+</section>
 
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Beispiellösung
-    ===========
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Besprechen der Hausaufgabe: Beispiellösung
+===========
 
-    <img style="height:600px" src="klassen_attribute_generalisierung.png" />
+<img style="" src="klassen_attribute_generalisierung.png" />
 
-    Note:
-    * Ich habe bewusst auf die Beziehungen verzichtet: Diese finden wir erst im nächsten Schritt
-    * Das Klassenmodell bildet KEINE technischen Details ab: Wir befinden uns in der Analysephase, wo wir bewusst auf technische Einschränkungen verzichten.
-    * Es wurden auch nicht alle Attribute aufgezeigt, nur die für die Use Cases / Anforderungen wichtigsten.
-    * Sie können auch mehrere Klassendiagramme anfertigen, um die Übersicht zu gewähren: Gruppieren Sie dann die Klassendiagramme z.B. nach Thema.
-    </textarea>
-    </section>
+* Ich habe bewusst auf die Beziehungen verzichtet: Diese finden wir erst im nächsten Schritt
+* Das Klassenmodell bildet KEINE technischen Details ab: Wir befinden uns in der Analysephase, wo wir bewusst auf technische Einschränkungen verzichten.
+* Es wurden auch nicht alle Attribute aufgezeigt, nur die für die Use Cases / Anforderungen wichtigsten.
+* Sie können auch mehrere Klassendiagramme anfertigen, um die Übersicht zu gewähren: Gruppieren Sie dann die Klassendiagramme z.B. nach Thema.
+</textarea>
+</section>
 </section>
 
 <section data-markdown data-separator-notes="^Note:">
@@ -86,32 +85,36 @@ Note:
 
 Was sind Assoziationen? Was ist eine Aggregation, was eine Komposition?
 
-* <!-- .element class="fragment" --> **Assoziationen** definiert Beziehungen zwischen Klassen.
-* <!-- .element class="fragment" --> **Aggregation:** (selten in Analyse, besser einfache Assoziation): Teile sind unabhängig voneinander (zB. Benutzer hat Medien ausgeliehen → Medien bleiben bestehen, wenn Benutzer gelöscht wird)
-* <!-- .element class="fragment" --> **Komposition:** „Besteht aus“: Teile sind Abhängig von der Klassen, die sie beinhaltet, und existieren nur so lange wie die Hauptklasse.
+<ul>
+    <li class="fragment"><strong>Assoziationen</strong> definiert Beziehungen zwischen Klassen.</li>
+    <li class="fragment"><strong>Aggregation:</strong> (selten in Analyse, besser einfache Assoziation): Teile sind unabhängig voneinander (zB. Benutzer hat Medien ausgeliehen → Medien bleiben bestehen, wenn Benutzer gelöscht wird)</li>
+    <li class="fragment"><strong>Komposition:</strong> „Besteht aus“: Teile sind Abhängig von der Klassen, die sie beinhaltet, und existieren nur so lange wie die Hauptklasse.</li>
+</ul>
 
 <div class="fragment">
 <p>Assoziationen definieren wie in der realen Welt, wie Objekte "zusammenhängen".</p>
 <p><strong>Beispiele:</strong></p>
 <ul>
-    <li>"Eine Firma **hat mehrere** Mitarbeiter (1:n)"</li>
-    <li>"Eine Bestellung **gehört zu** einer Person" (1:1, n:1)</li>
-    <li>"Eine Person ist Mitarbeiter einer Firma (**hat und gehört zu**, n:m)"</li>
+    <li>"Eine Firma <strong>hat mehrere</strong> Mitarbeiter (1:n)"</li>
+    <li>"Eine Bestellung <strong>gehört zu</strong> einer Person" (1:1, n:1)</li>
+    <li>"Eine Person ist Mitarbeiter einer Firma (<strong>hat und gehört zu</strong>, n:m)"</li>
 </ul>
 </div>
 
-<p>&nbsp;</p>
+**Aufgabe:**
 
 <div class="fragment">
-<i class="far fa-hand-point-right"></i> Schlagen Sie die UML-Notationen dieser Assoziationen selbständig nach, und zeichnen Sie ein Beispiel am Flipchart:
-<ul>
-    <li> 1:n (One-to-Many) </li>
-    <li> n:1 (Many-to-One) </li>
-    <li> 1:1 (One-to-One) </li>
-    <li> n:m (Many-to-Many) </li>
-    <li> Aggregation (Welcher Kardinalität entspricht dies?) </li>
-    <li> Komposition (Welcher Kardinalität entspricht dies?) </li>
-</ul>
+
+* <i class="far fa-hand-point-right"></i> Schlagen Sie die UML-Notationen dieser Assoziationen selbständig nach
+* <i class="far fa-hand-point-right"></i> Schlagen Sie die PlantUML-Notation für die verschiedenen Beziehungen selbständig nach <br />(https://plantuml.com/de/class-diagram)
+* <i class="far fa-hand-point-right"></i> Erstellen Sie je 1 Beispiel in PlantUML für die Klassen-Beziehungen:
+    * 1:n (One-to-Many)
+    * n:1 (Many-to-One)
+    * 1:1 (One-to-One)
+    * n:m (Many-to-Many)
+    * Aggregation (Welcher Kardinalität entspricht dies?)
+    * Komposition (Welcher Kardinalität entspricht dies?)
+
 </div>
 
 </textarea>
@@ -136,28 +139,65 @@ Die UML-Werkzeuge direkt in VisualParadigm zeigen. Möglichkeiten für die Assoz
 gleich mitmachen.
 </textarea>
 </section>
-</section>
 
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-flask"></i> Vorgehen zum Finden von Assoziationen zwischen Klassen
+<i class="fas fa-flask"></i> UML-Werkzeuge für Assoziationen
 ===========
 
-** Nehmen Sie die Checkliste __003 Assoziationen__ zur Hand**
+Beispiele in PlantUML
 
-Wie auch bei der Klassenfindung dienen uns Dokument- und Use-Case-Analysen zur Findung von Assoziationen.
-Mit steigernder Erfahrung findet dies gleichzeitig mit der Klassenfindung statt.
+```plantuml
+@startuml
+center header Einfache Assoziation mit Multiplizität, ungerichtet
+hide empty members
+class Kunde {}
+class Bestellung {}
+Kunde "1" - "*" Bestellung: "1:n-Beziehung"
+@enduml
+```
 
-* Assoziationen **nur für die Aufgaben der Use-Cases definieren**, nicht alle fachlich möglichen
-* Erster Schritt: Finden der **Assoziationen ohne Multiplizitäten**. Sind dies einfache Assoziationen, Aggregationen oder Kompositionen? Richtwert: Im Zweifelsfall einfache Assoziation, sonst Komposition. Aggregationen sind selten.
-* Definieren der **Assoziationsnamen** / Rollennamen, wo nötig.
-* Schnappschuss / Historie?
-  * **Schnappschuss**: 0..1-Multiziplität (z.B. Buch hat Autor, Buch ist ausgeliehen von …).
-  * **Historie**: Many-Multiplizität (zB. Benutzer hat Medien ausgeliehen)
-* Liegt eine **Muss- oder Kann-Beziehung** vor? (0…, 1… 1..1)
+```plantuml
+@startuml
+center header
+    Komposition
+    Bestellung ist abhängig von Kunde
+endheader
+hide empty members
+class Kunde {}
+class Bestellung {}
+Kunde *-  Bestellung
+@enduml
+```
+
+```plantuml
+@startuml
+center header
+    Aggregation
+    Person, Firma können einzeln existieren
+endheader
+hide empty members
+class Person {}
+class Firma {}
+Person "*" -o Firma: Mitarbeiter
+@enduml
+```
+
+```plantuml
+@startuml
+center header
+    Gerichtete Beziehung
+    Navigierbarkeit von Kunde nach Bestellung (aber nicht umgekehrt)
+endheader
+hide empty members
+class Kunde {}
+class Bestellung {}
+Kunde "1" -> "*"  Bestellung: "1:n-Beziehung"
+@enduml
+```
 </textarea>
 </section>
-
+</section>
 
 
 <section data-markdown data-separator-notes="^Note:">
@@ -173,14 +213,13 @@ Mit steigernder Erfahrung findet dies gleichzeitig mit der Klassenfindung statt.
   * **Anforderungen an das Bibliothekssystem** [(Moodle)](https://moodle.bztf.ch/mod/resource/view.php?id=15218)
 * Nehmen Sie die Checkliste zur Hand und lesen Sie sie durch.
 * Suchen Sie mögliche Assoziationen (Abschnitt **Konstruktive Schritte** in der Checkliste)
-* Ergänzen Sie Ihr UML-Klassendiagramm in VisualParadigm um Assoziationen
+* Ergänzen Sie Ihr UML-Klassendiagramm in PlantUML um Assoziationen
 * **Bewerten** Sie Ihr Modell anhand des Abschnitts **Analytische Schritte** in den Checklisten: Dieses Kapitel hilft Ihnen, das Klassenmodell zu verbessern / zu bewerten.
-
 * **Bedenken Sie** Dies ist das Analysemodell: Es zeigt noch KEINE technischen Zusammenhänge! Machen Sie sich noch KEINE Gedanken, wie Sie dies technisch umsetzen wollen!
 
 **Abgabe**
 
-* Das UML-Diagramm wie oben beschrieben als Hausaufgaben-Abgabe einreichen (PNG, PDF)
+* Das UML-Diagramm wie oben beschrieben als PlantUML-Source ODER als Bild via **Classroom-Repository**
 
 Note:
 Als kurze Einführung zeige ich ein Beispiel anhand der Checkliste 003:

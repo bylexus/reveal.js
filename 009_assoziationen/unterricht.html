@@ -42,10 +42,10 @@ Ein **Haus** hat mehrere Zimmer, ein **Zimmer** gehört zu einem Haus.
 
 Welche Kardinalitäten (Multiziplitäten) kennen Sie, und wie heissen die? Wie zeichnet man die in UML?
 
-* <!-- .element class="fragment" --> **„belongs to“, many-to-one, n:1:**<br />ein Objekt einer Klasse gehört zu einem Objekt einer anderen Klasse, stark gekoppelt
-* <!-- .element class="fragment" --> **„has one“, one-to-one, 1:1:**<br />ein Objekt einer Klasse gehört zu einem Objekt einer anderen Klasse, schwach gekoppelt
-* <!-- .element class="fragment" --> **„has many“, one-to-many, 1:n:**<br />ein Objekt einer Klasse hat viele (besitzt) Objekte einer anderen Klasse
-* <!-- .element class="fragment" --> **„has and belongs to many“, many-to-many, n:m:**<br />ein Objekt einer Klasse hat und gehört zu vielen Objekten einer anderen Klasse
+* <!-- .element class="fragment" --> <strong>„belongs to“, many-to-one, n:1:</strong><br />ein Objekt einer Klasse gehört zu einem Objekt einer anderen Klasse, stark gekoppelt
+* <!-- .element class="fragment" --> <strong>„has one“, one-to-one, 1:1:</strong><br />ein Objekt einer Klasse gehört zu einem Objekt einer anderen Klasse, schwach gekoppelt
+* <!-- .element class="fragment" --> <strong>„has many“, one-to-many, 1:n:</strong><br />ein Objekt einer Klasse hat viele (besitzt) Objekte einer anderen Klasse
+* <!-- .element class="fragment" --> <strong>„has and belongs to many“, many-to-many, n:m:</strong><br />ein Objekt einer Klasse hat und gehört zu vielen Objekten einer anderen Klasse
 
 </textarea>
 </section>
@@ -74,8 +74,12 @@ auf KlasseA-Objekte.
 <i class="fas fa-graduation-cap"></i> Assoziationen - has one (1:1)
 ===========
 
-Achtung: bei 1:1-Beziehungen ist es nicht praktikabel, beide Seiten mit der Kardinalität "1" zu versehen: Dies impliziert, dass immer beide Seiten gleichzeitig erstellt werden müssen (Henne-Ei-Problem).
-Vielmals wird auf mind. einer Seite die Kardinalität "0..1" gewählt:
+1:1-Beziehungen implizieren vielmals eine **Komposition:**: Es müssen beide Teile erstellt werden, aber eines davon ist verantwortlich
+für das andere.
+
+Beispiel:
+
+Wenn Sie eine **Person** erstellen, wird ein zugehöriger **Benutzer** ebenfalls mit erstellt (durch das Person-Objekt).
 
 Navigierbarkeit: ungerichtet (gilt in beide Richtungen, oder dem Entwickler überlassen): Es existieren auf beiden Seiten Zugriffsmöglichkeiten auf die andere Seite.
 
@@ -158,7 +162,11 @@ Attribute und Methoden, und stellen Sie diese den anderen dann vor (gemeinsam):
   * n:1-Assoziation: ein **MediumExemplar** gehört zu einem **Medium**, umgekehrt siehe oben
   * n:m-Assoziation: ein **Benutzer** hat mehrere **Medien** reserviert, ein **Medium** kann von mehreren Benutzern reserviert sein
 
-<i class="far fa-hand-point-right"></i> Umsetzen in Java / Eclipse!
+<i class="far fa-hand-point-right"></i> Erstellen Sie ein Beispielprogramm in Java, welches:
+
+* die beiden Objekte erstellt
+* die Verknüpfungen zwischen den Objekten herstellt
+* die Traversierbarkeit in beide Richtungen aufzeigt <br/>(z.B. durch `person.getBenutzer()` und umgekehrt `benutzer.getPerson()`).
 </textarea>
 </section>
 </section>
@@ -198,7 +206,7 @@ Was passiert nun bei der folgenden Anweisung?
 m.getStandort();
 ```
 
-<!-- .element class="fragment" --> Das Medium weiss noch nicht, dass es zum Standort gehört! Das Objektmodell ist somit nicht konsistent!
+<p class="fragment">Das Medium weiss noch nicht, dass es zum Standort gehört! Das Objektmodell ist somit nicht konsistent!</p>
 </textarea>
 </section>
 
@@ -221,16 +229,12 @@ m.setStandort(standort);
 Meine Empfehlung:
 <div style="display:flex;align-items: flex-start">
 <div style="flex-grow: 3">
-<ol>
-    <li>
-    Halten Sie die Model-Klassen "dumm": Implementieren Sie die Zuweisungslogik nicht auf den einfachen Klassen:
+
+* Halten Sie die Model-Klassen "dumm": Implementieren Sie die Zuweisungslogik nicht auf den einfachen Klassen:
    Sie entkoppeln so die Klassen voneinander.
-    </li>
-    <li>
-     Erstellen Sie eine so genannte "Facade"-Klasse (siehe https://java-design-patterns.com/patterns/facade/), welche
+* Erstellen Sie eine so genannte ["Facade"-Klasse](https://java-design-patterns.com/patterns/facade/), welche
    die komplexe Logik kapselt: Eine Facade "versteckt" komplexe Vorgänge vor einem Client, im dem sie ein einfach zu bedienendes Interface anbietet:
-    </li>
-</ol>
+
 </div>
 <img src="facade.jpg" style="flex-shrink:0" width="30%" />
 </div>
@@ -336,7 +340,7 @@ Sie lösen folgende Aufgabe selbständig:
 <img src="medium_interpret.png" width="30%" />
 
 * Implementieren Sie die Klassen Medium, resp. ein konkretes Medium wie z.B. Buch,  und Interpret mit der Beziehung „Medium gehört zu Interpret“ (many-to-one) in Java
-* ** Sorgen Sie dafür, dass Ihr Objektmodell korrekt bleibt!** Beim Zuordnen eines Mediums zu einem Interpret müssen Sie auch die andere Richtung aktualisieren!
+* **Sorgen Sie dafür, dass Ihr Objektmodell korrekt bleibt!** Beim Zuordnen eines Mediums zu einem Interpret müssen Sie auch die andere Richtung aktualisieren!
    Erstellen Sie dazu eine Facade-Klasse, welche diese Logik übernimmt!
 * Schreiben Sie eine kleine Testklasse, welche:
   * ein Interpret erstellt

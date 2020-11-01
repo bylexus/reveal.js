@@ -13,10 +13,11 @@ Heutiges Ziel
 * Sie kennen die Ziele, welche das Analysemodell verfolgt
 * Sie kennen die Vorgehensweise, wie man zum fertigen Analysemodell kommt
 * Sie kennen Use Case-Diagramme und Use-Case-Beschreibungen und können diese anhand von Anforderungen erstellen
+* Sie kennen PlantUML und können damit eigene Diagramme erstellen
 
 ### Hausaufgaben
 
-* Sie erstellen eine Use-Case-Beschreibung zu einem Use-Case (siehe Aufgabe Moodle)
+* Sie erstellen eine Use-Case-Beschreibung zu einem Use-Case (siehe Aufgabe Moodle) im Classroom-Repo
 
 </textarea>
 </section>
@@ -56,22 +57,25 @@ Note:
 
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-flask"></i> Analysemodells: Vorgehensweise
+<i class="fas fa-flask"></i> Analysemodell: Vorgehensweise
 ===========
 
-<img src="vorgehen.png" style="width: 350px; float: left; margin-right: 10px" />
+<div style="display:flex">
+<img src="vorgehen.png"  style="margin-right: 10px;"/>
+<div style="width: 800px">
+Die beiden hier vorgestellten Vorgehensmodelle haben sich in der Praxis in vielen Projekten bewährt, sind aber keineswegs feste Regeln.
+Wir sprechen vom <strong>szenariobasierten Vorgehen</strong> und vom <strong>datenbasierten Vorgehen</strong>:
 
-<!-- .element: style="margin-left: 360px" --> Die beiden hier vorgestellten Vorgehensmodelle haben sich in der Praxis in vielen Projekten bewährt, sind aber keineswegs feste Regeln.
-Wir sprechen vom **szenariobasierten Vorgehen** und vom **datenbasierten Vorgehen**:
+Das **szenariobasiertes Vorgehen** ist empfehlenswert, wenn umfangreiche funktionale Anforderungen vorliegen und alte Datenbestände nicht existieren.
 
-<!-- .element: style="margin-left: 360px" --> Das **szenariobasiertes Vorgehen** ist empfehlenswert, wenn umfangreiche funktionale Anforderungen vorliegen und alte Datenbestände nicht existieren.
-
-<!-- .element: style="margin-left: 360px" --> Das **datenbasiertes Vorgehen** ist empfehlenswert, wenn ein Datenmodell / alte Datenbestände existieren und der Umfang der funktionalen Anforderungen zunächst zu wenig bekannt ist.
+Das **datenbasiertes Vorgehen** ist empfehlenswert, wenn ein Datenmodell / alte Datenbestände existieren und der Umfang der funktionalen Anforderungen zunächst zu wenig bekannt ist.
 
 Meine Empfehlung: immer erst mit **Use Cases** beginnen: Dies gibt Ihnen ein gutes Gefühl für den Umfang des Projektes.
 
 Wir beschäftigen uns in diesem Modul mit Use-Cases und Klassen-Findung. Szenarien streifen wir etwas in der Analyse.
+</div>
 
+</div>
 Note:
 * In der letzten Lektion wurde der Unterschied Analyse- Designmodell behandelt. Hinweis darauf.
 * Wir streifen die Analyse nur, Ziel des Moduls ist das Software-Design aufgrund des Modells.
@@ -93,10 +97,43 @@ Note:
   * **Geschäftsanwendungsfälle** beschreiben einen geschäftlichen Ablauf ohne mögliche systemtechnische Umsetzung. Wir lassen diese aus.
   * **Systemanwendungsfälle** beschreiben Interaktionen mit einem (Hard- oder Software-)System.
 
-<img src="use_case_diagramm.png" />
+Use-Cases mit Plantuml: https://plantuml.com/de/use-case-diagram
+
+<div style="display:flex">
+<img src="use_case_diagramm.png" style="border: 1px solid gray" />
+
+```
+@startuml
+' Ausrichtung Aktoren - Use-Case:
+left to right direction
+
+' aktoren definieren:
+actor :Internet-Benutzer: as iusr
+actor :Bibliotheks-Benutzer: as bibusr
+actor :Bibliotheks-\nAngestellte/r: as bibadmin
+
+' Systemgrenze mit Use-Cases:
+rectangle Bibliothekssystem {
+    usecase "Buch verlängern" as uc1
+    usecase "Buch ausleihen" as uc2
+    usecase "neues Medium\nerfassen" as uc4
+    usecase "Benutzer\nlegitimieren" as uc3
+}
+
+' Beziehungen:
+iusr -- uc1
+bibusr -- uc2
+uc4 -- bibadmin
+
+uc1 .&gt; uc3: &lt;&lt; include &gt;&gt;
+uc2 .&gt; uc3: &lt;&lt; include &gt;&gt;
+@enduml
+```
+
+</div>
 
 Note:
-* An dieser Stelle praktische Vorführung in VisualParadigm:
+* An dieser Stelle praktische Vorführung:
  * Hinweis auf markierte Use-Case-Checkliste auf Moodle
  * wie wird ein Use-Case-Diagramm erstellt
  * Welche Komponenten sind verfügbar
@@ -128,15 +165,6 @@ Note:
     Note:
     </textarea>
     </section>
-
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Beispiellösung Use-Cases für das Bibliothekssystem
-    ===========
-
-    <img src="use_cases_bibsys.png" style="background-color: white; width: 80%"/>
-    </textarea>
-    </section>
 </section>
 
 
@@ -153,9 +181,8 @@ Note:
 Wir schauen uns eine Use-Case-Beschreibung am Beispiel "Medium am Terminal ausleihen" an.
 
 Material:
-* Checkliste "Use Cases" auf [ Moodle ](https://moodle.bztf.ch/pluginfile.php/26810/mod_folder/content/0/Checkliste_001_Use-Case.pdf?forcedownload=1)
-* Beispiel "Medium am Terminal ausleihen" auf [Moodle](https://moodle.bztf.ch/mod/resource/view.php?id=15247)
-
+* Checkliste "Use Cases" auf [ Moodle ](https://moodle.bztf.ch/pluginfile.php/70530/mod_folder/content/0/Checkliste_001_Use-Case.pdf?forcedownload=1)
+* Beispiel "Medium am Terminal ausleihen" auf [Moodle](https://moodle.bztf.ch/mod/resource/view.php?id=50214)
 
 Note:
 * Aufbau einer Use-Case-Beschreibung
@@ -182,7 +209,7 @@ Note:
 * überlegen Sie sich erst die Schritte für den Standardfall (80% der Szenarien)
 * Erweitern Sie den Use-Case dann um Spezialfälle
 
-Die Hausaufgabe ist via Moodle abzugeben (1 Use-Case-Beschreibung)
+Die Hausaufgabe ist via **Classroom-Repository** abzugeben (1 Use-Case-Beschreibung)
 </textarea>
 </section>
 

@@ -90,6 +90,7 @@ module.exports = function(grunt) {
                         '!css/theme/source/**',
                         '!node_modules*/**',
                         '!test/**',
+                        '!__prepare/**',
                         '!m326-build*/**',
                         '!CONTRIBUTING.md',
                         '!Gruntfile.js',
@@ -116,6 +117,7 @@ module.exports = function(grunt) {
                     '!node_modules*/**',
                     '!demo.html',
                     '!test/**',
+                    '!__prepare/**',
                     '!plugin/**',
                     '!**/_*.html'
                 ],

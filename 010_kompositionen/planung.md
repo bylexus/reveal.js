@@ -1,12 +1,10 @@
-Detailplan Lektion 10 - 26.04.2018 (Woche 17)
+Detailplan Lektion 10 - 29.10.2020
 ===========================================
 
 Material
 --------
 * Folien
-* VisualParadigm
-* Source-Code-Beispiele in Eclipse: source/M326_Examples/
-* Moodle-Beschreibung für Design-Pattern-Kurzvortrag: Eintrag vom 24. Mai
+* Java-Beispielcode zu Assozationen: branch IN18-22c/009_assoziationen
 
 
 Ziele
@@ -17,7 +15,6 @@ Ziele
 Hausaufgaben
 ---------------
 
-* Umbau Benutzer: Neu mit Person -> Benutzer (Moodle-Aufgabe)
 * Implementation von Kompositions-Problem in Java: Medium -> Exemplar (Moodle-Aufgabe)
 
 
@@ -25,10 +22,9 @@ Detailplan
 ----------
 
 * 07:30 (ca. 30min): Besprechung HA von letztem Mal: Implementationen von Assoziationen
-* 08:00 (ca. 30min): Selbständige Implementationsaufgabe: Beispiel Assoziation KlasseA/KlasseB:
-  * Schüler implementieren das Demoprogramm
-  * 1-2 Schüler stellen ihre Lösung vor
-* Abgabe Hausaufgaben: Übung zu Komposition: Medium -> MediumExemplar
+  * jeder Schüler zeigt eine Assoziationsumsetzung am Beamer
+* 08:00 (ca. 30min): Selbständige Implementationsaufgabe: Implementation von Komposition Medium/MediumExemplar
+  * Schüler implementieren das Programm
+  * 1-2 Schüler stellen ihre Lösung vor, falls fertig
+* Abgabe Hausaufgaben: Übung zu Komposition: Medium -> MediumExemplar fertigstellen, ink. Datenpersistierung
 * 09:05: Ende
-
---> Input HA: Ev. Sequenzdiagramm zeichnen (lassen)?

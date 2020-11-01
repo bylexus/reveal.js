@@ -1,4 +1,4 @@
-Detailplan Lektion 5 - 12.09.2019
+Detailplan Lektion 5 - 10.09.2020
 ===========================================
 
 Material
@@ -9,7 +9,7 @@ Material
 * Checkliste_005_Generalisierungen.pdf (auf Moodle)
 * UML-Notationsübersicht (auf Moodle)
 * Anforderung Bibliothekssystem (Moodle)
-* Use-Case-Beschreibungen von Hausaufgaben
+* Klassendiagramme von Hausaufgaben
 * UML-Diagramme von Hausaufgaben (Schüler), Beispiellösung von mir
 
 Ziele

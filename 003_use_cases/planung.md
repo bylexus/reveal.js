@@ -1,4 +1,4 @@
-Detailplan Lektion 3 - 29.08.2019
+Detailplan Lektion 3 - 27.08.2020
 ===========================================
 
 Material
@@ -6,7 +6,7 @@ Material
 * Checkliste_001_Use-Case.pdf (auf Moodle)
 * Checkliste_001_Use-Case.pdf  mit markierten Textstellen für Diagramme!
 * Anforderung Bibliothekssystem (Moodle)
-* Use Case-Diagramm Bibliothekssystem (vorbreitet für mich)
+* Use Case-Diagramm Bibliothekssystem (vorbreitet für mich, in Docsify)
 * Use-Case-Beschreibung „Medium am Terminal ausleihen“ (auf Moodle)
 * Use-Case-Schablone (auf Moodle)
 
@@ -15,6 +15,7 @@ Ziele
 
 * Die Schüler kennen das OO-Analysemodell und wissen, wie man dies erarbeitet
 * Die Schüler kennen Use Cases und -Diagramme und können diese selber erstellen
+* Die Schüler haben erste Erfahrungen mit PlantUML gesammelt
 
 * Use-Case-Beschreibung erstellen`:
   * Medium via Webseite verlängern
@@ -25,7 +26,7 @@ Detailplan
 
 * 07:30 (ca. 5min): Begrüssung, Ziel
 * 07:35 (ca. 10min): Folien Analysemodell, Vorgehensweise
-* 07:45 (ca. 10min): Use Case-Diagramme mit Visual Paradigm erklären
+* 07:45 (ca. 10min): Use Case-Diagramme mit PlantUML erklären
   * Einführung, Elemente anschauen: Aktoren, System, Use-Cases, Include, Extend
   * Bild exportieren
 * 07:55 (ca. 30min): Aufgabe Use-Cases finden

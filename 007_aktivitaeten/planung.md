@@ -4,9 +4,8 @@ Detailplan Lektion 7 - 26.09.2019
 Material
 --------
 * Folien
-* VisualParadigm
 * Checkliste 006 Aktivitätsdiagramme auf Moodle
-* BibSys-Eclipse-Projekt auf Moodle (zip)
+* BibSys-Eclipse-Projekt auf Moodle (zip): Lauffähig Login, Ausleihliste
 
 Ziele
 -----
@@ -26,7 +25,7 @@ Detailplan
 * 07:45 (5min) Inbetriebnahme BibSys-Java-Projekt
 * 07:50 (20min) Bibsys-Untersuch: Schüler untersuchen Bibsys-Code anhand Fragen
 * 08:10 (20min) Besprechung Programmfunktionen
-* 08:30 (ca. 15min): Folien Aktivitätsdiagramm + Einführung VisualParadigm
+* 08:30 (ca. 15min): Folien Aktivitätsdiagramm + Einführung PlantUML
   * Aktivitäten-Grundlage
   * Swim Lanes
   * Verzweigungen / Vereinigung

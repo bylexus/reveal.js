@@ -33,15 +33,18 @@ Beispiellösung Aktivitätsdiagramm Medium am Terminal ausleihen
 
 Wir beschäftigen uns nach den Herbstferien mit Design Pattern - Dazu werden Sie einen Kurzvortrag zu einem Design Pattern vorbereiten.
 
-Wir losen bereits jetzt die Design Pattern und Ihr Vortragsdatum (21.11.2019 / 28.11.2019) aus:
+Wir losen bereits jetzt die Design Pattern und Ihr Vortragsdatum (19.11.2020) aus:
 
 * Adapter Pattern
 * Singleton Pattern
 * Strategy Pattern
 * Observer / Observable Pattern
+
+<!--
 * Factory Method
 * Decorator Pattern
 * Iterator Pattern
+-->
 
 </textarea>
 </section>
@@ -59,7 +62,7 @@ Heutiges Ziel: Gedrängtes Programm:
 * Sie können eigene Szenarien für Ihr Software-Design entwickeln
 * Sie implementieren die Maske "Medium mit Barcode / am Terminal ausleihen"
 
-### Hausaufgaben
+### Hausaufgaben über die Ferien:
 
 * UML Sequenzdiagramm erstellen: Medien am Terminal ausleihen
 * Implementation der Aktivität "Medium am Terminal ausleihen" im Prototypen umsetzen
@@ -110,7 +113,41 @@ Die folgenden Abläufe werden von jemandem von Ihnen am Code erläutert:
   * Bedingungen, die zu dieser Variation führen
   * Ergebnis des Szenarios
 
-<img src="sequenzdiagramm.png" style="width: 1000px" />
+<div style="display:flex">
+
+<img src="sequenzdiagramm.png" />
+
+```
+@startuml
+title Beispiel Sequenzdiagramm
+' Numerierung:
+autonumber
+skinparam shadowing false
+
+' Aktoren und Objekte/Systeme definieren:
+actor "Aktor" as actor
+participant "System 1" as sys1
+participant "System 2" as sys2
+
+' Aufruf mit Beschriftung
+' das ++ steht für das Starten einer Lifeline
+actor -> sys1 ++ : methode1()
+    sys1 -> sys2 ++: methode2(Parameter)
+
+    ' Teilnehmer instanzieren:
+    sys2 -> Objekt ** : Erstellen
+    return Antwort: Objekt
+
+    sys1 -> Objekt ++ : aktion()
+    return resultat
+
+    sys1 -> sys1 ++ : Selbstaufruf
+    return Antwort Selbstaufruf
+' Antwort auf Aufruf: jeder Aufruf benötigt eine Antwort
+return Antwort 1
+@enduml
+```
+</div>
 
 </textarea>
 </section>
@@ -118,10 +155,10 @@ Die folgenden Abläufe werden von jemandem von Ihnen am Code erläutert:
 
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-wrench"></i> Sequenzdiagramme entwickeln: VisualParadigm
+<i class="fas fa-wrench"></i> Sequenzdiagramme entwickeln: PlantUML
 ===========
 
-Kurze Einführung in Sequenzdiagramme mit VisualParadigm: Wir schauen uns die wichtigsten Funktionen im UML-Tool an:
+Kurze Einführung in Sequenzdiagramme mit PlantUML: Wir schauen uns die wichtigsten Syntax-Elemente für PlantUML an:
 
 * Erstellen eines Sequenzdiagrammes
 * Life-Lines mit Klassen/Objekten
@@ -155,7 +192,7 @@ Zeichnen Sie den gesamten Ablauf dieses Szenarios als technisches Sequenzdiagram
 * Nehmen Sie dazu die **Anforderung des Bibliothekssystems** und die Use Cases zur Hilfe: Diese definieren die geforderte Funktionalität.
 * Nehmen Sie die [ **"Checkliste 007 Sequenzdiagramm"** ]( https://moodle.bztf.ch/pluginfile.php/43852/mod_folder/content/0/Checkliste_007_Szenario.pdf?forcedownload=1) zur Hilfe: Sie zeigt Ihnen, auf welche Kriterien Sie achten müssen.
 
-** Implementieren Sie den Programmteil "Medium am Terminal / Barcode ausleihen" **: Kümmern Sie sich dabei noch nicht um Design Pattern: Versuchen Sie einfach, den Programmteil nach Ihrem besten Wissen umzusetzen.
+**Implementieren Sie den Programmteil "Medium am Terminal / Barcode ausleihen"**: Kümmern Sie sich dabei noch nicht um Design Pattern: Versuchen Sie einfach, den Programmteil nach Ihrem besten Wissen umzusetzen.
 </textarea>
 </section>
 
@@ -166,8 +203,15 @@ Zeichnen Sie den gesamten Ablauf dieses Szenarios als technisches Sequenzdiagram
 
 **Hausaufgabe über Herbstferien**
 
-* Stellen Sie das Sequenzdiagramm fertig. Einreichen via Moodle.
-* Versuchen sie, eine **mögliche Implementation** im BibSys-Prototypen umzusetzen!
+* Stellen Sie das Sequenzdiagramm fertig. Einreichen via Classroom-Repo.
+* Versuchen sie, eine **mögliche Implementation** im BibSys-Prototypen umzusetzen! **Abgabe ebenfalls als commit(s) im Repo!**
+  * Ziel der Umsetzung:
+    1. Navigation aus Hauptmenu -> Scan-Maske und zurück
+    2. UI in etwa wie unten gezeigt aufbauen
+    3. Scan "simulieren" durch Eingabe der Barcode-Nummer in Textfeld
+    4. Medien werden als ausgeliehen markiert
+
+<img src="../007_aktivitaeten/screenshot_scannen.png" />
 </textarea>
 </section>
 

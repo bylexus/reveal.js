@@ -1,0 +1,50 @@
+@startuml
+skinparam shadowing false
+hide empty members
+skinparam nodesep 100
+skinparam ranksep 80
+
+class Benutzer {
+    id: Number
+    email: String
+    passwort: String
+    isAdmin: Boolean
+    reservationen: List<Reservation>
+
+    +getReservationen(): List<Reservationen>
+}
+
+class Medium {
+    id: Number
+    titel: String
+    mediumnr: Number
+    reservationen: List<Reservation>
+
+    +getReservationen(): List<Reservationen>
+}
+
+class Reservation {
+    +reserviertAm: Date
+    +medium: Medium
+    +benutzer: Benutzer
+}
+
+class MediumMM {
+    Façade-Klasse für
+    das Medium-Management
+    --
+    +createReservation(Benutzer, Medium)
+}
+
+MediumMM -[dashed]down-> Benutzer: uses
+note on link 
+    createReservation()
+    erstellt Reservation
+endnote
+MediumMM -[dashed]down-> Medium: uses
+
+Benutzer "*" -left- "*" Medium
+(Benutzer,Medium) .. Reservation: Attributsklasse\nfür Reservation
+
+
+@enduml

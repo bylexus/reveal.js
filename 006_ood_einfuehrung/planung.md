@@ -1,10 +1,10 @@
-Detailplan Lektion 6 - 19.09.2019
+Detailplan Lektion 6 - 17.09.2020
 ===========================================
 
 Material
 --------
 * Folien
-* VisualParadigm
+* Docsify / PlantUML
 
 Ziele
 -----
@@ -28,6 +28,6 @@ Detailplan
 * 07:50 (ca. 10min): Recherche der Schüler zum Thema Systemarchitektur / Softwarearchitektur --> für BibSys-Architektur entwerfen
 * 08:00 (ca. 15min): Besprechung Recherche, Pause
 * 08:15 (5min): Pause
-* 08:20 (ca. 20min): Folien Vorgehen OOD, State Machine, Vorführung in VisualParadigm
+* 08:20 (ca. 20min): Folien Vorgehen OOD, State Machine, Vorführung des Diagrammes
 * 08:40 (Rest): Selbständige Arbeit an UML State Machine Diagramm (Maskenablauf)
 * 09:05: Ende

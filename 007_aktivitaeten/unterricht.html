@@ -7,11 +7,12 @@
 <i class="fas fa-flask"></i> Besprechung Hausaufgabe State Machine
 =============================
 
-Beispiellösung Maskenablauf der Hausaufgabe
+Beispiellösung Maskenablauf mit State-Diagramm der Hausaufgabe
+
 * Hat jeder State (Maske) mind. einen Ein- UND Ausgang? (Keine "Dead Ends")
 * Hat jeder Ausgang eine Event-Beschreibung? (Keine eventlosen Übergänge)
 
-<img src="../006_ood_einfuehrung/uml_state_machine_beispiel.png" style="width: 800px" />
+<img src="../006_ood_einfuehrung/uml_state_machine_beispiel.png" style="width: 600px" />
 
 </textarea>
 </section>
@@ -41,20 +42,22 @@ Heutiges Ziel: Gedrängtes Programm:
 <i class="fas fa-wrench"></i> Inbetriebnahme des Bibsys-Prototypen
 ===========
 
-Auf Moodle finden Sie einen rudimentären Prototypen des Programm "Bibsys":
+In Ihrem Classroom-Repo finden Sie einen rudimentären Prototypen des Programm "Bibsys":
 
 * Der Prototyp ist ein Java-Konsolen-Programm
 * Es zeigt exemplarisch einige wenige Schritte: Login, Hauptmenu, Ausleih-Liste
 * Es implementiert eine rudimentäre Persistenz-Schicht: Alle Daten werden als Java-Objekte serialisiert und im Filesystem abgelegt.
 
-Wir nehmem das Programm gemeinsam in Betrieb.
+Wir nehmem das Programm gemeinsam in Betrieb: der Ordner `bibsys/` beinhaltet das
+Eclipse-Projekt.
 
 Beim ersten Start werden ein paar Demo-Daten angelegt.
 
 * Benutzer: "benutzer1", "benutzer2", "benutzer3"
 * Passwort: "1", "2", "3"
 
-Dieser Prototyp ist die Ausgangslage für die weitere Analyse: Wir spielen hier ein weiteres Szenario der Analysephase durch: **Analyse eines bestehenden Programms.**
+Dieser Prototyp ist die Ausgangslage für die weitere Analyse:
+Wir spielen hier ein weiteres Szenario der Analysephase durch: **Analyse eines bestehenden Programms.**
 
 <i class="far fa-hand-point-right"></i> Es ist mir wichtig, dass Sie auch lernen, fremden Code zu lesen und zu verstehen. Wir benützen daher dieses Vorgehen, um unser Programm kennenzulernen.
 
@@ -66,19 +69,19 @@ Dieser Prototyp ist die Ausgangslage für die weitere Analyse: Wir spielen hier 
 <i class="fas fa-wrench"></i> Analyse des Bibsys-Prototypen
 ===========
 
-Analysieren Sie den BibSys-Prototypen. Ich rufe nachher jemand von Ihnen auf, um folgende Fragen
-zu beantworten:
+Analysieren Sie den BibSys-Prototypen. Jeder von Ihnen nimmt sich einen der untenstehenden Punkte vor.
+Sie sollten danach in der Lage sein, folgende Fragen den anderen Schülern zu erläutern:
 
 <div style="display:flex;justify-content:flex-start;align-items:flex-start">
     <img src="code_analyse.jpg" width="30%" style="margin: 0 10px 0 0" />
     <div>
-        <ul>
-            <li>Welche Klasse stellt die Login-View (Login-Maske) dar? Welche die zugehörige Applikationslogik (Button-Clicks etc)? Wo wird die Login-View instanziert / angezeigt?</li>
-            <li>Wie funktioniert die Benutzer-Authentifizierung (welcher Code-Teil prüft den Login)?</li>
-            <li>Welche Klasse ist für die Datenspeicherung / Persistierung zuständig?</li>
-            <li>Welche Klasse reagiert auf den Button-Klick "Ausgeliehene Medien anzeigen", und implementiert die Logik dazu?</li>
-            <li>Was passiert alles beim Beenden des Programms? Wo findet die Beenden-Logik statt?</li>
-        </ul>
+
+* Welche Klasse stellt die **Login-View** (Login-Maske) dar? Welche die zugehörige Applikationslogik (Button-Clicks etc)? Wo wird die Login-View instanziert / angezeigt?
+* Wie funktioniert die **Benutzer-Authentifizierung** (welcher Code-Teil prüft den Login)?
+* Welche Klasse ist für die **Datenspeicherung** / Persistierung zuständig?
+* Welche Klasse reagiert auf den Button-Klick **"Ausgeliehene Medien anzeigen"**, und implementiert die Logik dazu?
+* Was passiert alles beim Beenden des Programms? Wo findet die Beenden-Logik statt?
+
     </div>
 </div>
 
@@ -87,7 +90,7 @@ zu beantworten:
 Lesen von fremdem Code: Sie verbringen den grössten Teil Ihres Entwickler-Alltags mit dem Lesen von
 Code, welcher von jemand anderem geschrieben wurde.
 
-**Zeit:** ca. 20min, dann wird je ein Schüler eine Frage beantworten.
+**Zeit:** ca. 30min, dann wird je ein Schüler eine Frage beantworten.
 
 </textarea>
 </section>
@@ -95,7 +98,7 @@ Code, welcher von jemand anderem geschrieben wurde.
 
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-wrench"></i> Ersten Ablauf planen: Medium am Terminal / Scanner ausleihen
+<i class="fas fa-wrench"></i> Ablauf planen: Medium am Scanner ausleihen
 ===========
 
 Wir wollen nun unseren ersten Ablauf planen und implementieren. Wir werden einen ersten Use-Case angehen und in unserem Prototypen umsetzen:
@@ -125,13 +128,21 @@ Unser Prototyp soll dies in folgenden Masken anbieten:
 <i class="fas fa-graduation-cap"></i> Abläufe planen mit Aktivitätsdiagrammen
 ===========
 
+<div style="display:flex">
+    <div>
+
 * Das **Aktivitätsdiagramm** beschreibt die Ausführung / Ablauf von Funktionalität / Verhalten. Es gehört zum dynamischen Modell
 * Es eignet sich sehr gut, um komplexe Use-Cases resp. Abläufe zu präzisieren. Es stellt einen komplexen Ablauf / Aktivität als grafisches **„Flussdiagramm“** dar.
 * Es besteht aus einem **Kontrollfuss** (Ablauf) und einem **Datenmodell** (Datenaustausch zwischen den Aktionen / Funktionen)
 * Ein- und Ausgabeobjekte sind optional, es können auch Start- und Endknoten verwendet werden.
 * Objektflüsse können aufgezeigt werden (wie "wandern" Objekte durch das Programm)
 
-<img src="aktivitaetsdiagramm.png" style="width: 1000px" />
+    </div>
+    <img src="aktivitaetsdiagramm.png" style="width: 800px" />
+
+
+</div>
+
 </textarea>
 </section>
 
@@ -152,22 +163,89 @@ Unser Prototyp soll dies in folgenden Masken anbieten:
 </section>
 </section>
 
+<section>
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-wrench"></i> Aktivitätsdiagramm entwickeln: VisualParadigm
+<i class="fas fa-wrench"></i> Aktivitätsdiagramm entwickeln: PlantUML
 ===========
 
-Kurze Einführung in Aktivitätsdiagramme mit VisualParadigm: Wir schauen uns die wichtigsten Funktionen im UML-Tool an:
+Kurze Einführung in Aktivitätsdiagramme mit PlantUML: Wir schauen uns die wichtigsten Funktionen im UML-Tool an:
 
-* Erstellen eines Aktivitätsdiagrammes
-* Aktivitätsrahmen
-* Actions/Schritte
-* Start/Endknoten
-* Objektfluss, Input-/Output-Pins
-* Verzweigungen / Zusammenführungen
-* Swim Lanes
+### Aktivitätsrahmen
 
+```plantuml
+@startuml
+rectangle MeineAktivität {
+    ' ... hier kommen die Actions hin
+}
+@enduml
+```
+
+### Actions/Schritte
+
+```plantuml
+@startuml
+'Aktivität:
+:Meine Aktivität;
+'mehrzeilige Aktivität:
+:Meine lange
+ Aktivität;
+@enduml
+```
+
+### Start/Endknoten
+
+```plantuml
+@startuml
+'Startknoten:
+start
+'Endknoten:
+stop
+@enduml
+```
+
+### Linien-Beschriftung
+
+```plantuml
+:Aktivität eins;
+-> Beschriftung;
+:Aktivität zwei;
+```
 </textarea>
+</section>
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-wrench"></i> Aktivitätsdiagramm entwickeln: PlantUML
+===========
+
+Kurze Einführung in Aktivitätsdiagramme mit PlantUML: Wir schauen uns die wichtigsten Funktionen im UML-Tool an:
+
+### Verzweigungen / Zusammenführungen
+
+```plantuml
+:Aktivität eins;
+if (Bedingung?) then (Ja)
+   :Ja-Aktivitäten;
+else (Nein)
+   :Nein-Aktivitäten;
+endif
+:Aktivität zwei;
+```
+
+### Swim Lanes
+
+```plantuml
+|Swimlane 1|
+:Aktivität 1;
+:Aktivität 2;
+|Swimlane 2|
+:Aktivität 3;
+|Swimlane 1|
+:Aktivität 4;
+|Swimlane 1|
+```
+</textarea>
+</section>
 </section>
 
 <section data-markdown data-separator-notes="^Note:">
@@ -213,7 +291,8 @@ Implementieren Sie die Funktionalität danach im BibSys-Prototypen.
 
 <i class="far fa-hand-point-right"></i> **Versuchen Sie, die geplante Aktivität als Programm-Code umzusetzen!** Ziel ist, dass Ihr Prototyp in der Lage ist, Bücher via Barcode auszuleihen!
 
-**Hausaufgabe**: Stellen Sie das Aktivitätsdiagramm fertig. Einreichen via Moodle. Versuchen Sie, das Geplante nun im Bibsys-Prototypen umzusetzen.
+**Hausaufgabe**: Stellen Sie das Aktivitätsdiagramm als PlantUML fertig. Einreichen via Github Classroom-Repo.
+Versuchen Sie, das Geplante nun im Bibsys-Prototypen umzusetzen! Committen und Pushen Sie auch diesen Code!
 </textarea>
 </section>
 {% endblock %}

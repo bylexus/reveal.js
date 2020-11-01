@@ -24,7 +24,9 @@ Detailplan
 ----------
 
 * 07:30 (ca. 30min): Besprechung HA von letztem Mal: MVC-Aufgabe "Person-Manager": 1-2 Schüler stellen Lösung vor
-* 08:00 (ca. 20min): Schüler suchen Lösung für Hierarchie-Problem, wie auf Folie
+* 08:00 (ca. 20min): Schüler suchen Lösung für Hierarchie-Problem:
+    * ein Schüler macht ein Diagramm-Editor auf (z.B. PlantUML/Docsify, oder draw.io)
+    * sie lösen das gleich am Beamer zusammen, ein Schüler macht das Diagramm, die anderen liefern Input
 * 08:20 (ca. 10min): Theorie zu Design Pattern: Komposite-Pattern, Hinweis auf Merkblatt
 * 08:30 (ca. 5 min): Erklärung der beiden Aufgaben (HTML und XML-Aufgabe)
 * 08:35 (ca. 20min): Selbständiges Arbeiten an Aufgaben

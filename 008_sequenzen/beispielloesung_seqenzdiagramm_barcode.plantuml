@@ -1,0 +1,37 @@
+
+@startuml
+title Beispiel Sequenzdiagramm
+' Numerierung:
+autonumber
+skinparam shadowing false
+
+' Aktoren und Objekte/Systeme definieren:
+actor "Ausleihe-Benutzer" as actor
+participant "MedienScannenView" as scanview
+participant "MedienScannenViewController" as scancontroller
+participant "MediumManager" as mm
+participant "DataContainer" as dc
+
+actor -> scanview ++: scan-Btn()
+    scanview -> scancontroller ++: onScanBtnClick()
+        scancontroller -> scanview ++: barcodeField.getText()
+
+        return Barcode: String
+
+        scancontroller -> mm ++: findFreeMedium(Barcode)
+            mm -> dc++: getMedienList()
+            return Medium[]
+            mm -> mm++: findValidMedia()
+            return MediumExemplar
+        return MediumExemplar
+
+        scancontroller -> mm++: createAusleihe(MediumExemplar, Benutzer)
+            mm -> Ausleihe **: new()
+            mm -> mm++: configureAusleihe(Ausleihe, Benutzer)
+            return Ausleihe
+        return Ausleihe
+
+    return onScanBtnClick()
+
+return scan-Btn()
+@enduml

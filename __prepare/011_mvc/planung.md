@@ -1,4 +1,4 @@
-Detailplan Lektion 11 - 05.11.2020
+Detailplan Lektion 11 - 03.05.2018 (Woche 18)
 ===========================================
 
 Material
@@ -23,7 +23,7 @@ Hausaufgaben
 Detailplan
 ----------
 
-* 07:30 (ca. 30min): Besprechung HA von letztem Mal: Implementationen von Kompositionen
+* 07:30 (ca. 30min): Besprechung HA von letztem Mal: Implementationen von Kompositionen, Aufgabe "Umbau des Prototyps: Person-Klasse einführen"
 * 08:00 (ca. 20min): Theorie zu Design Patterns
 * 08:20 (ca. 20min): Selbständiges Einlesen in MVC-Pattern, Beantworten von Fragen
 * 08:40 (Rest): Besprechen der MVC-Fragen

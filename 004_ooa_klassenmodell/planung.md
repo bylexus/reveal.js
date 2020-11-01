@@ -1,5 +1,15 @@
-Detailplan Lektion 4 - 28.02.2019
+Detailplan Lektion 4 - 03.09.2020
 ===========================================
+
+Input zu den Hausaufgaben vom letzten Mal
+--------------------------------------------
+
+* 3 Schüler haben praktisch eine identische Lösung abgegeben
+  --> wird ab nächtem Mal nicht mehr geduldet.
+* 1 Schüler hat eine unfertige Lösung abgegeben
+  --> wird ab nächtem Mal nicht mehr geduldet.
+
+
 
 Material
 --------

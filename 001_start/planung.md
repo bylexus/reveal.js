@@ -19,6 +19,8 @@ Ziele
 Detailplan
 ----------
 
+Achtung: COVID-19-Folien erst bringen!
+
 * (ca. 5min): Begrüssung, Ziel ( Folie mit meinen Daten, Folien mit den Links zu Unterrichs-Unterlagen)
 * (ca. 10 min): Infos zum Unterricht, Übersicht Semester
   * Folien zur Unterichtsgestaltung

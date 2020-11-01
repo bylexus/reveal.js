@@ -1,4 +1,4 @@
-Detailplan Lektion 2 - 22.08.2019
+Detailplan Lektion 2 - 20.08.2020
 ===========================================
 
 Material
@@ -9,6 +9,9 @@ Material
 * Einzel-PDFs mit ausgelesenen UML-diagrammen, AUSDRUCK auf A4 je Diagramm (ca. 10 Stück)
 * Anforderung Bibliothekssystem auf Moodle
 * leere Papierstreifen für Begriffssammlung, + Magnete für Flipchart-Tafel
+* Padlet für Unterricht:
+  * Vorgehen SW:  https://padlet.com/alex_schenkel/ar4id4nnl693n6js
+  * UMLs ordnen:  https://padlet.com/alex_schenkel/bx6zzp6l7ckylem7
 
 Ziele
 -----
@@ -22,13 +25,13 @@ Detailplan
 
 * 07:30 (ca. 5min): Begrüssung, Ziel
 * 07:35: (ca. 10min): Diskussion Vorgehen SW-Entwickeln
-  * Schüler sammeln Begriffe am Flipboard, erörtern diese:
+  * Schüler sammeln Begriffe im Padlet, erörtern diese:
   * Begriffe zu Vorgehen in der Software-Entwicklung
   * Begriffe zu Schwierigkeiten / Herausforderungen
-  * auf Papierstreifen, an Flipchart mit Magneten
+  * Padlet https://padlet.com/alex_schenkel/ar4id4nnl693n6js
 * 07:45 (ca. 20 min): Theorieblock Vorgehensmodelle
 * 08:10 bis Ende: UML-Diagramme erörtern, ordnen:
-  * Schüler ordnen ausgelesene UML-Diagramme dem dynamischen oder statischen Modell zu (Flipchart)
+  * Schüler ordnen ausgelesene UML-Diagramme dem dynamischen oder statischen Modell zu (Padlet)
   * ausgelesene Diagramme verteilen an Schüler: Jeder sagt kurz etwas dazu: Warum statisch / dynamisch?
     Für was wird das Diagramm benutzt?
 * 09:05: Ende

@@ -1,12 +1,10 @@
-Detailplan Lektion 9 - 24.10.2019
+Detailplan Lektion 9 - 22.10.2020
 ===========================================
 
 Material
 --------
 * Folien
-* VisualParadigm
-* Source-Code-Beispiele in Eclipse: source/M326_Examples/
-
+* Source-Code-Beispiele in java: Branch IN18-22c/009_assoziationen, package "prototyping": Beispiel 1:1-Assoziation mit Façade
 
 Ziele
 -----

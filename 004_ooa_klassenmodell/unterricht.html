@@ -33,7 +33,7 @@ Heutiges Ziel
 
 Wir sind an der fachlichen Analyse und erarbeiten exemplarisch das Klassenmodell:
 
-<img src="wo_stehen_wir.png" />
+<img src="wo_stehen_wir.png" width="80%" />
 
 Wir verzichten bewusst auf die weitere Analyse aus Zeitgründen.
 
@@ -58,7 +58,11 @@ Für die formelle Darstellung verwenden wir das **UML-Klassendiagramm**, um das 
 
 **Frage**: Gehört das Klassenmodell zum **dynamischen** oder **statischen** Modell?
 
-<!-- .element class="fragment" --> **Antwort**: Klar zum statischen Modell. Abläufe werden im Klassenmodell keine modelliert.
+<div class="fragment">
+
+**Antwort**: Klar zum statischen Modell. Abläufe werden im Klassenmodell keine modelliert.
+
+</div>
 
 Note:
 * Objekte wahrnehmen: Ein Ojekt HAT Attribute, wir können damit etwas MACHEN (Operationen), und ein
@@ -70,59 +74,93 @@ Note:
 
 
 <section>
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> UML-Klassendiagramm
-    ===========
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> UML-Klassendiagramm
+===========
 
-    <img src="uml_klassendiagramm.png" style="width: 70%" />
+<div style="display:flex">
+<img src="uml_klassendiagramm.png" style="width:70%;height:70%" />
 
-    Das Klassendiagramm
-    * zeigt die konkreten Objekte resp. **Klassen** von Objekten wie Dinge / Personen / Rollen / Orte / Behälter
-    * zeigt, welche **Attribute** die Klassen haben
-    * zeigt, welche **Beziehungen** zwischen den Klassen existieren
-    * zeigt **Generalisierungen** (Vererbungen) von Klassen
-    * zeigt die Operationen, welche mit den Objekten ausgeführt werden können (hier nicht ersichtlich)
-    * in der Analyse-Phase: entspricht NICHT der technischen Umsetzung! Die technische Implementation wird bewusst weggelassen. Konzentration auf das Business-Modell!
-    </textarea>
-    </section>
+```
+@startuml
+' PlantUML-Code-Beispiel:
+skinparam shadowing false
+hide empty members
+skinparam nodesep 100
+skinparam ranksep 80
+
+' Klassendefinition:
+class Medium {
+    ' Attribut (hier: private (-))
+    - Kategorie
+    - Standort
+}
+
+' Generalisierung:
+Medium <|-- Buch
+' Generalisierung mit Richungsvorgabe:'
+Medium <|-down- DVD
+
+' Beziehungen:
+Medium *-left-  Kategorie
+Medium "hat ausgeliehen" -left- "ausgeliehen von" Benutzer
+
+' Attributsklasse der Beziehung:
+(Medium,Benutzer) .. Ausleihe
+@enduml
+```
 
 
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Was sind OO-Klassen?
-    ===========
+</div>
 
-    **Fragen:**
+Das **Klassendiagramm**
 
-    * Was ist eine **Klasse** im objektorientierten Sinn?
-    * Aus was besteht eine objektorientierte Klasse?
+* zeigt die konkreten Objekte resp. **Klassen** von Objekten wie Dinge / Personen / Rollen / Orte / Behälter
+* zeigt, welche **Attribute** die Klassen haben
+* zeigt, welche **Beziehungen** zwischen den Klassen existieren
+* zeigt **Generalisierungen** (Vererbungen) von Klassen
+* zeigt die Operationen, welche mit den Objekten ausgeführt werden können (hier nicht ersichtlich)
+* **in der Analyse-Phase: entspricht NICHT der technischen Umsetzung!** Die technische Implementation wird bewusst weggelassen. Konzentration auf das Business-Modell!
+</textarea>
+</section>
 
-    </textarea>
-    </section>
 
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Was ist eine (objektorientierte) Klasse?
-    ===========
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Was sind OO-Klassen?
+===========
 
-    * <!-- .element class="fragment" --> Eine **Klasse** ist ein Bauplan für konkrete **Objekte**
-    * <!-- .element class="fragment" -->  Wie eine Blaupause eines Hauses zeigt die Klasse, wie ein späteres Objekt "auszusehen hat"
-    * <!-- .element class="fragment" -->  Sie definiert somit formal konkrete Objekte durch eine Beschreibung.
-    </textarea>
-    </section>
+**Fragen:**
 
-    <section data-markdown data-separator-notes="^Note:">
-    <textarea data-template>
-    <i class="fas fa-flask"></i> Aus was besteht eine objektorientierte Klasse?
-    ===========
+* Was ist eine **Klasse** im objektorientierten Sinn?
+* Aus was besteht eine objektorientierte Klasse?
 
-    * <!-- .element class="fragment" --> Eine Klasse hat einen Namen
-    * <!-- .element class="fragment" --> Sie hat Attribute (Eigenschaften)
-    * <!-- .element class="fragment" --> Sie definiert Operationen (Methoden), welche auf die Attribute eine Auswirkung haben
-    * <!-- .element class="fragment" --> Durch Verbindugen mit anderen Klassen (über Attribute/Operationen) werden auch Beziehungen modelliert
-    </textarea>
-    </section>
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Was ist eine (objektorientierte) Klasse?
+===========
+
+* <!-- .element class="fragment" --> Eine Klasse ist ein Bauplan für konkrete Objekte
+* <!-- .element class="fragment" -->  Wie eine Blaupause eines Hauses zeigt die Klasse, wie ein späteres Objekt "auszusehen hat"
+* <!-- .element class="fragment" -->  Sie definiert somit formal konkrete Objekte durch eine Beschreibung.
+</textarea>
+</section>
+
+<section data-markdown data-separator-notes="^Note:">
+<textarea data-template>
+<i class="fas fa-flask"></i> Aus was besteht eine objektorientierte Klasse?
+===========
+
+* <!-- .element class="fragment" --> Eine Klasse hat einen Namen
+* <!-- .element class="fragment" --> Sie hat Attribute (Eigenschaften)
+* <!-- .element class="fragment" --> Sie definiert Operationen (Methoden), welche auf die Attribute eine Auswirkung haben
+* <!-- .element class="fragment" --> Durch Verbindugen mit anderen Klassen (über Attribute/Operationen) werden auch Beziehungen modelliert
+</textarea>
+</section>
 </section>
 
 <section data-markdown data-separator-notes="^Note:">
@@ -132,8 +170,8 @@ Note:
 
 **Frage**: Wie gehen Sie vor, um Klassen für das Klassenmodell/Klassendiagramm zu finden?
 
-* <!-- .element class="fragment" --> **Dokumentanalyse**: Pflichtenhefte, Ausdrucke, Rechnungen, Screenshots ... Also alles, was der Kunde an Unterlagen verfügbar hat.
-* <!-- .element class="fragment" --> **Analyse der Use-Cases**: Die erstellen Use-Cases sollten bereits recht umfassend mögliche Klassenkandidaten erwähnen.
+* <!-- .element class="fragment" --> Dokumentanalyse: Pflichtenhefte, Ausdrucke, Rechnungen, Screenshots ... Also alles, was der Kunde an Unterlagen verfügbar hat.
+* <!-- .element class="fragment" --> Analyse der Use-Cases: Die erstellen Use-Cases sollten bereits recht umfassend mögliche Klassenkandidaten erwähnen.
 
 Note:
 * Objekte wahrnehmen: Ein Ojekt HAT Attribute, wir können damit etwas MACHEN (Operationen), und ein
@@ -147,13 +185,19 @@ Note:
 <i class="fas fa-flask"></i> Finden von Klassen
 ===========
 
-**Visual Paradigm** bietet Ihnen mit "Textual Analysis" ein Werkzeug, um Texte nach Objekten zu durchforsten, und daraus
-ein erstes Modell abzubilden (praktische Vorführung):
+Siehe Checkliste "002 - Klassen": (hier kurz die wichtigsten Punkte aufgeführt)
 
-<img src="vp-textual-menu.png" width="30%" />
+* Durchsuchen Sie die Dokumente, die Sie zur Verfügung haben: Formulare, Listen, Anforderungs-Texte, Bildschirmmasken, ...
+* Durchsuchen Sie vorhandene Use-Cases und Use-Case-Beschreibungen
+* Suchen Sie in erster Linie nach **Nomen**: Konkrete Dinge/Objekte, Personen, Orte, Organisationen, Behälter, Dinge in Behältern ...
 
-<img src="vp-textual-analysis.png" width="50%" />
+### Beispiel aus der Anforderung für das Bibliothekssystem
 
+> Vom selben Medium können mehrere Exemplare existieren. Jedes Exemplar ist durch eine eigene Mediennummer gekennzeichnet,
+> sodass sie unterschieden werden können.
+
+Hier finden wir die Nomen **Medium**, **Exemplar**, und sehen auch bereits ein mögliches Attribut: **Mediennummer**.
+Wir halten also die beiden Nomen als Klasse fest, und definieren auf Exemplar ein Attribut.
 
 </textarea>
 </section>
@@ -161,10 +205,10 @@ ein erstes Modell abzubilden (praktische Vorführung):
 
 <section data-markdown data-separator-notes="^Note:">
 <textarea data-template>
-<i class="fas fa-flask"></i> Übung: Finden von Klassen, Attributen, Generalisierungen
+<i class="fas fa-flask"></i> Finden von Klassen, Attributen, Generalisierungen
 ===========
 
-**Aufgabe:**
+### Aufgabe:
 
 * Erstellen Sie ein erstes Klassenmodell mit Klassen, Attributen und Generalisierungen für das Bibliothekssystem
 * Material:
@@ -176,14 +220,17 @@ ein erstes Modell abzubilden (praktische Vorführung):
 * Suchen Sie mögliche Klassen-Kanditaten im Dokument "Anforderungen an ein Bibliothekssystem" (Abschnitt **Konstruktive Schritte** in der Checkliste 002)
 * Suchen Sie mögliche Klassen-Attribute (Abschnitt **Konstruktive Schritte** in der Checkliste 004)
 * Suchen Sie mögliche Klassen-Generalisierungen (Abschnitt **Konstruktive Schritte** in der Checkliste 005)
-* Erstellen Sie ein UML-Klassendiagramm in VisualParadigm mit Klassen, Attributen, Generalisierungen
+* Erstellen Sie ein UML-Klassendiagramm mit PlantUML mit Klassen, Attributen, Generalisierungen
 * **Bewerten** Sie Ihr Modell anhand des Abschnitts **Analytische Schritte** in den Checklisten: Dieses Kapitel hilft Ihnen, das Klassenmodell zu verbessern / zu bewerten.
 
-* **Bedenken Sie** Dies ist das Analysemodell: Es zeigt noch KEINE technischen Zusammenhänge! Machen Sie sich noch KEINE Gedanken, wie Sie dies technisch umsetzen wollen!
+PlantUML-Doku Klassendiagramme: https://plantuml.com/de/class-diagram
+
+**Bedenken Sie:** Dies ist das Analysemodell: Es zeigt noch KEINE technischen Zusammenhänge! Machen Sie sich noch KEINE Gedanken, wie Sie dies technisch umsetzen wollen!
 
 **Abgabe**
 
-* Das UML-Diagramm wie oben beschrieben als Hausaufgaben-Abgabe einreichen
+* Das UML-Diagramm wie oben beschrieben via **Classroom-Repo** als Hausaufgaben-Abgabe einreichen:
+Entweder als Bild, ODER als (lauffähiger) PlantUML-Quellcode!
 
 Note:
 Als kurze Einführung zeige ich ein Beispiel anhand der Checkliste 002:
