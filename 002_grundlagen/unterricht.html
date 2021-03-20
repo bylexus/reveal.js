@@ -76,10 +76,32 @@ Wir kennen in Java z.B. folgende skalare Typen:
 * boolean (Wahr / falsch, 2 Zustände)
 * ... und noch ein paar mehr.
 
-Folgende Datentypen sind bereits nicht mehr skalar, resp. einfach:
+Folgende Datentypen sind bereits **nicht mehr skalar**, resp. einfach:
 
 * Arrays (`int[] a = {1,2,3,4}`): eine Liste aus aneinandergereihten Datentypen
 * Strings (`String s = "Hallo"`): eine Liste von Zeichen (chars)
+
+<i class="far fa-hand-point-right"></i> Wir reden hier bereits von **Komplexen Datenstrukturen**,
+oder **zusammengesetzten Datenstrukturen**: Dies sind Kombinationen aus einfacheren Strukturen.
+<br />Beispiel: Ein **Koordinaten-Punkt** besteht aus einem **Breitengrad** (skalarer Typ) und einem **Längengrad** (auch ein skalarer Typ).
+Wir können also sagen:
+
+Oder: Der Datentyp **Koordinate** besteht aus:
+  * `float Breite`
+  * `float Laenge`
+
+In Java können wir den Typ mit einer **Klasse** abbilden:
+
+```java
+public class Koordinate {
+    public float laenge;
+    public float breite;
+}
+```
+
+<i class="far fa-hand-point-right"></i> mehr dazu später im Kapitel
+
+
 </textarea>
 </section>
 
@@ -91,11 +113,11 @@ Folgende Datentypen sind bereits nicht mehr skalar, resp. einfach:
 Wir beschäftigen uns als Erstes mit **Arrays**. Dieser komplexe Datentyp wird von
 Java bereits "von Haus aus" unterstützt.
 
-<i class="far fa-hand-point-right"></i> Schauen wir uns **Arrays mit LEGO<sup>&reg;</sup>** etwas genauer an.
+<!-- <i class="far fa-hand-point-right"></i> Schauen wir uns **Arrays mit LEGO<sup>&reg;</sup>** etwas genauer an. -->
 
-**Finden Sie Antworten zu folgenden Fragen**:
+**Suchen wir gemeinsam Antworten zu folgenden Fragen**:
 
-1. welche **Eigenschaften** hat ein Array?
+1. welche **Eigenschaften** hat ein Array (Oder: Was IST ein Array)?
 1. wie sind Arrays **im Speicher** abgelegt?
 1. können Sie Elemente an beliebiger Stelle im Array speichern? Wie?
 1. können Sie Elemente an beliebiger Stelle im Array auslesen? Wie?
@@ -103,7 +125,9 @@ Java bereits "von Haus aus" unterstützt.
 1. wie **entfernen** Sie Elemente aus dem Array (Kürzen den Array)?
 1. welche Aktionen gehen gut (einfach, schnell), was geht nicht gut (kompliziert, langsam) mit Arrays?
 
-Wir bilden dazu 2 Gruppen: Jede Gruppe erarbeitet Antworten zu diesen Fragen.
+<!-- Wir bilden dazu 2 Gruppen: Jede Gruppe erarbeitet Antworten zu diesen Fragen. -->
+
+<i class="far fa-hand-point-right"></i> restliche Folien und Aufgaben im Selbststudium / Fragen von Ihnen beantworten!
 
 </textarea>
 </section>
@@ -112,14 +136,12 @@ Wir bilden dazu 2 Gruppen: Jede Gruppe erarbeitet Antworten zu diesen Fragen.
 <section>
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Arrays und Strings
+<i class="fas fa-graduation-cap"></i> Arrays in Java
 =============================
 
-Arrays und Strings sind in Java bereits komplexe Datentypen, welche von der Sprache mit hilfreicher Syntax unterstützt werden.
+Arrays sind in Java bereits **komplexe Datentypen**, welche von der Sprache mit hilfreicher Syntax unterstützt werden.
 
-**Arrays in Java**
-
-Arrays sind "aneinandergereihte" Werte eines bestimmten Datentyps (skalare oder komplexe Typen): Sie sind im Speicher (Heap)
+Arrays sind "aneinandergereihte" Werte eines bestimmten Datentyps (skalare oder komplexe Typen): Sie sind im **Heap-Speicher** 
 aufeinanderfolgend aneinandergereiht:
 
 ```java
@@ -128,6 +150,8 @@ int[] b = {1,2,3,4,5}; // erzeugt einen neuen Array mit 5 vordefinierten int-Wer
 ```
 
 <img src="array_init.png" />
+
+Ein Array ist **immer zusammenhängen im Speicher abgelegt**. Es gibt keine Lücken zum nächsten Element.
 
 **Array-Operationen**
 
@@ -149,24 +173,36 @@ int laenge = a.length;
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Arrays und Strings
+<i class="fas fa-graduation-cap"></i> Arrays in Java
 =============================
 
-Arrays und Strings sind in Java bereits komplexe Datentypen, welche von der Sprache mit hilfreicher Syntax unterstützt werden.
+**Erweitern / Vergrössern / Verkleinern von Arrays**
 
-**Strings in Java**
+Ein Array kann NICHT vergrössert / verkleinert werden: Da Arrays im Speicher zusammenhängend
+platziert sind, muss davon ausgegangen werden, dass der Speicher *hinter* dem Array bereits belegt ist.
 
-**Frage**: Strings gelten schon als komplexe Datentypen, sind also eine Zusammensetzung aus einfachen Datentypen.
-Aus welchen Datentypen sind Strings zusammengesetzt, und wie?
+Wenn Sie also einen grösseren Array brauchen, **müssen Sie einen neuen, grösseren Array anlegen,
+und die Werte umkopieren**:
+
+<img src="array_copy.png" width="40%" />
+
+<i class="far fa-hand-point-right"></i> **Wie machen Sie das?**
+
+In Java eignet sich dazu ein ganz einfacher **Algorithmus**, welchen Sie nun entwickeln können:
+
+1. Erstelle einen neuen, grösseren Array
+2. für jedes Element des alten Arrays:
+    3. Kopiere den Wert des alten Arrays an die selbe Stelle im neuen Array
+
+<i class="far fa-hand-point-right"></i> **Lösen Sie dazu die Aufgabe 1 - Array vergrössern - auf Moodle**
+
 </textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Arrays und Strings
+<i class="fas fa-graduation-cap"></i> Strings in Java
 =============================
-
-**Strings in Java**
 
 **Frage**: Strings gelten schon als komplexe Datentypen, sind also eine Zusammensetzung aus einfachen Datentypen.
 Aus welchen Datentypen sind Strings zusammengesetzt, und wie?
@@ -174,14 +210,42 @@ Aus welchen Datentypen sind Strings zusammengesetzt, und wie?
 **Antwort**: Strings sind, wie auch in C, Arrays aus `char`-Werten! Die String-Klasse bietet neben den Array-Methoden auch noch ein paar weitere
 nützliche Eigenschaften. Unter anderem sind Strings in Java IMMER Read-Only! Sie können String-Objekte nicht mehr verändern.
 
-<img src="string.png" />
-
 ```java
 String s1 = "Alex"; // Erzeugt ein konstantes String-Objekt "Alex" im Heap, und gibt eine Referenz darauf zurück
 String s2 = new String("Alex"); // Erzeugt ein NEUES String-Objekt, und gibt eine Referenz darauf zurück
 ```
 
+Im Speicher sieht das dann so aus:
+
+<img src="string.png" />
+
+**Strings sind also schon komplexe Typen**. Der Typ  "String" in Java wird durch die `String`-Klasse definiert, die in etwa so aussehen könnte:
+
+```java
+public class String {
+    // Ein Array für die einzelnen Zeichen:
+    private char[] characters;
+
+    // Methoden (Operationen) für den Typ:
+    public int length() { ... }
+    public char charAt(int i) { ... }
+    ...
+}
+```
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Strings in Java
+=============================
+
 **String-Operationen**
+
+Ein Datentyp (eine Klasse in Java) definiert auch die **Operationen** (Methoden in Java),
+welche auf diesen Daten ausgeführt werden können. Beispielsweise definiert die String-Klasse
+eine ganze Reihe nützlicher Operationen, um mit Strings zu arbeiten:
 
 ```java
 // Länge eines Strings:
@@ -299,7 +363,7 @@ Kennen Sie weitere komplexe Datentypen, die in Java schon vordefiniert sind?
 
 Wir können unser Wissen nun bereit kombinieren:
 
-** Array aus komplexen Datentypen**:
+**Array aus komplexen Datentypen:**
 
 ```java
 Koordinate[] koordinaten = new Koordinate[5];
@@ -307,7 +371,7 @@ koordinaten[0] = new Koordinate();
 koordinaten[1] = frauenfeld; // siehe letzte Folie
 ```
 
-** Komplexe Datentypen mit Arrays als Eigenschaften **:
+**Komplexe Datentypen mit Arrays als Eigenschaften:**
 
 ```java
 class Noten {
@@ -358,16 +422,42 @@ Eine Stack-Klasse bietet also die Funktionen **`push()`** und **`pop()`** an, un
 
 ```java
 public class Stack {
+    /** Stack mit 20 Plätzen: intern wird ein Array initialisiert: */
+    private int[] stackArray = new int[20];
+
+    /** Index des "obersten" Elementes im Stack: */
+    private int topIndex = 0;
+
 	/** Die Funktion pop() gibt uns das oberste Element zurück */
     int pop() { ... }
 
-	/** Wir wollen etwas (ein int) im Stack ablegen (keine negativen Zahlen erlaubt) */
+	/** Wir wollen etwas (ein int) im Stack ablegen/speichern */
     void push(int x) { ... }
 
 	/** Gibt einen Boolean zurück ob der Stack leer ist oder nicht */
     boolean isEmpty() { ... };
 }
 ```
+
+... und anwenden können wir ihn so:
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        Stack s = new Stack();
+
+        s.push(5);
+        s.push(3);
+        s.push(8);
+
+        s.pop(); // 8
+        s.pop(); // 3
+    }
+}
+```
+
+<i class="far fa-hand-point-right"></i> Sie sehen hier eine **Datenstruktur** Stack, 
+welche Operationen zu unserem Typ mit anbietet.
 
 </textarea>
 </section>
@@ -379,11 +469,17 @@ public class Stack {
 =============================
 
 
-Lösen Sie die Aufgaben auf Moodle:
+Lösen Sie die **Hausaufgaben auf Moodle**:
 
-* Aufgabe zu Arrays
-* Aufgabe zu komplexen Datentypen
-* (Aufgabe Stack-Implementation, wer will)
+* Aufgabe zu Arrays (3 Aufgaben)
+* Aufgabe zu komplexen Datentypen (2 Aufgaben)
+
+**Bonus-Aufgaben auf Moodle, wer noch etwas mehr machen will** (keine Hausaufgaben):
+
+* Aufgabe Stack-Implementation
+* Übung Arrays 4: 2-dimensionales Array Aufgabe 
+* Aufgabe 2 zu komplexen Datentypen: Array-Wrapper (Array "verpacken" mit nützlichen Zusatzfunktionen wie vergrössern)
+* Übung Arrays: Durchschnitt Aufgabe 
 
 </textarea>
 </section>

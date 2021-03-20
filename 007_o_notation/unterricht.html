@@ -20,7 +20,7 @@ Ziele:
 <section>
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Lektion 9 - Laufzeitanalyse
+<i class="fas fa-graduation-cap"></i> Lektion 7 - Laufzeitanalyse
 =============================
 
 Schauen Sie sich folgenden Algorithmus an:
@@ -36,11 +36,18 @@ int find(int[] array, int wert) {
 }
 ```
 
+**Fragen ins Publikum:** (wir tragen zusammen)
+
 * Was macht dieser Algorithmus?
 * Ist dieser Algorithmus effizient?
-* Wie bewerten Sie die "Effizienz" eines Algorithmus? Welche Kriterien schauen Sie da an?
+* Was bedeutet denn **Effizient** bei einem Algorithmus? Welche Kriterien schauen Sie da an?
+* Wie verhält sich dieser Algorithmus (zeitlich)
+  * bei 1 Element
+  * bei 10 Elementen
+  * bei 100 Elementen
+  * bei 100'000 Elementen?
 
-<i class="far fa-hand-point-right"></i> Padlet dazu: https://padlet.com/alex_schenkel/eq5znlge1ams
+
 
 </textarea>
 </section>
@@ -58,7 +65,8 @@ Für die Effizienz eines Algorithmus sind 3 Parameter relevant:
 * **Speicherplatz**: Maximale Speicherverbrauch während der Ausführung des Algorithmus in Abhängigkeit von der Komplexität der Eingabe
 * **Bandbreite**: Wie gross ist die erforderliche Datenübertragung
 
-Wir betrachten bei der Effizienzanalyse ausschliesslich die **Entwicklung des Aufwandes in Abhängigkeit der Eingabegrösse**.
+Wir betrachten bei der Effizienzanalyse ausschliesslich die **Entwicklung des Aufwandes in Abhängigkeit der Eingabegrösse**,
+nicht, wie lange der Algorithmus konkret benötigt. Uns interessiert das **Wachstumsverhalten** bei steigender Eingabegrösse.
 
 Auf unser Beispiel von vorhin gemünzt (übrigens das Suchen eines Wertes in einem Array):
 
@@ -81,13 +89,13 @@ Auf unser Beispiel von vorhin gemünzt (übrigens das Suchen eines Wertes in ein
 <div style="display: flex">
     <img src="komplexitaet_arraysuche.png" width="60%"/>
     <div style="margin-left: 10px">
-        Beispiel: `n = 100`<br />
-        <ul>
-            <li>Eingangsgrösse `n`: Array-Elemente</li>
-            <li>`n = 100` (Array mit 100 Elementen)</li>
-            <li><i class="far fa-hand-point-right"></i> `f(n) = n`: <br />Wir benötigen also auch 100 "Schritte"</li>
-            <li><i class="far fa-hand-point-right"></i> Der Algorithmus verhält sich also **linear / proportional** zur Eingangsgrösse</li>
-        </ul>
+
+Beispiel: `n = 100`
+
+* Eingangsgrösse `n`: Array-Elemente
+* `n = 100` (Array mit 100 Elementen)
+* <i class="far fa-hand-point-right"></i> `f(n) = n`: <br />Wir benötigen also auch 100 "Schritte"
+* <i class="far fa-hand-point-right"></i> Der Algorithmus verhält sich also **linear / proportional** zur Eingangsgrösse
 
     </div>
 </div>
@@ -197,17 +205,21 @@ int find(int[] array, int wert) {
 
 * Was ist unsere **Eingabegrösse**? <span class="fragment"> --> `int n`: Je höher "n", desto mehr Schritte sind nötig</span>
 * Wieviele **Berechnungsschritte** werden benötigt?
-  * <!-- .element class="fragment" --> 1x Summe initialisieren
   * <!-- .element class="fragment" --> 1x i initialisieren
-  * <!-- .element class="fragment" --> n mal i mit Grenze vergleichen
-  * <!-- .element class="fragment" --> n mal Summe aufaddieren
+  * <!-- .element class="fragment" --> n mal i mit Länge vergleichen
+  * <!-- .element class="fragment" --> n mal i mit Wert vergleichen
   * <!-- .element class="fragment" --> n mal i erhöhen
 
+
+<div class="fragment"> 
+
 --> Wir erhalten also folgende Funktion in Abhängigkeit von "n":
+  
+ `T(n): 1 + n + n + n = 3n + 1`
 
-<!-- .element class="fragment" --> T(n): 1 + 1 + n + n + n = 3n + 2
+<i class="far fa-hand-point-right"></i>Dieser Algorithmus hat also eine lineare Abhängigkeit zu seiner Eingabegrösse.
 
-<!-- .element class="fragment" --> <i class="far fa-hand-point-right"></i>Dieser Algorithmus hat also eine lineare (proportionale) Abhängigkeit zu seiner Eingabegrösse.
+</div>
 
 </textarea>
 </section>
@@ -242,11 +254,15 @@ public int doubleElements(int[] a) {
   * <!-- .element class="fragment" --> n * n mal j mit Länge von a vergleichen
   * <!-- .element class="fragment" --> n * n mal Werte vergleichen (i,j), auslesen und vergleichen, hochzählen (4 Schritte)
 
+<div class="fragment"> 
+
 --> Wir erhalten also folgende Funktion in Abhängigkeit von "n":
 
-<!-- .element class="fragment" --> T(n): 1 + 1 + n + n<sup>2</sup> + 4*n<sup>2</sup> = 5n<sup>2</sup> + n + 2
+T(n): 1 + 1 + n + n<sup>2</sup> + 4*n<sup>2</sup> = 5n<sup>2</sup> + n + 2
 
-<!-- .element class="fragment" --> <i class="far fa-hand-point-right"></i>Dieser (zugegeben naive) Algorithmus hat also eine **quadratische** Abhängigkeit zu seiner Eingabegrösse.
+<i class="far fa-hand-point-right"></i>Dieser (zugegeben naive) Algorithmus hat also eine **quadratische** Abhängigkeit zu seiner Eingabegrösse.
+
+</div>
 
 </textarea>
 </section>
@@ -264,7 +280,9 @@ Algorithmen können mit Hilfe der O-Notation unabhängig von Implementierungsdet
 wie Programmiersprache, Compiler und Hardware-Eigenschaften, verglichen werden.
 
 **Die O-Notation ist ein Mass dafür, wie sich der Aufwand verhält, wenn man mehr Daten bearbeitet. Wenn z.B. ein Sortieralgorithmus
-eine Komplexität von O(n<sup>2</sup>) aufweist, hat er 2'500 mal länger für 1000 Datensätze als für 20 Datensätze.**
+eine Komplexität von O(n<sup>2</sup>) aufweist, braucht er 2'500 mal länger/mehr Speicher für 1000 Datensätze als für 20 Datensätze.**
+
+Wir messen **keine konkrete Zeit**. Die Zeit interessiert uns erst bei Mikro-Optimierungen (Optimierungen innerhalb einer Effizienzklasse).
 
 > Bei der O-Notation wird die asymptotischen oberen Schranke für die Aufwandsfunktion angegeben.
 In anderen Worten: Wir stellen mit der O-Notation immer das **Worst-Case-Szenario** dar.
@@ -273,7 +291,7 @@ Eingabegrösse verhält. Deshalb werden Koeffizienten und nicht dominante Terme 
 
 <div style="display: flex">
     <img src="bigo.png" width="40%" />
-    <div style="margin-left:10px">aus T( 3n+2 ) wird somit: Θ(n)</div>
+    <div style="margin-left:10px">aus T( 3n+2 ) wird somit: Θ(n): n ist der dominante Term, alles andere interessiert hier nicht.</div>
 </div>
 
 </textarea>
@@ -306,13 +324,13 @@ Aus diesem Beispiel folgen ein paar **“Rechenregeln”**: (nächste Folie)
 
 **Addition**
 
-1. $f(n)\,=\,n\,+\,3\,\Longrightarrow\,f(n)\,=\,Θ(n)$: Konstante Summanden werden vernachlässigt
-2. $f(n)\,=\,n^2\,+\,3n\,\Longrightarrow\,f(n)\,=\,Θ(n^2)$: Es zählt der Summand mit dem stärkeren Wachstum
+1. $f(n) = n + 3 \Longrightarrow f(n) = Θ(n)$: Konstante Summanden werden vernachlässigt
+2. $f(n) = n^2 + 3n \Longrightarrow f(n) = Θ(n^2)$: Es zählt der Summand mit dem stärkeren Wachstum
 
 **Multiplikation**
 
-1. $f(n)\,=\,3n\,\Longrightarrow\,f(n)\,=\,Θ(n)$: Konstante Faktoren werden vernachlässigt
-2. $f(n)\,=\,n^2\,*\,3n\,\Longrightarrow\,f(n)\,=\,Θ(n^3)$: Es zählt die Summe der Exponenten
+1. $f(n) = 3n \Longrightarrow f(n) = Θ(n)$: Konstante Faktoren werden vernachlässigt
+2. $f(n) = n^2 * 3n \Longrightarrow f(n) = Θ(n^3)$: Es zählt die Summe der Exponenten
 
 Wir können somit auch mit Thermen der O-Notation rechnen:
 
@@ -349,247 +367,95 @@ Komplexitätsentwicklung:
 <i class="fas fa-flask"></i> O-Notation - Praxis
 =============================
 
-Beispiel 1: Sequenz von Befehlen
+Am Beispiel unserer `LinkedList.append()`-Methode
 -----------------------------------
 
 ```java
-public int inkrement(int n) {
-  int x = 0;
-  x = n + 1;
-  return x;
+public class LinkedList<&#8203;T> {
+	public ListNode<&#8203;T> head;
+
+	public ListNode<&#8203;T> append(T newValue) {
+		ListNode<&#8203;T> newNode = new ListNode<&#8203;>();
+		newNode.data = newValue;
+
+		ListNode<&#8203;T> last = head;
+		while (last != null && last.next != null) {
+			last = last.next;
+		}
+
+		if (last == null) {
+			this.head = newNode;
+		} else {
+			last.next = newNode;
+		}
+
+		newNode.next = null;
+		return newNode;
+	}
 }
 ```
-<strong>$f(n) = O(???)$</strong>
+<strong>$O(append(n)) = O(?)$</strong>
+
+1. Was ist unsere **Eingangsgrösse n**? <span class="fragment">
+  <i class="far fa-hand-point-right"></i> die _Anzahl Elemente_ in der Liste.</span>
+2. wieviele Rechenschritte sind nötig, wenn append() ausgeführt wird? <span class="fragment">
+  <i class="far fa-hand-point-right"></i> gehen wir dies Schritt für Schritt durch (nächste Folie)</span>
 </textarea>
 </section>
+
 <section data-markdown >
 <textarea data-template>
 <i class="fas fa-flask"></i> O-Notation - Praxis
 =============================
 
-Beispiel 1: Sequenz von Befehlen
+Am Beispiel unserer `LinkedList.append()`-Methode
 -----------------------------------
 
-```java
-public int inkrement(int n) {
-  int x = 0;    // O(1)
-  x = n + 1;    // O(1)
-  return x;     // O(1)
-}
-```
-**$O(f(n)) = O(1) + O(1) + O(1) = 3\*O(1) = O(3\*1)$**
-</textarea>
-</section>
-<section data-markdown >
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 1: Sequenz von Befehlen
------------------------------------
+2. wieviele Rechenschritte sind nötig, wenn append() ausgeführt wird? 
+  <i class="far fa-hand-point-right"></i> gehen wir dies Schritt für Schritt durch.
 
 ```java
-public int inkrement(int n) {
-  int x = 0;    // O(1)
-  x = n + 1;    // O(1)
-  return x;     // O(1)
+public class LinkedList<&#8203;T> {
+	public ListNode<&#8203;T> head;
+	public ListNode<&#8203;T> append(T newValue) {
+    // 1
+		ListNode<&#8203;T> newNode = new ListNode<&#8203;>();
+    // 1
+		newNode.data = newValue;
+
+    // 1
+		ListNode<&#8203;T> last = head;
+    //         1                1
+		while (last != null && last.next != null) {
+      // n * 1: Für jedes Element (n mal) 1 Rechenschritt
+			last = last.next;
+		}
+
+    //        1 + 1 je nach Pfad
+		if (last == null) {
+			this.head = newNode;
+		} else {
+			last.next = newNode;
+		}
+    // 1
+		newNode.next = null;
+    // 1
+		return newNode;
+	}
 }
 ```
-**$O(f(n)) = O(1) + O(1) + O(1) = 3\*O(1) = O(3\*1)$**
+<strong>$f(n = anz. Elemente) = O(?)$</strong>
 
-Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(1)$</strong>
+<i class="far fa-hand-point-right"></i> Schritte:  $9 * 1 + n * 1 = n + 9$ Schritte<br />
+<i class="far fa-hand-point-right"></i> $f(n = anz. Elemente) = O(n)$
 
-<i class="far fa-hand-point-right"></i> Koeffizienten werden weggelassen: aus 3*1 wird 1!
+* nur der dominante Term bleibt stehen (n)
+* konstante Summanden und Koeffizienten fallen weg
 
-<i class="far fa-hand-point-right"></i> KONSTANTE Komplexität!
+<i class="far fa-hand-point-right"></i> append() entwickelt sich somit **linear zur Anzahl vorhandener Elemente**: Je länger die Liste, desto "teurer" wird das Anhängen.
+
 </textarea>
 </section>
-</section>
-
-
-
-
-<section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 2: Schleifen
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;
-  for (int i=0; i < n; i++) {
-    x = x + 1;
-  }
-  return x;
-}
-```
-<strong>$f(n) = O(???)$</strong>
-</textarea>
-</section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 2: Schleifen
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;                      // O(1)
-  for (int i=0; i < n; i++) {     // i=0: O(1), i<n: n*O(1), i++: n*O(1)
-    x = x + 1;                    // n*O(1)
-  }
-  return x;                       // vernachlässigen wir schon... wir wissen: O(1) + O(1) = O(1)
-}
-```
-
-<strong>$O(f(n)) = O(1) + O(1) + n\*O(1) + n\*O(1) + n\*O(1) = 2\*O(1) + 3\*O(n) = O(3\*n + 2)$</strong>
-</textarea>
-</section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 2: Schleifen
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;                      // O(1)
-  for (int i=0; i < n; i++) {     // i=0: O(1), i<n: n*O(1), i++: n*O(1)
-    x = x + 1;                    // n*O(1)
-  }
-  return x;                       // vernachlässigen wir schon... wir wissen: O(1) + O(1) = O(1)
-}
-```
-<strong>$O(f(n)) = O(1) + O(1) + n\*O(1) + n\*O(1) + n\*O(1) = 2\*O(1) + 3\*O(n) = O(3\*n + 2)$</strong>
-
-Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(n)$</strong>
-
-<i class="far fa-hand-point-right"></i> LINEARE Komplexität!
-</textarea>
-</section>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 3: Hmm... Was ist das?
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;
-  for (int i=0; i < 5; i++) {
-    x = x + 1;
-  }
-  return x;
-}
-```
-<strong>$O(f(n)) = O(1) + O(1) + 5\*O(1) + 5\*O(1) + 5\*O(1) = 17\*O(1)$</strong>
-</textarea>
-</section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 3: Hmm... Was ist das?
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;                     // O(1)
-  for (int i=0; i < 5; i++) {    // i=0: O(1), i<5: 5*O(1), i++: 5*O(1)
-    x = x + 1;
-  }
-  return x;
-}
-```
-<strong>$O(f(n)) = O(1) + O(1) + 5\*O(1) + 5\*O(1) + 5\*O(1) = 17\*O(1)$</strong>
-
-Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(1)$</strong>
-
-<i class="far fa-hand-point-right"></i> KONSTANTE Komplexität, trotz Schlaufe!
-</textarea>
-</section>
-</section>
-
-
-
-
-
-
-
-
-<section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 4: Hmm... Nochmals Was ist das?
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;
-  for (int i=0; i < n; i = 2*i) {
-    x = x + 1;
-  }
-  return x;
-}
-```
-</textarea>
-</section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> O-Notation - Praxis
-=============================
-
-Beispiel 4: Hmm... Nochmals Was ist das?
------------------------------------
-
-```java
-public int berechne(int n) {
-  int x = 0;
-  for (int i=1; i < n; i = 2*i) {
-    x = x + 1;
-  }
-  return x;
-}
-```
-<strong>$O(f(n)) = O(1) + O(1) + \log_2(n)\times{O(1)} + \log_2(n)\times{O(1)} + \log_2(n)\times{O(1)} = O(3*\log_2(n) + 2)$</strong>
-
-Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(log_2(n))$</strong>
-
-<i class="far fa-hand-point-right"></i> LOGARITHMISCHE Komplexität: Die Anzahl Rechenschritte erhöht sich mit einer logarithmischen Funktion in Abhängigkeit von $n$
-</textarea>
-</section>
-</section>
-
-
-<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-flask"></i> O-Notation - Praxis
@@ -598,7 +464,7 @@ Somit (nach Anwendung unserer Rechenregeln): <strong>$O(f(n)) = O(log_2(n))$</st
 Weitere Übungen
 ----------------
 
-Weitere Übungen / Hausaufgaben finden Sie auf Moodle.
+Als (Haus-)Aufgabe lösen Sie nun das Quiz und die Übungen auf Moodle zum Thema.
 </textarea>
 </section>
 </section>

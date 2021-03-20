@@ -75,22 +75,20 @@ float schnitt = n.summe() / n.noten.length;
 **Zur Erinnerung:**
 
 Komplexe Datentypen / Objekte werden im Heap abgelegt, und man erhält eine **Referenzvariable** (einfach gesagt: ein Pointer)
-auf dem Stack:
+auf dem Stack. Für unser Noten-Beispiel könnte das so aussehen:
 
-<img src="../001_start/stack_heap.png" width="300"/>
+<img src="stack_heap_example.png" width="50%" />
 
 Beispiel:
 ```java
-// n1 ist die Referenzvariable auf dem Stack auf ein Objekt im Heap vom Typ "Noten":
-Noten n1 = new Noten();
-n1.schueler = "Alexander";
+// n ist die Referenzvariable auf dem Stack auf ein Objekt im Heap vom Typ "Noten":
+Noten n = new Noten();
 
-// n2 kriegt die Referenz zugewiesen, zeigt somit auf dasselbe Objekt:
-Noten n2 = n1;
-n2.schueler = "Thomas";
+// n.schueler zeigt auf ein weiteres Objekt im Heap, auf ein String-Objekt:
+n.schueler = "Abc";
 
-System.out.println(n1.schueler); // Ausgabe?
-System.out.println(n2.schueler); // Ausgabe?
+// n.noten zeigt auf einen Array im Heap
+n.noten = {4.5,6,5,5.5}
 ```
 </textarea>
 </section>
@@ -124,7 +122,14 @@ sind **Arrays ineffizient, sprich, langsam und speicherintensiv**.
 
 Schauen wir uns deshalb eine weitere **Datenstruktur** an: Die **Verketteten Listen**.
 
-<i class="far fa-hand-point-right"></i> Wir schauen uns dies mit LEGO<sup>&reg;</sup>-Steinen an:
+<i class="far fa-hand-point-right"></i> **Wie wäre es denn, wenn wir beliebig neue elemente, irgendwo im Speicher, hinzufügen könnten?**
+
+<img src="memory.png" width="40%" />
+
+Wir müssen die Elemente dann aber "verketten": Wie bei einer Kette muss das nächste mit dem vorherigen verbunden sein:
+
+<img src="linked_list_elements.png" width="30%" />
+
 * grundlegender Aufbau: Liste, List-Node (Element)
 * welche Eigenschaften hat eine Liste?
 * wie sind Listen / Elemente im Speicher abgelegt?
@@ -194,19 +199,24 @@ Sie sehen hier einen **komplexen Datentyp**, eine Klasse **ListNode**, welche:
 Wir definieren eine `ListNode`-Klasse als komplexen **Container**-Datentyp in Java:
 
 ```java
-class ListNode<T> {
+class ListNode<&#8203;T> {
     // "Wert" der Node: das "T" steht für einen beliebigen Datentyp: Wir speichern also
     // eine Referenz auf "etwas":
     public T data;
 
-    // Referenz / Zeiger auf die nächste Node:
-    public ListNode<T> next;
+    // Referenz / Zeiger auf die nächste Node (vom Typ ListNode mit internem Datentyp T):
+    public ListNode<&#8203;T> next;
 }
 ```
 
-**"T"** steht hier für einen Platzhalter eines Datentyps: Wie auch bei Arrays ist es der
-Liste "egal", welchen Datentyp sie aufnimmt: Wir nennen ihn einfach "T". Erst bei der
-Verwendung durch den Programmierer müssen wir uns auf einen Datentypen festhalten.
+**Generics (Typ-Platzhalter):**
+
+<i class="far fa-hand-point-right"></i> **"T"** steht hier für einen Platzhalter eines beliebigen Datentyps: 
+Wie auch bei Arrays ist es der Liste "egal", welchen Datentyp sie aufnimmt: Wir nennen ihn einfach "T". Erst bei der
+Verwendung durch den Programmierer müssen wir uns auf einen Datentypen festlegen.
+
+Diese Konzept nennt sich "Generics" in Java. So müssen wir nicht für alle Typen, welche wir speichern wollen,
+eine eigene `ListNode` machen.
 </textarea>
 </section>
 
@@ -218,6 +228,8 @@ Verwendung durch den Programmierer müssen wir uns auf einen Datentypen festhalt
 Doppelt verkettete Listen kennen ihre "Nachbarn" in beide Richtungen:
 
 <img src="double_linked_list.png" width="500"/>
+
+Wir können so später in beide Richtungen "navigieren" (von Element zu Element springen).
 
 </textarea>
 </section>
@@ -231,14 +243,14 @@ Wir definieren eine doppelt verlinkte `ListNode`-Klasse als komplexen Container-
 
 
 ```java
-class ListNode<T> {
+class DoubleListNode<&#8203;T> {
     // "Wert" der Node: das "T" steht für einen beliebigen Datentyp: Wir speichern also
     // eine Referenz auf "etwas":
     public T data;
 
     // Referenz / Zeiger auf die vorherige / nächste Node:
-    public ListNode<T> next;
-    public ListNode<T> prev;
+    public DoubleListNode<&#8203;T> next;
+    public DoubleListNode<&#8203;T> prev;
 }
 ```
 
@@ -250,23 +262,28 @@ class ListNode<T> {
 <i class="fas fa-graduation-cap"></i> Verkettete Liste - Anwendung
 =============================
 
-Die `ListNode`-Klasse können wir nun instanzieren und verketten:
+Die (einfach verkettete) `ListNode`-Klasse können wir nun instanzieren und verketten:
 
 ```java
 // ListNodes erstellen, mit Daten vom Typ (Klasse) "Integer" füllen:
-ListNode<Integer> node1 = new ListNode<>();
+ListNode<&#8203;Integer> node1 = new ListNode<&#8203;>();
 node1.data = 1;
 
-ListNode<Integer> node2 = new ListNode<>();
+ListNode<&#8203;Integer> node2 = new ListNode<&#8203;>();
 node2.data = 2;
 
 // Nodes miteinaner verknüpfen:
 node1.next = node2;
-node2.prev = node1;
 ```
 
-Damit haben wir bereits eine verkettete Liste! Dies ist natürlich noch nicht sehr
-anwenderfreundlich: Wir möchten mit Listen ja ähnlich umgehen wie mit Arrays...
+Damit haben wir bereits eine verkettete Liste! 
+
+<i class="far fa-hand-point-right"></i> Lösen Sie dazu (jetzt) die Aufgaben auf Moodle (Aufgabe 1 - Implementation ListNode).
+Diese Aufgabe ist auch Hausaufgabe auf nächstes Mal!
+
+
+Dies ist natürlich noch nicht sehr anwenderfreundlich: 
+Wir möchten mit Listen ja ähnlich umgehen können wie mit Arrays...
 
 </textarea>
 </section>
@@ -276,7 +293,7 @@ anwenderfreundlich: Wir möchten mit Listen ja ähnlich umgehen wie mit Arrays..
 <section>
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Aufbau / Methoden
+<i class="fas fa-graduation-cap"></i> Aufbau / Methoden eines Datentyps "List"
 =============================
 
 Vergleich mit "Menschenkette":
@@ -293,16 +310,21 @@ Vergleich mit "Menschenkette":
 * wir wollen einen neuen Wert an einer bestimmten Stelle **einfügen** (engl: to insert)
 * wir wollen einen bestehenden Wert / Node **entfernen** (engl: to remove)
 * wir wollen alle Elemente **durchlaufen**, also etwas tun mit den einzelnen Werten
+* wir wollen einen bestimmten wert **finden**, also die ListNode in einer Liste mit einem bestimmten Wert finden
+
+<i class="far fa-hand-point-right"></i> Wir wollen also einen eigenen **Datentyp** `List` erstellen, welcher
+uns diese Arbeit in Zukunft abnimmt. Dazu erstellen wir uns eine `LinkedList`-Klasse.
+
 
 </textarea>
 </section>
 
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Aufbau / Methoden
+<i class="fas fa-graduation-cap"></i> Aufbau / Methoden der `LinkedList`-Klasse
 =============================
 
-** Funktionen**
+**Funktionen**
 
 Folgende Anforderungen haben wir:
 
@@ -312,85 +334,89 @@ Folgende Anforderungen haben wir:
 * Wert in der Liste verschieben
 * Wert / Element (Node) entfernen
 * Liste ausgeben / durchlaufen
+* Node mit Wert finden
 
 ... ergibt:
 
-* die Datenstruktur **`List`** definieren: Sie repräsentiert die Liste als Ganzes:
-* `List` ist verantwortlich für das Verwalten der einzelnen `ListNodes`
-* sie kennt (nur) den Anfang (engl: `head`) der Liste, also die vorderste `ListNode`
-* **`append(Wert)`** dient zum Anhängen einer ListNode, resp. eines Wertes
-* **`insert(Wert, Wert)`** dient zum Einfügen einer ListNode, resp. eines Wertes
-* **`move(Wert, Wert)`** dient zum Verschieben einer ListNode, resp. eines Wertes
-* **`remove(Wert)`** dient zum Entfernen einer ListNode, resp. eines Wertes
-* **`printList()`** dient zum Ausgeben der Elemente der Liste
+* der Typ/Klasse **`LinkedList`** definieren: Sie repräsentiert die Liste als Ganzes:
+	* `LinkedList` ist verantwortlich für das Verwalten der einzelnen `ListNodes`
+	* sie kennt (nur) den Anfang (engl: `head`) der Liste, also die vorderste `ListNode`
+	* **`append(Wert)`** dient zum Anhängen einer ListNode, resp. eines Wertes
+	* **`insert(Wert, ListNode)`** dient zum Einfügen eines Wertes nach einer bestimmten Node
+	* **`move(ListNode, ListNode)`** dient zum Verschieben einer ListNode hinter eine andere ListNode
+	* **`remove(Wert/ListNode)`** dient zum Entfernen einer ListNode, resp. eines Wertes
+	* **`printList()`** dient zum Ausgeben der Elemente der Liste
+	* **`find(Wert)`** sucht die Node mit einem bestimmten Wert
+
+<i class="far fa-hand-point-right"></i> Wir implementieren vorerste eine "Single Linked List".
 
 </textarea>
 </section>
 
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: List-Klasse
+<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: LinkedList-Klasse
 =============================
 
-Wir definieren also unsere `List`-Klasse, welche:
+Wir definieren also unsere `LinkedList`-Klasse, welche:
 * unsere Liste als Ganzes repräsentiert:
   * Sie ist eine Container-Klasse, welche als Werte einen beliebigen komplexen Datentyp `T` speichern kann
   * Sie besitzt eine Referenz auf die **erste ListNode**
   * Sie stellt die gewünschten Methoden zum Bearbeiten der Liste zur Verfügung
 
-Grundlegender Aufbau der **List**-Klasse, und die Implementation der Methode `append`:
+Grundlegender Aufbau der **LinkedList**-Klasse, und die Implementation der Methode `append`:
 
 ```java
-public class LinkedList<T> {
+public class LinkedList<&#8203;T> {
 	// Eine Referenz / Pointer auf die erste Node unserer Liste
-	public ListNode<T> head;
+	public ListNode<&#8203;T> head;
 
-	public ListNode<T> append(T newValue) {
+	public ListNode<&#8203;T> append(T newValue) {
 		// Unseren Wert, newValue, "verpacken" wir in eine ListNode,
 		// welche wir dann am Schluss der Liste, also an der letzten ListNode anhängen:
-		ListNode<T> newNode = new ListNode<>();
+		ListNode<&#8203;T> newNode = new ListNode<&#8203;>();
 		newNode.data = newValue;
-
+		
 		// Anhängen heisst: am Schluss der Liste anfügen. Wir suchen also
 		// den "Schwanz" der Liste, indem wir von vorne bis zum Schluss
 		// durch die Liste "hangeln":
-		ListNode<T> last = head;
+		ListNode<&#8203;T> last = head;
 		while( last != null && last.next != null ) {
 			last = last.next;
 		}
+		
 		// Wir haben noch keine "letzte" Node, da unsere neue Node die erste ist:
 		if (last == null) {
 			this.head = newNode; // unsere neue Node wird zum "Head"
-			newNode.prev = null;
-		}
+		} 
 		// Wir haben bereits eine "letzte" Node, hängen wir die neue hinten dran:
 		else {
 			last.next = newNode;
-			newNode.prev = last;
 		}
+		
 		// next auf unserer neuen Node ist sicher null (da am Schluss der Liste):
 		newNode.next = null;
+		
 		return newNode;
 	}
 }
-
 ```
 </textarea>
 </section>
 
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: List-Klasse
+<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: LinkedList-Klasse
 =============================
 
-Nun können wir die `List`-Klasse bereits anwenden,
+Nun können wir die `LinkedList`-Klasse bereits anwenden,
 und mit Werten, eingepackt in `ListNode`Objekte, füllen:
 
 ```java
 public class Main {
 	public static void main(String[] args) {
         // Neue LinkedList instanzieren:
-		LinkedList<Integer> l = new LinkedList<>();
+		LinkedList<&#8203;Integer> l = new LinkedList<&#8203;>();
 
 		// Neue Werte einfügen: nun schon recht komfortabel:
 		l.append(1);
@@ -398,7 +424,7 @@ public class Main {
 		l.append(3);
 
 		// Liste durchlaufen (noch nicht so komfortabel):
-		ListNode<Integer> actNode = l.head;
+		ListNode<&#8203;Integer> actNode = l.head;
 		while (actNode != null) {
 			System.out.println(actNode.data);
 			actNode = actNode.next;
@@ -408,27 +434,115 @@ public class Main {
 ```
 </textarea>
 </section>
-</section>
 
 <section data-markdown >
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: List-Klasse
+<i class="fas fa-graduation-cap"></i> Aufbau / Methoden: LinkedList-Klasse
 =============================
+
+<i class="fas fa-hand-point-right"></i> Die weiteren Aufgaben ist für Schüler, 
+welche sich im Umgang mit Listen / Nodes / Verlinkung noch nicht so sicher fühlen.
 
 Die weiteren Funktionen programmieren und testen Sie selber (jetzt, Hausaufgabe)
 
 Ich schlage folgende Reihenfolge vor:
 
-* die **`ListNode`**-Klasse muss implementiert werden:
-    * **`append(Wert)`** fertig: Bringen Sie das Programm zum Laufen
-    * **`printList()`**
-    * **`insert(Wert a, Wert b)`** (neuer Wert a, Einfügen nach Wert b)
-    * **`remove(Wert)`** (zu entfernender Wert)
-    * **`move(Wert a, Wert b)`** als Kombination der vorhergehenden Methoden.
+* die **`LinkedList`**-Klasse muss implementiert werden:
+    * **`append(Wert)`** fertig: Bringen Sie das Beispiel-Programm zum Laufen (HA)
+	* **`printList()`**: Ausgeben aller Werte (HA)
+	* **`find(Wert)`**: Sucht einen Wert, liefert die ListNode (HA)
+    * **`insert(Wert a, ListNode after)`** (neuer Wert a, Einfügen nach node `after`)
+    * **`remove(ListNode)`** (zu entfernender Wert)
+    * **`move(ListNode a, ListNode after)`** als Kombination der vorhergehenden Methoden.
 
-<i class="far fa-hand-point-right"></i> Sie finden das Grundgerüst für `List` und `ListNode`
-auf Moodle.
+<i class="far fa-hand-point-right"></i> Sie finden das Grundgerüst für `LinkedList` und `ListNode` auf Moodle.
 </textarea>
 </section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Problem: `LinkedList.append()`
+=============================
+
+<i class="fas fa-hand-point-right"></i> Diese Aufgabe ist für Schüler, welche sich im Umgang mit Listen / Nodes / Verlinkung schon sicher fühlen!
+
+Wir haben vorher eine Implementation der Methode `append()` gesehen. Wir wollen nun messen, wie sich die Funktion zeitlich verhält,
+wenn wir:
+
+100, 1'000, 10'000, 100'000, 1'000'000
+
+Elemente anhängen:
+
+```java
+public class Main {
+	public static void main(String[] args) {
+		LinkedList<&#8203;Integer> l = new LinkedList<&#8203;>();
+		// Hier hängen wir 1'000 Elemente an:
+		for (int i = 0; i < 1000; i++) {
+			l.append(i);
+		}
+	}
+}
+```
+<i class="fas fa-hand-point-right"></i> **Aufgabe**:
+
+* Erweitern Sie das Programm, sodass Sie messen können, wie lange es dauert, bis die `n` Elemente angehängt sind
+* In Java erhalten Sie die aktuelle Zeit als `long` mittels `System.nanoTime()`.
+* Erstellen Sie eine kleine Tabelle mit den Messwerten, und zeichnen Sie dazu ein Diagramm (Elemente / Zeit) auf:
+
+Anzahl Elemente | Zeit [ms]
+----------------|------------
+100             | 0.321
+1000            | ...
+... | ...
+
+(nächste Folie)
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Problem: `LinkedList.append()`
+=============================
+
+(Fortsetzung)
+
+Was stellen Sie fest? Wie verhält sich die Zeit zum Einfügen von Elementen zu der Anzahl vorhandener Elemente?
+
+(nächste Folie)
+
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Problem: `LinkedList.append()`
+=============================
+
+(Fortsetzung)
+
+Sie werden feststellen, dass wir hier ein Problem haben: Wenn Sie an eine bestehende Liste mit 1'000'000 Elementen
+ein weiteres Element anfügen wollen, dann dauert das, nun, .... lange.
+
+<i class="far fa-hand-point-right"></i> **Aber genau das (Anhängen) sollte doch ein Vorteil gegenüber den Arrays sein?!?**
+
+Die Implementation von `append()`, resp. unserer `LinkedList`-Klasse, ist nicht effizient. Sie kann aber mit _sehr einfachen Mitteln_
+so gestaltet werden, dass das **Anhängen von neuen Elementen zeitlich konstant bleibt**, egal, wie lange die Liste schon ist.
+
+<i class="far fa-hand-point-right"></i> **Aufgabe**:
+
+Ändern Sie die `LinkedList`-Klasse und/oder die `append()`-Methode so ab, dass sie effizient anfügen kann!
+Zeigen Sie dann nochmals mittels Zeitmessung, wie sich die "schnelle" Liste verhält!
+
+Ziel: das Anfügen geht immer "blitzschnell", egal, wie lange die Liste schon ist.
+
+<i class="far fa-hand-point-right"></i> Jemand von Ihnen kann die Lösung dann am Beamer vorstellen.
+
+</textarea>
+</section>
+</section>
+
 </section>
 {% endblock %}

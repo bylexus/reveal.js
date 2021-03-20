@@ -1,70 +1,66 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <title>{% block title %}{{ project.name }}{% endblock %}</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        <link rel="stylesheet" href="{{webroot}}/css/reveal.css">
-        <link rel="stylesheet" href="{{webroot}}/css/theme/alex.css">
+    <title>{% block title %}{{ project.name }}{% endblock %}</title>
 
-        <!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="{{webroot}}/lib/css/github.min.css">
+    <link rel="stylesheet" href="{{webroot}}/dist/reset.css">
+    <link rel="stylesheet" href="{{webroot}}/dist/reveal.css">
+    <link rel="stylesheet" href="{{webroot}}/dist/theme/alex.css" id="theme">
 
-        <!-- font awesome -->
-        <script defer src="{{webroot}}/lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="{{webroot}}/lib/css/github.min.css">
 
-        <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_SVG-full">
-        </script>
+    <!-- font awesome -->
+    <script defer src="{{webroot}}/lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
 
-        <!-- Printing and PDF exports -->
-        <script>
-            var link = document.createElement( 'link' );
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            link.href = window.location.search.match( /print-pdf/gi ) ? '{{webroot}}/css/print/pdf.css' : '{{webroot}}/css/print/paper.css';
-            document.getElementsByTagName( 'head' )[0].appendChild( link );
-        </script>
-    </head>
-    <body>
-        <div class="reveal">
-            <div class="slides">
-                {% block sections %}
-                {% endblock %}
-            </div>
-            <footer>{% block modulname %}{{ project.name }}{% endblock %} <img src="{{webroot}}/data/logo-kanton-thurgau.svg" style="width: 60px" /></footer>
+</head>
+
+<body>
+    <div class="reveal">
+        <header>
+            {% block modulname %}{{ project.name }}{% endblock %}&nbsp;
+            <img src="{{webroot}}/data/logo-kanton-thurgau.svg" style="width: 60px" />
+        </header>
+        <div class="slides">
+            {% block sections %}
+            {% endblock %}
         </div>
+    </div>
 
-        <script src="{{webroot}}/lib/js/head.min.js"></script>
-        <script src="{{webroot}}/js/reveal.js"></script>
+    <script src="{{webroot}}/dist/reveal.js"></script>
+    <script src="{{webroot}}/plugin/notes/notes.js"></script>
+    <script src="{{webroot}}/plugin/markdown/markdown.js"></script>
+    <script src="{{webroot}}/plugin/highlight/highlight.js"></script>
+    <script src="{{webroot}}/plugin/zoom/zoom.js"></script>
+    <script src="{{webroot}}/plugin/math/math.js"></script>
 
-        <script>
-            // More info about config & dependencies:
-            // - https://github.com/hakimel/reveal.js#configuration
-            // - https://github.com/hakimel/reveal.js#dependencies
-            Reveal.initialize({
-                widht: 1024,
-                height: 768,
-                slideNumber: 'h.v/t',
-                hash: true,
-                showNotes: window.location.search.match( /print-pdf/gi ) ? true : false,
-                transition: 'slide',
-                center: false,
-                //history: window.location.search.match( /print-pdf/gi ) ? false : true,
-                math: {
-                //    mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js',
-                   config: 'TeX-MML-AM_CHTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-                },
-                dependencies: [
-                    { src: '{{webroot}}/plugin/markdown/marked.js' },
-                    { src: '{{webroot}}/plugin/markdown/markdown.js' },
-                    { src: '{{webroot}}/plugin/zoom-js/zoom.js' },
-                    { src: '{{webroot}}/plugin/notes/notes.js', async: true },
-                    { src: '{{webroot}}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-                    { src: '{{webroot}}/plugin/math/math.js', async: true }
-                ]
-            });
-        </script>
-    </body>
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            widht: 1024,
+            height: 768,
+            slideNumber: 'h.v/t',
+            transition: 'slide',
+            hash: true,
+            center: false,
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath],
+            markdown: {
+                smartypants: true
+            },
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                config: 'TeX-AMS_HTML-full',
+                // pass other options into `MathJax.Hub.Config()`
+                TeX: { Macros: { RR: "{\\bf R}" } }
+            },
+        });
+    </script>
+</body>
+
 </html>

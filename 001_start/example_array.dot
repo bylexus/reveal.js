@@ -1,0 +1,12 @@
+digraph G {
+    node [shape=plaintext, fontcolor=red, fontsize=18];
+    "Indizes:" -> "Werte:" [color=white];
+
+    node[shape=record fixedsize=true width=4 fontcolor=black];
+
+    arr[label="1|5|8|3|2|10"]
+    indices [label="0 | 1 | 2 | 3| 4 | 5", color=white];
+
+    { ranksep=0; nodesep=0; rank=same; "Werte:"; arr }
+    { ranksep=0; rank=same; "Indizes:"; indices }
+}

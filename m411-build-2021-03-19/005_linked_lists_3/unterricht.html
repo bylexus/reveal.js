@@ -1,0 +1,469 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Lektion 5 - Linked Lists</title>
+
+    <link rel="stylesheet" href="../dist/reset.css">
+    <link rel="stylesheet" href="../dist/reveal.css">
+    <link rel="stylesheet" href="../dist/theme/alex.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="../lib/css/github.min.css">
+
+    <!-- font awesome -->
+    <script defer src="../lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
+
+</head>
+
+<body>
+    <div class="reveal">
+        <header>
+            M411 - Algorithmen und Datenstrukturen&nbsp;
+            <img src="../data/logo-kanton-thurgau.svg" style="width: 60px" />
+        </header>
+        <div class="slides">
+            
+<section data-markdown>
+	<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Lektion 5 - Linked Lists - Übungen
+=============================
+
+Ziel der Lektion:
+
+* Sie fühlen sich im Umgang mit Listen sicher - Übungen
+* Anwenden von Strategy Pattern für komplexe Datentypen
+* Anwendung mit komplexem Datentyp: Loopen mit `Consumer`, Suchen mit `Predicate`
+* Anwendung mit komplexem Datentyp: Sortiertes Einfügen mit `Comparator`
+
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists 3
+=============================
+
+Besprechung Hausaufgaben:
+
+* **`insert()`**-Methode
+* **`remove()`**-Methode
+* **`move()`**-Methode
+</textarea>
+</section>
+
+<section data-markdown>
+	<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists 3 - Status
+=============================
+
+Sie sollten nun den Umgang mit LinkedLists verstanden haben:
+
+* Sie haben verstanden, wie Linked-Lists funktionieren
+* Sie verstehen die in den vorhergehenden Lektionen erstellten Methoden
+  der `LinkedList`-Klasse
+* Sie sind in der Lage, eine **einfache** und **doppelt verknüpfte** Linked-List-Klasse mit List-Nodes zu erstellen
+
+<i class="far fa-hand-point-right"></i> Gibt es noch **Fragen / Unklarheiten?**
+
+</textarea>
+</section>
+
+
+<section>
+	<section data-markdown>
+		<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists mit komplexer Datenstruktur
+=============================
+
+Bis jetzt haben wir unsere LinkedList immer mit relativ einfachen Datentypen benutzt:
+
+```java
+LinkedList<&#8302;Integer> myList = new LinkedList<&#8302;>();
+myList.append(5);
+```
+
+Die "reale Welt" ist aber nicht immer so einfach - wir wollen in unserer Liste auch
+kompexere Datenstrukturen speichern. Für ein Adressbuch beispielsweise brauchen wir
+einen Datentyp **Person**, welchen wir als Klasse abbilden wollen:
+
+```java
+public class Person {
+	public String name;
+	public String vorname;
+	public int alter;
+
+	public Person(String name, String vorname, int alter) {
+		this.name = name;
+		this.vorname = vorname;
+		this.alter = alter;
+	}
+}
+```
+
+Wir können nun **Person**-Objekte erstellen und unserer Liste hinzufügen, das klappt mit unserer
+Version bereits:
+
+```java
+LinkedList<&#8302;Person> myList = new LinkedList<&#8302;>();
+myList.append(new Person("Schenkel", "Alexander", 41));
+```
+
+<i class="far fa-hand-point-right"></i> Da unsere `LinkedList`-Klasse **generisch** ist, kann sie
+**beliebige Datentypen** aufnehmen. So weit, so gut.
+
+</textarea>
+	</section>
+
+	<section data-markdown>
+		<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Operationen
+=============================
+
+Wie aber:
+
+* suchen (`find`) wir nun eine Person nach **Nachname**?
+* machen wir etwas bestimmtes mit jeder Adresse (z.B. Ausgeben)?
+* allgemein: machen wir Person-spezifische Aktionen?
+
+<i class="far fa-hand-point-right"></i> **Unsere Liste weiss ja nichts von Personen und deren Eigenschaften!**
+
+Beginnen wir mit der **`find()`**-Methode:
+
+```java
+public ListNode<&#8203;T> find(T value) { 
+	ListNode<&#8203;T> act = head;
+	while (act != null){
+		// --------> Hier vergleichen wir Objekt-Referenzen:
+		if(act.data == value){
+			return act;
+		}
+		act = act.next;
+	}
+	return null;
+}
+```
+
+<div style="display:flex">
+<div>
+
+Wir können find() nur mit einem ganzen Person-Objekt aufrufen - aber das wollen wir ja nicht, denn
+wir haben dieses ja gar nicht! (sonst müssten wir nicht suchen....)<br />
+<i class="far fa-hand-point-right"></i> **`find()`** wiederum kennt `Person` nicht - weiss also nicht, dass
+unser Objekt ein Attribut `name` hat!<br />
+<i class="far fa-hand-point-right"></i> **DILEMMA!**
+
+</div>
+<img src="Two-Buttons.jpg" width="30%" />
+
+</div>
+
+</textarea>
+	</section>
+
+	<section data-markdown>
+		<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Operationen
+=============================
+
+Hier kommt uns das "**Strategy Pattern**" (https://de.wikipedia.org/wiki/Strategie_(Entwurfsmuster)) zu Hilfe:
+
+Wir liefern unserer `find()`-Methode eine **Strategie, wie es eine Person nach Nachname findet!**
+
+Der eigentliche Algorithmus von find() wird sich nicht ändern: Wir müssen weiterhin durch die Liste
+durchlaufen, und **prüfen, ob das aktuelle Objekt unserem Suchwert entspricht**. Und genau
+diesen Prüf-Mechanismus definieren wir als "Strategie":
+
+```java
+import java.util.function.Predicate;
+
+public ListNode<&#8203;T> find(Predicate<&#8203;T> pruefung) { 
+	ListNode<&#8203;T> act = head;
+	while (act != null){
+		// --------> Hier wenden wir nun unsere Strategie an:
+		// Der Algorithmus weiss NICHT, was pruefung.test() im Detail macht: Ihn interessiert nur die Antwort (true/false):
+		if(pruefung.test(act.data) === true){
+			return act;
+		}
+		act = act.next;
+	}
+	return null;
+}
+```
+
+`Predicate<&#8203;T>` ist ein Java-Interface mit nur einer Methode: `boolean test(T)`
+(siehe https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html).
+
+Wir können somit eine Test-Strategie definieren:
+
+```java
+import java.util.function.Predicate;
+
+public class NamePredicate implements Predicate<&#8203;Person> {
+    String suchName;
+    public NamePredicate(String name) {this.suchName = name;}
+
+    // Das Interface Predicate schreibt die Methode `boolean test(T)` vor:
+    // Entspricht die gegebene Person t unserem Such-Name?
+    public boolean test(Person t) {
+        return t.name.equals(this.suchName);
+    }
+}
+```
+
+(nächste Folie)
+
+</textarea>
+	</section>
+
+	<section data-markdown>
+		<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Operationen
+=============================
+
+(Fortsetzung)
+
+Wir können somit eine Test-Strategie definieren:
+
+```java
+import java.util.function.Predicate;
+
+public class NamePredicate implements Predicate<&#8203;Person> {
+    String suchName;
+    public NamePredicate(String name) {this.suchName = name;}
+
+    // Das Interface Predicate schreibt die Methode `boolean test(T)` vor:
+    // Entspricht die gegebene Person t unserem Such-Name?
+    public boolean test(Person t) {
+        return t.name.equals(this.suchName);
+    }
+}
+```
+
+... und diese nun einsetzen:
+
+```java
+LinkedList<&#8203;Person> namensListe = new LinkedList<&#8203;>();
+namensListe.append(new Person("Schenkel", "Alex", 42));
+namensListe.append(new Person("Duck", "Donald", 100));
+namensListe.append(new Person("Legend", "John", 50));
+
+// Wir instanzieren unsere Such-Strategie:
+NamePredicate strategie = new NamePredicate("Duck");
+
+// und wenden nun die Strategie an:
+ListNode<&#8203;Person> found = namensListe.find(strategie);
+```
+
+<i class="far fa-hand-point-right"></i> Wir geben somit den Algorithus (Person-Name-Vergleich) unserer
+`find()`-Methode mit - sie selber muss somit NICHT wissen, wie Personen nach Name verglichen werden -
+nur die Strategie "befragen"!
+
+</textarea>
+	</section>
+
+	<section data-markdown>
+		<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Komplexe Operationen
+=============================
+
+In Java können wir solch einfachste Ein-Methoden-Interfaces (so genannte _Functional Interfaces_)
+auch als so genannte "Closures" definieren:
+
+... und diese nun einsetzen:
+
+```java
+LinkedList<&#8203;Person> namensListe = new LinkedList<&#8203;>();
+namensListe.append(new Person("Schenkel", "Alex", 42));
+namensListe.append(new Person("Duck", "Donald", 100));
+namensListe.append(new Person("Legend", "John", 50));
+
+
+// Anstatt
+NamePredicate strategie = new NamePredicate("Duck");
+ListNode<&#8203;Person> found = namensListe.find(strategie);
+
+// geht auch:
+ListNode<&#8203;Person> found = namensListe.find(person -> person.name.equals("Duck"));
+```
+
+<i class="far fa-hand-point-right"></i> Wir geben somit den Algorithus (Person-Name-Vergleich) unserer
+`find()`-Methode mit - sie selber muss somit NICHT wissen, wie Personen nach Name verglichen werden -
+nur die Strategie "befragen"!
+
+(Siehe https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html)
+
+Wir sehen uns noch 2 weitere funktionale Interfaces an:
+
+* `Consumer<&#8203;T>`, um "etwas" mit Objekten zu machen.
+* `Comparator<&#8203;T>`, um Objekte auf Gleichheit zu prüfen.
+
+</textarea>
+</section>
+</section>
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - Sortiertes Einfügen
+=============================
+
+Für unser Adressbuch wollen wir die Personen gleich **sortiert einfügen**: wird ein neues `Person`-Objekt 
+eingefügt, soll dieses an der "richtigen" Stelle eingefügt werden:
+
+Wir möchten unserer `LinkedList`-Klasse eine Methode **`appendSorted(Wert)`** spendieren -
+sie soll Werte in der Liste anfügen, aber richtig sortiert, also an der richtigen Position.
+
+Nur - **Was heisst nun "richtig"?** Was würden Sie sagen - kann die Liste überhaupt
+wissen, was Sie mit "richtig sortiert" meinen?
+
+Erinnern wir uns an unsere `Person`-Klasse von der letzten Folie:
+
+```java
+public class Person {
+	public String name;
+	public String vorname;
+	public int alter;
+	// ...
+}
+```
+
+Wenn wir nun folgende Instanzen generieren, und mit `appendSorted` einfügen wollen -
+nach welchen Kriterien entscheidet die LinkedList nun, welches die "richtige" Einfüge-
+Reihenfolge ist, damit die Werte sortiert eingefügt werden?
+
+```java
+Person p1 = new Person("Sheriff", "Woody",56);
+Person p2 = new Person("Buzz", "Lightyear",28);
+Person p3 = new Person("Jessie", "James", 15);
+Person p4 = new Person("Rex", "Dinosaur", 25);
+Person p5 = new Person("Hamm", "Pig", 33);
+Person p6 = new Person("Mr. Potato," "Head",60);
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - sortiertes Einfügen
+=============================
+
+Antwort: **Die LinkedList kann gar nicht wissen, was _richtig sortiert_ bedeutet!**<br />
+Diese Entscheidung liegt bei Ihnen als Anwender der LinkedList-Klasse!
+
+Das ist natürlich ein Problem - <i class="far fa-hand-point-right"></i> Wir müssen also
+der LinkedList irgendwie mitteilen können, nach welchen Kriterien wir einfügen wollen.
+
+<i class="far fa-hand-point-right"></i> Auch hier nutzen wir wieder das "**Strategy-Pattern**":
+Um eine Adresse an der "richigen" Position einfügen zu können, müssen wir 2 Adressen vergleichen:
+die einzufügende Adresse und die aktuelle Adresse während dem "Durchhangeln" durch unsere Liste.
+
+Java kennt dazu wiederum ein Functional Interface: **`Comparator`**, siehe https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html.
+
+**Aufgabe:**
+
+Implementieren Sie eine Methode `ListNode<T> appendSorted(T wert, Comparator<T> vergleich)`, welche
+die neue Adresse und eine Vergleichs-Strategie entgegennimmt, und nach folgendem (Pseudo)-Algorithmus
+funktioniert:
+
+```
+Methode appendSorted(Wert T, Vergleichsfunktion F):
+	1. AktuelleNode = Startnode
+	2. ist F(T) < F(AktuelleNode.Wert)?
+		Ja: T am Anfang der Liste einfügen
+		    fertig
+        Nein: weiter zu 3.
+    3. ist F(T) < F(NächsterNode.Wert), oder ist AktuelleNode die letzte Node?
+	   Ja: T nach AktuellerNode einfügen
+	       fertig
+	   Nein: AktuelleNode = NächsteNode
+	         Gehe zu 2)
+```
+
+<i class="far fa-hand-point-right"></i> Nun sollten neue Person-Objekte gleich **nach Nachname geordnet**
+eingefügt werden. Testen Sie dies mit einem Programm aus!
+</div>
+
+</textarea>
+</section>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists - "Etwas tun" mit allen Objekten
+=============================
+
+Als letztes schauen wir uns noch das funktionale Interface `Consumer<&#8203;T>`<br />(https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html) an:
+
+`Consumer` definiert auch wieder eine Methode: `void accept(T)`: Sie nimmt ein Objekt vom Typ `T` entgegen. Sie können nun "etwas tun" mit diesem Objekt.
+
+**Aufgabe:**
+
+* Entwickeln Sie eine Methode `apply(Consumer<&#8203;T>`) in Ihrer `LinkedList`-Klasse, welche die gelieferte Strategie auf allen ListNodes anwendet.
+* Entwickeln Sie dann einen `Consumer`, welcher in der Lage ist:
+  * das Alter aller Personen aufzusummieren und
+  * im gleichen Zug die Anzahl List-Elemente zu zählen.
+
+Am Schluss sollten Sie in der Lage sein, damit das Durchschnitts-Alter aller Personen in der Liste zu berechnen:
+
+```java
+IhrConsumer c = new IhrConsumer(.....);
+liste.apply(c);
+double alterSchnitt = c.sumAlter / c.anzahl;
+```
+
+</textarea>
+</section>
+</section>
+
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Linked Lists 3 - Übungen + HA
+=============================
+
+Die oben gezeigten Übungen finden Sie auch auch Moodle und sind als Hausaufgaben umzusetzen.
+
+</textarea>
+</section>
+
+
+        </div>
+    </div>
+
+    <script src="../dist/reveal.js"></script>
+    <script src="../plugin/notes/notes.js"></script>
+    <script src="../plugin/markdown/markdown.js"></script>
+    <script src="../plugin/highlight/highlight.js"></script>
+    <script src="../plugin/zoom/zoom.js"></script>
+    <script src="../plugin/math/math.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            widht: 1024,
+            height: 768,
+            slideNumber: 'h.v/t',
+            transition: 'slide',
+            hash: true,
+            center: false,
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath],
+            markdown: {
+                smartypants: true
+            },
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                config: 'TeX-AMS_HTML-full',
+                // pass other options into `MathJax.Hub.Config()`
+                TeX: { Macros: { RR: "{\\bf R}" } }
+            },
+        });
+    </script>
+</body>
+
+</html>

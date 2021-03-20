@@ -9,11 +9,39 @@
 
 **Zur Erinnerung:**
 
-* Was sind Referenzen in Java?
-* Was sind Pointer in C?
-* Wie unterscheiden sich die beiden Konzepte?
+Wir unterscheiden bei Programmen verschiedene **Speicherbereiche**:
 
-<img class="fragment" src="stack_heap.png" width="50%" />
+<div style="display: flex;">
+<img src="speicherbereiche.svg" width="500px" />
+
+<div>
+
+* der **Heap** ist der grosse, ungeordnete Speicherbereich. Hier kommen
+  beliebige Datenstrukturen (Objekte) zu liegen.
+* Der **Stack** speichert einzelne, primitive Werte (Int, Boolean, Float) von Funktionen (**lokale Variablen**),
+  und **Referenzen** / **Pointer** auf Objekte im Heap.
+* In der **Program Area** ist der Programmcode des laufenden Programms gespeichert. Mit diesem
+  Bereich haben wir selten etwas zu tun.
+
+</div>
+
+</div>
+
+Wir unterscheiden also grob zwischen **Objekte im Heap** und **lokale, primitive Werte** auf dem Stack.
+Auch Referenzen sind "nur" primitive Werte auf dem Stack, welche aber als Pointer zu Objekten im Heap interpretiert werden.
+
+
+</textarea>
+</section>
+
+<section data-markdown >
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Repetition Referenzen in Java
+=============================
+
+<img src="stack_heap.png" width="50%" />
+
+Java-Referenzen sind das Pendant zu C-Pointer: Sie zeigen auf einen Speicherbereich, wo das eingentliche Datenobjekt "sitzt".
 
 </textarea>
 </section>
@@ -93,6 +121,14 @@ System.out.println(a); // 5
 Der Wert von einfachen Datentypen sind nicht Referenzen, sondern ganz einfach der Wert.
 Die **einzigen** einfache Datentypen in Java sind Zahlen-Datentypen. **Alles andere sind Referenz-Typen**.
 
+Die **einzigen Werte**, die auf dem Stack landen, sind somit folgende Typen:
+
+* int/long (ganzzalige Werte, 32- resp. 64bit)
+* float/double (Gleitkomma-Zahlen, 32- resp. 64bit)
+* char/byte/short (ganzzahlige werte resp. Zeichen, 8 bis 16bit)
+* boolean 
+* Referenzen (aka Pointer)
+
 </textarea>
 </section>
 </section>
@@ -102,7 +138,8 @@ Die **einzigen** einfache Datentypen in Java sind Zahlen-Datentypen. **Alles and
 <i class="fas fa-graduation-cap"></i> Repetition Referenzen in Java
 =============================
 
-Lösen Sie die Aufgaben zu Referenzen auf Moodle.
+Lösen Sie die **Aufgaben zu Referenzen** auf Moodle, Lektion 1
+(Hausaufgabe auf nächstes Mal)
 
 </textarea>
 </section>

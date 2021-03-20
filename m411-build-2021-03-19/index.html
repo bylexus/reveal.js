@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>M411 - Algorithmen und Datenstrukturen</title>
+
+    <link rel="stylesheet" href="./dist/reset.css">
+    <link rel="stylesheet" href="./dist/reveal.css">
+    <link rel="stylesheet" href="./dist/theme/alex.css" id="theme">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="./lib/css/github.min.css">
+
+    <!-- font awesome -->
+    <script defer src="./lib/font-awesome-5.0.2/js/fontawesome-all.js"></script>
+
+</head>
+
+<body>
+    <div class="reveal">
+        <header>
+            M411 - Algorithmen und Datenstrukturen&nbsp;
+            <img src="./data/logo-kanton-thurgau.svg" style="width: 60px" />
+        </header>
+        <div class="slides">
+            
+<style>
+p,td {
+    font-size: 0.75em !important;
+}
+</style>
+<section>
+
+<section id="home" data-markdown class="smaller">
+<textarea data-template>
+Jahresplan Frühling 2021 | M411 <br />Algorithmen und Datenstrukturen
+=================
+
+| Lekt. | Datum       | Thema | Detail                                            |
+|-------|-------------|--------------|--------------------------------------------|
+|<td colspan="3">Sporterien 30.01.-07.02.2021 |
+| [ 001 ](001_start/unterricht.html)             | 08.02.2021  | Einführung | Einführung, Algorithmen, Repetition Referenzen in Java |
+| [ 002 ](002_grundlagen/unterricht.html)        | 15.02.2021  | Grundlegende Werkzeuge | Datentypen, Arrays, Klassen als abstrakte Datenstrukturen, komplexe Datentypen |
+| [ 003 ](003_linked_lists/unterricht.html)      | 22.02.2021  | Linked Lists (1) | Einführung LL, Datenstruktur, Verwendung, erste Impl. |
+| [ 004 ](004_linked_lists_2/unterricht.html)    | 01.03.2021  | Linked Lists (2) | Einführung LL, Operationen, Implementationen |
+| [ 005 ](005_linked_lists_3/unterricht.html)    | 08.03.2021  | Linked Lists (3) | Übungen zu LL |
+| [ 006 ]()   | **15.03.2021**  | **LB 411-3 - 3 (Thema: Linked Lists)** | |
+| [ 007 ](007_o_notation/unterricht.html)        | 22.03.2021  | O-Notation | Effizienzanalyse von Algorithmen |
+| [ 008 ](008_rekursion/unterricht.html)         | 29.03.2021  | Entwurfsmuster: Iteration und Rekursion | Unterschied Iteration, Rekursion, Maze Solver |
+|<td colspan="3">Frühlingsferien 02.04.-18.04.2020 </td>|
+| [ 009 ](009_entwurfsmuster/unterricht.html)    | 19.04.2021  |Entwurfsmuster, Greedy | Theorie, Übungen|
+| [ 010 ](010_rekursion/unterricht.html)         | 26.04.2021  | Entwurfsmuster: Übungen | Übungsaufgaben zu Rekursion,Greedy,Backtracking |
+| [ 011 ](011_sortieren_1/unterricht.html)       | 03.05.2021  | Einführung Sortieren | Bubble Sort, Selection Sort |
+| [ 012 ]()                                      | **10.05.2021**  | **LB 411-3 - 1 (Iteration, Rekursion, Laufzeitanalyse)**||
+|<td colspan="3">Pfingstferien 13.05.-24.05.2021 </td>|
+| [ 013 ](013_sortieren_2/unterricht.html)       | 31.05.2021  | Sortieren | Insertion Sort, Merge Sort, Quick Sort |
+| [ 014 ](014_sortieren_3/unterricht.html)       | 07.06.2021  |Sortieren | Sortieren von komplexen Datentypen, Comparable |
+| [ 015 ](015_collections/unterricht.html)       | 14.06.2021  | Collection API:Lists, HashSet, HashMap | |
+| [ 016 ]()                                      | **21.06.2021**  | **LB 411-3 - 2 (Greedy, Comparable ...)** ||
+| [ 017 ](017_baeume/unterricht.html)            | 28.06.2021  | Einführung Bäume | Struktur, Binary Tree, Suchbäume |
+| [ 018 ](018_baeume2/unterricht.html)           | 05.07.2021  | 2. Teil Bäume: Binary Search Tree, Suchbaum aufbauen | |
+|<td colspan="3">Sommerferien 12.07.-15.08.2021</td>|
+
+</textarea>
+</section>
+<!--
+
+    Notes:
+    Lektion 9: vor Frühlingsferien Unterlagen veteilen,
+    Lektion 09 lesen lassen / Übungen über Frühlingsferien
+
+| [ 007 ](007_datenstrukturen/unterricht.html)   | 16.03.2020  | Datenstrukturen | Datentypen, Organisation im Speicher, dynamische/statische, abstrakte Typen  |
+-->
+
+
+
+
+
+<!--
+| Lekt. | Datum       | Thema | Detail                                            |
+|-------|-------------|--------------|--------------------------------------------|
+|<td colspan="3">Sommerferien 7. Juli - 12. August 2018 |
+| [ 001 ](001_start/unterricht.html)   | 13.08.2018  | Einführung | Einführung, Algorithmen, Repetition Referenzen in Java |
+| [ 002 ](002_grundlagen/unterricht.html)   | 20.08.2018  | Grundlegende Werkzeuge | Datentypen, Arrays, Klassen als abstrakte Datenstrukturen, komplexe Datentypen |
+| [ 003 ](003_linked_lists/unterricht.html)   | 27.08.2018  | Linked Lists (1) | Einführung LL, Datenstruktur, Verwendung, erste Impl. |
+| [ 004 ](004_linked_lists_2/unterricht.html)   | 03.09.2018  | Linked Lists (2) | Einführung LL, Operationen, Implementationen |
+| [ 005 ](005_linked_lists_3/unterricht.html)   | 10.09.2018  | Linked Lists (3) | Übungen zu LL |
+| [ 006 ]()   | **17.09.2018**  | **LB 411-3 - 3 (Thema: Linked Lists)** | |
+| [ 007 ](007_datenstrukturen/unterricht.html)   | 24.09.2018  | Datenstrukturen | Datentypen, Organisation im Speicher, dynamische/statische, abstrakte Typen  |
+| [ 008 ](008_paradigmen/unterricht.html)   | 01.10.2018  | Programmierparadigmen | imperatives, funktionales Paradigma  |
+|<td colspan="3">Herbstferien 06. Oktober - 21. Oktober 2018</td>|
+| [ 009 ](009_o_notation/unterricht.html)   | 22.10.2018  | O-Notation | Effizienzanalyse von Algorithmen |
+| [ 010 ](010_entwurfsmuster/unterricht.html)   | 29.10.2018  | Entwurfsmuster, Rekursion, Iteration | Theorie, Übungen, Maze Solver |
+| [ 011 ](011_sortieren_1/unterricht.html)   | 05.11.2018  | Rekursion, Iteration, Einführung Sortieren | Bubble Sort, Selection Sort |
+| [ 012 ](012_sortieren_2/unterricht.html)   | 12.11.2018  | Sortieren | Insertion Sort, Merge Sort, Quick Sort |
+| [ 013 ](013_sortieren_3/unterricht.html)   | 19.11.2018  | Sortieren | Sortieren von komplexen Datentypen, Comparable |
+| [ 014 ]()   | **26.11.2018**  | **LB 411-3 - 1 (Iteration, Laufzeitanalyse)** | |
+| [ 015 ](015_collections/unterricht.html)   | 03.12.2018  | nochmals Comparator / Comparable, Übungen (1 Zusatzlektion eingeschoben) | |
+| [ 016 ](015_collections/unterricht.html)   | 10.12.2018  | Collection API:HashSethh HashMap | |
+| [ 017 ](016_baeume/unterricht.html)   | 17.12.2018  | Einführung Bäume | Struktur, Binary Tree, Suchbäume |
+|<td colspan="3">Weihnachtsferien 22. Dezember 2018 - 06. Januar 2019</td>|
+| [ 018 ](017_baeume2/unterricht.html)   | 07.01.2019.2018  | 2. Teil Bäume: Binary Search Tree, Suchbaum aufbauen | |
+| [ 019 ]()   | **14.01.2019.2018**  | **LB 411-3 - 2 (Greedy, Comparable ...)** | |
+| [ 020 ](020_graphen/unterricht.html)   | 21.01.2019.2018  | Besprechung LB, Input zu Graphen | |
+|<td colspan="3">Sportferien 26. Januar 2019 - 3. Februar 2019</td>|
+-->
+
+
+</section>
+
+        </div>
+    </div>
+
+    <script src="./dist/reveal.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/math/math.js"></script>
+
+    <script>
+        // More info about config & dependencies:
+        // - https://github.com/hakimel/reveal.js#configuration
+        // - https://github.com/hakimel/reveal.js#dependencies
+        Reveal.initialize({
+            widht: 1024,
+            height: 768,
+            slideNumber: 'h.v/t',
+            transition: 'slide',
+            hash: true,
+            center: false,
+            plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom, RevealMath],
+            markdown: {
+                smartypants: true
+            },
+            math: {
+                mathjax: 'https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js',
+                config: 'TeX-AMS_HTML-full',
+                // pass other options into `MathJax.Hub.Config()`
+                TeX: { Macros: { RR: "{\\bf R}" } }
+            },
+        });
+    </script>
+</body>
+
+</html>

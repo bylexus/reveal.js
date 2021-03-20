@@ -1,0 +1,15 @@
+digraph G {
+    rankdir=LR
+
+
+    subgraph cluster_prg {
+       prg [label="Program Area\nProgrammcode", color=white, fixedsize=true width=8] 
+    }
+    subgraph cluster_stack {
+       stack [label="Stack\nnur einfache (primitive) Datentypen, limitierte Grösse", color=white, fixedsize=true width=8] 
+    }
+
+    subgraph cluster_heap {
+       heap [label="Heap\nrestlicher, ungeordneter Speicher", color=white, fixedsize=true width=8, height=3] 
+    }
+}
