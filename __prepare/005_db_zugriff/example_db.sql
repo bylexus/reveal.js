@@ -1,7 +1,11 @@
--- Datenbank erstellen:
-create database notekeeper;
-use notekeeper;
+-- Datenbank erstellen, wenn noch nicht gemacht:
+-- create database notekeeper;
+-- use notekeeper;
+-- Datenbank-Benutzer erstellen:
+-- grant all privileges on notekeeper.* to 'notekeeper'@'%' identified by 'notekeeper';
+-- flush privileges;
 
+-- Benutzer-Tabelle erstellen:
 create table benutzer (
     id integer auto_increment not null,
     login varchar(100) not null,
@@ -23,6 +27,3 @@ insert into benutzer values
 (null,'bilbo','schatz','Beutlin','Bilbo','bilbo@auenland.net',null),
 (null,'thorin','gold','Eichenschild','Thorin','thorin@moria.net',null);
 
--- Datenbank-Benutzer erstellen:
-grant all privileges on notekeeper.* to 'notekeeper'@'%' identified by 'notekeeper';
-flush privileges;

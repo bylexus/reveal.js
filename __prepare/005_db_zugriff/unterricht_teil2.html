@@ -17,6 +17,7 @@ Heutiges Ziel
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
@@ -40,9 +41,7 @@ Heutiges Ziel
 * Wie werden Daten (User-Eingaben) an den Server gesendet?
 * Und wie lesen Sie diese auf der Serverseite aus?
 
-**Antwort:**
-
-* Möglichkeit 1: Via GET-URL-Parameter eines Links
+**Antwort Möglichkeit 1: Via GET-URL-Parameter eines Links**
 
 HTML-Beispiel:
 ```
@@ -50,9 +49,23 @@ HTML-Beispiel:
 ```
 
 Dieser Link löst einen HTTP GET-Request aus, welcher die Parameter „id“ und „name“ an den Server übermittelt.
-Überprüfen Sie dies in der Browser-Konsole: Sehen Sie in der Konsole, wo / wie die Parameter mitgeschickt werden?
 
-* Möglichkeit 2: Via HTML-Form POST-Parameter:
+**Überprüfen Sie dies in der Browser-Konsole: Sehen Sie in der Konsole, wo / wie die Parameter mitgeschickt werden?**
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
+=============================
+
+**Fragen:**
+
+* Wie werden Daten (User-Eingaben) an den Server gesendet?
+* Und wie lesen Sie diese auf der Serverseite aus?
+
+**Antwort Möglichkeit 2: Via HTML-Form POST-Parameter**
 
 HTML-Beispiel:
 ```
@@ -66,16 +79,32 @@ HTML-Beispiel:
 Diese Formulardaten werden als HTTP POST-Request an den Server geschickt: Die Parameter „nachname“ und „vorname“ werden
 übermittelt.
 
-Überprüfen Sie dies in der Browser-Konsole: Sehen Sie in der Konsole, wo / wie die Parameter mitgeschickt werden?
+**Überprüfen Sie dies in der Browser-Konsole: Sehen Sie in der Konsole, wo / wie die Parameter mitgeschickt werden?**
 
-* Möglichket 3: Via Ajax (asynchronous java script, nicht im Detail behandelt):
-ebenfalls HTTP-Anfragen (GET, POST, PUT, DELETE)
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
+=============================
+
+**Fragen:**
+
+* Wie werden Daten (User-Eingaben) an den Server gesendet?
+* Und wie lesen Sie diese auf der Serverseite aus?
+
+**Antwort Möglichket 3: Via Ajax (asynchronous java script, nicht im Detail behandelt)**
+
+Ajax-Requests sind ebenfalls normale HTTP-Anfragen (GET, POST, PUT, DELETE), werden im Browser
+aber im Hintergrund (ohne Seite neu aufbauen) abgesetzt und ausgewertet.
 
 <i class="far fa-hand-point-right"></i> In jedem Fall antwortet der Server nach der Verarbeitung mit einer Response,
 welche als neue Seite dargestellt wird (ausser Ajax).
 
 
 </textarea>
+</section>
 </section>
 
 <section data-markdown>
@@ -119,6 +148,7 @@ erlaubt z.B. die Angabe eines Standard-Wertes, falls der Parameter nicht geliefe
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Komplexes Beispiel: Login-Formular-Prüfung
@@ -162,30 +192,38 @@ class LoginController extends Controller {
     }
 }
 ```
+</textarea>
+</section>
 
-** login-form.html: View-Script für Login-Form-Action (siehe loginForm())**:
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Komplexes Beispiel: Login-Formular-Prüfung
+=============================
+
+**login-form.html: View-Script für Login-Form-Action (siehe loginForm())**:
 
 ```html
 <!-- login-form.html, View-Script fuer loginForm-Action -->
-<html>
-<body>
+<&#8203;html>
+<&#8203;body>
     <h1>Login</h1>
-    <?php if ($error) { ?>
-        <div style="background-color: red"><?php echo $error; ?></div>
-    <?php } ?>
+    <&#8203;?php if ($error) { ?>
+        <div style="background-color: red"><&#8203;?php echo $error; ?></div>
+    <&#8203;?php } ?>
     <form action="<?php echo $this->routeUrl('/login_try'); ?>" method="POST">
         <label>Username: <input type="text" name="login"></label>
         <label>Passwort: <input type="password" name="passwort"></label>
         <button type="submit">login</button>
     </form>
-</body>
-</html>
+<&#8203;/body>
+<&#8203;/html>
 ```
 
 <i class="far fa-hand-point-right"></i> Die Funktion `$this->routeUrl()` stellt eine Funktion dar, um eine "fertige" URL zu erzeugen. Diese Funktion
 können Sie entwickeln (müssen aber nicht).
 
 </textarea>
+</section>
 </section>
 
 {% endblock %}

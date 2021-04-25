@@ -14,6 +14,7 @@ Heutiges Ziel
 * Sie wissen, was „Stateless“ und „Stateful“ für eine Web-Applikation bedeutet
 * Sie wissen, wofür Stateful Sessions benötigt werden
 * Sie können eine stateful Session in PHP aufbauen und benützen
+* Sie wissen, wie Sie eine Route / Endpoint anhand der Session schützen können
 </textarea>
 </section>
 
@@ -35,7 +36,7 @@ der Programmierer in grossen Teilen der Applikation nicht mehr mit Datenbanken /
 <i class="fas fa-graduation-cap"></i> Kurzreferate zu "Web-Bedrohungen"
 =============================
 
-** Angriff! ** Nachrichten zu Attacken auf Webseiten gehören mittlerweile zum
+**Angriff!** Nachrichten zu Attacken auf Webseiten gehören mittlerweile zum
 Alltag. Als Web-Entwickler müssen Sie die Gefahren des Webs kennen.
 
 <img style="float:right" src="security_schaubild.jpg" width="40%" />
@@ -52,6 +53,7 @@ Siehe Aufgabenblatt auf Moodle: "Aufgabe Referat 'Web-Bedrohungen'
 * Directory Traversal Attack
 * Cross Site Request Forgery (CSRF)
 * Brute Force Attacks
+* (Distributed) Denial Of Service, (D)DOS
 
 **Ziel:**
 
@@ -60,7 +62,9 @@ Siehe Aufgabenblatt auf Moodle: "Aufgabe Referat 'Web-Bedrohungen'
 
 Wir losen die Themen aus.
 
-**Vorträge:** am **13.11.2019** (3x)
+**Vorträge:** am **04.11.2020** (4x) und am **11.11.2020** (3x)
+
+<i class="far fa-hand-point-right"></i> Das Referat zählt zu **20% zur Modulnote**.
 
 </textarea>
 </section>
@@ -82,27 +86,21 @@ Stellen sie sich folgendes Szenario eines Seitenaufrufs im Internet von zwei unt
     }
 </style>
 <div style="display: flex">
-<img src="request_example.png" width="40%" />
+<img src="request_example.png" width="50%" />
 <div style="margin-left: 10px">
-    <h3>Fragen:</h3>
-    <ul>
-        <li class="small-p">Sie sehen hier mehrere Requests von unterschiedlichen Clients.<br />
-            <strong>Aufgrund welcher (HTTP-)Informationen "weiss" der Server, welchen Client er nun gerade bedient?</strong>
-        </li>
-        <li class="small-p">
-            Was setzt eine solche Identifizierung des Clients (Browser, User) auf der Server-Seite voraus?
-        </li>
-        <li class="small-p">
-            Was setzt eine solche Identifizierung des Clients (Browser, User) auf der Client-Seite voraus?
-        </li>
-        <li class="small-p">
-            Sieht das HTTP-Protokoll ünerhaupt eine Client-Identifizierung vor? Wenn ja, wie?
-        </li>
-    </ul>
+
+### Fragen:
+
+* Sie sehen hier mehrere Requests von unterschiedlichen Clients.<br />
+  **Aufgrund welcher (HTTP-)Informationen "weiss" der Server, welchen Client er nun gerade bedient?**
+* Was setzt eine solche Identifizierung des Clients (Browser, User) auf der Server-Seite voraus?
+* Was setzt eine solche Identifizierung des Clients (Browser, User) auf der Client-Seite voraus?
+* Sieht das HTTP-Protokoll überhaupt eine Client-Identifizierung vor? Wenn ja, wie?
+
 </div>
 </div>
 
-<i class="far fa-hand-point-right"></i> Diskutieren Sie diese Fragen kurz in der Klasse, wir besprechen
+<i class="far fa-hand-point-right"></i> Diskutieren Sie diese Fragen kurz in der Klasse (zu Zweit, zu Dritt), wir besprechen
 Ihre Antworten gleich im Anschluss.
 
 </textarea>
@@ -119,7 +117,7 @@ Das oben gezeigte Szenario bedingt, dass auf dem Server pro User / pro Client ei
 
 Dies wiederum bedeutet, dass der Request einem bestimmten Benutzer, einem bestimmten State zugeordnet werden muss.
 
-Das HTTP-Protokoll grundsätzlich ist stateless – zustandslos: Das Protokoll sieht **KEINEN** Mechanismus vor, um einen Request einem bestehenden State zuzuordnen! Jeder HTTP-Request ist für den Web-Server wieder ein neuer Request.
+**Das HTTP-Protokoll grundsätzlich ist stateless – zustandslos**: Das Protokoll sieht **KEINEN** Mechanismus vor, um einen Request einem bestehenden State zuzuordnen! Jeder HTTP-Request ist für den Web-Server wieder ein neuer Request.
 
 <img src="stateless.png" width="80%" />
 
@@ -159,6 +157,7 @@ Der einzige Weg, einen Benutzer wieder zu erkennen, führt über eine Art „Tic
 
 * Beim ersten Zugriff (oder beim Aufbau einer Session) liefert der Server einen für den Benutzer eindeutigen „Session Key“,
   einen Schlüssel also, oder ein „Ticket“.
+* Der Server merkt sich die ausgestellten Tickets für eine gewisse Zeit, sowie zu diesem Ticket gehörende Daten (z.B. Anzahl Besuche)
 * Bei jedem weiteren Request, welche der User tätigt, muss dieser (resp. sein Browser) diesen Session Key wieder mitliefern:
  Anhand dieses Session Keys „weiss“ der Server, um welche Session es sich handelt,
  und kann den aktuellen State wiederherstellen.
@@ -200,15 +199,14 @@ Der Web-Server sendet in diesem Fall den **Session Key in einem Cookie** an den 
 
 **Sessions und State in PHP**
 
-Die Session- und somit State-behandlung ist fester Teil von PHP und sehr einfach zu bedienen.
+Die Session- und somit State-behandlung mittels Session-Cookies ist fester Teil von PHP und sehr einfach zu bedienen.
 PHP kann somit sehr einfach „stateful Requests“ anbieten.
 
-** Session starten / wiederherstellen **
+**Cookie-basierte Session starten / wiederherstellen**
 
 Eine Session wird in PHP mittels `session_start()` gestartet resp. wiederhergestellt:
 
 ```php
-<?php
 // Starten / wiederherstellen der Session:
 // Mit dieser Anweisung wird eine neue Session gestartet (Session Cookie an Browser ausgegeben),
 // ODER eine bestehende Session wiederhergestellt (Session-Cookie vom Request ausgelesen).
@@ -230,14 +228,11 @@ Eine Ausgabe mit z.B. echo() schliesst den HTTP-Header ab. Da das Session cookie
 <i class="fas fa-graduation-cap"></i> Stateless vs. Stateful
 =============================
 
-** Session-Daten lesen und schreiben in PHP**
+**Session-Daten lesen und schreiben in PHP**
 
 Ist die Session gestartet / geladen, können Daten in die Session / den State geschrieben / gelesen werden:
 
 ```php
-<?php
-session_start();
-
 // Auslesen der Session-Variable 'counter':
 if (!isset($_SESSION['counter'])) {
     echo "<p>Hallo, Fremder, Du bist das erste mal hier!</p>";
@@ -249,9 +244,203 @@ if (!isset($_SESSION['counter'])) {
 }
 ```
 
-So können Daten „über mehrere Requests“ hinweg festgehalten werden.
+<i class="far fa-hand-point-right"></i> So können Daten „über mehrere Requests“ hinweg in einer cookie-basierten Session festgehalten werden.
+
+### Weitere Möglichkeiten
+
+Es gibt noch weitere Technologien, wie ein Session-Key ausgetauscht werden kann, auf welche wir hier aber nicht genauer eingehen:
+
+* HTTP-Header: Session-Identifikation in einem eigenen HTTP-Session-Header senden (Nachteil: Sie müssen dies auf Client und Server-seite selber machen).
+  Dieses Vorgehen finden Sie viel bei APIs.
+* JSON Web Token (siehe https://jwt.io/): Session-Info als verschlüsseltes JSON-Token hin- und her schicken. Auch hier müssen Sie die Umsetzung
+  selber vornehmen, weder Browser noch Backend machen dies automatisch.
 
 </textarea>
+</section>
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Endpunkt schützen
+=============================
+
+Sie haben nun also die Möglichkeit, einen User "wiederzuerkennen", resp. eine Session als "authentifiziert" zu kennzeichnen.
+
+Nur: Wie nutzen Sie dies nun, um Endpunkte (=Routen) zu schützen?
+
+Szenario: Zugriff auf "/geheim" einschränken
+-----------------------------------------------
+
+Wir wollen nun den Zugriff auf die Route `/geheim` nur gewähren, wenn der Benutzer eingeloggt ist. Wie setzen wir dies um?
+
+### 1. Session authentifizieren beim Login
+
+Damit Sie wissen, ob eine Session "authentifiziert" ist, müssen Sie diese kennzeichnen: Das passiert am Besten in Ihrer Login-Action,
+also dort, wo Sie den Benutzer via Username / Passwort authentifizieren:
+
+```php
+public function login() {
+    // Username / PW aus POST-Daten auslesen
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Wir starten / öffnen eine Session auf dem Server:
+    session_start();
+
+    // Wir pruefen den Login: War dieser erfolgreich,
+    // halten wir z.B. den Username und die Login-Zeit fest:
+    if ($this->loginOk($username, $password)) {
+        $_SESSION['username'] = $username;
+        $_SESSION['login_time'] = date('Y-m-d H:i:s');
+
+        // Als Antwort liefern wir z.B. die Session-ID:
+        echo json_encode(['session_id' => session_id()]);
+    } else {
+        // falls Login NICHT ok, löschen wir die Werte aus der Session:
+        unset($_SESSION['username']);
+        unset($_SESSION['login_time']);
+        echo "Fehler, Login nicht erfolgreich";
+    }
+}
+```
+
+<i class="far fa-hand-point-right"></i> Wir halten also einfach in der Session fest, ob der User eingeloggt ist oder nicht.
+
+(weiter auf der nächsten Folie)
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Endpunkt schützen
+=============================
+
+### 2. Route / Endpunkt schützen
+
+Nun wollen wir die Route `/geheim` schützen:
+
+* Ist der User authentifiziert / berechtigt, wird die Route prozessiert
+* wenn **nicht**, antworten wir mit `HTTP 401 - Unauthorized`<br/>siehe https://developer.mozilla.org/de/docs/Web/HTTP/Status/401
+
+```php
+/**
+ * Nur zugänglich für eingeloggte User
+ */
+public function geheim() {
+
+    // Wir starten die Session auf dem Server:
+    session_start();
+
+    // Ist der User eingeloggt? Dann weiter:
+    if (!empty($_SESSION['username'])) {
+        echo "Hello, dear {$_SESSION['username']}";
+    } else {
+        // .... sonst gibts eins auf die Finger:
+        // Wir senden einen 401:
+        http_response_code(401);
+        echo "Oh dear, no access for you!";
+    }
+}
+```
+
+<i class="far fa-hand-point-right"></i> Wir sehen den Response Code nun auch in der Browser-Konsole:
+<img src="access_denied.png" width="500px" />
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Endpunkt schützen
+=============================
+
+### 3. Variante: Session-lose Authentifizierung via API-Key
+
+Wenn Sie eine API programmieren, ist vielmals keine stateful Session notwendig, jeder Request soll "für sich" authentifiziert werden.
+Dabei muss der Client bei jedem API-Zugriff seinen Zugriffsschlüssel mitsenden.
+
+Dabei haben Sie verschiedene Möglichkeiten.
+
+#### Möglichkeit 1: Client sendet API-Key im `Authorization`-Header
+
+```php
+/**
+ * Nur zugänglich für eingeloggte User, via API-Key
+ */
+public function geheim() {
+    // Wir starten hier KEINE Session, sondern lesen einen API-Key vom Authorization-Header:
+    // Der Client sendet den Header "Authorization: Bearer [api-key]":
+
+    // Request headers auslesen:
+    $headers = apache_request_headers();
+
+    // Haben wir unseren Header? --> auslesen:
+    $apiKey = null;
+    if (!empty($headers['Authorization'])) {
+        $apiKey = str_replace('Bearer ', '', $headers['Authorization']);
+    }
+
+    // Ist der Key gültig? (prüfen gegen z.B. DB) ==> dann weiter:
+    if ($this->isValidKey($apiKey)) {
+        echo "Hello, dear user";
+    } else {
+        // .... sonst gibts eins auf die Finger:
+        // Wir senden einen 401:
+        http_response_code(401);
+        echo "Oh dear, no access for you!";
+    }
+}
+```
+
+<i class="far fa-hand-point-right"></i> Der Mechanismus ist der Selbe wie mit session, nur prüfen wir die Valididät des Zugriffs anders.
+
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Endpunkt schützen
+=============================
+
+### 3. Variante: Session-lose Authentifizierung via API-Key
+
+#### Möglichkeit 2: Via Basic Auth-Header
+
+`Basic Auth` ist ein simpler Mechanismus, um Benutzerdaten zu übermitteln: Die Login-Daten werden dabei unverschlüsselt
+im `Authorization`-HTTP-Header mitgeschickt. Wenn Ihre Route via Basic-Auth authentifiziert werden soll, können Sie dies auch
+entsprechend anfordern:
+
+```php
+/**
+ * Nur zugänglich für eingeloggte User, via BasicAuth:
+ */
+public function geheim() {
+    // Wir starten hier KEINE Session, sondern lesen die Basic-Auth-Daten vom Authorization-Header:
+    // Der Client sendet den Header "Authorization: Basic [base64(username:password)]":
+
+    // Basic-Auth-Daten werden von PHP bereits aufbereitet:
+    $username = $_SERVER['PHP_AUTH_USER'] ?? null;
+    $password = $_SERVER['PHP_AUTH_PW'] ?? null;
+
+    // Ist der User gültig? Validieren anhand Username/PW, wie gehabt:
+    if ($this->userIsValid($username, $password)) {
+        echo "Hello, dear user";
+    } else {
+        // ansonsten antworten wir mit einem Basic-Auth-Required Response
+
+        // Informiert den Browser, dass er ein Login-Fenster anzeigen soll:
+        header('WWW-Authenticate: Basic realm="My Realm"');
+
+        // Wir senden einen 401:
+        http_response_code(401);
+        echo "Oh dear, no access for you!";
+    }
+}
+```
+
+<i class="far fa-hand-point-right"></i> Der Mechanismus ist der Selbe wie mit session, nur prüfen wir die Valididät des Zugriffs anders.
+
+</textarea>
+</section>
 </section>
 
 <section>
@@ -269,7 +458,6 @@ Gemacht (nicht zu empfehlen, nur der Einfachheit halber so gewählt).
 
 
 ```php
-<?php
 namespace M151\Controller;
 
 use M151\Http\Request;
@@ -291,9 +479,7 @@ class LoginController extends Controller {
             $error = "<div style='background-color: red'>{$_SESSION['login_error']}</div>";
         }
         $loginSubmitUrl = $this->routeUrl('/login_try');
-        echo <<<EOT
-<html>
-<body>
+        echo <&#8203;<&#8203;<&#8203;EOT
     <h1>Login</h1>
     {$error}
     <form action="{$loginSubmitUrl}" method="POST">
@@ -301,8 +487,6 @@ class LoginController extends Controller {
         <label>Passwort: <input type="password" name="passwort"></label>
         <button type="submit">login</button>
     </form>
-</body>
-</html>
 EOT;
     }
 }
@@ -315,7 +499,6 @@ EOT;
 <i class="fas fa-graduation-cap"></i> komplettes Beispiel: Login
 =============================
 ```php
-<?php
 // Beispiel-Controller: ... Fortsetzung ...
 class LoginController extends Controller {
     /**
@@ -361,7 +544,6 @@ class LoginController extends Controller {
 <i class="fas fa-graduation-cap"></i> komplettes Beispiel: Login
 =============================
 ```php
-<?php
 // Beispiel-Controller: ... Fortsetzung ...
 class LoginController extends Controller {
     /**
@@ -378,14 +560,11 @@ class LoginController extends Controller {
         } else {
             // Eingeloggt, User-Info in Session vorhanden:
             $userinfo = $_SESSION['userinfo'];
-
-            echo "<div style='background-color: green; padding: 1em;'>Hallo, {$userinfo['vorname']}! Dein letzter Login war am: {$userinfo['letzter_login']}</div>";
-            echo "<table>";
-            echo "<tr><td>ID</td><td>{$userinfo['id']}</td></tr>";
-            echo "<tr><td>Name</td><td>{$userinfo['name']}</td></tr>";
-            echo "<tr><td>Vorname</td><td>{$userinfo['vorname']}</td></tr>";
-            echo "<tr><td>Email</td><td><a href='mailto:{$userinfo['email']}'>{$userinfo['email']}</a></td></tr>";
-            echo "</table>";
+            echo "Hallo, {$userinfo['vorname']}! Dein letzter Login war am: {$userinfo['letzter_login']}";
+            echo "* ID: {$userinfo['id']}";
+            echo "* Name: {$userinfo['name']}";
+            echo "* Vorname: {$userinfo['vorname']}";
+            echo "* Email: <a href='mailto:{$userinfo['email']}'>{$userinfo['email']}</a>";
             echo "<a href='{$this->routeUrl('/logout')}'>Ausloggen</a>";
         }
     }

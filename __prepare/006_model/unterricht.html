@@ -30,12 +30,49 @@ Wir haben letztes Mal verschiedene Funktionen rund um die Datenbank benutzt:
 * Löschen mittels SQL DELETE
 
 Da wir ein MVC-Framework entwickeln, sollen solche Standard-Funktionen natürlich auch ins Framework
-einfliessen.
-Versuchen Sie, Antworten auf folgende Fragen zu finden:
+einfliessen: Unser Framework soll SQL-Abfragen an (zentraler/strukturierter) Stelle kapseln
+
+<i class="fas fa-bullseye"></i> Ziel: **Wir wollen SQL-Abfragen an zentraler Stelle abstrahieren**. SQL ist Aufgabe der Model-Logik.
+
+Beispiel:
+
+Ich brauche in meinem Controller die Datensätze aller aktiven Benutzer. Das kann ich nun so machen:
+
+```php
+class UserController {
+    public function listActive() {
+        $dbh = new \PDO('dbuser', 'dbpass');
+        $stm = "SELECT * FROM benutzer WHERE aktiv IS TRUE";
+        $aktiveBenutzer = $stm->fetchAll();
+    }
+}
+```
+
+Das funktioniert, aber ich vermische hier **Model-** und **Controller-Logik**: Der Controller sollte keine Model-Logik beinhalten.
+Und: wenn ich diese Liste an anderer Stelle benötige, schreibe ich dies alles nochmals.
+Zudem sind vermutlich viele SQL-Abfragen ziemlich ähnlich, ich möchte also lieber so was schreiben können:
+
+```php
+class UserController {
+    public function doSome() {
+        $queryBuilder = new BenutzerQueryBuilder();
+        $aktiveUser = $queryBuilder->getAktiveBenutzer();
+    }
+}
+```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
+=============================
+
+Versuchen Sie nun, Antworten auf folgende Fragen zu finden:
 
 * Die DB-Connection ist sehr zentral.<br />
   <i class="far fa-hand-point-right"></i> Wie sorgen wir dafür, dass diese von allen Programmteilen
-  / Klassen aus verfügbar ist? ** Wie lösen Sie dies mit OO-Werkzeugen?**
+  / Klassen aus verfügbar ist?<br />**Wie lösen Sie dies mit OO-Werkzeugen?**
 * Datenbank-Verbindungsparameter sind auf verschiedenen Systemen vermutlich unterschiedlich (Test, Produktion):<br />
   <i class="far fa-hand-point-right"></i> **Wo / wie definieren Sie die Datenbank-Verbindungsparameter, sodass diese vom Programmcode unabhängig sind?**
 * Wir werden vermutlich an vielen Stellen in unserem Programm immer wieder ähnliche Abfragen machen:
@@ -53,7 +90,7 @@ Versuchen Sie, Antworten auf folgende Fragen zu finden:
 
  * Zentrale DB-Connection: wie lösen Sie das?
  * Datenbank-Verbindungsparameter: Wie legen Sie diese ab, wie organisieren Sie diese?
- * Welche Struktur (OO) definieren Sie, um gemeinsame DB-Abfragen zu "sammeln"?
+ * Welche Struktur (OO) definieren Sie, um ( gemeinsame, generische ) DB-Abfragen zu "zentralisieren"?
 
 </textarea>
 </section>
@@ -70,30 +107,33 @@ Versuchen Sie, Antworten auf folgende Fragen zu finden:
 * oder über eine zentral erreichbare Funktion im Controller (z.B. im Parent-Controller),
   welche die DB-Verbindung einmal aufbaut und liefern kann
 
-** Datenbank-Verbindungsparameter: Wie legen Sie diese ab, wie organisieren Sie diese?**
+**Datenbank-Verbindungsparameter: Wie legen Sie diese ab, wie organisieren Sie diese?**
 
 * in einem separaten Config-File, welches:
   * nicht Teil des Software-Repositories ist
   * ausserhalb des Webroot liegt (um Direktzugriff darauf zu vermeinden)
     Bsp:
 ```php
-  <?php
   // separate config.php-Datei:
   $db = 'testdb';
   $user = 'testuser';
   $pw = 'testpw';
 ```
 ```php
-  <?php
   // Einlesen der Konfiguration in PHP:
   include('config.php');
   // nun stehen die Variablen lokal zur Verfügung:
   $conn = new Connection($db, $user, $pw);
 ```
+</textarea>
+</section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Model, DB-Abstraktion
+=============================
 
-
-** Welche Struktur (OO) definieren Sie, um gemeinsame DB-Abfragen zu "sammeln"?**
+**Welche Struktur (OO) definieren Sie, um gemeinsame DB-Abfragen zu "zentralisieren"?**
 
 <i class="far fa-hand-point-right"></i> Siehe nächste Folie: QueryBuilder-Struktur
 
@@ -111,7 +151,7 @@ SQL-Abstraktion: die QueryBuilder-Klasse
 Um die für alle Entiäten / Modelle anfallenden SQLs zu abstrahieren, empfehle ich Ihnen
 die Entwicklung einer Query-Builder-Infrastruktur. Dies könnte in etwa so aussehen:
 
-<img src="UML_QueryBuilder.png" width="70%"/>
+<img src="UML_QueryBuilder.png"/>
 
 Die QueryBuilder-Klasse ist die Basisklasse, welche alle notwendigen SQL-Queries
 für spezifische Entitäten erstellen und ausführen kann. Diese Klassen sollen die

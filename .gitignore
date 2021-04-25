@@ -10,6 +10,7 @@ log/*.log
 tmp/**
 build/
 m151-build-*/
+m151-build-*.zip
 node_modules/
 .sass-cache
 css/reveal.min.css

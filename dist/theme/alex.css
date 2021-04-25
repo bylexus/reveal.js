@@ -315,3 +315,9 @@ html * {
 .reveal .slides {
     text-align: left;
 }
+
+@media print {
+  .reveal pre code {
+    max-height: none;
+  }
+}

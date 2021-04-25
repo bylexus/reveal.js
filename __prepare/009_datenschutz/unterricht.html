@@ -23,9 +23,13 @@ Heutiges Ziel
 
 **Antworten zu den Aufgaben von letzter Lektion**: Tragen wir zusammen:
 
-* Vor wem (oder was) müssen Sie Ihre Web-Applikation schützen?
-
+* Vor wem (oder vor was) müssen Sie Ihre Web-Applikation schützen?
+* WAS müssen Sie schützen?
 * Was für Angriffsmöglichkeiten existieren, um Ihre Web-Applikation zu knacken / an unbefugte Daten zu gelangen?
+
+**Padlet zum Sammeln:**
+https://padlet.com/alex_schenkel/datenschutz
+
 </textarea>
 </section>
 
@@ -34,7 +38,7 @@ Heutiges Ziel
 <i class="fas fa-flask"></i> Schutz vor Hacks / Missbrauch
 =============================
 
-** Must-Do's** für Entwickler von Web-Applikationen
+<i class="fas fa-bolt"></i> **Must-Do's** für Entwickler von Web-Applikationen <i class="fas fa-bolt"></i>
 
 Öffentlich erreichbare Web-Applikationen sind heute täglich Hunderten von Angriffsversuchen ausgesetzt.
 Wir behandeln einige ausgelesene Angriffsszenarien und Gegenmassnahmen in einer späteren Lektion / mit Kurzreferaten.
@@ -68,9 +72,12 @@ so wenig Informationen zum System wie möglich preiszugeben.
 
 **Aufgabe:**
 
-1. Öffnen Sie die Seite https://m151.alexi.ch/mvc_webapp/dbtest. Die Seite produziert eine Fehlerausgabe.
+Finden Sie Antworten auf untenstehende Fragen:
+
+1. Öffnen Sie die Seite auf meinem Rechner: http://172.20.184.252:8020/dbtest. Die Seite produziert eine Fehlerausgabe.
   * Welche Informationen zum System können Sie aus der Antwort (HTTP Body) herausfinden?
   * Welche zusätzlichen Informationen finden Sie im HTTP-Header?
+  * Wie können Sie als Hacker diese Informationen verwenden?
 2. Die Fehlermeldung wird vom PHP-Programm ausgegeben. Sie finden das Beispiel in der abgelieferten MVC-Webapp-Vorlage in der Datei „DefaultController.php“.
   Wie können Sie (mittels PHP) verhindern, dass die Fehlerausgabe im Browser angezeigt wird?
 </textarea>
@@ -80,12 +87,13 @@ so wenig Informationen zum System wie möglich preiszugeben.
 <textarea data-template>
 <i class="fas fa-flask"></i> Schutz vor Hacks / Missbrauch
 =============================
+
 ### Gruppenarbeit zum Thema „Klartext-Passwörter“
 
 Für Login-Mechanismen ist es notwendig, dass Sie in Ihrer Applikation Benutzer und Passwörter speichern, um diese bei einem Login-Versuch vergleichen zu können.
 Es ist eine schlechte Idee, Passwörter im Klartext in Ihrem System abzuspeichern.
 
-**Aufgabe: **
+**Aufgabe:**
 
 Recherchieren Sie, um folgende Fragen dazu beantworten zu können:
 * Was ist die Gefahr von Klartext-Passwörtern in Ihrer Datenbank?
@@ -112,7 +120,7 @@ http://meine-seite.ch/geheime_dokumente/spionagebericht.pdf
 Solche Zugriffe müssen zwar möglich sein, aber **NUR** für berechtigte Benutzer.
 
 
-**Aufgabe: **
+**Aufgabe:**
 
 Recherchieren Sie, um folgende Fragen dazu beantworten zu können:
 * Welche technischen Massnahmen gibt es (in Apache und / oder PHP), um Direktzugriffe auf Dateien zu verhindern?

@@ -13,6 +13,7 @@ Heutiges Ziel
 * Sie haben die Grundstruktur MVC verstanden
 * Sie können die Grundstruktur für Ihr MVC-Web-Framework in Code umsetzen:
   * Request, Dispatching/Routing, Controller/Action-Methode, Response (HTML, Views)
+* Ihr Framework kann mit einer Response (View) antworten.
 
 </textarea>
 </section>
@@ -74,9 +75,9 @@ Hier wird aufgrund der Route der `DefaultController` mit der Funktion `index()` 
 Diese Funktion erzeugt dynamisch generiertes HTML (die "View"):
 
 ```php
-<?php
-# DefaultController:
 class DefaultController extends Controller {
+
+    // Action-Methode für z.B. Route "/"
     public function index() {
         // Content-Type für Output setzen, hier z.B. HTML:
         header('Content-Type: text/html');
@@ -93,24 +94,43 @@ class DefaultController extends Controller {
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> Abstrahieren der View-Erzeugung
 =============================
 
-MVC separiert ja die Verantwortlichkeiten: Der Controller ist für die Logik zuständig, die View für die Darstellung.
-Im oberen Beispiel hat nun aber auch der Controller die Ausgabe, also die View erzeugt. Wir wollen dies
-weiter abstrahieren, um im Sinne von MVC die Logik von der View-Ereugung zu trennen.
+Wir erinnern uns an das MVC-Design-Pattern:
+
+<img src="mvc.png" width="30%" />
+
+MVC **separiert** die Verantwortlichkeiten:
+
+* Der **Controller** ist für die Logik zuständig, nicht für die Ausgabe:
+* Er bereitet die Daten auf (**Model**), und gibt diese der
+* **View** weiter für die Darstellung.
+
+Im vorherigen Code-Beispiel hat nun aber auch der Controller die Ausgabe, also die View erzeugt.
+Wir wollen dies weiter abstrahieren, um im Sinne von MVC die Logik von der View-Ereugung zu trennen.
+
+<img src="view_aufgabe.png" />
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Abstrahieren der View-Erzeugung
+=============================
+
 
 Das Erzeugen von dynamischem HTML ist eine Aufgabe, die immer wieder vorkommt (eigentlich bei jedem
-Request). Wir übergeben diese Aufgabe somit einer `View`-Klasse. Im Controller wollen wir nur noch
-die notwendigen Daten (das **Model**) aufbereiten und der View übergeben:
+Request). Unser Ziel soll sein, **diese Aufgabe somit einer `View`-Klasse zu übergeben**.
+Im Controller wollen wir nur noch die notwendigen Daten (das **Model**) aufbereiten und der View übergeben:
 
 ```php
-<?php
-    # Klasse DefaultController, funktion „demo“:
-    public function demo() {
-        // Instanzieren einer neuen View, mit Angabe eines HTML-Templates:
+    # Klasse DefaultController:
+    public function index() {
+        // Instanzieren einer neuen View, mit Angabe eines (HTML-)Templates:
         $view = new View('default-demo.html');
 
         // Übergeben der Daten (aka "Model") an die View:
@@ -122,38 +142,86 @@ die notwendigen Daten (das **Model**) aufbereiten und der View übergeben:
     }
 ```
 
-* In der Action-Funktion wird die Klasse „View“ instanziert. Dabei wird ein HTML-Template (eine Vorlage mit Platzhaltern) angegeben.
+* In der Action-Funktion wird die Klasse "View" instanziert. Dabei wird ein HTML-Template (eine Vorlage mit Platzhaltern) angegeben.
 * Der View-Klasse werden Daten, welche für die Ausgabe notwendig sind, zugewiesen (assign)
 * Die Ausgabe wird mit „render()“ erzeugt.
 
 **Eine sehr rudimentäre View-Klasse finden Sie auf Moodle**: Studieren Sie diese, damit Sie deren Funktion
 kennen lernen / verstehen.
 
-Das HTML-Template ist ein Stück HTML, welche die übergebenen Daten der View
-in PHP-Schnippseln verarbeitet. Es wird dabei ebenfalls vom PHP-Interpreter abgearbeitet und hat Zugriff
+Das HTML-Template ist ein Stück HTML, welche die übergebenen Daten der View in der `render()`-Methode
+in PHP-Schnipseln verarbeitet. Es wird dabei ebenfalls vom PHP-Interpreter abgearbeitet und hat Zugriff
 auf die zugewiesenen Daten:
 
 ```php
 # Datei 'default-demo.html':
 <h1>Hello, World!</h1>
-<p>aktuelles Datum: <?php echo $datum; ?></p>
+<p>aktuelles Datum: <&#x200b;?php echo $datum; ?></p>
 <h2>Params:</h2>
 <ul>
-    <?php
+    <&#x200b;?php
     foreach($params as $key=>$value) { ?>
     <li>
-        <?php echo $key.': '.$value; ?>
+        <&#x200b;?php echo $key.': '.$value; ?>
     </li>
-    <?php } ?>
+    <&#x200b;?php } ?>
 </ul>
 ```
 
-<i class="far fa-hand-point-right"></i> Meine Empfehlung: Setzen Sie für die HTML-Templates eine so genannte
-**„Template Engine“** ein: Für PHP gibt es diverse Lösungen wie z.B. [ **Smarty** ](https://www.smarty.net/), [ **Blade** ](https://github.com/jenssegers/blade)
-oder [ **Twig** ](https://twig.symfony.com/).
-Solche Engines können ebenfalls via **„composer“**-Paketmanager installiert werden und sind viel mächtiger als
-die hier aufgezeigte Minimal-Lösung.
 </textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Abstrahieren der View-Erzeugung: Template-Engine
+=============================
+
+Das Erzueugen von (HTML-)Views ist ein grundlegendes Problem, zu dem es bereits viele Lösungen gibt: so genannte **Template Engines**
+sind dafür optimiert, Daten und View-Template zu trennen, und auszugeben.
+
+Ein Beispiel ist [Smarty](https://smarty.net), eine ausgereifte Template engine.
+
+**Installation mit Composer**
+
+Sie installieren Smarty einfach mit composer:
+
+```
+$ composer require smarty/smarty
+```
+
+**Verwendung im Controller**
+
+```php
+class MyController {
+    public function myAction() {
+        $view = new Smarty();                                // Smarty instanzieren
+        $view->setTemplateDir(__DIR__ . '/../../views/');    // Wo liegen die Template-Files?
+        $view->assign('zeit', time());                       // Daten (Model) in der View registrieren
+        $view->assign('daten', ['was' => 'anderes']);
+        $view->display('smarty-demo.html');                  // Template rendern
+    }
+}
+```
+
+**Beispiel-View / Template: gibt die zugewiesenen Daten aus:**
+
+```html
+<!-- smarty-demo.html -->
+<h1>Hello, World!</h1>
+<p>Es ist: {$zeit|date_format:'d.m.Y'}</p>
+<h2>Params:</h2>
+<ul>
+{foreach $daten as $key=>$value}
+    <li>{$key}: {$value}</li>
+{/foreach}
+</ul>
+```
+
+Eine Template-Engine trennt sauber die Controller- und View-Schicht voneinander und macht das Erzeugen von
+dynamischen Views sehr einfach und übersichtlich.
+
+</textarea>
+</section>
 </section>
 
 <section data-markdown>
@@ -161,11 +229,34 @@ die hier aufgezeigte Minimal-Lösung.
 <i class="fas fa-graduation-cap"></i> Aufgabe: Abstrahieren der View-Erzeugung
 =============================
 
-Versuchen Sie, eine eigene View-Infrastruktur zu entwickeln: Entweder anhand der Vorgabe,
-mittels einer Template-Engine, oder einem eigenen Entwurf.
+## Aufgabe
 
-Ziel ist, dass Ihre Controller von der View-Erzeugung "befreit" werden: Dies ist das Grundkonzept von MVC.
+Entwickeln Sie nun, eine eigene View-Infrastruktur zu entwickeln.
+Ziel ist, dass Ihre Controller von der View-Erzeugung "befreit" werden:
+Dies ist das Grundkonzept von MVC.
 
+### Entweder: selber
+
+Versuchen Sie, wie vorhin aufgezeigt, eine View-Klasse zu entwickeln, welche:
+
+* Daten entgegennehmen kann
+* eine Vorlage (Template) verwendet und daraus
+* mittels z.b. `render()`-Methode den fertigen Output generiert.
+
+### Oder: Template-Engine verwenden
+
+Dieses Problem haben natürlich schon andere gelöst: Es gibt mittlerweile
+diverse so genannte "Template Engines", welche Ihnen diese Aufgabe abnehmen.
+
+Mit `composer` lassen sich diese Libraries ganz einfach installieren und verwenden. Schauen
+Sie sich z.B. folgende Engines an:
+
+* [Smarty](https://www.smarty.net/): Sehr mächtig, schon gut "gereift"
+* [Twig](https://twig.symfony.com/): Teil des Symfony-Frameworks, modern
+* [Blade](https://github.com/jenssegers/blade): Teil vom Laravel-Framework, kann aber auch separat verwendet werden
+
+**Ich stelle Ihnen frei, ob Sie eine Template Engine verwenden wollen,
+oder ob Sie selber eine entwickeln.**
 </textarea>
 </section>
 {% endblock %}

@@ -1,5 +1,17 @@
-Detailplan Lektion 1 - 14.08.2019
+Detailplan Lektion 1 - 18.08.2021
 ===========================================
+
+Infrastruktur
+---------------
+
+* Jeder Schüler hat Docker lokal installiert
+* Github Classroom Repo für jeden Schüler, mit Template aus https://github.com/bylexus/m151-template.git, beinhaltet:
+  * Docker-Infrastruktur, Start mit: `docker-compose up -d`, beinhaltet:
+    * `m151-web`: http://localhost:8020/webroot/
+    * `plantuml`: http://localhost:10001/
+    * `m151-db`: MySQL-Server, Port 3306, user: `m151`, pw: `m151`
+    * `m151-docsify`: http://localhost:10000/
+
 
 Material
 --------
@@ -24,6 +36,8 @@ Ziele
 
 Detailplan
 ----------
+
+Achtung: COVID-19-Folien erst bringen!
 
 08:20 ( 5min )      Begrüssung, Beschreibung des Moduls 151, Ziel
 08:25 ( ca. 5min )  Jahresplan, Hinweise auf Kurzreferate und Abgabetermine, Moodle

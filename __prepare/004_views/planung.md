@@ -1,4 +1,4 @@
-Detailplan Lektion 4 - 11.09.2019
+Detailplan Lektion 4 - 02.09.2019
 ===========================================
 
 Material

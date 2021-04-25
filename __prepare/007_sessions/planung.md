@@ -1,4 +1,4 @@
-Detailplan Lektion 7 - 02.10.2019
+Detailplan Lektion 7 - 23.09.2020
 ============================================
 
 Material
@@ -32,6 +32,10 @@ Bemerkung zum Unterricht
 
 Themen-Auslosung:
 
-* Kessler: XSS
-* Diggelmann: SQL Injection
-* Turkovic: CSRF
+* Kanakis   :
+* Janshon   :
+* Köppel    :
+* Häuptli   :
+* Tüscher   :
+* Stauffiger:
+* Degan     :

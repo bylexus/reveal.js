@@ -34,6 +34,7 @@ Gleichzeitig fällt dem Trainer auf, dass die Spielresultate falsche eingetragen
 Beide bearbeiten den Artikel:
 
 <img src="timing.png" width="60%" style="float:left;margin-right:10px" />
+
 Neuer Inhalt des Textfeldes: **„Letztes Wochenende gewannen wir in strömendem Regen 4:2 gegen Weinfelden“.**
 Die Änderung des Trainers wurde durch Ihre spätere Speicherung einfach überschrieben! Der Trainer bedankt sich herzlich...
 
@@ -52,7 +53,8 @@ Aus Sicht des Web-Servers sind die beiden Speichern-Vorgänge **einfach 2 Reques
 2. Der angeforderte Datensatz wird mit dem neuen Wert vom Frontend (vom Request), in diesem Fall dem Inhalt des Textfeldes, gespeichert.
 3. Der alte resp. vorhergehende Wert wurde somit überschrieben.
 
-**Für solche Fälle brauchen wir also einen Sperrmechanismus (Locking)!**
+<i class="far fa-hand-point-right"></i> **Um solche Fälle zu verhindern, müssen wir uns also einen Sperrmechanismus (Locking) einfallen lassen!**
+Es sollen nicht zwei Leute am gleichen Datensatz arbeiten können.
 
 </textarea>
 </section>
@@ -62,13 +64,14 @@ Aus Sicht des Web-Servers sind die beiden Speichern-Vorgänge **einfach 2 Reques
 <i class="fas fa-flask"></i> Applikatorisches Locking
 =============================
 
-Gruppenarbeit (2er-Gruppen): Entwerfen eines Sperrmechanismus für Dateneingabe im Web
+Gruppenarbeit (2 Gruppen): Entwerfen eines Sperrmechanismus für Dateneingabe im Web
 --------------------------------------------------------------------------
 
 Entwerfen Sie in den nächsten Minuten einen Sperrmechanismus für solche Probleme:
 Ein Datensatz, welcher von jemandem in Bearbeitung ist (Editier-Formular geöffnet,
 analog WordPress-Beispiel),
 soll nicht ein zweites Mal von einem anderen User für eine Bearbeitung geöffnet werden können.
+<i class="far fa-hand-point-right"></i> Der zweite User soll beim Öffnen des Records/Formulars abgewiesen werden.
 
 Finden Sie eine Lösung für folgende Fragen:
 
@@ -77,13 +80,13 @@ Finden Sie eine Lösung für folgende Fragen:
     * Wie wird ein Datensatz gesperrt?
     * Wie verhindern Sie das Öffnen eines gesperrten Datensatzes?
     * <i class="far fa-hand-point-right"></i> Zeigen Sie den Ablauf in einem kurzen Aktivitäts-
-      oder Flussdiagramm!
+      oder Flussdiagramm! (https://draw.io)
 * **Wie / wann wird ein Datensatz wieder entsperrt?**
 * HTTP ist **zustandslos**: Der Server weiss nicht, ob der Client „noch da ist“.
   **Wie weiss Ihr Mechanismus, dass der User noch da ist und somit der Lock noch erhalten
   bleiben muss?**
-* Fassen Sie Ihren Mechanismus kurz in einem Dokument zusammen:
-  Ablauf, ev. ein Diagramm dazu, wenn notwendig.
+* Fassen Sie Ihren Mechanismus kurz zusammen, sodass Sie ihn den anderen präsentieren können:
+  Ablauf, ev. ein Diagramm dazu, Erklärung.
 * Stellen Sie Ihren Mechanismus vor.
 
 **Zeit: 30 Min Erarbeiten, ca. 10 Min Vorstellung**
@@ -98,7 +101,8 @@ Finden Sie eine Lösung für folgende Fragen:
 **Zentrale Locking-Instanz, Semaphor**
 
 Spricht man von einem „Lock“ in der Software-Entwicklung, ist meist die Rede von einem Synchronisationsmechanismus beim
-Zugriff auf eine gemeinsame Ressource von mehreren Threads aus:<br />
+Zugriff auf eine gemeinsame Ressource von mehreren Threads aus:
+
 Mehrere Threads eines Multithread-Programm versuchen gleichzeitig ein File zu öffnen, ein Objekt zu schreiben etc.
 (Siehe https://de.wikipedia.org/wiki/Lock). Dies kann mittels Kernel- resp. Betriebssystem-Mitteln
 in vielen Programmiersprachen gelöst werden (Stichwort "Semaphor", https://de.wikipedia.org/wiki/Semaphor_(Informatik))
@@ -130,7 +134,7 @@ verwenden:
 
 <img src="semaphor.png" />
 
-Dies ist in vielen Fällen die zentrale "Single source of trhuth", welche
+Dies ist in vielen Fällen die zentrale "Single source of truth", welche
 von allen Clients / Servern verwendet wird.
 
 </textarea>
@@ -168,8 +172,9 @@ allerdings nicht gleichzeitig:
 
 Die Information, dass ein Datensatz gesperrt ist, muss an einem zentralen Ort erfolgen.
 Bei einer Web-Applikation ist dies in den meisten Fällen die Datenbank.
-Wir müssen die Sperr-Information also in einer Tabelle festhalten.
-Wir entwerfen dabei eine Datenbank-Tabelle mit folgenden Feldern:
+
+Wir wollen die Sperr-Information in einer Datenbank-Tabelle festhalten.
+Wir entwerfen dafür eine Datenbank-Tabelle mit folgenden Feldern:
 
 Tabelle `locks`:
 
@@ -200,7 +205,6 @@ Hier wird versucht, ein Lock zu erstellen. Ist dies erfolgreich, liefern wir das
 ansonsten wird eine Fehlermeldung angezeigt:
 
 ```php
-<?php
 class BlogController extends Controller {
     public function edit(Request $req) {
 
@@ -224,6 +228,8 @@ class BlogController extends Controller {
     }
 }
 ```
+
+<i class="far fa-hand-point-right"></i> Die Methode `getLockForArticle()` ist für das Erstellen / Prüfen des Locks zuständig, siehe nächste Folie.
 </textarea>
 </section>
 
@@ -232,11 +238,11 @@ class BlogController extends Controller {
 <i class="fas fa-graduation-cap"></i> Applikatorisches Locking
 =============================
 
-Die Methode **„getLockForArticle()“** ist nun für das Erstellen eines Locks zuständig.
+Die Methode **`getLockForArticle()`“** ist nun für das Erstellen eines Locks zuständig.
 Dies machen wir mit folgenden Schritten:
 
-1. Wir löschen alte Locks (Zeitstempel zu alt, abgelaufen)
-2. Hat der aktuelle Benutzer bereits einen Lock? <i class="far fa-hand-point-right"></i> Lock suchen / prüfen, positiv antworten.
+1. Wir löschen alte Locks (Zeitstempel zu alt, abgelaufen) in der Datenbank-Tabelle
+2. Hat der aktuelle Benutzer bereits einen Lock auf den Datensatz? <i class="far fa-hand-point-right"></i> Lock suchen / prüfen, positiv antworten.
 3. Wenn nicht: Wir tragen einen neuen Lock für den angeforderten Artikel / User in die „lock“-Tabelle ein.
 4. Wir überprüfen die Anzahl Locks für diese Tabelle / diesen Artikel.
     1. Haben wir mehr als einen Lock-Eintrag? <br />
@@ -261,8 +267,11 @@ protected function getLockForArticle($userId, $articleId) {
     // ------ Schritt 1: Alte Locks löschen (älter als bestimmte Zeit)
     $dbconn->exec("DELETE FROM locks WHERE locked_at + INTERVAL 5 MINUTE < NOW()");
 
-    // ------ Schritt 2: Haben wir für uns schon einen Lock auf diesen Record?
-    $count = $dbconn->query("SELECT COUNT(*) AS cnt FROM locks WHERE table_name = 'blogs' AND record_id = {$articleId} AND user_id = {$userId}")->fetchColumn(0);
+    // ------ Schritt 2: Haben wir für den aktuellen User schon einen Lock auf diesen Record?
+    $count = $dbconn->query("
+        SELECT COUNT(*) AS cnt FROM locks
+        WHERE table_name = 'blogs' AND record_id = {$articleId}
+          AND user_id = {$userId}")->fetchColumn(0);
     if ($count > 0) {
         return true; // OK, wir haben schon einen Lock, nicht mehr weiter prüfen
     }
@@ -270,7 +279,8 @@ protected function getLockForArticle($userId, $articleId) {
     // ------ Schritt 3: Neuen Lock erstellen:
     $dbconn->exec( "INSERT INTO locks (user_id, table_name, record_id, locked_at) VALUES ({$userId}, 'blogs', {$articleId}, now())");
 
-    // ------ Schritt 4: Locks für diese Tabelle / Record zählen:
+    // ------ Schritt 4: Locks für diese Tabelle / Record von ANDEREN Usern zählen:
+    //        Warum? --> um einen gleichzeitig erstellten Eintrag zu ermitteln
     $count = (int)$dbconn->query(
         "SELECT COUNT(*) AS cnt FROM locks WHERE table_name = 'blogs' AND record_id = {$articleId} AND user_id <> {$userId}")->fetchColumn(0);
     if ($count > 1) {
@@ -306,20 +316,14 @@ welche wir im Frontend-Edit-Formular mit „setInterval()“ alle n Sekunden aus
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
     //Ajax-Keep-Alive mit jQuery: alle 5 Sekunden Lock erneuern:
+    // durch Request an die /blog/renewLock-Route:
     setInterval(function(){
-        $.get('./renewLock',{
-            id: $('[name=id]').val() // aktuelle Artikel-ID z.B. via hidden form field
+        $.get('/blog/renewLock',{
+            id: 5 // aktuelle Artikel-ID, welche das Frontend kennt
+                  // aktueller User wird via Server-side Session (session cookie) ermittelt
         })
     },5000);
 </script>
-<!--
-    HTML-Form, z.B. vom Backend via PHP-Template erzeugt:
-    beinhaltet aktuelle Record-ID als hidden field:
--->
-<form>
-    <input type="hidden" name="id" value="5" />
-    <input type="text" name="vorname" value="Alex" />
-</form>
 ```
 </textarea>
 </section>
@@ -395,6 +399,35 @@ public function close(Request $req) {
     echo "Artikel {$articleId} geschlossen.";
 }
 ```
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Applikatorisches Locking - Kontrollfragen
+=============================
+
+Nach dem Durcharbeiten des Textes beantworten Sie folgende Fragen. Ev. müssen Sie dazu noch etwas im Internet recherhieren.
+
+### Zeitstempel
+
+Warum ist es wichtig, im gezeigten Verfahren den Lock-Zeitstempel festzuhalten? Würde es nicht reichen, einfach festzuhalten, DASS der Datensatz gelockt ist?
+
+
+### Gleicher User
+
+Was passiert im gezeigten Verfahren, wenn ein User von zwei unterschiedlichen PC's aus (aber mit demselben Login) einen Lock auf denselben Datensatz beantragt?
+
+### Optimistisch / Pessimistisch
+
+Es gibt zwei Verfahren, um Daten zu "locken" (zu blockieren): Ein **optimistisches** und ein **pessimistisches** Verfahren.
+Welches Verfahren wurde auf den Folien gezeigt, und warum ist dies so?
+
+### Gleichzeitiger Lock
+
+Ist es beim gezeigten Verfahren möglich, dass zwei Personen einen Lock erhalten, wenn sie **exakt zur selben Zeit** einen Lock anfordern?
+Wenn nein, alles OK, wenn ja: Wie könnte man dies verhindern?
+
 </textarea>
 </section>
 {% endblock %}

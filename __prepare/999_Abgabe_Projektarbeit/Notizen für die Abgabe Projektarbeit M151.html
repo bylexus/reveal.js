@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Export</title>
+        <style>
+</style>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="hinweise-für-die-abgabe-projektarbeit-m151">Hinweise für die Abgabe Projektarbeit M151</h1>
+<p><strong>Spätester Zeitpunkt für die Abgabe (GIT-Commit): 19.12.2020, 00:00</strong></p>
+<p>An diesem Zeitpunkt geben Sie ab (alles in Ihrem git Repository):</p>
+<pre><code>den gesamten Code inkl. Config und DB (siehe unten)
+die gesamte Doku, ohne Vortrag, in Docsify
+</code></pre>
+<h2 id="export">Export</h2>
+<p><strong>WICHTIG!</strong> Ich erwarte, dass die Abgabe Out-of-the-Box funktioniert: Committen sie daher ALLES
+in Ihr Repository, auch Konfigurationsdateien und vor allem einen DB-Dump.</p>
+<ol>
+<li><strong>DB-Dump erstellen:</strong></li>
+</ol>
+<p>Einen DB-Dump Ihrer DB inklusive MySQL-User-Tabellen (ersetzen Sie allenfalls die Usernamen, Datenbanknamen und Passwort) können Sie folgendermassen erstellen (Shell-Kommando):</p>
+<pre><code class="language-sh"><div>docker <span class="hljs-built_in">exec</span> -i m151-db mysqldump -u root -proot --databases m151 mysql &gt; dbdump.sql
+</div></code></pre>
+<p>Benennen Sie das File <code>dbdump.sql</code>.</p>
+<ol start="2">
+<li>git commit/push alles, inkl. Config + DB-Dumps</li>
+</ol>
+<p><strong>Das composer-vendor-Verzeichnis und das npm node_modules-Verzeichnis müssen Sie NICHT committen.</strong>
+Das installiere ich nach dem Klon Ihres Repos.</p>
+<h2 id="import">Import</h2>
+<p>Ich werde folgendes ausführen, um Ihr Projekt zu starten:</p>
+<ol>
+<li><code>git clone [repo-URL] &amp;&amp; cd repo-pfad</code></li>
+<li><code>docker-compose up</code></li>
+<li><code>docker exec -i m151-db sh -c 'mysql -u root -proot -h 127.0.0.1' &lt; dbdump.sql</code></li>
+<li><code>docker exec -ti m151-web composer install</code></li>
+</ol>
+<p>Danach sollte das Projekt (Frontend, Backend Web, DB, Docsify) laufen. Ich investiere nicht viel Zeit für
+die Fehlersuche.</p>
+
+    </body>
+    </html>

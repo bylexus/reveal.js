@@ -14,6 +14,7 @@ Heutiges Ziel
 * Sie kennen den Unterschied zwischen Black- und Whitebox-Testing
 * Sie kennen die Phasen des Software-Testings
 * Sie können Testfälle aus Anforderungen / Change Requests ableiten
+* Sie wissen, was ein Testkonzept und ein Testprotokoll ist und können diese erstellen
 
 </textarea>
 </section>
@@ -26,10 +27,12 @@ Heutiges Ziel
 Sie haben Ihren Change Request erfolgreich umgesetzt / ausprogrammiert. Bevor Sie nun Ihr angepasstes Programm auf die Leute los lassen,
 müssen Sie Ihre Software testen.
 
-**Kurze Wiederholung aus dem Modul 326 - Fragen an Sie:**
+**Kurze Wiederholung aus dem Modul 326 - Padlet:**
 
-* Software Testing - Was testen wir bei Software?<br /><br /><br />
-* Welche Test-Arten und Test-Methoden kennen Sie (persönlich)?
+* Software Testing - Was (welche Aspekte) testen wir bei Software?
+* Welche Test-Arten / Vorgehensweisen / Test-Methoden kennen Sie (persönlich)?
+
+**<i class="far fa-hand-point-right"></i> https://padlet.com/alex_schenkel/m151_testing**
 
 </textarea>
 </section>
@@ -39,7 +42,7 @@ müssen Sie Ihre Software testen.
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Was testen wir bei Software? **
+**Was (welche Aspekte) testen wir bei Software?**
 
 * Ablauf / richtige Logik
 * Richtige Resultate / erfüllt Anforderungen
@@ -48,6 +51,7 @@ müssen Sie Ihre Software testen.
 * Sicherheit („Hackability“)
 * Kompatibilität
 * Performance
+* ...
 
 </textarea>
 </section>
@@ -57,7 +61,7 @@ müssen Sie Ihre Software testen.
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Welche Test-Arten resp. Test-Methoden gibt es? **
+**Welche Test-Arten resp. Test-Methoden gibt es?**
 
 <img src="test_methoden.png" width="60%" />
 <img src="test_arten.png" width="50%" />
@@ -81,7 +85,9 @@ Selbständiges Studium - Startfolie
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Test-Methoden: Whitebox-Testing **
+**Test-Methoden: Whitebox-Testing**
+
+Beim Whitebox-Testing hat man "Einblick" in die Funktionsweise / den Code der Software:
 
 * testet interne Strukturen oder Abläufe eines Programms
 * Kenntnis des Programmcodes sind notwendig
@@ -93,6 +99,8 @@ Verwendung normalerweise bei:
 * API-Tests
 * Code-Coverage
 
+<i class="far fa-hand-point-right"></i> Sie als Programmierer machen sehr viel Whitebox-Testing während der Entwicklung.
+
 </textarea>
 </section>
 
@@ -101,7 +109,9 @@ Verwendung normalerweise bei:
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Test-Methoden: Blackbox-Testing **
+**Test-Methoden: Blackbox-Testing**
+
+Beim Black-Box-Testing hat der Tester keinen Einblick in die genaue Funktionsweise des Programms:
 
 * testet die Software als „Black Box“, um die Funktionalität mit den Anforderungen zu vergleichen.
 * es besteht kein Zugriff auf den Programmcode oder Wissen um die internen Strukturen.
@@ -109,6 +119,7 @@ Verwendung normalerweise bei:
 * „Test Cases“ beschreiben Input, Output und Vorgehen zum Testen.
 
 Verwendung normalerweise bei:
+
 * System-Tests
 * Spezifikations-Tests
 * User-Acceptance, Abnahme-Tests
@@ -121,7 +132,7 @@ Verwendung normalerweise bei:
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Test-Methoden: White- und Blackbox-Testing **
+**Test-Methoden: White- und Blackbox-Testing**
 
 <i class="far fa-hand-point-right"></i> zu beiden Methoden gibt es sowohl manuelle wie auch automatisierte Test-Verfahren.
 
@@ -137,12 +148,16 @@ automatisierte Tests, um Programmteile zu prüfen. Kurz zusammengefasst entwicke
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Test-Stufen **
+**Test-Stufen vs Software-Entwicklungs-Stufen**
 
 Jede Stufe der Software-Entwicklung erfordert eine andere Test-Stufe / Test-Zyklus.
-Eine Entwicklungsstufe wird in der entsprechenden Test-Stufe geprüft:
+Eine Entwicklungsstufe wird mit der entsprechenden Test-Stufe geprüft:
 
-<img src="test_stufen.png" width="80%" />
+<img src="test_stufen.png" width="75%" />
+
+<i class="far fa-hand-point-right"></i> Als Grundsatz gilt: Je weiter "oben" Sie testen wollen, desto kompexer / komplizierter sind die Tests:
+
+UI-Tests (Abnahme und Nutzung) sind um ein Vielfaches komplizierter als Unit-Tests (Software-Entwurf/Programmieren)
 </textarea>
 </section>
 
@@ -151,9 +166,15 @@ Eine Entwicklungsstufe wird in der entsprechenden Test-Stufe geprüft:
 <i class="fas fa-graduation-cap"></i> Testing
 =============================
 
-** Test-Phasen **
+**Test-Phasen**
 
-<img src="phasen_modell.png" width="80%" />
+Software-Testing spielt sich in mehreren Phasen ab:
+
+<img src="phasen_modell.png" width="70%" />
+
+* Während der **Testplanung** erstellen Sie ein **Testkonzept**
+* für die **Testdurchführung / Auswertung** erstellen Sie ein **Testprotokoll**.
+
 
 Definition / Inhalt der Phasen: siehe https://de.wikipedia.org/wiki/Softwaretest#Testplanung
 </textarea>
@@ -161,19 +182,24 @@ Definition / Inhalt der Phasen: siehe https://de.wikipedia.org/wiki/Softwaretest
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Testing
+<i class="fas fa-graduation-cap"></i> Testing - Testkonzept
 =============================
 
-** Das Wichtigste: die Planung: Erstellen Sie ein Test-Konzept! **
+**Das Wichtigste: die Planung: Erstellen Sie ein Test-Konzept!**
 
 Egal, wie Sie testen, das Wichtigste ist die Planung (siehe vorhergehende Folie). Dazu erstellen Sie ein
 **Testkonzept**:
 
-Das Testkonzept definiert: **WER** testet **WAS** mit welchen **METHODEN** und was sind die **VORAUSSETZUNGEN**
+Das Testkonzept definiert: 
+
+* **WER** testet 
+* **WAS** 
+* mit welchen **METHODEN** und
+* was sind die **VORAUSSETZUNGEN**, um die Tests durchführen zu können
 
 Siehe **HERMES**, das Informatik-Projektframework des Bundes zu diesem Thema:
 
-Siehe http://www.hermes.admin.ch/szenarien/szenario_50_Alles/scenario/de/ergebnis_testkonzept.html
+Siehe https://www.hermes.admin.ch/de/projektmanagement/verstehen/ergebnisse/testkonzept.html
 
 Ein Testkonzept soll über folgende Punkte Auskunft geben:
 
@@ -186,9 +212,30 @@ Ein Testkonzept soll über folgende Punkte Auskunft geben:
 * Test-Infrastruktur
   * Systeme, Aufbau
   * (Test-)Daten
-  * Hilfsmittel
-* Testfälle: Beschreiben Sie alle Testfälle anhand nachfolgendem Protokoll:
-  http://www.hermes.admin.ch/szenarien/szenario_50_Alles/scenario/de/ergebnis_testprotokoll.html
+  * Hilfsmittel (Bsp: welchen Browser verwenden Sie)
+* Testfälle: Beschreiben Sie alle Testfälle anhand nachfolgendem Protokoll:<br/>
+  https://www.hermes.admin.ch/de/projektmanagement/verstehen/ergebnisse/testprotokoll.html
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> Testing - Testprotokoll
+=============================
+
+Während des Testens protokollieren Ihre Tester die Ergebnisse in einem **Testprotokoll** 
+<br />(siehe) https://www.hermes.admin.ch/de/projektmanagement/verstehen/ergebnisse/testprotokoll.html
+
+Das Protokoll zeigt klar für jeden Testfall auf:
+
+* **Wer** getestet hat
+* **Wann** getestet wurde
+* das **erwartete Ergebnis**
+* die **durchgeführten Schritte**
+* das **tatsächliche Ergebnis**.
+
+<i class="far fa-hand-point-right"></i> Schauen Sie sich die Testprotokoll-Vorlage vom oben genannten Link an!
 
 </textarea>
 </section>

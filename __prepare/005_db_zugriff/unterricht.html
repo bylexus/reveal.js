@@ -47,7 +47,7 @@ Siehe http://php.net/manual/en/book.pdo.php.
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Wir stellen eine Verbindung in PHP zur Datenbank her
+<i class="fas fa-graduation-cap"></i> Verbindung in PHP zur Datenbank herstellen
 =============================
 
 In PHP hat sich die PDO-Library (PHP Data Objects) etabliert:
@@ -89,8 +89,10 @@ Nach erfolgreichem Verbindungsaufbau beinhaltet die Variable `$dbh` ein Objekt d
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+<i class="fas fa-graduation-cap"></i> Daten abfragen: Login-Formular und Prüfung
 =============================
+
+Als einfaches Beispiel zur Datenabfrage wollen wir ein Login-Formular erstellen, und das Login in der DB prüfen.
 
 **Schritt 1: Formular mit Login / Passwort-Feldern an Browser ausgeben (Beispiel aus LoginController.php)**
 
@@ -100,7 +102,7 @@ Wir verwenden eine Controller-Action unseres MVC-Frameworks, um ein HTML-Formula
 <html>
 <body>
     <h1>Login</h1>
-    <form action="login_try" method="POST">
+    <form action="/login_try" method="POST">
         <label>Username:
             <input type="text" name="login">
         </label>
@@ -115,7 +117,7 @@ Wir verwenden eine Controller-Action unseres MVC-Frameworks, um ein HTML-Formula
 
 <img src="login_form.png" width="50%" />
 
-Beim Absenden („login“-Button) werden die Daten als HTTP-Post an die url „login_try“ geschickt. Wir können diese Daten nun
+Beim Absenden („login“-Button) werden die Daten als HTTP-Post an die url „/login_try“ geschickt. Wir können diese Daten nun
 in einem 2. Schritt auswerten.
 
 (Demonstration im Browser)
@@ -125,7 +127,7 @@ in einem 2. Schritt auswerten.
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+<i class="fas fa-graduation-cap"></i> Daten abfragen: Login-Formular und Prüfung
 =============================
 
 **Schritt 2: Parameter auf der Server-seite auslesen**
@@ -139,11 +141,12 @@ HTTP-Parameter können in PHP folgendermassen ausgelesen werden:
 Beispiel-Code (komplettes Beispiel siehe LoginController.php):
 
 ```php
-    <?php
+public function login_try() {
     // Auslesen der POST-Parameter, "the PHP Way":
     $login    = $_POST['login'];
     $passwort = $_POST['passwort'];
-    echo „Ihre Eingabe: {$login}, {$passwort}“;
+    echo "Ihre Eingabe: {$login}, {$passwort}";
+}
 ```
 
 </textarea>
@@ -152,7 +155,7 @@ Beispiel-Code (komplettes Beispiel siehe LoginController.php):
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+<i class="fas fa-graduation-cap"></i> Daten abfragen: Login-Formular und Prüfung
 =============================
 
 **Schritt 3: Eingabedaten mit Datenbank-Einträgen vergleichen**
@@ -164,23 +167,22 @@ in der Datenbank, dessen Login / Passwort mit den eingegebenen Daten übereinsti
 2. wir setzten einen SQL-Query-Befehl an die Datenbank ab:
 
 ```php
-    <?php
-    // PDOStatement erstellen: Query senden:
-    $stm = $dbh->query("SELECT * FROM benutzer WHERE login = '{$username}' AND passwort = '{$pw}'");
+// PDOStatement erstellen: Query senden:
+$stm = $dbh->query("SELECT * FROM benutzer WHERE login = '{$username}' AND passwort = '{$pw}'");
 
-    // PDOStatement auslesen: fetch() holt den nächsten Record, fetchAll() holt alle Records:
-    $result = $stm->fetch();
+// PDOStatement auslesen: fetch() holt den nächsten Record, fetchAll() holt alle Records:
+$result = $stm->fetch();
 
-    // Ausgabe des Resultats:
-    if ($result) {
-        echo "<div style='background-color: green; padding: 1em;'>Hallo, {$result['vorname']}!</div>";
-    } else {
-        // oder Fehlerausgabe:
-        echo "<p>Ooops, Login-Fehler!</p>";
-    }
+// Ausgabe des Resultats:
+if ($result) {
+    echo "<div style='background-color: green; padding: 1em;'>Hallo, {$result['vorname']}!</div>";
+} else {
+    // oder Fehlerausgabe:
+    echo "<p>Ooops, Login-Fehler!</p>";
+}
 ```
-**Hinweis:**<br />
-In diesem Query wurden keinerlei Eingabeprüfungen vorgenommen: Auf Sicherheitsprobleme wie SQL-Injection gehen wir zu
+**Hinweis zur Sicherheit:**<br />
+In diesem Query wurden **keinerlei Eingabeprüfungen** vorgenommen: Auf Sicherheitsprobleme wie SQL-Injection gehen wir zu
 einem späteren Zeitpunkt ein. Als Hinweis hierzu sei erwähnt, dass PDO ebenfalls „Prepared SQL Statements“ unterstützt,
 welches solche Sicherheitsprobleme lösen kann.
 
@@ -189,10 +191,8 @@ welches solche Sicherheitsprobleme lösen kann.
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-graduation-cap"></i> Wir fragen Daten ab: einfaches Login-Formular und Prüfung
+<i class="fas fa-graduation-cap"></i> Daten aktualisieren: letzten Login festhalten
 =============================
-
-**Wir aktualisieren Daten: letzter Login festhalten**
 
 Natürlich können wir neben Datenbank-Anfragen zum Daten lesen auch Daten aktualisieren.
 Wir wollen für dieses Beispiel den Benutzer-Record des eingeloggten Benutzers aktualisieren,
@@ -202,7 +202,7 @@ sodass der Zeitpunkt des letzten erfolgreichen Logins festgehalten wird.
 
 Wir aktualisieren die Spalte `„letzter_login“` des vorher abgefragten Benutzers:
 
-```
+```php
 $updateQuery = "UPDATE benutzer SET letzter_login = now() WHERE id = {$result['id']}";
 ```
 
@@ -214,21 +214,21 @@ Resultat lesen.
 Wir verwenden wiederum unsere Datenbank-Verbindung, rufen nun aber anstatt „query()“ die Funktion „exec()“ auf:
 exec() wird bei Anfragen benutzt, welche kein Resultat (keine Abfrage) liefert:
 
-```
-    $res = $dbh->exec($updateQuery);
-    if ($res) {
-        // alles OK, kein Fehler aufgetreten.
-    }
+```php
+$res = $dbh->exec($updateQuery);
+if ($res) {
+    // alles OK, kein Fehler aufgetreten, und weiter gehts!
+}
 ```
 
 **Schritt 3: Wir kontrollieren den Vorgang**
 
 Wir können nun den Datensatz nochmals auslesen, um das aktualisierte Datum abzuholen:
 
-```
-    $readQuery = "SELECT * FROM benutzer WHERE id = {$result['id']}";
-    $result = $dbh->query($readQuery)->fetch();
-    $lastLogin = $result['letzter_login'];
+```php
+$readQuery = "SELECT * FROM benutzer WHERE id = {$result['id']}";
+$result = $dbh->query($readQuery)->fetch();
+$lastLogin = $result['letzter_login'];
 ```
 </textarea>
 </section>
@@ -238,7 +238,13 @@ Wir können nun den Datensatz nochmals auslesen, um das aktualisierte Datum abzu
 <i class="fas fa-graduation-cap"></i> Kommunikation Frontend-Backend: Formulardaten senden, Parameter auslesen
 =============================
 
-Nächstes Kapitel auf [separatem Foliensatz](unterricht_teil2.html).
+Nächstes Kapitel auf [separatem Foliensatz](unterricht_teil2.html):
+
+**Ziel**: Sie verstehen, wie das Senden von Daten vom Browser zum Server funktioniert, und wie Sie
+diese Daten in PHP (Serverseite) auswerten.
+
+Lesen Sie selbständig das Kapitel rund um Formulardaten senden und Parameter auslesen mit PHP!
+Bei Fragen wenden Sie sich an mich!
 </textarea>
 </section>
 {% endblock %}
