@@ -6,6 +6,8 @@ Infrastruktur
 
 * Jeder Schüler hat Docker lokal installiert
 * Github Classroom Repo für jeden Schüler, mit Template aus https://github.com/bylexus/m151-template.git, beinhaltet:
+  * Invitation URL: https://classroom.github.com/a/Q9wvSjGR
+  * Classroom URL: https://classroom.github.com/classrooms/50485268-m151-in18-22c
   * Docker-Infrastruktur, Start mit: `docker-compose up -d`, beinhaltet:
     * `m151-web`: http://localhost:8020/webroot/
     * `plantuml`: http://localhost:10001/
@@ -25,7 +27,7 @@ Material
   * VS Code: https://code.visualstudio.com/ mit PHP Extension Pack
   * composer (Teil vom Skelett)
   * git: SourceTree (https://www.sourcetreeapp.com/)
-  * Github classroom invitation: https://classroom.github.com/a/4vyMjw_f
+  * Github classroom Invitation URL: https://classroom.github.com/a/Q9wvSjGR
 
 Ziele
 -----

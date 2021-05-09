@@ -60,7 +60,9 @@ Ich gebe Ihnen in jeder Lektion etwas Zeit, um am Projekt zu arbeiten: Alles in 
 
 * Richtgrösse: Ca. 5-8 Entitäten / ca. 6-8 Bildschirmmasken
 * Die App muss ein User-Login / Authentifizierung vorsehen
-* Abgabe: 16. Dezember 2020
+* Abgabe: 18. Dezember 2021
+
+<i class="far fa-hand-point-right"></i> Auf nächstes Mal (Hausaufgabe auf Moodle) sollen Sie sich Ihr Projekt-Thema überlegen!
 </textarea>
 </section>
 
@@ -72,14 +74,14 @@ Ich gebe Ihnen in jeder Lektion etwas Zeit, um am Projekt zu arbeiten: Alles in 
 Benötigte Software für den Unterricht
 --------------
 
-Wir entwickeln eine Web-Applikation auf Basis HTML/CSS, PHP, MySQL. Sie erhalten eine lauffähige Infrastruktur
+Wir entwickeln eine Web-Applikation auf Basis **HTML/CSS, PHP, MySQL**. Sie erhalten eine lauffähige Infrastruktur
 als **Docker-Container** und einem Applikations-Skelett mit den wichtigsten Konfigurationen.
 
 Sie benötigen folgende Sofware:
 
 Software | Details
 ---------|---------
-Docker inkl. `docker-compose` | darin enthaltene Container:<br />- Web-Server-Container mit PHP 7.4<br />- Docsify-Container<br />- PlantUML-Container<br />- MySQL-DB-container
+Docker inkl. `docker-compose` | bereitgestellte Container:<br />- Web-Server-Container mit PHP 7.4<br />- Docsify-Container<br />- PlantUML-Container<br />- MySQL-DB-container
 MySQL Workbench | Oder ein anderes MySQL-Management-Programm
 Programmier-Editor | z.B. Sublime, Atom, **VS Code** (sehr zu empfehlen)
 Browser | Mit guten Debugging-Möglichkeiten, z.B. Chrome (Sehr gut), Firefox
@@ -94,13 +96,12 @@ GIT-Client | z.B. SourceTree: https://www.sourcetreeapp.com/
 <i class="fas fa-graduation-cap"></i> M151 - Setup
 =============================
 
-* Erstellen und Klonen des github-Classroom-Repositories: https://classroom.github.com/a/4vyMjw_f
+* Erstellen und Klonen des github-Classroom-Repositories: https://classroom.github.com/a/Q9wvSjGR
 * Erstellen / Starten der Docker-Container:
 ```sh
 $ git clone https://github.com/bztfinformatik/m151-webapp-[your-name-here].git
 $ cd m151-webapp-[your-name-here]
 $ docker-compose up
-$ docker exec -ti m151-web composer install
 ```
 
 Folgende Container laufen nun:
@@ -113,8 +114,8 @@ Folgende Container laufen nun:
 Sie verwalten Ihren Quellcode mit der Quellcode-Verwaltung GIT, und pushen den Code
 in das Github Classroom-Repository.
 
-**Ziel**: Sie geben Ihr Projekt in Ihrem GIT-Repository ab. Am 16. Dezember 2020 ist Ihr gesamter,
-lauffähiger Code inkl. Dokumentation im GIT Classroom-Repository gespeichert.
+**Ziel**: Sie geben Ihr Projekt in Ihrem GIT-Repository ab. Am 18. Dezember 2021 ist Ihr gesamter,
+lauffähiger Code inkl. Dokumentation und DB-Dump im GIT Classroom-Repository gespeichert.
 </textarea>
 </section>
 
@@ -126,12 +127,13 @@ lauffähiger Code inkl. Dokumentation im GIT Classroom-Repository gespeichert.
 ```text
 .
 ├── db-data/                    # MySQL-Datenbank-Files
+├── db-init/001_init.sql        # MySQL-Initialisations-SQL (beim 1. Start geladen)
 ├── doc/                        # Docsify-Inhalt
 │   ├── README.md               #   Startseite
 │   └── _sidebar.md             #   Navigationsleiste
 ├── docker/                     # Docker-Image-Definitionen
 ├── docker-compose.yml          # Docker-Compose-Konfiguration
-└── web/                        # Der Web-Code
+└── web/                        # Das Webroot mit Ihrem Web-Code
 ```
 </textarea>
 </section>
@@ -155,7 +157,7 @@ Dateistruktur
     │       └── Test.php      # Beispiel-Klasse "M151\Test"
     ├── vendor/               # Composer-Libraries
     │   └── autoload.php      # autoload-File: Dies muss in index.php angezogen werden
-    └── webroot/              # öffentlich zugänglicher Web-Pfad (erreichbar via http://localhost:8020/)
+    └── webroot/              # öffentlich zugänglicher Web-Pfad (erreichbar via Docker: http://localhost:8020/)
         ├── .htaccess         # Apache-Redirect-Anweisung: Alle Requests landen in index.php
         └── index.php         # Einstiegspunkt, "Dispatching"
 ```
@@ -199,5 +201,126 @@ Sie sollten bis nächstes Mal in der Lage sein:
 **Schauen Sie sich dazu das Web-Skelett an, dort finden Sie bereits ein laufendes Beispiel!**
 
 </textarea>
+</section>
+
+<section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> `composer` - Klassenlader und Paketverwaltung
+=============================
+
+Moderne PHP-Applikationen werden heute mittels `composer` (siehe https://getcomposer.org) konfiguriert:
+
+* `composer` ist ein **Paketmanager**: mit ihm können Sie PHP-Bibliotheken von einem zentralen
+  Repository im Internet installieren.
+* `composer` ist ein **Klassenlader**: Er sorgt dafür, dass Dateien mit PHP-Klassen automatisch
+  gefunden und geladen werden.
+
+Wir schauen uns auf der nächsten Folie den **Klassenlader** genauer an.
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> `composer` - Klassenlader
+=============================
+
+Im gelieferten File `webroot/index.php` finden Sie folgenden Code:
+
+```php
+// lade composer autoloader (nur hier in index.php notwendig):
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$test = new M151\Test();
+$test->hello();
+```
+
+Auf Zeile 4 wird die Klasse `Test`, welche im Namespace `M151` definiert ist, instanziert.
+
+**Woher aber weiss PHP, wo der Quellcode dazu zu finden ist?**
+
+Die "Magie" dahinter heisst **Klassenloader**: PHP kennt einen Mechanismus, um unbekannte Klassen
+automatisch aus einem File nachzuladen. `composer` hilft Ihnen dabei: die Library
+registriert automatisch Klassen aus installierten Paketen, UND macht Ihre Klassen auffindbar.
+
+Dazu müssen Sie als Programmierer folgendes beachten:
+
+* Sie müssen Ihre Klassen nach einem bestimmten **Namens-Schema** (PSR-4, siehe https://www.php-fig.org/psr/psr-4/) benennen und ablegen
+* Sie müssen Ihren Haupt-Namespace in `composer.json` konfigurieren
+
+(siehe nächste Folie)
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> `composer` - Klassenlader
+=============================
+
+Der [ **PSR-4**-Standard ](https://www.php-fig.org/psr/psr-4/) definiert:
+
+* dass Ihre Klassen in einem **Namespace** definiert sein müssen
+* dass jede Klasse in einem gleich heissenden File liegen muss (wie in Java).
+
+Der so genannte **Top-Level-Namespace**, also der "oberste" Namespace, wird in `composer.json` auf ein Verzeichnis gemappt:
+
+So zeigt in unserem Skeleton-Projekt z.B. der Top-Level-Namespace `M151` auf das Verzeichnis `./web/src/classes/`:
+Alle Klassen in diesem (und unteren) Namespaces sind in diesem Verzeichnis zu finden.
+
+**Beispiel**
+
+Sie definieren folgende Klasse im File **`web/src/classes/Test/MyClass.php`**:
+
+```php
+//Top-Level-Namespace: M151, mit Unter-Namespace Test:
+namespace M151\Test;
+
+class MyClass {
+  // ....
+}
+```
+
+In `composer.json` definieren Sie folgendes:
+
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "M151\\": "src/classes/"
+        }
+    }
+}
+```
+
+(nächste Folie)
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> `composer` - Klassenlader
+=============================
+
+Dies definiert den Ort des Top-Level-Namespaces. Damit `composer` dies auswertet, müssen Sie ihn den Autoloader neu schreiben lassen:
+
+```
+$ cd web/
+$ composer dump-autoload
+```
+
+Nun können Sie in Ihrem Start-File (bei uns: `index.php`) den **Autoloader laden**, und ab dann
+können Sie auf die Klassen zugreifen, welche `composer` "kennt":
+
+```php
+// lade composer autoloader (nur im Start-Script, hier in index.php, notwendig):
+require_once __DIR__ . '/../vendor/autoload.php';
+
+// Nun kennt der Autoloader Ihre Klasse:
+$test = new M151\Test\MyClass();
+$test->hello();
+```
+</textarea>
+</section>
 </section>
 {% endblock %}
