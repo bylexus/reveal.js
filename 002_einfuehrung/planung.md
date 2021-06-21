@@ -1,4 +1,4 @@
-Detailplan Lektion 2 - 20.08.2020
+Detailplan Lektion 2 - 26.08.2021
 ===========================================
 
 Material
@@ -23,8 +23,8 @@ Ziele
 Detailplan
 ----------
 
-* 07:30 (ca. 5min): Begrüssung, Ziel
-* 07:35: (ca. 10min): Diskussion Vorgehen SW-Entwickeln
+* 07:30 (ca. 5min): 
+* 07:35: (ca. 10min): 
   * Schüler sammeln Begriffe im Padlet, erörtern diese:
   * Begriffe zu Vorgehen in der Software-Entwicklung
   * Begriffe zu Schwierigkeiten / Herausforderungen
@@ -35,3 +35,19 @@ Detailplan
   * ausgelesene Diagramme verteilen an Schüler: Jeder sagt kurz etwas dazu: Warum statisch / dynamisch?
     Für was wird das Diagramm benutzt?
 * 09:05: Ende
+
+
+Start: 07:30
+Ende: 09:00
+
+| Zeit  | Ablauf                                                     |
+| ----- | ---------------------------------------------------------- |
+| 5min  | Begrüssung, Ziel                                           |
+| 10min | Diskussion Vorgehen SW-Entwickeln                          |
+| .     | * Schüler sammeln Begriffe im Padlet, erörtern diese:      |
+| .     | * Begriffe zu Vorgehen in der Software-Entwicklung         |
+| .     | * Begriffe zu Schwierigkeiten / Herausforderungen          |
+| .     | * Padlet https://padlet.com/alex_schenkel/ar4id4nnl693n6js |
+
+
+

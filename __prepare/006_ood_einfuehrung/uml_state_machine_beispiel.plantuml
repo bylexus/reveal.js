@@ -1,0 +1,36 @@
+@startuml
+title Bibsys-Maskenablauf
+skinparam shadowing false
+hide empty description
+
+state "Login-Fenster" as login
+state "Fehleranzeige\nLogin" as fehler_login
+state "Hauptmenu" as main: ausloggen\nausgeliehene Medien\nSuche
+state "Liste ausgeliehene\nMedien" as list_medien
+state "Sicherheitsabfrage\nVerlängern" as confirm_extend
+state "Suche/Ergebnis" as search
+state "Medium-Detail" as detail
+state "Sicherheitsabfrage\nReservieren" as confirm_reserve
+state "Beenden-Frage" as exit : Wollen Sie wirklich beenden?
+
+[*] --> login : Programmstart
+login -right-> fehler_login : Login-Fehler
+fehler_login -left-> login
+login --> main : Login OK
+main --> list_medien : Btn\n"Ausgeliehene Medien"
+list_medien --> main : Btn\n"Zurück"
+list_medien --> confirm_extend : 'Verlängern' auf Medium
+confirm_extend -> list_medien : OK od. Abbrechen
+main --> search : Btn "Suche"
+search --> main : Btn "Zurück"
+search --> confirm_reserve : Btn "Reservieren"\nauf Medium
+confirm_reserve --> search : OK / abbrechen
+search --> detail : Klick auf Medium
+detail --> confirm_reserve : Btn "Reservieren"
+detail --> search : Zurück\nzur Suche
+confirm_reserve --> detail : OK / abbrechen
+main --> exit : Btn "Logout"
+exit --> login : Ja
+exit --> main : nein
+login --> [*] : Programm beenden
+@enduml

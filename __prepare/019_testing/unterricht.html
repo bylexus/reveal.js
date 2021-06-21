@@ -49,9 +49,7 @@ Nun, aber was heisst das nun genau? Sammeln Sie in folgendem Padlet Ideen dazu:
 
 Halten Sie Ihre Ideen / Stichworte in folgendem Padlet fest:
 
-<a class="enlarge" href="https://padlet.com/alex_schenkel/sf28q0lknpjy">https://padlet.com/alex_schenkel/sf28q0lknpjy</a>
-
-
+https://padlet.com/alex_schenkel/m326_testing
 
 </textarea>
 </section>
@@ -77,6 +75,7 @@ Halten Sie Ihre Ideen / Stichworte in folgendem Padlet fest:
 * Installation
 * ... und noch viel viel mehr!
 
+
 </textarea>
 </section>
 <section data-markdown>
@@ -86,17 +85,20 @@ Halten Sie Ihre Ideen / Stichworte in folgendem Padlet fest:
 
 **Stichwortsammlung**:
 
-### Welche Test-Arten/Methoden kennen Sie?
+### Welche Test-Arten kennen Sie?
 
-* Debugging
-* Unit-Tests
-* Integrationstests
-* Regressionstests
-* Systemtests
-* Schnittstellentests
-* UI-Tests
-* Web- resp. Browsertests
-* ... und noch viele mehr!
+
+| Test-Methode | Beschreibung |
+|--------------|--------------|
+| Debugguing   | mit Entwickler-Tools während des Programmierens, Fehlersuche |
+| Unit-Tests | automatisierte Tests von einzelnen Funktionen, Klassen |
+| Integrationstests | "Zusammenspiel" grösserer Teile, automatisch oder manuell |
+| Regressionstests | Wiederholen von Testfällen, um eingeschlichene Fehler zu finden |
+| Systemtests | Gesamtsystem wird getestet, manuell oder automatisch |
+| Schnittstellentests | z.b. Web-API, meist automatisiert |
+| UI-Tests | funktioniert das User-Interface (automatisch möglich)? Kann es gut bedient werden (nur manuell möglich)?  |
+| Web- resp. Browsertests | Läuft die Seite in allen Browser(-Versionen)? |
+| ... und noch viele mehr! ||
 
 <i class="fas fa-arrow-alt-circle-right"></i> **Software-Testing ist ein sehr weiter Begriff und wird ganz unterschiedlich interpretiert.**
 
@@ -162,7 +164,11 @@ Verwendung normalerweise bei:
 Jede Stufe der Software-Entwicklung erfordert eine andere Test-Methode.
 Die entsprechende Entwicklungsstufe wird durch eine Test-Methode geprüft:
 
-<img src="test_stufen.png" />
+<img src="test_stufen.png" width="70%" />
+
+<i class="far fa-hand-point-right"></i> Als Grundsatz gilt: Je weiter "oben" Sie testen wollen, desto kompexer / komplizierter sind die Tests:
+
+UI-Tests (Abnahme und Nutzung) sind um ein Vielfaches komplizierter als Unit-Tests (Software-Entwurf/Programmieren)
 </textarea>
 </section>
 
@@ -175,6 +181,9 @@ Die entsprechende Entwicklungsstufe wird durch eine Test-Methode geprüft:
 Das Testen von Software durchläuft mehrere Phasen, welche bei Bedarf auch iterativ (wiederholend) angewendet werden:
 
 <img src="test_phasen.png" />
+
+* Während der **Testplanung** erstellen Sie ein **Testkonzept**
+* für die **Testdurchführung / Auswertung** erstellen Sie ein **Testprotokoll**.
 
 Definition / Inhalt der Phasen: siehe
 
@@ -198,9 +207,10 @@ Ziel ist immer die **Nachvollziehbarkeit**: Die Tests müssen reproduzierbar sei
 Das IT-Framework **HERMES** (http://www.hermes.admin.ch/) bietet Ihnen dazu viele Informationen und Vorlagen.
 Die Unterlagen rund ums Testing finden Sie hier:
 
-http://www.hermes.admin.ch/anwenderloesung/vorlagen.xhtml
 
-Wir schauen uns kurz das Konzept und Protokoll von Hermes an.
+https://www.hermes.admin.ch/de/projektmanagement/verstehen/aufgaben/test-durchfuhren.html
+
+Wir schauen uns kurz das Testkonzept und -Protokoll von Hermes an.
 
 </textarea>
 </section>
@@ -228,9 +238,9 @@ Wir erarbeiten **einen Testfall** für **manuelle Systemtests** am Beispiel BibS
   * tatsächliches Ergebnis
 
 <i class="fas fa-arrow-alt-circle-right"></i> Erarbeiten Sie den Testfall für den Use Case **„Medium am Terminal ausleihen“**,
-siehe Moodle vom 29.August 2019 - Analysemodell, Use-Cases: https://moodle.bztf.ch/course/view.php?id=969#section-3
+siehe Moodle vom 27.August 2020 - Analysemodell, Use-Cases: https://moodle.bztf.ch/course/view.php?id=1295#section-3
 
-Als Vorlage dient Ihnen die [ Testfall-Vorlage ](https://moodle.bztf.ch/mod/resource/view.php?id=28531) auf Moodle.
+Als Vorlage dient Ihnen die [ Testfall-Vorlage ](https://moodle.bztf.ch/mod/resource/view.php?id=50195) auf Moodle.
 </textarea>
 </section>
 {% endblock %}

@@ -16,9 +16,9 @@ Heutiges Ziel
 * Infos zur Organisation des Unterrichts
 * Semester-Agenda: was machen wir überhaupt?
 * Inbetriebnahme der Unterrichts-Tools
-  * Docker / Docsify
-  * Eclipse / Java
-* Kennenlernen Docsify, PlantUML
+  * VS Code + Plugins für Markdown und PlantUML
+  * (ev) Eclipse / Java
+* Kennenlernen Markdown, PlantUML
 * Kurzrepetition: Klassen, Vererbung, Polymorphismus
 </textarea>
 </section>
@@ -58,10 +58,10 @@ Heutiges Ziel
  Organisatorisches
 ======================================
 
-* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=1295)
-* Als Dokumentations- und UML-Tool können Sie Docsify mit [ PlantUML ](https://plantuml.com) verwenden - das ist die einfachste Art, UML-Diagramme inkl.
-  Beschreibungstexte zu generieren.
-* Hausaufgaben: bis am Abend vor der Lektion abgegeben (Aufgaben jeweils auf Moodle)
+* alle Unterlagen werden via Moodle elektronisch abgegeben (https://moodle.bztf.ch/course/view.php?id=1633)
+* Als Dokumentations- und UML-Tool verwenden wir [Markdown](https://en.wikipedia.org/wiki/Markdown) mit [ PlantUML ](https://plantuml.com) 
+  - das ist die einfachste Art, UML-Diagramme inkl. Beschreibungstexte zu generieren. Wir verwenden dazu VS Code mit entsprechenden Plugins.
+* Hausaufgaben: **bis am Tag vor der Lektion** abgegeben (Aufgaben jeweils auf Moodle)
 * Die Hausaufgaben sind Teil des Unterrichts-Stoffes. Es liegt in Ihrer Verantwortung, diese zu machen.
 * Pausen: Ich möchte auf die 5-minuten-Pause verzichten, und lasse Sie lieber 5min früher gehen - sind Sie damit
   einverstanden?
@@ -97,7 +97,7 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
   * Design Patterns (**Kurzreferate zu Design Pattern**)
 * **Testing**
   * Entwickeln von Testfällen und -Protokollen
-* Fallstudie **(Modulprüfung, LBV 326-1, 17.12.2020, 4 Lektionen Fallstudie, Abtausch mit C. Inauen)**
+* Fallstudie **(Modulprüfung, LBV 326-1, 06.01.2022, 4 Lektionen Fallstudie, Abtausch mit C. Inauen)**
 </textarea>
 </section>
 
@@ -107,10 +107,10 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
 <i class="fas fa-code"></i> Programmiersprache
 ======================================
 
-* Wir verwenden beispielhaft Java
+* Wir verwenden **beispielhaft** Java mit **Swing UI**
 * Wir entwickeln eine sehr einfache GUI-Applikation: Es geht um die grundlegenden Konzepte, nicht um UI-Design.
-* Machen Sie sich mit Eclipse und Basis-Java-Wissen vertraut.
-* Wir bearbeiten ein durchgängiges Beispiel: es wird ein Bibliothekssystem entworfen und Teil-implementiert
+* Machen Sie sich selbständig mit VS Code / Eclipse und Basis-Java-Wissen vertraut.
+* Wir bearbeiten ein durchgängiges Beispiel: es wird ein **Bibliothekssystem** entworfen und Teil-implementiert
 </textarea>
 </section>
 
@@ -122,38 +122,66 @@ ICT-Modul 326: https://cf.ict-berufsbildung.ch/modules.php?name=Mbk&a=20101&cmod
 ======================================
 
 * Wir installieren die notwendigen Tools für den Unterricht
-  * Github-Repository: https://classroom.github.com/a/V2b5rimK
-    * für UML-Diagramme und Beschreibungstexte
-    * für Hausaufgaben
-  * [Docsify](https//docsify.js.org/) für Dokumentation und UML-Diagramme in einem **Docker-Container**
-  * [PlantUML](https//plantuml.com/) für UML-Diagramme in einem **Docker-Container**
-  * Eclipse IDE: Mind. Java 8, mind. Eclipse Mars (benötigen wir ab dem Kapitel OOD)
-  * Eclipse Window Builder Plugin: http://download.eclipse.org/windowbuilder/latest/
+  * [Visual Studio Code](https://code.visualstudio.com/), mit folgenden Plugins:
+    * [Markdown All in One-Plugin](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one)
+    * [Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+    * [PlantUML Plugin](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
+  * (optional) Eclipse IDE: Mind. Java 8, mind. Eclipse Mars (benötigen wir ab dem Kapitel OOD)
+  * (optional) Eclipse Window Builder Plugin: http://download.eclipse.org/windowbuilder/latest/
 
 <img src="swing_window_builder.png" />
 </textarea>
 </section>
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-desktop"></i> Unterrichts-Tools - Docker, Docsify
+<i class="fas fa-desktop"></i> Unterrichts-Tools - Markdown mit PlantUML
 ======================================
 
-1. Registrieren Sie sich im Classroom: https://classroom.github.com/a/V2b5rimK
-2. Klonen Sie das Github-Repository (Kommandozeile: `git clone [Repo-URL]`)
-3. Kommandozeile:
-```sh
-$ cd /pfad/zu/Ihrem/Repository
-$ docker-compose up
+1. Installieren Sie VS Code mit den Plugins, wie oben angegeben
+2. Konfigurieren Sie das **PlantUML-Plugin**:
+![PlantUML Server Setting](./plantuml_server.png)
+<br />oder im JSON-Config:
 ```
-4. Öffnen Sie Docsify: http://localhost:10000/
+{ "plantuml.server": "https://www.plantuml.com/plantuml"}
+```
+Dies erlaubt das direkte Rendern von PlantUML-Diagrammen in Markdown/HTML-Output-Files.
 
-Repository und Docsify
--------------------------
+(nächste Folie)
 
-* Verwenden Sie Ihr Repository und Docsify, um die ( UML- )Aufgaben zu lösen
-* So haben Sie alle Unterlagen / generierten Dokumente an einem Platz gesammelt
-* Erstellen Sie regelmässige Commits, dann sind Ihre Einträge auch gleich gesichert.
-* Ich erwarte die Abgabe der Hausaufgaben im Repository: Dies macht mir die Kontrolle sehr einfach.
+</textarea>
+</section>
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-desktop"></i> Unterrichts-Tools - Markdown mit PlantUML
+======================================
+
+**Hello World mit Markdown und PlantUML**
+
+Erstellen Sie ein File `hello.md` mit folgendem Inhalt:
+
+```markdown
+# Hello, world!
+
+Dies ist **Markdown**. Nun kommt ein PlantUML-Diagramm:
+
+`&#8203;`&#8203;`plantuml
+@startuml
+title Hello, PlantUML
+
+class A {}
+class B {}
+A <|-- B: Vererbung
+@enduml
+`&#8203;`&#8203;`
+```
+
+Wählen Sie dann in VS Code "Markdown: Open Preview to the side":
+
+<div style="width: 70%">
+
+![VS Code open preview](./markdown_preview.png)
+
+</div>
 
 </textarea>
 </section>
@@ -164,9 +192,23 @@ Repository und Docsify
 <i class="fas fa-desktop"></i> Repetition Klassen / Vererbung / Polymorphismus
 ======================================
 
+**Im Selbststudium**
+
 * Wir befassen und **ganz kurz** nochmals mit den Grundlagen der objektorientierten Programmierung
 * [ siehe nächste Folien ](./unterricht_polymorphismus.html)
 </textarea>
 </section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-desktop"></i> (Haus-)Aufgaben
+======================================
+
+* Übung "Repetition Grundkonzepte" auf Moodle
+* HA: Übung zu Klassen, Vererbung, Polymorphismus
+
+</textarea>
+</section>
+
 
 {% endblock %}

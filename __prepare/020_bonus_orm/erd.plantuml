@@ -1,0 +1,115 @@
+@startuml
+
+title relationale One-to-Many (1:n)-Beziehung
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+Entity medium {
+    * id: int
+    name: string
+}
+
+Entity medium_exemplar {
+    * id: int
+    exemplar_nr: int
+    **medium_id: int (FK)**
+}
+note left of medium_exemplar
+**1:n-Beziehung:**
+---
+Wir haben einen **Foreign-Key**
+auf der **"n-Seite"**.
+Hier: **medium_id** "zeigt" auf ein Medium
+via dessen ID-Nummer.
+
+--> Dies ist also **genau umgekehrt** wie
+im Objektmodell (dort haben wir eine
+Liste von Objekten auf der "1"-Seite)
+endnote
+
+medium "1" ||--|{ "n" medium_exemplar
+
+newpage
+
+title relationale One-to-One (1:1)-Beziehung
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+entity person {
+    * id: int
+    name: string
+    **benutzer_id: int (FK, Unique Key)**
+}
+
+entity benutzer {
+    * id: int
+    name: string
+}
+note left of person
+**1:1-Beziehung:**
+---
+Fast identisch mit der 1:n-Beziehung:
+
+Wir haben auch einen **Foreign-Key**
+auf der **einen "1-Seite"**.
+Hier: **benutzer_id** "zeigt" auf ein Benutzer-Eintrag
+via dessen ID-Nummer.
+
+Zusätzlich **schützen** wir das Attribut **benutzer_id**,
+damit nicht mehrmals dieselbe ID verwendet werden kann:
+Eine Person und ein Benutzer können nur miteinander
+verknüpft werden.
+endnote
+
+person "1" ||--|| "1" benutzer
+
+newpage
+
+title relationale Many-to-Many (n:m)-Beziehung
+hide empty members
+skinparam BoxPadding 50
+skinparam shadowing false
+skinparam backgroundcolor transparent
+
+entity kategorie {
+    * id: int
+    name: string
+}
+entity medium {
+    * id: int
+    titel: string
+    nr: int
+}
+
+entity medium_kategorie {
+    * kategorie_id: int (FK)
+    * medium_id: int (FK)
+}
+
+note left of kategorie
+**n:m-Beziehung:**
+---
+Im Gegensatz zur objektorientierten n:m-Beziehung
+brauchen wir bei relationalen n:m-Beziehungen
+**immer** eine Zwischentabelle, welche die
+beiden Entitäten miteinander verbindet.
+
+Auf den beiden unabhängigen Entitäten
+sind keine Beziehungs-Attribute vorhanden.
+
+Die Zwischentabelle **medium_kategorie** hier
+"zeigt" wiederum via **Foreign Keys** auf
+**beide** anderen Tabellen.
+
+Zusätzlich können noch Assoziations-Attribute
+festgehalten werden (bsp: Hauptkategorie für Medium).
+endnote
+
+medium "1" |o-left-|{ "n" medium_kategorie: "       "
+kategorie "1" |o-right-|{ "n" medium_kategorie: "        "
+
+@enduml

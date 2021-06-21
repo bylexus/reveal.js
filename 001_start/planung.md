@@ -1,39 +1,44 @@
-Detailplan Lektion 1 - 15.08.2019
+Detailplan Lektion 1 - 19.08.2021
 ===========================================
 
 Material
 --------
-* Laptops
+
 * Foliensatz (Moodle)
-* Gitlab Classroom Repository: https://classroom.github.com/a/V2b5rimK
-* Eclipse - Installieren auf Schüler-Laptops, falls noch nicht geschehen
-* Eclipse Window Builder Plugin: http://download.eclipse.org/windowbuilder/latest/
+* VS Code mit Plugins:
+  * PlantUML Plugin
+  * Java Extension Pack Plugins
+  * Markdown All in One-Plugin
+* bibsys_starter_2021-05-03.zip: Bibsys-Prototyp
+* (optional) Eclipse - Installieren auf Schüler-Laptops, falls noch nicht geschehen
+* (optional) Eclipse Window Builder Plugin: http://download.eclipse.org/windowbuilder/latest/
 
 Ziele
 -----
 
+* Jahresplan, Modulübersicht
 * alle Schüler haben eine lauffähige Java-Installation
-* alle Schüler haben das Classroom-Repo ausgecheckt
-* alle Schüler konnten Docker + Docsify in Betrieb nehmen
+* alle Schüler können PlantUML, Markdown und Java in VS Code erstellen
+* die "Absolute Basics" der OO-Programmierung ist wieder präsent
 
 Detailplan
 ----------
 
-Achtung: COVID-19-Folien erst bringen!
-
-* (ca. 5min): Begrüssung, Ziel ( Folie mit meinen Daten, Folien mit den Links zu Unterrichs-Unterlagen)
-* (ca. 10 min): Infos zum Unterricht, Übersicht Semester
-  * Folien zur Unterichtsgestaltung
-  * Organisatorisches: Moodle zeigen
-  * → Folie Agenda
-  * geplante Themen vorstellen, kurz 2, 3 Sätze dazu sagen
-  * Infos zum Ablauf, Fallstudie
-  * Infos zur Umgebung (Docker, Eclipse, Java, UML-Tool ...)
-* Installation Docker / Eclipse / VisualParadigm
-  * Docker mit Docsify und PlantUML
-  * Eclipse IDE
-* Kurzrepetition zum Thema Klassen, Vererbung, Polymorphismus - separater Foliensatz und Übung auf Moodle
-  * Schüler sollen direkt "Repetition Grundkonzepte OO" als Moodle-Übung bearbeiten
-    * Besprechung wenn noch Zeit
-  * Übungen auf Moodle als Hausaufgaben fertigstellen
-* 09:05: Ende
+| Zeit             | Ablauf                                                                                    |
+| ---------------- | ----------------------------------------------------------------------------------------- |
+| (ca. 5min)       | Begrüssung, Ziel ( Folie mit meinen Daten, Folien mit den Links zu Unterrichs-Unterlagen) |
+| (ca. 10 min)     | Infos zum Unterricht, Übersicht Semester                                                  |
+| .                | - Folien zur Unterichtsgestaltung                                                         |
+| .                | - Organisatorisches: Moodle zeigen                                                        |
+| .                | - → Folie Agenda                                                                          |
+| .                | - geplante Themen vorstellen, kurz 2, 3 Sätze dazu sagen                                  |
+| .                | - Infos zum Ablauf, Fallstudie                                                            |
+| 15min            | Setup VS Code + Plugins                                                                   |
+| .                | -- PlantUML                                                                               |
+| .                | -- Markdown All-in-One                                                                    |
+| .                | -- Java Extension Pack                                                                    |
+| .                | -- (optional) Eclipse IDE                                                                 |
+| 15min            | Kurzrepetition zum Thema OO - separater Foliensatz und Übung auf Moodle                   |
+| 30min            | Moodle-Quiz "Repetition Grundkonzepte OO", Schüler lösen selbständig                      |
+| (wenn noch Zeit) | Besprechung Quiz                                                                          |
+| Rest (5min)      | HA erklären, verabschieden                                                                |

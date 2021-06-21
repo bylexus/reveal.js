@@ -32,8 +32,8 @@ class Ausleihe {
     bis: Date
 }
 
-Medium <-- Buch
-Medium <-- DVD
+Medium <|-- Buch
+Medium <|-- DVD
 
 Medium "1" - "*" MediumExemplar
 
@@ -133,21 +133,14 @@ skinparam shadowing false
 skinparam backgroundcolor transparent
 
 class Medium {
-    reserviertVon: List<Benutzer>
+    kategorien: List<Kategorie>
 }
 
-class Benutzer {
-    reservierteMedien: List<Medium>
+class Kategorie {
+    medien: List<Medium>
 }
 
-class Reservation {
-    am: Datum
-    von: Benutzer
-    medium: Medium
-}
-
-Benutzer "*" - "*" Medium: "               "
-(Benutzer, Medium) .. Reservation
+Kategorie "*" - "*" Medium: "               "
 
 newpage
 
@@ -189,8 +182,8 @@ class Ebook {
 }
 
 
-Medium <-- Buch
-Medium <-- DVD
-Medium <-- Hoerbuch
-Medium <-- Ebook
+Medium <|-- Buch
+Medium <|-- DVD
+Medium <|-- Hoerbuch
+Medium <|-- Ebook
 @enduml

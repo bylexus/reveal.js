@@ -60,30 +60,37 @@ Es gilt also, Konzepte zu finden, um die objektorientierten Paradigmen (Attribut
 
 Wir schauen uns als Erstes eine einzelne Klasse mit ihren Attributen an.
 
-Frage an Sie: ** Wie bilden wir eine Klasse in einer relationalen Tabelle ab? **
+Frage an Sie: **Wie bilden wir eine Klasse in einer relationalen Tabelle ab?**
 
 Schauen wir uns folgende BibSys-Klasse und ein Objekt an:
-
-<img src="example_classes_001.png" width="120"/>
-<img src="example_classes_002.png" width="200"/>
-
+<div style="display: flex;align-items: top;">
+    <img src="example_classes_001.png" width="120" style="margin:0"/>
+    <img src="example_classes_002.png" width="200" style="margin:0;margin-right:10px"/>
+<div>
+    
 * Was entspricht der **Klasse** in einer relationalen DB?
 * Was entspricht den **Attributen** in einer relationalen DB?
 * Was entspricht den **Datentypen** der Attribute?
 * Was entspricht einem **Objekt** in einer relationalen DB?
 
+</div>
+</div>
+
 <div class="fragment" style="display:flex; align-items:top">
     <img src="abbildung_klasse.png" width="500" style="margin-right: 20px" />
-    <ul>
-        <li>die **Klasse** wird als **Tabelle** definiert</li>
-        <li>jedes **Attribut** wird als eine **Spalte** der Tabelle definiert</li>
-        <li>der **Datentyp** des Attributs entspricht dem **Spalten-Typen**</li>
-        <li>ein **Objekt** entspricht einem **Datensatz** in der Tabelle</li>
-    </ul>
+    <div>
+
+* die **Klasse** wird als **Tabelle** definiert
+* jedes **Attribut** wird als eine **Spalte** der Tabelle definiert
+* der **Datentyp** des Attributs entspricht dem **Spalten-Typen**
+* ein **Objekt** entspricht einem **Datensatz** in der Tabelle
+
+    </div>
 </div>
 </textarea>
 </section>
 
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> ORM - Abbildung von Beziehungen
@@ -91,11 +98,17 @@ Schauen wir uns folgende BibSys-Klasse und ein Objekt an:
 
 Wie bilden wir aber **Beziehungen** zwischen Klassen in einer relationalen Datenbank ab?
 
+Wir erinnern uns: Bei **objektorientierten Beziehungen** speichern wir
+**einen Pointer auf ein anderes Objekt / auf eine Liste von Objekten**.
+
+Das können wir mit (relationalen) Datenbank-Tabellen nicht! Wie lösen wir dieses Problem?
+
 Wir erarbeiten anhand von konkreten Beispielen von Beziehungen eine Lösung in der relationalen Datenbank.
 
 * Jede Gruppe erarbeitet die **relationalen Tabellen / Spalten** zur gezeigten Beziehung
-* Zeichnen Sie die Tabelle auf (z.B. in Excel kurz die Tabellen / Spalten eintragen)
+* Zeichnen Sie die Tabellen mit den benötigen Spalten auf (z.B. in Excel kurz die Tabellen / Spalten eintragen)
 * Erläutern Sie, wie die gezeigte objektorientierte Beziehung in der relationalen DB "funktioniert".
+* Überlegen Sie sich das **SQL-Statement**, um die jeweils "andere Seite" zu laden: Wie holen sie den Benutzer zu einer Person mit SQL?
 
 <div style="display: flex; align-items:top">
     <div>
@@ -114,14 +127,146 @@ Wir erarbeiten anhand von konkreten Beispielen von Beziehungen eine Lösung in d
             <img src="example_classes_005.png" width="300" />
         </div>
         <div style="border:1px solid gray;padding:5px;margin-top:5px;height:180px">
-            <strong>Has And Belongs To Many (n:m):<br/>Reservationen von Medien und Benutzern</strong><br />
-            <img src="example_classes_006.png" width="300" />
+            <strong>Has And Belongs To Many (n:m):<br/>Medium ist in mehreren Kategorien,<br/>und umgekehrt:</strong><br />
+            <img src="example_classes_006.svg" width="300" />
         </div>
     </div>
 </div>
 </textarea>
 </section>
 
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> ORM - Abbildung von Beziehungen
+=============================
+
+**Abbilden von 1:n-Beziehungen in relationalen Tabellen**
+
+In der objektorienterten Sprache bilden wir 1:n-Beziehungen als Liste / Array von
+Objekt-Pointern ab:
+
+<img src="example_classes_004.png" width="300" />
+
+Hier hat das Objekt `Medium` eine Liste von `MediumExemplar`-Objekten zugewiesen: Auf dem Medium
+haben wir somit ein Listen-Attribut.
+
+Mit relationalen Tabellen können wir keine solche "Baumstruktur" aufbauen, wir müssen mit flachen
+Tabellendaten arbeiten. Hier kehren wir die Beziehung um:
+
+<div style="display:flex;align-items:top">
+
+<img src="erd.svg" width="40%" />
+<div>
+
+* Da wir in einer relationalen Tabelle keine Listen abbilden können, kehren wir die
+  Verlinkung um:
+* Wir zeigen von der **n**-Seite via ID auf die **1**-Seite (`medium_id`)
+* ... und können dann die Daten entsprechend abfragen:
+
+```
+-- 1-Seite:
+SELECT * FROM medium WHERE id = 5;
+-- n-Seite: alle zugehörigen Exemplare:
+SELECT * from medium_exemplar WHERE medium_id = 5;
+```
+
+</div>
+
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> ORM - Abbildung von Beziehungen
+=============================
+
+**Abbilden von 1:1-Beziehungen in relationalen Tabellen**
+
+1:1-Beziehungen können wir genau gleich wie 1:n-Beziehungen abbilden, mit einem kleinen "Trick":
+
+<img src="example_classes_003.png" width="300" />
+
+Im Grundsatz ist auch diese Beziehung eine 1:n-Beziehung "mit Einschränkung": Es darf nur 1 Objekt
+auf der n-Seite geben, welche auf unser 1-Objekt zeigt.
+
+Wir bilden das in einer relationalen Datenbank mit einem **Unique Key** ab:
+
+<div style="display:flex;align-items:top">
+
+<img src="erd_001.svg" width="40%" />
+<div>
+
+<i class="far fa-hand-point-left"></i> So kann es nur 1 Person geben, welche auf zB. die Person-ID 3 zeigt
+<img src="example_user_person.png" />
+
+</div>
+</div>
+
+</textarea>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-graduation-cap"></i> ORM - Abbildung von Beziehungen
+=============================
+
+**Abbilden von n:m-Beziehungen in relationalen Tabellen**
+
+Die kompexeste Variante stellt die **n:m-Beziehung** dar, hier mit Assoziationsklasse (geht aber auch ohne):
+
+<img src="example_classes_006.png" width="300" />
+
+Für die Abiildung als relationale Tabellen benötigen wir hier **immer** eine Zwischentabelle
+(auch wenn wir im Objektmodell keine Assoziationstabelle haben):
+
+<div style="display:flex;align-items:top">
+
+<img src="erd_002.svg" width="60%" />
+<div>
+
+* Da beide Seiten (Benutzer, Medium) jeweils eine Liste der anderen Objekte speichern müssen,
+können wir keinen Foreign Key auf der einen oder anderen Tabelle definieren
+* Dafür haben wir eine Zwischentabelle, welche jeweils **zwei Foreign Keys** definiert: einen zu `benutzer` und einen zweiten zu `medium`
+* Zusätzlich können wir (falls notwendig) noch zusätzliche Attribute (hier: `am`-Datum) auf der Zwischentabelle definieren.
+
+</div>
+</div>
+
+</textarea>
+</section>
+</section>
+
+<section data-markdown>
+<textarea data-template>
+<i class="fas fa-flask"></i> Einschub: ORM mit Hibernate
+=============================
+
+In der Praxis machen Sie dieses _Objektrelationale Mapping_ nicht (mehr) selber:
+Für sehr viele Programmiersprachen gibt es dazu bereits fertige, ausgereifte Frameworks,
+die Ihnen diese Arbeit abnimmt:
+
+* Laden von Datenbank-Einträgen und Aufbauen / Managen der In-Memory-Objekt-Struktur / Bäume
+* Speichern von Objekten / Objekthierarchien in einer Datenbank
+
+Für Java hat sich das Framework _**Hibernate**_ etabliert, mit welchem wir nun
+ein wenig experimentieren werden.
+
+<a href="https://hibernate.org/orm/">
+    <img src="hibernate-logo.svg" width="50%" />
+</a>
+
+**Achtung!** ORM-Frameworks sind meist **ziemlich komplexe Biester!** Sind Sie sich bewusst,
+dass die Einführung eines ORM gut bedacht werden sollte.
+
+<i class="far fa-hand-point-right"></i> Wir machen nun erste Schritte mit Hibernate ([separate Folien](./unterricht_praxis.html))
+
+</textarea>
+</section>
+</section>
+
+<section>
 <section data-markdown>
 <textarea data-template>
 <i class="fas fa-graduation-cap"></i> ORM - Abbildung von Vererbungs-Hierarchien
@@ -143,363 +288,73 @@ Wie also bilden Sie folgende Struktur ab?
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-flask"></i> Umsetzen in der Praxis - ORM-Framework "Hibernate"
+<i class="fas fa-graduation-cap"></i> ORM - Abbildung von Vererbungs-Hierarchien
 =============================
 
-In der Praxis helfen ORM-Frameworks, dieses Mapping zwischen Objekten und der Datenbank vorzunehmen. ORM-Frameworks sind praktisch für alle
-Sprachen / Frameworks vorhanden. In der Java-Welt hat sich [Hibernate](https://hibernate.org/orm/) durchgesetzt.
+Auch hier limitiert uns die relationale Struktur: Wir können mit relationalen, zweidimensionalen
+Tabellen keine Vererbungsstruktur definieren. Wir müssen uns auch hier wieder behelfen:
 
-Wir wollen ein kleines Beispiel mit **Hibernate** in unserem BibSys-Prototypen umsetzen.
+Wir teilen die Daten auf verschiedene Tabellen auf. Dabei haben wir folgende Möglichkeiten:
 
-Hibernate ist recht komplex. Zudem gibt es mittlerweile verschiedene Arten, wie wir
-Hibernate einsetzen können. Um die Sache noch komplizierter zu machen, kommt Java
-mit der JPA (Java Persistence API), welche von Hibernate genutzt werden kann (oder auch nicht).
+**Variante 1: Einzelne Tabelle**
 
-Wir beschränken uns auf ein ganz simples Beispiel:
+Alle Entitäten mit einer gemeinsamen Elternklasse werden in einer **einzigen** Tabelle
+gespeichert - Mittels einer Typ-Spalte unterscheiden wir dann, um was es sich handelt:
 
-* Wir benutzen **HyperSQLDB** (HSQLDB), eine einfache, in reinem Java implementierter
-  SQL-Datenbank. Diese kann auch komplett ins Memory geladen werden.
-* Wir benutzen **Hibernate** mit **JPA-Annotations** und dem **JPA-Framework**
-* Wir erweitern unseren BibSys-Prototypen, sodass **Benutzer und Personen** vom ORM-Framework
-  bereitgestellt wird.
+<img src="mapping_single_table.png" width="70%" />
 
-Sie finden ein funktionierendes Beispiel-Projekt auf Moodle als Starthilfe.
-</textarea>
-</section>
+So sind alle Objekte, welche von Medium erben, in einer Tabelle. Gewisse Spalten bleiben dann
+je nach Typ leer (Bsp: Bücher haben keine EAN, kein Interpret).
 
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Hibernate-Setup: jars und persistence.xml
-=============================
-
-* Stellen Sie sicher, dass Sie die Hibernate jar-Files in Ihrem Eclipse-Build-Path haben:
-  Das sind all die jar-Files, welche im Hibernate-zip unter `lib/required` zu finden sind.
-
-* unter `src/META-INF/persistence.xml` wird die Datenbank-Konfiguration definiert. Hier die wichtigsten Ausschnitte:
-
-```xml
-
-<!-- Eine Datenbank-Verbindung wird "Persistence Unit" genannt: -->
-<persistence-unit name="BibSys">
-    <!-- Der verwendete Persistence-Provider, hier der JPA-Provider: -->
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-
-    <!-- Alle Entity-Klassen müssen hier aufgeführt werden:  -->
-    <class>business.entity.Benutzer</class>
-
-    <properties>
-        <!-- Datenbank-Treiber, hier der HSQLDB-Treiber: -->
-        <property name="javax.persistence.jdbc.driver"
-                  value="org.hsqldb.jdbc.JDBCDriver" />
-
-        <!-- Welchen SQL-Dialekt verwendetn wir? -->
-        <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
-
-        <!-- Die JDBC-Connection-URL, hier mit Pfad zu unserer DB: -->
-        <property name="javax.persistence.jdbc.url"
-                  value="jdbc:hsqldb:file:database/bibsys" />
-
-        <!-- Username/PW: -->
-        <property name="javax.persistence.jdbc.user" value="sa" />
-        <property name="javax.persistence.jdbc.password" value="" />
-
-        <!-- Alle SQLs auf der Konsole ausgeben: -->
-        <property name="hibernate.show_sql"
-                  value="true" />
-
-        <!-- Automatische DB-Schema-Generierung: -->
-        <property name="hibernate.hbm2ddl.auto" value="update" />
-    </properties>
-</persistence-unit>
-```
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Entity konfigurieren: Benutzer
-=============================
-
-Nun kommt **ORM** ins Spiel: Hibernate macht nun das Objekt-Relationale Mapping für uns.
-Dazu muss Hibernate ein paar Infos zu unseren Klassen haben. Wir beginnen mit
-einer einfachen Konfiguration unserer `Benutzer`-Klasse:
-
-```java
-// .....
-// Wir teilen Hibernate mit, dass es sich hier um eine persistente Entity handelt,
-// und dass die DB-Tabelle "BENUTZER" heissen soll:
-@Entity
-@Table(name = "BENUTZER")
-public class Benutzer implements Serializable  {
-
-    // Die DB-ID muss Hibernate bekannt gegeben werden, ebenso die
-    // ID-Generier-Strategie:
-	@Id
-	@GeneratedValue(generator="increment")
-	@GenericGenerator(name="increment", strategy = "increment")
-	private Long id;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-    // Einfache Werte (Strings, zahlen etc.) werden von Hibernate automatisch
-    // erkannt, und auf Tabellensplaten gemappt:
-	private String login;
-	private String email;
-	private String passwort;
-	boolean admin = false;
-	boolean bibMA = false;
-
-    // Komplexe Attribute und/oder Assoziationen schauen wir später an
-}
-
-```
-Und zu ergänzen in `persistence.xml`:
-```xml
-
-<persistence-unit name="BibSys">
-    <class>business.entity.Benutzer</class>
-</persistence-unit>
-```
-</textarea>
-</section>
-
-<section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> ORM-Framework anwenden
-=============================
-
-Nun wollen wir unser ORM-Framework "bedienen". Die Java JPA sieht dabei folgenden Ablauf vor:
-
-<div style="display:flex; align-items:top">
-    <img src="ablauf_jpa.png" width="20%" style="margin-right:20px" />
-    <ol>
-        <li>Erstellen der Connection mit der `EntityManagerFactory`</li>
-        <li>Erstellen einer Session mit dem `EntityManager`</li>
-        <li>Persistenz-Framework anwenden (wiederholt)</li>
-        <li>Persistieren, beenden</li>
-    </ol>
-</div>
+Alle Bücher können mit SQL so folgendermassen abgeholt werden:
+ 
+```SELECT * FROM medium WHERE obj_type = 'buch' AND id = 1;```
 
 </textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-flask"></i> ORM-Framework anwenden: Persistieren
+<i class="fas fa-graduation-cap"></i> ORM - Abbildung von Vererbungs-Hierarchien
 =============================
 
-#1. Erstellen der Connection mit der `EntityManagerFactory`:
+**Variante 2: Tabelle pro Hierarchie-Ebene mit Joins**
 
-```java
-EntityManagerFactory emf = Persistence.createEntityManagerFactory( "BibSys" );
-```
+Um keine unnützen Spalten führen zu müssen, können die einzelnen Hierarchie-Ebenen auch
+separat in einer Tabelle abgebildet werden, und mittels eines Foreign Key auf der
+unteren Ebene mit der Eltern-Ebene verknüpft werden:
 
-#2. Erstellen einer Session mit dem `EntityManager`:
+<img src="mapping_join_table.png" width="70%" />
 
-```java
-EntityManager em = emf.createEntityManager();
-```
+Das Laden und Speichern einer ganzen Entität wird nun allerdings komplizierter, da nun immer
+(mind.) 2 Tabellen bedient werden müssen. Zum Lesen können wir dafür einen Table Join` verwenden:
 
-#3. Entität erstellen (persistieren:)
-
-```java
-// Transaktion starten:
-em.getTransaction().begin();
-
-// Benutzer anlegen und persistieren:
-Benutzer b = new Benutzer();
-b.setLogin("benutzer1");
-b.setPasswort("1");
-em.persist(b);
-
-// Transaktion abschliessen:
-em.getTransaction().commit();
-```
-
-#4. Beenden:
-
-```java
-em.close();
-emf.close();
-```
-
-<i class="far fa-hand-point-right"></i> Der EntityManager / die Verbindung bleibt während
-der Laufzeit der Applikation offen. Es ist eine gute Idee, diesen via **Singleton** in der
-ganzen Applikation zugänglich zu machen.
+```SELECT m.*,b.* FROM buch b JOIN medium m ON b.parent_id = m.id WHERE b.id = 1```
 
 </textarea>
 </section>
 
 <section data-markdown>
 <textarea data-template>
-<i class="fas fa-flask"></i> ORM-Framework anwenden: Laden / Abfragen
+<i class="fas fa-graduation-cap"></i> ORM - Abbildung von Vererbungs-Hierarchien
 =============================
 
-**Abfragen einer Entität via ID:**
+**Variante 3: Tabelle pro Klasse**
 
-```java
-// User mit ID 33 laden:
-Benutzer b = EntityManager.find(Benutzer.class, 33L);
-```
+Als dritte Variante können Sie auch eine eigene Tabelle pro Klasse erstellen: So haben Sie nur die Spalten,
+die Sie benötigen, und auch die Abfrage / Speicherung ist einfach.
 
-**Abfragen von mehreren Entitäten**:
+Der Nachteil: Spalten, welche von der Parent-Klasse vererbt werden (z.B. 'Titel') sind in allen Tabellen
+vorhanden.
 
-_Achtung: Was Sie hier sehen, ist KEIN SQL!_ Dies ist die so genannte `Hibernate DQL`
-(Domain Query Language), und sieht nur ähnlich aus wie SQL. Die DQL ist sehr mächtig (ähnlich SQL),
-und dementsprechend komplex. Hier ein einfaches Beispiel:
+<img src="mapping_multiple_tables.png" width="70%" />
 
-```java
-List<Benutzer> benutzerliste =
-    entityManager.createQuery("
-           SELECT b FROM Benutzer b", // DQL
-           Benutzer.class // erwartetes Resultat sind Benutzer-Objekte
-    ).getResultList();
-```
+Das Laden und Speichern einer ganzen Entität ist hier sehr einfach (Hier: Lesen):
+
+```SELECT * FROM buch WHERE id = 1;```
+
 </textarea>
 </section>
 </section>
 
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Aufgabe: Person-Entität persistierbar machen
-=============================
-
-* Konfigurieren Sie die `Person`-Klasse, sodass Sie Personen mittels Hibernate
-persistieren können.
-
-* komplexe Attribute oder Assoziations-Attribute können Sie mit **`@Transient`** markieren:
-  solche Attribute werden von Hibernate vorerst ignoriert.
-
-* Demonstrieren Sie die Funktionalität in einem kleinen Beispiel-Programm (Erstellen / Persistieren / Laden)
-</textarea>
-</section>
-
-<section>
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Assoziationen in Hibernate
-=============================
-
-JPA/Hibernate kann auch mit Assoziationen umgehen. Das Konzept von Assoziationen ist relativ komplex,
-und wirft auch neue Fragen auf:
-
-* Wie definiert man die verschiedenen Assoziationen?
-* Wie persistiert man ein abhängiges Objekt (z.B. Person hat Benutzer)?
-* Wann werden abhängige Objekte geladen?
-  * Mit dem Hauptobjekt?
-  * Beim Zugriff?
-  * Wie werden Unter-Objekte geladen, wenn mehrere Hauptobjekte geladen werden? Wieviele SQL-Abfragen generiert dies?
-
-Assoziationen zu konfigurieren bedingt ein detailliertes Wissen über das Objektmodell, und wie dieses
-verwendet wird. Wir schauen uns ein einfaches Beispiel an:
-
-`Medium hat Exemplare`: One-to-Many-Assoziation (beidseitig)
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Definieren der Assoziation auf den Entitäten
-=============================
-
-**One-Seite**: Medium.exemplare
-
-```java
-@Entity
-@Table(name="medium")
-class Medium {
-    // ....
-
-    // Mapping-Annotationen werden bei der GETTER-Methode definiert:
-    List<MediumExemplar> exemplare = new ArrayList<MediumExemplar>();
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "medium", orphanRemoval = true)
-    @Fetch(FetchMode.SUBSELECT)
-    public List<MediumExemplar> getExemplare() {
-        return exemplare;
-    }
-    public void setExemplare(List<MediumExemplar> exemplare) {
-        this.exemplare = exemplare;
-    }
-}
-```
-
-**Many-Seite**: MediumExemplar.medium
-
-```java
-@Entity
-@Table(name="medium_exemplar")
-class MediumExemplar {
-    // ....
-
-    // Mapping-Annotationen werden bei der GETTER-Methode definiert:
-    Medium medium;
-	@ManyToOne
-	public Medium getMedium() {
-		return medium;
-	}
-	public void setMedium(Medium medium) {
-		this.medium = medium;
-	}
-}
-```
-</textarea>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Arbeiten mit den Assoziationen:
-=============================
-
-Laden der Entitäten:
-
-```java
-List<Medium> medien = entityManager.createQuery("SELECT m FROM Medium m",Medium.class).getResultList();
-```
-
-Erstellen und Persistieren von Entitäten inkl. Assoziations-Entitäten
-
-```java
-// Medium erstellen:
-Medium m = new Medium();
-m.setTitel("Mein schönes Medium");
-
-// Exemplar erstellen:
-MediumExemplar ex = new MediumExemplar();
-ex.setBarcode("123-456");
-
-// Objekte einander zuweisen (wie gehabt: Objektmodell intakt halten)
-ex.setMedium(m);
-m.getExemplare().add(ex);
-
-// Persistieren:
-// Dabei sorgt Hibernate dafür, dass sowohl Haupt- wie auch assoziierte Entität
-// gespeichert wird:
-entityManager.persist(m);
-```
-</textarea>
-</section>
-</section>
-
-<section data-markdown>
-<textarea data-template>
-<i class="fas fa-flask"></i> Weiterführendes
-=============================
-
-Dies sind dia _absoluten Grundlagen_ von Hibernate: Das ORM-Framework kann noch viel viel mehr.
-
-Bei Interesse können Sie folgendes selbständig herausfinden:
-
-* Wie bilden Sie Vererbungen ab (z.B. Medium -&gt; Buch)?
-* Wie bilden Sie n:m-Links ab (z.B. Benutzer &lt;-&gt; Reservationen)?
-* Was hat es mit `Eager`- und `Lazy`-Loading auf sich?
-
-Dies und vieles mehr finden Sie im [Hibernate User Guide](https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html) unter<br />https://docs.jboss.org/hibernate/orm/current/userguide/html_single/Hibernate_User_Guide.html.
-</textarea>
-</section>
 {% endblock %}
