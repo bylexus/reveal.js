@@ -92,6 +92,8 @@ module.exports = function(grunt) {
                         '!test/**',
                         '!__prepare/**',
                         '!m326-build*/**',
+                        '!m326-build-*.zip',
+                        '!vm-build/**',
                         '!CONTRIBUTING.md',
                         '!Gruntfile.js',
                         '!LICENSE',
